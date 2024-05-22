@@ -18,6 +18,5 @@ Input content
     Input Text    ${LOCATOR}    ${TEXT}
 
 Display the web element
-    [Arguments]    ${TEXT}    ${LOCATOR}
-    Wait Until Element Is Visible    ${LOCATOR}
+    [Arguments]    ${TEXT}    
     Page Should Contain              ${TEXT}
