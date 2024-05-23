@@ -18,6 +18,8 @@ ${LOGINPAGE_TITLE}    Sign In
 ${REMEMBERME_BTN_ELE}    id=RememberMe
 ${INFO_MENU_ELE}    css:span[title="TranTruc007"]
 ${LOGOUT_OPTION_ELE}    css:a[href="/logout"]
+${REGISTER_BUTTON_ELE}       css:.register-button
+${URL_REGISTER}              /register
 *** Keywords ***
 Input username
     [Arguments]    ${TEXT}
@@ -31,4 +33,10 @@ Display the Home Page
     Display the web element    ${MESS_SUCCESS}
 Display the Login page
     Display the web element    Sign In
-
+Click the Register button 
+    Click on ${REGISTER_BUTTON_ELE} button
+    Wait Until Location Contains    ${URL_REGISTER}
+    The Register page should be opened
+Access the Sign In page 
+    Access to ${URL_LOGIN}
+    Display the Login page
