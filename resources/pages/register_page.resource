@@ -13,16 +13,15 @@ ${id_dayofbirth}             id:DateOfBirth
 *** Keywords ***
 Is reuired field    
     [Arguments]    ${name}
-    # ${username_label}=    Get WebElement    xpath=//label[text()="Last name"]
-    # ${text}=    Get Text    xpath=//label[text()="Last name"]
     ${elements}=    Get Element Attribute    xpath=//label[text()="${name}"]     class
     ${status}=    Run Keyword And Return Status    Should Contain    ${elements}    required
-    RETURN    ${status}
+    RETURN    ${status}   
 
-The ${name} field should be required 
+The "${name}" field should be required 
     ${is_required}=    Is reuired field    ${name}
     Should Be True    ${is_required}
-The ${name} field should not be required 
+
+The "${name}" field should not be required 
     ${is_required}=    Is reuired field    ${name}
     Should Not Be True    ${is_required}
 
@@ -32,6 +31,7 @@ The ${name} field is type free text
     Input content    ${text}       ${locator}
     ${value}=    Get Value    ${locator}
     Should Be Equal    ${value}    ${text}
+    
 The ${name} field is type Dropdown 
     ${locator}=    Set Variable    ${id_dayofbirth}${name}
     ${element}=    Get WebElement    ${locator}    
