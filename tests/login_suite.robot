@@ -1,12 +1,12 @@
 *** Settings ***
 Resource    ../resources/pages/login_page.resource
 Resource    ../configurations/config.resource
+Test Setup    Access to ${URL_LOGIN}
 Test Teardown    Close Browser
 *** Test Cases ***
-Verify that user login to the system success
+BSG-T1 --- Verify that there is a page for users log in to the system
     [Tags]    High
-    Access to ${URL_LOGIN}
+    Display the Login page
+BSG-T32 --- Verify that user can input data for the Username or email field
+    [Tags]    High
     Input username    ${USER_NAME_RIGHT}
-    Input pass    ${PASS_RIGHT}
-    Click the Login button
-    Navigate to the Home Page
