@@ -4,6 +4,9 @@ Resource    ../../configurations/config.resource
 Access to ${URL}
     Open Browser    ${URL}    ${BROWSER}
     Maximize Browser Window
+
+Close web
+    Close Browser
 Click on the web element
     [Arguments]    ${LOCATOR}
     Wait Until Element Is Visible    ${LOCATOR}
