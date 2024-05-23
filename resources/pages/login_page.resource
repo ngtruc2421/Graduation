@@ -27,5 +27,8 @@ Input pass
     Input content    ${TEXT}    ${PASSWORD_ELE}  
 Click the Login button
     Click on ${LOGIN_BTN_ELE} button
-Navigate to the Home Page
-    Display the web element    ${MESS_SUCCESS}    
+Display the Home Page
+    Display the web element    ${MESS_SUCCESS}
+Display the Login page
+    Display the web element    Sign In
+
