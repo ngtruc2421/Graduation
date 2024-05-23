@@ -16,7 +16,6 @@ ${USER_NAME_WRONG}=    @trantruc
 ${LOGINPAGE_TITLE_ELE}    tag=h1
 ${LOGINPAGE_TITLE}    Sign In
 ${REMEMBERME_BTN_ELE}    id=RememberMe
-
 *** Keywords ***
 Input username
     [Arguments]    ${TEXT}
@@ -54,4 +53,10 @@ The system saved the account information
         Log    message
     END
 
-
+Click the Register button 
+    Click on ${REGISTER_BUTTON_ELE} button
+    Wait Until Location Contains    ${URL_REGISTER}
+    The Register page should be opened
+Access the Sign In page 
+    Access to ${URL_LOGIN}
+    Display the Login page
