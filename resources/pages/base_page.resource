@@ -20,3 +20,17 @@ Input content
 Display the web element
     [Arguments]    ${TEXT}    
     Page Should Contain              ${TEXT}
+
+Get Page title
+    ${page_title}=    Get Text    css:.page-title
+    RETURN    ${page_title}
+The ${pagename} page should be opened
+    Wait Until Page Contains Element           css:.page-title
+    ${current_Page_title}=    Get Page title     
+    Should Contain    ${current_Page_title}    ${pagename}
+Open ${pagename} page
+    Access to ${URL_HOME}
+    ${pagename_lower}=    Evaluate    "${pagename}".lower()
+    ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${pagename_lower}
+    Go To    ${url}
+    The ${pagename} page should be opened

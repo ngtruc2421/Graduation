@@ -28,4 +28,4 @@ Input pass
 Click the Login button
     Click on ${LOGIN_BTN_ELE} button
 Navigate to the Home Page
-    Display the web element    ${MESS_SUCCESS}    ${MESS_SUCCESS_ELE}
+    Display the web element    ${MESS_SUCCESS}    
