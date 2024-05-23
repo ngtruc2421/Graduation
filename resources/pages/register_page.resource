@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    base_page.resource
 Library    SeleniumLibrary
-Library    ../../.venv/Lib/site-packages/robot/libraries/XML.py
 *** Variables ***
 ${LOGIN_BUTTON_ELE}          css:.menubar-link[href="/login?returnUrl=%2F"]
 ${URL_SIGNIN}                /login

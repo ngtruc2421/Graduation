@@ -1,1 +1,11 @@
-.vevn/
+.venv/
+
+# Logs
+logs/
+*.log
+
+
+#Specifig report files
+log.html
+output.xml
+report.html
