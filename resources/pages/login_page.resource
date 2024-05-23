@@ -2,7 +2,7 @@
 Resource    ./base_page.resource
 Resource    ../../configurations/config.resource
 *** Variables ***
-${USERNAME_ELE}    css:#UsernameOrEmail
+${USERNAME_ELE}    css:input[id="UsernameOrEmail"]
 ${PASSWORD_ELE}    css:#Password
 ${MESS_SUCCESS_ELE}    css:.h2
 ${MESS_FAIL_ELE}    css:.validation-summary-errors
@@ -16,8 +16,7 @@ ${USER_NAME_WRONG}=    @trantruc
 ${LOGINPAGE_TITLE_ELE}    tag=h1
 ${LOGINPAGE_TITLE}    Sign In
 ${REMEMBERME_BTN_ELE}    id=RememberMe
-${INFO_MENU_ELE}    css:span[title="TranTruc007"]
-${LOGOUT_OPTION_ELE}    css:a[href="/logout"]
+
 *** Keywords ***
 Input username
     [Arguments]    ${TEXT}
@@ -31,4 +30,28 @@ Display the Home Page
     Display the web element    ${MESS_SUCCESS}
 Display the Login page
     Display the web element    Sign In
+Unfocus the field
+    Click Element    id=content
+The data of the Username or email field is still
+    [Arguments]    ${TEXT}    ${LOCATOR}
+    Compare text    ${TEXT}    ${LOCATOR}
+Click the "Remember me" option
+    Click on the web element    ${REMEMBERME_BTN_ELE}
+Compare text
+    [Arguments]    ${TEXT}    ${LOCATOR}
+    TRY
+        ${tem}    Get Value    ${LOCATOR}
+        Should Be Equal As Strings    ${TEXT}    ${tem}  
+    EXCEPT    message
+        Log    message
+    END
+The system saved the account information
+    [Arguments]    ${USERNAME}    ${USERNAME_LOCATOR}    ${PASSWORD}    ${PASSWORD_LOCATOR}
+    TRY
+        Compare text    ${USERNAME}    ${USERNAME_LOCATOR}  
+        Compare text    ${PASSWORD}    ${PASSWORD_LOCATOR}
+    EXCEPT    message
+        Log    message
+    END
+
 
