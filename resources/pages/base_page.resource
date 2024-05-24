@@ -1,4 +1,5 @@
 *** Settings ***
+Library    SeleniumLibrary
 Resource    ../../configurations/config.resource
 *** Keywords ***
 Access to ${URL}

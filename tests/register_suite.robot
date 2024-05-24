@@ -14,7 +14,11 @@ BSG-T2 --- Verify that the user can navigate to the Register page by clicking on
 
 BSG-T4 --- Verify that Registration Form includes fields with properties as describe 
     [Tags]    Smoke    High
-    The "Last name" field should not be required
-    # User should be able to input text to "Last name" file
-    The "Email" field should be required
-    # User should be able to input text to email file
+    # The "Last name" field should not be required
+    # # User should be able to input text to "Last name" file
+    # The "Email" field should be required
+    # # User should be able to input text to email files
+    # Get Input ID By Last name
+    Check If Input Is Alphabetic    kimngan
+    # Input in Last name field with alphabetic characters abcd
+    # Input in Last name field with alphabetic characters name
