@@ -16,6 +16,9 @@ ${USER_NAME_WRONG}=    @trantruc
 ${LOGINPAGE_TITLE_ELE}    tag=h1
 ${LOGINPAGE_TITLE}    Sign In
 ${REMEMBERME_BTN_ELE}    id=RememberMe
+${REGISTER_BUTTON_ELE}    css:.page-title
+${URL_REGISTER}        /register
+
 *** Keywords ***
 Input username
     [Arguments]    ${TEXT}
