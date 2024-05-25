@@ -51,7 +51,7 @@ Get Input ID By ${name}
     ${xpath}=    Set Variable    //label[text()='${name}']/following-sibling::div[contains(@class, 'col-md-9')]//input
     ${element}=    Get WebElement    ${xpath}
     ${id}=    Call Method    ${element}    get_attribute    id
-    RETURN    ${id}
+    RETURN    id:${id}
 Input in "${name}" field with alphabetic characters ${text}
     ${locator}=    Get Input ID By ${name}
     Input content    ${text}    ${locator}
@@ -65,19 +65,41 @@ Input the "${name}" field with characters other than the alphabetic character ${
     ${is_alphabetic}=    Check If Input Is Alphabetic    ${text}
     Should Not Be True    ${is_alphabetic}
 
+Input the "${name}" field with "${text}" 
+    ${locator}=    Get Input ID By ${name}
+    Input content    ${text}    ${locator}
+    Sleep    5s
+    # Wait Until Element Is Visible    ${text}
+    ${current_Text}=    Get Value    ${locator}
+    Should Contain    ${current_Text}    ${text}
+
+Is Alphabetic
+    [Arguments]    ${input}
+    ${pattern}=    Set Variable    ^[A-Za-z]+$
+    ${result}=    Run Keyword And Return Status    Should Match Regexp    ${input}    ${pattern}
+    ${status}=    Run Keyword And Return Status    Should Be True    ${result}
+    RETURN    ${status}  
+     
+
+
+
 The error "${error}" should not be display
     Page Should Not Contain    ${error}
 
 The error "${error}" should be display
-    Page Should Contain    ${error}
+    TRY
+        Page Should Contain    ${error}
+    EXCEPT    
+        Fail    This test case is set to fail deliberately
+    END
 
 Input characters non-alphabetic characters in First name field
     [Arguments]    ${text}    ${error}
     TRY
         Input the "First name" field with characters other than the alphabetic character ${text}
-        The error ${error} should be display
+        The error "${error}" should be display
     EXCEPT    AssertionError
-        Log    Input characters are not just letters    ERROR
+        Log    Input characters are not just letters    AssertionError
         Fail    Input characters are not just letters
     END
 
@@ -91,3 +113,5 @@ Input characters non-alphabetic characters in Last name field
         Log    Input characters are not just letters    ERROR
         Fail    Input characters are not just letters
     END
+
+  
