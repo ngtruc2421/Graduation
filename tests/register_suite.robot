@@ -53,5 +53,5 @@ BSG-T27 --- Verify that the system displays an error when users input non-alphab
 BSG-T26 --- Sample_Verify that the system displays an error when users input non-alphabetic characters in the First Name field
     # Input text first name with value is not alphabetic
     # The system should show warning message
-    Input the "First name" field with "@@@" 
+    Input the "First name" field with value "@@@" 
     The error "Text should be alphabetic" should be display

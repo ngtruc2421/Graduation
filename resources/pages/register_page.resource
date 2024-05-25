@@ -65,7 +65,7 @@ Input the "${name}" field with characters other than the alphabetic character ${
     ${is_alphabetic}=    Check If Input Is Alphabetic    ${text}
     Should Not Be True    ${is_alphabetic}
 
-Input the "${name}" field with "${text}" 
+Input the "${name}" field with value "${text}" 
     ${locator}=    Get Input ID By ${name}
     Input content    ${text}    ${locator}
     Sleep    5s
