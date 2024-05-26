@@ -32,23 +32,26 @@ BSG-T25 --- Verify that Last Name should accept alphabetic characters only
     The error "Data Last Name not a valid" should not be display
 
 BSG-T26 --- Verify that the system displays an error when users input non-alphabetic characters in the First Name field
-        [Tags]    High
-        [Template]    Input characters non-alphabetic characters in First name field
-        ${text}            ${error}
-        123                "Data First Name not a valid"
-        @@                 "Data First Name not a valid"
-        kim123             "Data First Name not a valid"
-        kim@@              "Data First Name not a valid"
-        @@12               "Data First Name not a valid"
+    [Tags]    High
+    [Template]    Input characters non-alphabetic characters in First name field
+    123                "Data First Name not a valid"
+    @@                 "Data First Name not a valid"
+    kim123             "Data First Name not a valid"
+    kim@@              "Data First Name not a valid"
+    @@12               "Data First Name not a valid"
 
 
 BSG-T27 --- Verify that the system displays an error when users input non-alphabetic characters in the Last Name field
         [Tags]    High
         [Template]    Input characters non-alphabetic characters in Last name field
-        ${text}            ${error}
         123                "Data Last Name not a valid"
         @@                 "Data Last Name not a valid"
         kim123             "Data Last Name not a valid"
         kim@@              "Data Last Name not a valid"
         @@12               "Data Last Name not a valid"
 
+BSG-T26 --- Sample_Verify that the system displays an error when users input non-alphabetic characters in the First Name field
+    # Input text first name with value is not alphabetic
+    # The system should show warning message
+    Input the "First name" field with value "@@@" 
+    The error "Text should be alphabetic" should be display

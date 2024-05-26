@@ -9,3 +9,6 @@ logs/
 log.html
 output.xml
 report.html
+
+#ignore images
+*.png
