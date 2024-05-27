@@ -1,5 +1,4 @@
 *** Settings ***
-Resource    ../resources/pages/base_page.resource
 Resource    ../resources/pages/login_page.resource
 Resource    ../resources/pages/register_page.resource
 Library    SeleniumLibrary
