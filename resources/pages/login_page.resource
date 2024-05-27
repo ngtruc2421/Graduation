@@ -1,6 +1,5 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
-Resource    ../../configurations/config.resource
 *** Variables ***
 ${USERNAME_ELE}    css:input[id="UsernameOrEmail"]
 ${PASSWORD_ELE}    css:#Password
@@ -9,16 +8,14 @@ ${MESS_FAIL_ELE}    css:.validation-summary-errors
 ${LOGIN_BTN_ELE}    css:.btn-login
 ${MESS_SUCCESS}    Welcome to our store.  
 ${MESS_FAIL}    Login was unsuccessful. Please correct the errors and try again.
-${PASS_RIGHT}=         TranPhuongNgocTruc20042001
-${PASS_WRONG}=         TranPhuongNgocTruc200420011
-${USER_NAME_RIGHT}=    @trantruc2001
-${USER_NAME_WRONG}=    @trantruc 
 ${LOGINPAGE_TITLE_ELE}    tag=h1
 ${LOGINPAGE_TITLE}    Sign In
 ${REMEMBERME_BTN_ELE}    id=RememberMe
+#${REGISTER_BTN_ELE}    css:.page-title
+#${URL_REGISTER}        /register
+${FORGOTPASS_LINK_ELE}    css:a[href="/customer/passwordrecovery"]
 ${REGISTERLOGINPAGE_BTN_ELE}    css:.page-title
 ${URL_REGISTER}        register
-
 *** Keywords ***
 Input username
     [Arguments]    ${TEXT}
@@ -43,18 +40,17 @@ Compare text
     [Arguments]    ${TEXT}    ${LOCATOR}
     TRY
         ${tem}    Get Value    ${LOCATOR}
-        Should Be Equal As Strings    ${TEXT}    ${tem}  
-    EXCEPT    message
-        Log    message
+        Should Be Equal As Strings    ${TEXT}    ${tem.upper()}  
+    EXCEPT    AssertionError
+        Log    The text not be equal    ERROR
+        Fail    The text not be equal
     END
 The system saved the account information
-    [Arguments]    ${USERNAME}    ${USERNAME_LOCATOR}    ${PASSWORD}    ${PASSWORD_LOCATOR}
-    TRY
-        Compare text    ${USERNAME}    ${USERNAME_LOCATOR}  
-        Compare text    ${PASSWORD}    ${PASSWORD_LOCATOR}
-    EXCEPT    message
-        Log    message
-    END
+    [Arguments]     ${USERNAME}    ${USERNAME_LOCATOR}    ${PASSWORD}    ${PASSWORD_LOCATOR}
+    Compare text    ${USERNAME}    ${USERNAME_LOCATOR}  
+    Compare text    ${PASSWORD}    ${PASSWORD_LOCATOR}
+Click on the Forgot password link
+    Click on the web element    ${FORGOTPASS_LINK_ELE}
 
 Click the Register button
     TRY
@@ -65,7 +61,6 @@ Click the Register button
     EXCEPT    
         Fail    There is a error happen in process Click the Register button
     END 
-
 Access the Sign In page 
     Access to ${URL_LOGIN}
     Display the Login page
