@@ -16,8 +16,8 @@ ${USER_NAME_WRONG}=    @trantruc
 ${LOGINPAGE_TITLE_ELE}    tag=h1
 ${LOGINPAGE_TITLE}    Sign In
 ${REMEMBERME_BTN_ELE}    id=RememberMe
-${REGISTER_BTN_ELE}    css:.page-title
-${URL_REGISTER}        /register
+${REGISTERLOGINPAGE_BTN_ELE}    css:.page-title
+${URL_REGISTER}        register
 
 *** Keywords ***
 Input username
@@ -56,10 +56,16 @@ The system saved the account information
         Log    message
     END
 
-Click the Register button 
-    Click on ${REGISTER_BTN_ELE} button
-    Wait Until Location Contains    ${URL_REGISTER}
-    The Register page should be opened
+Click the Register button
+    TRY
+        Click on ${REGISTERLOGINPAGE_BTN_ELE} button
+        ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${URL_REGISTER}
+        Wait Until Location Contains    ${url}
+        The Register page should be opened
+    EXCEPT    
+        Fail    There is a error happen in process Click the Register button
+    END 
+
 Access the Sign In page 
     Access to ${URL_LOGIN}
     Display the Login page
