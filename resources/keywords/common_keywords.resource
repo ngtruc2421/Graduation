@@ -3,38 +3,86 @@ Resource    ../../configurations/config.resource
 
 *** Keywords ***
 Access to ${URL}
-    Open Browser    ${URL}    ${BROWSER}
-    Maximize Browser Window
+    TRY
+        Open Browser    ${URL}    ${BROWSER}
+        Maximize Browser Window
+    EXCEPT   
+        Fail    There is a error happen in process access to ${URL}
+    END
 
-Close web
-    Close Browser
 Click on the web element
     [Arguments]    ${LOCATOR}
-    Wait Until Element Is Visible    ${LOCATOR}
-    Wait Until Element Is Enabled    ${LOCATOR}
-    Click Element                    ${LOCATOR}
+    TRY
+        Wait Until Element Is Visible    ${LOCATOR}
+        Wait Until Element Is Enabled    ${LOCATOR}
+        Click Element                    ${LOCATOR}
+    EXCEPT    
+        Fail    There is a error happen in process click on the web element 
+    END
+    
 Click on ${LOCATOR} button
-    Click on the web element    ${LOCATOR}
+    [Documentation]    This keyword to click on a WebElement by provided locator
+        TRY
+            Click on the web element    ${LOCATOR}
+        EXCEPT    
+            Fail    There is a error happen in process click on ${LOCATOR} button 
+        END
+    
 Input content 
-    [Arguments]    ${TEXT}    ${LOCATOR}    
-    Wait Until Element Is Visible    ${LOCATOR}      
-    Clear Element Text               ${LOCATOR}
-    Input Text    ${LOCATOR}    ${TEXT}
+    [Arguments]    ${TEXT}    ${LOCATOR} 
+    TRY
+        Wait Until Element Is Visible    ${LOCATOR}      
+        Clear Element Text               ${LOCATOR}
+        Input Text    ${LOCATOR}    ${TEXT}
+    EXCEPT    
+        Fail    There is a error happen in process input content  
+    END   
+    
 
 Display the web element
-    [Arguments]    ${TEXT}    
-    Page Should Contain              ${TEXT}
+    [Arguments]    ${TEXT}
+    TRY
+        Page Should Contain              ${TEXT}
+    EXCEPT    
+        Fail    There is a error happen in process Display the web element
+    END    
+    
 
 Get Page title
-    ${page_title}=    Get Text    css:.page-title
-    RETURN    ${page_title}
+    TRY
+        ${page_title}=    Get Text    css:.page-title
+        RETURN    ${page_title}
+    EXCEPT    
+        Fail    There is a error happen in process Get Page title
+    END
+
 The ${pagename} page should be opened
-    Wait Until Page Contains Element           css:.page-title
-    ${current_Page_title}=    Get Page title     
-    Should Contain    ${current_Page_title}    ${pagename}
+    TRY
+        Wait Until Page Contains Element           css:.page-title
+        ${current_Page_title}=    Get Page title     
+        Should Contain    ${current_Page_title}    ${pagename}
+    EXCEPT    
+        Fail    The page open failure
+        
+    END
+
 Open ${pagename} page
-    Access to ${URL_HOME}
-    ${pagename_lower}=    Evaluate    "${pagename}".lower()
-    ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${pagename_lower}
-    Go To    ${url}
-    The ${pagename} page should be opened
+    TRY
+        Access to ${URL_HOME}
+        ${pagename_lower}=    Evaluate    "${pagename}".lower()
+        ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${pagename_lower}
+        Go To    ${url}
+        The ${pagename} page should be opened
+    EXCEPT    
+        Fail    There is a error happen in process Open ${pagename} page
+    END
+
+
+Select Option From Dropdown
+    [Arguments]    ${dropdown_selector}    ${option_text}
+    TRY
+        Select From List By Label    ${dropdown_selector}    ${option_text}
+    EXCEPT    
+        Fail    There is a error happen in process Select Option From Dropdown
+    END
+    
