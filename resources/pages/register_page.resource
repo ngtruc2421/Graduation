@@ -77,7 +77,7 @@ Get ID field by lable ${name}
 
 Input the "${name}" field with value "${text}" 
     TRY
-            ${locator}=    Get ID field by lable ${name}
+        ${locator}=    Get ID field by lable ${name}
         Input content    ${text}    ${locator}
         # Sleep    5s
         # Wait Until Element Is Visible    ${text}
