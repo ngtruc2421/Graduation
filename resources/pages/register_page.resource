@@ -1,13 +1,11 @@
 *** Settings ***
-Library    SeleniumLibrary
-Resource    base_page.resource
-Library    SeleniumLibrary
-Library    ../../.venv/Lib/site-packages/robot/libraries/XML.py
+Resource    ../keywords/common_keywords.resource
+
 *** Variables ***
-${LOGIN_BUTTON_ELE}          css:.menubar-link[href="/login?returnUrl=%2F"]
+${LOGIN_BTN_ELE}          css:.menubar-link[href="/login?returnUrl=%2F"]
 ${URL_SIGNIN}                /login
 ${PAGE_TITLE_ELE}            css:.page-title
-${REGISTER_BUTTON_ELE}       css:.btn.register-button[href="/register?returnUrl=%2f"]
+${REGISTER_BTN_ELE}       css:.btn.register-button[href="/register?returnUrl=%2f"]
 ${URL_REGISTER}              /register
 ${PAGENAME_TITLE}            Register
 ${id_dayofbirth}             id:DateOfBirth

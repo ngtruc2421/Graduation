@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ./base_page.resource
+Resource    ../keywords/common_keywords.resource
 Resource    ../../configurations/config.resource
 *** Variables ***
 ${USERNAME_ELE}    css:input[id="UsernameOrEmail"]
@@ -16,7 +16,7 @@ ${USER_NAME_WRONG}=    @trantruc
 ${LOGINPAGE_TITLE_ELE}    tag=h1
 ${LOGINPAGE_TITLE}    Sign In
 ${REMEMBERME_BTN_ELE}    id=RememberMe
-${REGISTER_BUTTON_ELE}    css:.page-title
+${REGISTER_BTN_ELE}    css:.page-title
 ${URL_REGISTER}        /register
 
 *** Keywords ***
@@ -57,7 +57,7 @@ The system saved the account information
     END
 
 Click the Register button 
-    Click on ${REGISTER_BUTTON_ELE} button
+    Click on ${REGISTER_BTN_ELE} button
     Wait Until Location Contains    ${URL_REGISTER}
     The Register page should be opened
 Access the Sign In page 
