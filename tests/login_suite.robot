@@ -4,6 +4,7 @@ Resource    ../configurations/config.resource
 Resource    ../resources/page_objects/header.resource
 Test Setup    Access to ${URL_LOGIN}
 Test Teardown    Close Browser
+
 *** Test Cases ***
 BSG-T1 --- Verify that there is a page for users log in to the system
     [Tags]    High
@@ -29,4 +30,6 @@ BSG-T13 --- Verify that the users can use "Remember Me" option
     Click on the Log in option on the top of the corner
     The system saved the account information    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
     ...    ${PASS_RIGHT}    ${PASSWORD_ELE}
-    
+
+Sample TC
+    Click Button    locator    
