@@ -25,13 +25,14 @@ Click on the Forgot password link
     Click on the web element    ${FORGOTPASS_LINK_ELE}
 Click the Register button
     TRY
-        Click on ${REGISTERLOGINPAGE_BTN_ELE} button
+        Click on button    ${REGISTERLOGINPAGE_BTN_ELE}
         ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${URL_REGISTER}
         Wait Until Location Contains    ${url}
         The page should be opened    Register
     EXCEPT    
-        Fail    There is a error happen in process Click the Register button
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Register button
     END 
+
 Log in success
     [Arguments]    ${EXPECTED}
     Display the web element    ${EXPECTED}
@@ -69,6 +70,12 @@ Appear the error message when users input incorrect value for the Username or em
     Input pass    ${PASS}
     Click the Login button
     Display the web element    ${MESS}
+
+# Click on the Forgot password link
+#     Click on the web element    ${FORGOTPASS_LINK_ELE}
+Access the Sign In page 
+    Access to url   ${URL_LOGIN}
+    Display the Login page
 # Click the Register button
 #     TRY
 #         Click on ${REGISTERLOGINPAGE_BTN_ELE} button
@@ -81,4 +88,5 @@ Appear the error message when users input incorrect value for the Username or em
 Access the Sign In page 
     Access to url    ${URL_LOGIN}
     Display the Login page    Sign In
+
 

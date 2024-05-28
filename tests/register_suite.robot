@@ -2,7 +2,7 @@
 Resource    ../resources/keywords/common_keywords.resource
 Resource    ../resources/pages/login_page.resource
 Resource    ../resources/pages/register_page.resource
-Test Setup    Open page     Register
+Test Setup    Open page    Register
 Test Teardown    Close Browser
 *** Test Cases ***
 BSG-T35 --- Verify that the user can register account successfull when user input all required field
@@ -44,7 +44,7 @@ BSG-T2 --- Verify that the user can navigate to the Register page by clicking on
     [Tags]    High
     [Setup]    Access the Sign In page
     Click the Register button
-    The page should be opened     Register
+    The page should be opened    Register
 
 BSG-T4 --- Verify that Registration Form includes fields with properties as describe 
     [Tags]    High
