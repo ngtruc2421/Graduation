@@ -11,12 +11,13 @@ Click the Submit button
     Click on the web element    ${SUBMIT_BTN_ELE}
 Input the email for the Email field
     [Arguments]    ${EMAIL}
-    Input content    ${EMAIL}    ${EMAIL_INPUT_ELE}
+    Input value for a field    ${EMAIL}    ${EMAIL_INPUT_ELE}
 Users reset password success
     Display the web element    ${SUCCES_MESSAGE}
 Appear error message when users input invalid email
     [Arguments]    ${VALUES}    ${NOTIFICATION}
-    Access to ${URL_PASSWORDRECOVERY}
+    Access to url    ${URL_PASSWORDRECOVERY}
     Input the email for the Email field    ${VALUES}
     Click the Submit button
     Display the web element    ${NOTIFICATION}
+    Close Browser
