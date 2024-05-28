@@ -74,18 +74,6 @@ Appear the error message when users input incorrect value for the Username or em
 # Click on the Forgot password link
 #     Click on the web element    ${FORGOTPASS_LINK_ELE}
 Access the Sign In page 
-    Access to url   ${URL_LOGIN}
-    Display the Login page
-# Click the Register button
-#     TRY
-#         Click on ${REGISTERLOGINPAGE_BTN_ELE} button
-#         ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${URL_REGISTER}
-#         Wait Until Location Contains    ${url}
-#         The page should be opened    Register
-#     EXCEPT    
-#         Run Keyword If Test Failed    Fail    There is a error happen in process Click the Register button    
-#     END 
-Access the Sign In page 
     Access to url    ${URL_LOGIN}
     Display the Login page    Sign In
 
