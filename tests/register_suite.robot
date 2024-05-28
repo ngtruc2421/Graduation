@@ -56,23 +56,23 @@ BSG-T25 --- Verify that Last Name should accept alphabetic characters only
     The error "Data Last Name not a valid" should not be display
 
 BSG-T26 --- Verify that the system displays an error when users input non-alphabetic characters in the First Name field
-    [Tags]    Nomal
+    [Tags]    Normal
     [Template]    It should show warning message when user input the "First name" field with specific value
-    123                "Data First Name not a valid"
-    @@                 "Data First Name not a valid"
-    kim123             "Data First Name not a valid"
-    kim@@              "Data First Name not a valid"
-    @@12               "Data First Name not a valid"
+    123                Data First Name not a valid
+    @@                 Data First Name not a valid
+    kim123             Data First Name not a valid
+    kim@@              Data First Name not a valid
+    @@12               Data First Name not a valid
     
     
 BSG-T27 --- Verify that the system displays an error when users input non-alphabetic characters in the Last Name field
-    [Tags]    Nomal
+    [Tags]    Normal
     [Template]    It should show warning message when user input the "Last namr" field with specific value
-    123                "Data Last Name not a valid"
-    @@                 "Data Last Name not a valid"
-    kim123             "Data Last Name not a valid"
-    kim@@              "Data Last Name not a valid"
-    @@12               "Data Last Name not a valid"
+    123                Data Last Name not a valid
+    @@                 Data Last Name not a valid
+    kim123             Data Last Name not a valid
+    kim@@              Data Last Name not a valid
+    @@12               Data Last Name not a valid
 
 
 BSG-T8 --- Verify that Email Addresses should be in a valid email fomat 
@@ -82,23 +82,23 @@ BSG-T8 --- Verify that Email Addresses should be in a valid email fomat
     The error "'Email' is not a valid email address." should not be display
 
 BSG-T28 --- Verify that the system show error when user input email not in a valid email format in the Email Addresses field
-    [Tags]    Nomal
+    [Tags]    Normal
     [Template]    It should show warning message when user input the "Email" field with specific value
-    kimngan123                        "'Email' is not a valid email address."
-    kimngan12@                        "'Email' is not a valid email address."
-    kimngan@gma!il.com                "'Email' is not a valid email address."
-    kimngan@exam_ple.com              "'Email' is not a valid email address."
-    kimngan@com                       "'Email' is not a valid email address."
-    kimngan..name@example.com         "'Email' is not a valid email address."
-    kimngan@.example.com              "'Email' is not a valid email address."
-    @example.com                      "'Email' is not a valid email address."
-    kimngan@example,com               "'Email' is not a valid email address."
-    kimngan@exam_ple.com              "'Email' is not a valid email address."
-    .kimngan@example.com              "'Email' is not a valid email address."
-    kimngan.@example.com              "'Email' is not a valid email address."
-    kimngan@exam..ple.com             "'Email' is not a valid email address."
-    kim ngan@example.com              "'Email' is not a valid email address."
-    kimngan@example .com              "'Email' is not a valid email address."
+    kimngan123                        'Email' is not a valid email address.
+    kimngan12@                        'Email' is not a valid email address.
+    kimngan@gma!il.com                'Email' is not a valid email address.
+    kimngan@exam_ple.com              'Email' is not a valid email address.
+    kimngan@com                       'Email' is not a valid email address.
+    kimngan..name@example.com         'Email' is not a valid email address.
+    kimngan@.example.com              'Email' is not a valid email address.
+    @example.com                      'Email' is not a valid email address.
+    kimngan@example,com               'Email' is not a valid email address.
+    kimngan@exam_ple.com              'Email' is not a valid email address.
+    .kimngan@example.com              'Email' is not a valid email address.
+    kimngan.@example.com              'Email' is not a valid email address.
+    kimngan@exam..ple.com             'Email' is not a valid email address.
+    kim ngan@example.com              'Email' is not a valid email address.
+    kimngan@example .com              'Email' is not a valid email address.
 BSG-T11 -- Password must be at least 8 characters long and include a mix of upper and lower case letters, numbers, and special characters.
     [Tags]        High
     Input the "Password" field with value "Kimngan1234@"
@@ -106,29 +106,32 @@ BSG-T11 -- Password must be at least 8 characters long and include a mix of uppe
     The error "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters" should not be display
 
 BSG-T30 --- Verify that Password not accept when not satisfy the condition at least 8 characters long and include a mix of upper and lower case letters, numbers, and special characters
-    [Tags]    Nomal
+    [Tags]    Normal
     [Template]    It should show warning message when user input the "Password" field with specific value
-    Kimnga@                "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
-    kimngan1234            "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
-    kimngan@@              "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
-    kimngan12@             "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
-    KIMNGAN12@             "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
-    KIMNGAN@@              "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
-    KIMNGAN1234            "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
-    Kimngan1234            "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
-    Kimngan@@              "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters"
+    Kimnga@                Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
+    kimngan1234            Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
+    kimngan@@              Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
+    kimngan12@             Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
+    KIMNGAN12@             Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
+    KIMNGAN@@              Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
+    KIMNGAN1234            Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
+    Kimngan1234            Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
+    Kimngan@@              Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
 
 BSG-T14 --- Verify that Confirm Password must match the Password field
     [Tags]    High
     Input the "Password" field with value "Kimngan12@@"
-    Input the "Confirm Password" field with value "Kimngan12@@"
+    Input the "Confirm password" field with value "Kimngan12@@"
     The error "The password and confirmation password do not match." should not be display
 
 BSG-T31 --- Verify that Confirm Password show error when not match the Password field
-    [Tags]    Nomal
+    [Tags]    Normal
     Input the "Password" field with value "Kimngan12@@"
     Input the "Confirm password" field with value "Kimngan1234@@"
+    Click the Register button in the Register page
+    Wait Until Page Contains    The password and confirmation password do not match.
     The error "The password and confirmation password do not match." should be display
+    
 
 BSG-T16 --- Verify that the system Display appropriate error messages for: Empty fields
     [Tags]    High

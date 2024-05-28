@@ -11,10 +11,8 @@ ${MESS_FAIL}    Login was unsuccessful. Please correct the errors and try again.
 ${LOGINPAGE_TITLE_ELE}    tag=h1
 ${LOGINPAGE_TITLE}    Sign In
 ${REMEMBERME_BTN_ELE}    id=RememberMe
-#${REGISTER_BTN_ELE}    css:.page-title
-#${URL_REGISTER}        /register
 ${FORGOTPASS_LINK_ELE}    css:a[href="/customer/passwordrecovery"]
-${REGISTERLOGINPAGE_BTN_ELE}    css:.page-title
+${REGISTERLOGINPAGE_BTN_ELE}    css:.register-button
 ${URL_REGISTER}        register
 *** Keywords ***
 Input username
