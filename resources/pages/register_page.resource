@@ -9,7 +9,7 @@ ${REGISTER_BTN_ELE}          id:register-button
 ${URL_REGISTER}              /register
 ${PAGENAME_TITLE}            Register
 ${id_dayofbirth}             id:DateOfBirth
-${CONTINUE_BTN_ELE}          CSS:.register-continue-button
+${CONTINUE_BTN_ELE}          css:.register-continue-button
 
 *** Keywords ***
 Is reuired field

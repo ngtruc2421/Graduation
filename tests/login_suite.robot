@@ -1,22 +1,44 @@
 *** Settings ***
-Resource    ../resources/pages/login_page.resource
-Resource    ../resources/pages/passwordRecovery_page.resource
-Resource    ../resources/page_objects/header.resource
-Test Setup    Access to ${URL_LOGIN}
+Resource         ../resources/pages/login_page.resource
+Resource         ../resources/pages/passwordRecovery_page.resource
+Resource         ../resources/page_objects/header.resource
+Test Setup       Access to url    ${URL_LOGIN}
 Test Teardown    Close Browser
 *** Variables ***
-${PASS_RIGHT}=         TranPhuongNgocTruc20042001
-${PASS_WRONG}=         TranPhuongNgocTruc200420011
-${USER_NAME_RIGHT}=    @trantruc2001
-${USER_NAME_WRONG}=    @trantruc
-${EMAIL}=              tt1799917@gmail.com
+${USER_NAME_WRONG}=          @trantruc
+${PASS_WHITESPACE}           @us   er123
+${USER_NAME_RIGHT}=          @trantruc2001
+${EMAIL_NOTREGISTER}         user001@gmail.com
+${EMAIL_REGISTERED}=         tt1799917@gmail.com
+${PASS_RIGHT}=               TranPhuongNgocTruc20042001
+${PASS_WRONG}=               TranPhuongNgocTruc200420011
+${EMAIL_INCORRECT_MESS}      The email you entered is incorrect
+${PASS_INCORRECT_MESS}       The password you entered is incorrect    
+${EMPTY_MESS}                Email and Password are required fields
+${EMAIL_NOTREGISTER_MESS}    The email address you entered is not associated with an account
 
 *** Test Cases ***
 BSG-T1 --- Verify that there is a page for users log in to the system
-    [Tags]    High
+    [Tags]    High    Smoke
     Display the Login page
+BSG-T13 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
+    [Tags]    High    Smoke
+    [Template]    Appear the error message when users input incorrect value for the Username or email field and Password field
+    ${EMAIL_NOTREGISTER}    ${PASS_RIGHT}         ${EMAIL_NOTREGISTER_MESS}
+    @user123.gmail.com      ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
+    11111.com               ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
+    @!!!#@gmail.com         ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
+    ${USER_NAME_WRONG}      ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
+    ${EMPTY}                ${PASS_RIGHT}         ${EMPTY_MESS}
+    ${EMAIL_REGISTERED}     @@@!!!###             ${PASS_INCORRECT_MESS}
+    ${EMAIL_REGISTERED}     1234567               ${PASS_INCORRECT_MESS}
+    ${EMAIL_REGISTERED}     ${PASS_WHITESPACE}    ${PASS_INCORRECT_MESS}
+    ${EMAIL_REGISTERED}     ${EMPTY}              ${EMPTY_MESS}
+    ${EMPTY}                ${EMPTY}              ${EMPTY_MESS}
+    
+
 BSG-T13 --- Verify that the users can use "Remember Me" option
-    [Tags]    High
+    [Tags]    High    Smoke
     Input username    ${USER_NAME_RIGHT}
     Input pass    ${PASS_RIGHT}
     Click the "Remember me" option
@@ -27,13 +49,13 @@ BSG-T13 --- Verify that the users can use "Remember Me" option
     The system saved the account information    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
     ...    ${PASS_RIGHT}    ${PASSWORD_ELE}
 BSG-T15 --- Verify that the system provided a "Forgot Password" link for users who need to reset their password
-    [Tags]    High
+    [Tags]    High    Smoke
     Click on the Forgot password link
-    Input the email for the Email field    ${EMAIL}
+    Input the email for the Email field    ${EMAIL_REGISTERED}
     Click the Submit button
     Users reset password success
 BSG-T17 --- Verify that the system will update the login's status when users login success
-    [Tags]    High
+    [Tags]    High    Smoke
     Input username    ${USER_NAME_RIGHT}
     Input pass    ${PASS_RIGHT}
     Click the Login button
@@ -47,12 +69,12 @@ BSG-T29 --- Verify that the system will display the error message when users inp
     ${EMPTY}             'Your email address' should not be empty
 
 BSG-T32 --- Verify that user can input data for the Username or email field
-    [Tags]    High
+    [Tags]    High    Smoke
     Input username    ${USER_NAME_RIGHT}
     Unfocus the field
     The data of the Username or email field is still    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
 BSG-T34 --- Verify that user can input data for the Password field
-    [Tags]    High
+    [Tags]    High    Smoke
     Input pass    ${PASS_RIGHT}
     Unfocus the field
     The data of the Username or email field is still    ${PASS_RIGHT}    ${PASSWORD_ELE}
