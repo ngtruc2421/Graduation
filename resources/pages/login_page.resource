@@ -67,9 +67,25 @@ The system saved the account information
     [Arguments]     ${USERNAME}    ${USERNAME_LOCATOR}    ${PASSWORD}    ${PASSWORD_LOCATOR}
     Compare text    ${USERNAME}    ${USERNAME_LOCATOR}  
     Compare text    ${PASSWORD}    ${PASSWORD_LOCATOR}
+
 Appear the error message when users input incorrect value for the Username or email field and Password field
     [Arguments]    ${USERNAME_EMAIL}    ${PASS}    ${MESS}
     Input username    ${USERNAME_EMAIL}
     Input pass    ${PASS}
     Click the Login button
     Display the web element    ${MESS}
+Click on the Forgot password link
+    Click on the web element    ${FORGOTPASS_LINK_ELE}
+Click the Register button
+    TRY
+        Click on ${REGISTERLOGINPAGE_BTN_ELE} button
+        ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${URL_REGISTER}
+        Wait Until Location Contains    ${url}
+        The Register page should be opened
+    EXCEPT    
+        Run Keyword If Test Failed    Fail    There is a error happen in process Click the Register button    
+    END 
+Access the Sign In page 
+    Access to ${URL_LOGIN}
+    Display the Login page
+
