@@ -83,7 +83,7 @@ Open page
         ${PAGENAME_LOWER}=    Evaluate    "${PAGENAME}".lower()
         ${URL}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${PAGENAME_LOWER}
         Go To    ${URL}
-        The ${PAGENAME} page should be opened
+        The page should be opened    ${PAGENAME}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL     There is a error happen in process Open ${pagename} page    CONTINUE
     END
@@ -98,4 +98,27 @@ Select Option From Dropdown
         Run Keyword If Test Failed    Fail    There is a error happen in process Select Option From Dropdown
     END
 
-    
+Hover Over Elenment
+    [Arguments]       ${element}
+    Execute JavaScript    window.scrollBy(0, 500);
+    Mouse Over    ${element}    
+
+Display sizebar tab 
+    [Arguments]    ${NAME}
+    TRY
+        @{LIST}=    Get WebElements    css:.nav-item [role="tab"]
+
+        FOR    ${ELEMENT}    IN    @{LIST}
+            ${CLASS_ATTRIBUTE}=    Get Element Attribute    ${ELEMENT}    class
+            ${IS_ACTIVE}=    Run Keyword And Return Status    Should Contain    ${class_atTribute}    ${NAME}
+            IF    (${IS_ACTIVE}!= False)
+                ${VALUE}=    Get Text    ${ELEMENT}
+                Should Contain    ${NAME}    ${VALUE}      
+                RETURN      
+            END
+        END
+        
+    EXCEPT    
+        Log    Error
+        
+    END
