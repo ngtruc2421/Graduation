@@ -9,4 +9,4 @@ Test Teardown    Close Browser
 *** Test Cases ***
 BSG-T37 --- Verify that Users can view the items in their shopping cart at any time by clicking the shopping cart icon
     Click on the "Shopping Basket" button
-    Display sizebar tab    Shopping Cart
+    Display sizebar tab    ghi

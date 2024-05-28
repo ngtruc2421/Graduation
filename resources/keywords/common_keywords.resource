@@ -103,22 +103,38 @@ Hover Over Elenment
     Execute JavaScript    window.scrollBy(0, 500);
     Mouse Over    ${element}    
 
-Display sizebar tab 
-    [Arguments]    ${NAME}
-    TRY
-        @{LIST}=    Get WebElements    css:.nav-item [role="tab"]
+# Display sizebar tab 
+    # [Arguments]    ${NAME}
+    # TRY
+    #     @{LIST_TAB_NAME}=    Get WebElements    css:.nav-item [role="tab"] [class="title"]
+    #     FOR    ${element}    IN    @{LIST_TAB_NAME}
+    #         ${tabName}=     Get Value    ${element}
+    #         IF      "${tabName}" == "${NAME}"
+    #             get ekemnt theo index
+    #             get attribuet 
+    #             check attibulet list contian active 
+    #         ELSE
+                
+    #         END
+            
+    #     END
 
-        FOR    ${ELEMENT}    IN    @{LIST}
-            ${CLASS_ATTRIBUTE}=    Get Element Attribute    ${ELEMENT}    class
-            ${IS_ACTIVE}=    Run Keyword And Return Status    Should Contain    ${class_atTribute}    ${NAME}
-            IF    (${IS_ACTIVE}!= False)
-                ${VALUE}=    Get Text    ${ELEMENT}
-                Should Contain    ${NAME}    ${VALUE}      
-                RETURN      
-            END
-        END
+    #     @{LIST}=    Get WebElements    css:.nav-item [role="tab"] 
         
-    EXCEPT    
-        Log    Error
+    #     FOR    ${ELEMENT}    IN    @{LIST}
+            
+    #         ${NAMEASD}=    Get Value    ${ELEMENT}
+    #         ${CLASS_ATTRIBUTE}=    Get Element Attribute    ${ELEMENT}    class
+    #         ${IS_ACTIVE}=    Run Keyword And Return Status    Should Contain    ${class_atTribute}    ${NAME}
+    #         IF    (${IS_ACTIVE}!= False)
+    #             ${VALUE}=    Get Text    ${ELEMENT}
+    #             Should Contain    ${NAME}    ${VALUE}      
+    #             RETURN      
+    #         END
+    #     END
+    #     Run Keyword And Continue On Failure   FAIL    There is a error happen in process Display sizebar ${NAME} tab 
         
-    END
+    # EXCEPT    
+    #     Run Keyword And Continue On Failure   FAIL    There is a error happen in process Display sizebar ${NAME} tab 
+        
+    # END
