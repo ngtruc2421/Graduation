@@ -2,7 +2,7 @@
 Resource    ../keywords/common_keywords.resource
 
 *** Variables ***
-${LOGIN_BTN_ELE}          css:.menubar-link[href="/login?returnUrl=%2F"]
+${LOGIN_BTN_ELE}              css:.menubar-link[href="/login?returnUrl=%2F"]
 ${URL_SIGNIN}                /login
 ${PAGE_TITLE_ELE}            css:.page-title
 ${REGISTER_BTN_ELE}          id:register-button
@@ -44,7 +44,7 @@ The "${name}" field is type free text
     [Arguments]    ${text}
     TRY
         ${locator}=    Get ID field by lable ${name}    
-        Input content    ${text}       ${locator}
+        Input value for a field    ${text}       ${locator}
         ${value}=    Get Value    ${locator}
         Should Be Equal    ${value}    ${text}
     EXCEPT    
@@ -78,7 +78,7 @@ Get ID field by lable ${name}
 Input the "${name}" field with value "${text}" 
     TRY
         ${locator}=    Get ID field by lable ${name}
-        Input content    ${text}    ${locator}
+        Input value for a field    ${text}    ${locator}
         ${current_Text}=    Get Value    ${locator}
         Should Contain    ${current_Text}    ${text}
     EXCEPT    
