@@ -1,19 +1,15 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
 *** Variables ***
-${USERNAME_ELE}    css:input[id="UsernameOrEmail"]
-${PASSWORD_ELE}    css:#Password
-${MESS_SUCCESS_ELE}    css:.h2
-${MESS_FAIL_ELE}    css:.validation-summary-errors
-${LOGIN_BTN_ELE}    css:.btn-login
-${MESS_SUCCESS}    Welcome to our store.  
-${MESS_FAIL}    Login was unsuccessful. Please correct the errors and try again.
-${LOGINPAGE_TITLE_ELE}    tag=h1
-${LOGINPAGE_TITLE}    Sign In
-${REMEMBERME_BTN_ELE}    id=RememberMe
-${FORGOTPASS_LINK_ELE}    css:a[href="/customer/passwordrecovery"]
+${LOGINPAGE_TITLE_ELE}          tag=h1
+${MESS_SUCCESS_ELE}             css:.h2
+${URL_REGISTER}                 register
+${REMEMBERME_BTN_ELE}           id=RememberMe
+${PASSWORD_ELE}                 css:#Password
+${LOGIN_BTN_ELE}                css:.btn-login
 ${REGISTERLOGINPAGE_BTN_ELE}    css:.register-button
-${URL_REGISTER}        register
+${USERNAME_ELE}                 css:input[id="UsernameOrEmail"]
+${FORGOTPASS_LINK_ELE}          css:a[href="/customer/passwordrecovery"]
 *** Keywords ***
 Input username
     [Arguments]    ${TEXT}
@@ -22,7 +18,7 @@ Input pass
     [Arguments]    ${TEXT}
     Input value for a field    ${TEXT}    ${PASSWORD_ELE}  
 Click the Login button
-    Click on ${LOGIN_BTN_ELE} button
+    Click on button     ${LOGIN_BTN_ELE}
 Click the "Remember me" option
     Click on the web element    ${REMEMBERME_BTN_ELE}
 Click on the Forgot password link
@@ -36,10 +32,13 @@ Click the Register button
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Register button
     END 
-Display the Home Page
-    Display the web element    ${MESS_SUCCESS}
+
+Log in success
+    [Arguments]    ${EXPECTED}
+    Display the web element    ${EXPECTED}
 Display the Login page
-    Display the web element    Sign In
+    [Arguments]    ${EXPECTED}
+    Display the web element    ${EXPECTED}
 Unfocus the field
     Click Element    id=content
 The data of the Username or email field is still
@@ -71,9 +70,23 @@ Appear the error message when users input incorrect value for the Username or em
     Input pass    ${PASS}
     Click the Login button
     Display the web element    ${MESS}
+
 # Click on the Forgot password link
 #     Click on the web element    ${FORGOTPASS_LINK_ELE}
 Access the Sign In page 
     Access to url   ${URL_LOGIN}
     Display the Login page
+# Click the Register button
+#     TRY
+#         Click on ${REGISTERLOGINPAGE_BTN_ELE} button
+#         ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${URL_REGISTER}
+#         Wait Until Location Contains    ${url}
+#         The page should be opened    Register
+#     EXCEPT    
+#         Run Keyword If Test Failed    Fail    There is a error happen in process Click the Register button    
+#     END 
+Access the Sign In page 
+    Access to url    ${URL_LOGIN}
+    Display the Login page    Sign In
+
 

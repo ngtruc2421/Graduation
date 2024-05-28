@@ -2,7 +2,7 @@
 Resource    ../keywords/common_keywords.resource
 
 *** Variables ***
-${LOGIN_BTN_ELE}          css:.menubar-link[href="/login?returnUrl=%2F"]
+${LOGIN_BTN_ELE}              css:.menubar-link[href="/login?returnUrl=%2F"]
 ${URL_SIGNIN}                /login
 ${PAGE_TITLE_ELE}            css:.page-title
 ${REGISTER_BTN_ELE}          id:register-button

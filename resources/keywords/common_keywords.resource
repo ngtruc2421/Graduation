@@ -9,7 +9,7 @@ Access to url
         Open Browser    ${URL}    ${BROW}
         Maximize Browser Window
     EXCEPT   
-        Run Keyword If Test Failed    Fail    There is a error happen in process access to ${URL}
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process access to ${URL}
     END
 
 Click on the web element
@@ -20,7 +20,7 @@ Click on the web element
         Wait Until Element Is Enabled    ${LOCATOR}
         Click Element                    ${LOCATOR}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process click on the web element 
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process click on the web element 
     END
     
 Click on button
@@ -40,7 +40,7 @@ Input value for a field
         Clear Element Text               ${LOCATOR}
         Input Text    ${LOCATOR}    ${TEXT}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process input content  
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process input content  
     END   
     
 
@@ -50,7 +50,7 @@ Display the web element
     TRY
         Page Should Contain              ${TEXT}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process Display the web element
+        Run Keyword And Continue On Failure  Fail    There is a error happen in process display the web element
     END    
     
 
@@ -60,7 +60,7 @@ Get Page title
         ${PAGE_TITLE}=    Get Text    css:.page-title
         RETURN    ${PAGE_TITLE}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process Get Page title
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get Page title
     END
 
 The page should be opened

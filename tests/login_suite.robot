@@ -16,12 +16,15 @@ ${EMAIL_INCORRECT_MESS}      The email you entered is incorrect
 ${PASS_INCORRECT_MESS}       The password you entered is incorrect    
 ${EMPTY_MESS}                Email and Password are required fields
 ${EMAIL_NOTREGISTER_MESS}    The email address you entered is not associated with an account
+${MESS_FAIL}                 Login was unsuccessful. Please correct the errors and try again.
+${MESS_SUCCESS}              Welcome to our store.  
+${LOGINPAGE_TITLE}           Sign In
 
 *** Test Cases ***
 BSG-T1 --- Verify that there is a page for users log in to the system
     [Tags]    High    Smoke
-    Display the Login page
-BSG-T13 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
+    Display the Login page    ${LOGINPAGE_TITLE}
+BSG-T3 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
     [Tags]    High    Smoke
     [Template]    Appear the error message when users input incorrect value for the Username or email field and Password field
     ${EMAIL_NOTREGISTER}    ${PASS_RIGHT}         ${EMAIL_NOTREGISTER_MESS}
@@ -78,3 +81,9 @@ BSG-T34 --- Verify that user can input data for the Password field
     Input pass    ${PASS_RIGHT}
     Unfocus the field
     The data of the Username or email field is still    ${PASS_RIGHT}    ${PASSWORD_ELE}
+BSG-T49 --- Verify that users can login success into the system
+    [Tags]    High    Smoke
+    Input username    ${USER_NAME_RIGHT}
+    Input pass    ${PASS_RIGHT}
+    Click the Login button
+    Log in success    ${MESS_SUCCESS}
