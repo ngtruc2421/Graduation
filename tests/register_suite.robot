@@ -15,6 +15,15 @@ BSG-T35 --- Verify that the user can register account successfull when user inpu
     Wait Until Page Contains    Your registration completed
     Page Should Contain    Your registration completed
     Is auto-login with username account
+BSG-T26 --- Verify that the system displays an error when users input non-alphabetic characters in the First Name field
+    [Tags]    Normal
+    [Template]    It should show warning message when user input the "First name" field with specific value
+    123                Data First Name not a valid
+    @@                 Data First Name not a valid
+    kim123             Data First Name not a valid
+    kim@@              Data First Name not a valid
+    @@12               Data First Name not a valid
+    
 BSG-T36 --- Verify that the user can register account successfull when user input all field
     [Tags]    High
     Input the "First name" field with value "Kim"
@@ -26,6 +35,7 @@ BSG-T36 --- Verify that the user can register account successfull when user inpu
     Input on the "Username" field with value created automatic
     Input the "Password" field with value "Kimngan12@@" 
     Input the "Confirm password" field with value "Kimngan12@@"
+    Input the "Company name" field with value "Waverley"
     Click the Register button in the Register page
     Wait Until Page Contains    Your registration completed
     Page Should Contain    Your registration completed
@@ -37,12 +47,25 @@ BSG-T2 --- Verify that the user can navigate to the Register page by clicking on
     The Register page should be opened
 
 BSG-T4 --- Verify that Registration Form includes fields with properties as describe 
-    # The "Last name" field should not be required
-    # # User should be able to input text to "Last name" file
+    [Tags]    High
+    The "First name" field should not be required
+    The "First name" field is type free text        abc@
+    The "Last name" field should not be required
+    The "Last name" field is type free text         bcd@
+    The "Day" field is type Dropdown
+    The "Month" field is type Dropdown
+    The "Year" field is type Dropdown
     The "Email" field should be required
-    # # User should be able to input text to email files
-    # Get Input ID By Last name
-    # Input in Last name field with alphabetic characters name
+    The "Email" field is type free text            abc!@
+    The "Username" field should be required
+    The "Username" field is type free text            kimngan#$
+    The "Password" field should be required
+    The "Password" field is type free text            kimngan**%%
+    The "Confirm password" field should be required
+    The "Confirm password" field is type free text    kimngan*%%    
+    The "Company name" field should not be required
+    The "Company name" field is type free text         abc&^  
+     
 
 BSG-T6 --- Verify that First Name should accept alphabetic characters only
     [Tags]    High
@@ -54,16 +77,6 @@ BSG-T25 --- Verify that Last Name should accept alphabetic characters only
     Input the "Last name" field with value "Ngan"
     Click the Register button in the Register page
     The error "Data Last Name not a valid" should not be display
-
-BSG-T26 --- Verify that the system displays an error when users input non-alphabetic characters in the First Name field
-    [Tags]    Normal
-    [Template]    It should show warning message when user input the "First name" field with specific value
-    123                Data First Name not a valid
-    @@                 Data First Name not a valid
-    kim123             Data First Name not a valid
-    kim@@              Data First Name not a valid
-    @@12               Data First Name not a valid
-    
     
 BSG-T27 --- Verify that the system displays an error when users input non-alphabetic characters in the Last Name field
     [Tags]    Normal
@@ -80,10 +93,11 @@ BSG-T8 --- Verify that Email Addresses should be in a valid email fomat
     Input the "Email" field with value "kimngan1234@gmail.com"
     Click the Register button in the Register page
     The error "'Email' is not a valid email address." should not be display
-
+    
 BSG-T28 --- Verify that the system show error when user input email not in a valid email format in the Email Addresses field
     [Tags]    Normal
     [Template]    It should show warning message when user input the "Email" field with specific value
+    kim                               'Email' is not a valid email address.
     kimngan123                        'Email' is not a valid email address.
     kimngan12@                        'Email' is not a valid email address.
     kimngan@gma!il.com                'Email' is not a valid email address.
@@ -178,3 +192,21 @@ BSG-T23 --- Verify that The user can click on the Continue button to navigate to
     Is auto-login with username account
     Click the Continue button
     The Register page should be opened
+
+BSG-T18 --- Verify that the system Display appropriate error messages for: Invalid email format
+    [Tags]    High
+    [Template]    It should show warning message when user input the "Email" field with specific value
+    InvalidEmail              'Email' is not a valid email address.
+
+BSG-T20 --- Verify that the system Display appropriate error messages for: Password not meeting complexity requirements
+    [Tags]    High
+    [Template]    It should show warning message when user input the "Password" field with specific value
+    InvalidPassword                Password not meeting complexity requirements
+
+BSG-T19 --- Verify that the system Display appropriate error messages for: Password and Confirm Password mismatch
+        [Tags]    Normal
+    Input the "Password" field with value "Kimngan12@@"
+    Input the "Confirm password" field with value "Kimngan1234@@"
+    Click the Register button in the Register page
+    Wait Until Page Contains    The password and confirmation password do not match.
+    The error "The password and confirmation password do not match." should be display

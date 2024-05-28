@@ -57,7 +57,7 @@ Click the Register button
         Wait Until Location Contains    ${url}
         The Register page should be opened
     EXCEPT    
-        Fail    There is a error happen in process Click the Register button
+        Run Keyword If Test Failed    Fail    There is a error happen in process Click the Register button    
     END 
 Access the Sign In page 
     Access to ${URL_LOGIN}

@@ -7,7 +7,7 @@ Access to ${URL}
         Open Browser    ${URL}    ${BROWSER}
         Maximize Browser Window
     EXCEPT   
-        Fail    There is a error happen in process access to ${URL}
+        Run Keyword If Test Failed    Fail    There is a error happen in process access to ${URL}
     END
 
 Click on the web element
@@ -17,7 +17,7 @@ Click on the web element
         Wait Until Element Is Enabled    ${LOCATOR}
         Click Element                    ${LOCATOR}
     EXCEPT    
-        Fail    There is a error happen in process click on the web element 
+        Run Keyword If Test Failed    Fail    There is a error happen in process click on the web element 
     END
     
 Click on ${LOCATOR} button
@@ -25,7 +25,7 @@ Click on ${LOCATOR} button
         TRY
             Click on the web element    ${LOCATOR}
         EXCEPT    
-            Fail    There is a error happen in process click on ${LOCATOR} button 
+            Run Keyword If Test Failed    Fail    There is a error happen in process click on ${LOCATOR} button 
         END
     
 Input content 
@@ -35,7 +35,7 @@ Input content
         Clear Element Text               ${LOCATOR}
         Input Text    ${LOCATOR}    ${TEXT}
     EXCEPT    
-        Fail    There is a error happen in process input content  
+        Run Keyword If Test Failed    Fail    There is a error happen in process input content  
     END   
     
 
@@ -44,7 +44,7 @@ Display the web element
     TRY
         Page Should Contain              ${TEXT}
     EXCEPT    
-        Fail    There is a error happen in process Display the web element
+        Run Keyword If Test Failed    Fail    There is a error happen in process Display the web element
     END    
     
 
@@ -53,7 +53,7 @@ Get Page title
         ${page_title}=    Get Text    css:.page-title
         RETURN    ${page_title}
     EXCEPT    
-        Fail    There is a error happen in process Get Page title
+        Run Keyword If Test Failed    Fail    There is a error happen in process Get Page title
     END
 
 The ${pagename} page should be opened
@@ -62,7 +62,7 @@ The ${pagename} page should be opened
         ${current_Page_title}=    Get Page title     
         Should Contain    ${current_Page_title}    ${pagename}
     EXCEPT    
-        Fail    The page open failure
+        Run Keyword And Continue On Failure    FAIL   The page open failure
         
     END
 
@@ -74,7 +74,7 @@ Open ${pagename} page
         Go To    ${url}
         The ${pagename} page should be opened
     EXCEPT    
-        Fail    There is a error happen in process Open ${pagename} page
+        Run Keyword And Continue On Failure   FAIL     There is a error happen in process Open ${pagename} page    CONTINUE
     END
 
 
@@ -83,6 +83,6 @@ Select Option From Dropdown
     TRY
         Select From List By Label    ${dropdown_selector}    ${option_text}
     EXCEPT    
-        Fail    There is a error happen in process Select Option From Dropdown
+        Run Keyword If Test Failed    Fail    There is a error happen in process Select Option From Dropdown
     END
     
