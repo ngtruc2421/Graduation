@@ -12,7 +12,12 @@ Access to url
     EXCEPT   
         Run Keyword And Continue On Failure    Fail    There is a error happen in process access to ${URL}
     END
-
+Close the web page
+    TRY
+        Close Browser
+    EXCEPT
+        Run Keyword And Continue On Failure    Fail
+    END
 Click on the web element
     [Documentation]    This keyword to click on the any web elememt by provided locator
     [Arguments]    ${LOCATOR}
@@ -53,7 +58,10 @@ Display the web element
     EXCEPT    
         Run Keyword And Continue On Failure  Fail    There is a error happen in process display the web element
     END    
-    
+Display Element
+    [Arguments]     ${LOCATOR}
+    Wait Until Element Is Visible    ${LOCATOR}
+    Page Should Contain Element    ${LOCATOR}   
 
 Get Page title
     [Arguments]    ${LOCATOR}
