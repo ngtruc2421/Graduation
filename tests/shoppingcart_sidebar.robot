@@ -5,6 +5,9 @@ Resource    ../resources/page_objects/sidebar.resource
 
 Test Setup    There is at least 1 product in shopping cart
 Test Teardown    Close Browser
+*** Variables ***
+${string}    Your string here
+${string1}    $1234
 
 *** Test Cases ***
 BSG-T37 --- Verify that Users can view the items in their shopping cart at any time by clicking the shopping cart icon
@@ -13,5 +16,7 @@ BSG-T37 --- Verify that Users can view the items in their shopping cart at any t
 
 BSG-38 --- Verify that The shopping cart view should display a list of items with product images, names, quantities, and prices.
     # Display image of product "Überman: The novel"
-    Display quantity of product "Trainer Ball"
+    # Display quantity of product "Trainer Ball"
+    Display price of product "Überman: The novel"
+
 
