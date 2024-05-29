@@ -12,6 +12,11 @@ ${ID_DAYOFBIRTH}             id:DateOfBirth
 ${CONTINUE_BTN_ELE}          css:.register-continue-button
 
 *** Keywords ***
+Open Register page
+    Open page    Register    css:.page-title
+
+The Register page should be opened
+    The page should be opened    Register    css:.page-title
 Is reuired field
     [Arguments]    ${NAME}
     TRY

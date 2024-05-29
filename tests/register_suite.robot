@@ -2,7 +2,7 @@
 Resource    ../resources/keywords/common_keywords.resource
 Resource    ../resources/pages/login_page.resource
 Resource    ../resources/pages/register_page.resource
-Test Setup    Open page    Register
+Test Setup    Open Register page
 Test Teardown    Close Browser
 *** Test Cases ***
 BSG-T35 --- Verify that the user can register account successfull when user input all required field
@@ -44,7 +44,7 @@ BSG-T2 --- Verify that the user can navigate to the Register page by clicking on
     [Tags]    High
     [Setup]    Access the Sign In page
     Click the Register button
-    The page should be opened    Register
+    The Register page should be opened
 
 BSG-T4 --- Verify that Registration Form includes fields with properties as describe 
     [Tags]    High
@@ -191,7 +191,7 @@ BSG-T23 --- Verify that The user can click on the Continue button to navigate to
     Page Should Contain    Your registration completed
     Is auto-login with username account
     Click the Continue button
-    The page should be opened    Register
+    The Register page should be opened
 
 BSG-T18 --- Verify that the system Display appropriate error messages for: Invalid email format
     [Tags]    High
