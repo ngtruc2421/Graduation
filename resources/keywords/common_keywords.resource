@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ../../configurations/config.resource
+Library    XML
 
 *** Keywords ***
 Access to url
@@ -29,7 +30,7 @@ Click on button
         TRY
             Click on the web element    ${LOCATOR}
         EXCEPT    
-            Run Keyword If Test Failed    Fail    There is a error happen in process click on ${LOCATOR} button 
+            Run Keyword And Continue On Failure    Fail    There is a error happen in process click on ${LOCATOR} button 
         END
     
 Input value for a field
@@ -55,9 +56,10 @@ Display the web element
     
 
 Get Page title
+    [Arguments]    ${LOCATOR}
     [Documentation]    This keyword gets text of a element by provided locator
     TRY
-        ${PAGE_TITLE}=    Get Text    css:.page-title
+        ${PAGE_TITLE}=    Get Text     ${LOCATOR}   
         RETURN    ${PAGE_TITLE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Get Page title
@@ -65,10 +67,10 @@ Get Page title
 
 The page should be opened
     [Documentation]    This keyword verifies a webpage that displays
-    [Arguments]    ${PAGENAME}
+    [Arguments]    ${PAGENAME}    ${LOCATOR}
     TRY
-        Wait Until Page Contains Element           css:.page-title
-        ${CURRENT_PAGE_TITLE}=    Get Page title     
+        Wait Until Page Contains Element           ${LOCATOR}
+        ${CURRENT_PAGE_TITLE}=    Get Page title    ${LOCATOR}     
         Should Contain    ${CURRENT_PAGE_TITLE}    ${PAGENAME}
     EXCEPT    
         Run Keyword And Continue On Failure    FAIL   The page open failure
@@ -77,13 +79,13 @@ The page should be opened
 
 Open page
     [Documentation]    This keyword open a webpage
-    [Arguments]    ${PAGENAME}
+    [Arguments]    ${PAGENAME}    ${LOCATOR}
     TRY
         Access to url    ${URL_HOME}
         ${PAGENAME_LOWER}=    Evaluate    "${PAGENAME}".lower()
         ${URL}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${PAGENAME_LOWER}
         Go To    ${URL}
-        The page should be opened    ${PAGENAME}
+        The page should be opened    ${PAGENAME}    ${LOCATOR}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL     There is a error happen in process Open ${pagename} page    CONTINUE
     END
@@ -100,41 +102,15 @@ Select Option From Dropdown
 
 Hover Over Elenment
     [Arguments]       ${element}
-    Execute JavaScript    window.scrollBy(0, 500);
-    Mouse Over    ${element}    
+    ${status}=    Run Keyword And Return Status    Page Should Not Contain Element    ${element}
+    IF    "${status}"=="True"
+        Execute JavaScript    window.scrollBy(0, 500);
+        Mouse Over    ${element} 
+    ELSE
+        Mouse Over    ${element}
+    END
+   
 
-# Display sizebar tab 
-    # [Arguments]    ${NAME}
-    # TRY
-    #     @{LIST_TAB_NAME}=    Get WebElements    css:.nav-item [role="tab"] [class="title"]
-    #     FOR    ${element}    IN    @{LIST_TAB_NAME}
-    #         ${tabName}=     Get Value    ${element}
-    #         IF      "${tabName}" == "${NAME}"
-    #             get ekemnt theo index
-    #             get attribuet 
-    #             check attibulet list contian active 
-    #         ELSE
-                
-    #         END
-            
-    #     END
 
-    #     @{LIST}=    Get WebElements    css:.nav-item [role="tab"] 
         
-    #     FOR    ${ELEMENT}    IN    @{LIST}
-            
-    #         ${NAMEASD}=    Get Value    ${ELEMENT}
-    #         ${CLASS_ATTRIBUTE}=    Get Element Attribute    ${ELEMENT}    class
-    #         ${IS_ACTIVE}=    Run Keyword And Return Status    Should Contain    ${class_atTribute}    ${NAME}
-    #         IF    (${IS_ACTIVE}!= False)
-    #             ${VALUE}=    Get Text    ${ELEMENT}
-    #             Should Contain    ${NAME}    ${VALUE}      
-    #             RETURN      
-    #         END
-    #     END
-    #     Run Keyword And Continue On Failure   FAIL    There is a error happen in process Display sizebar ${NAME} tab 
-        
-    # EXCEPT    
-    #     Run Keyword And Continue On Failure   FAIL    There is a error happen in process Display sizebar ${NAME} tab 
-        
-    # END
+   

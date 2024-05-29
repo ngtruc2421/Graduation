@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
+Resource    register_page.resource
 *** Variables ***
 ${LOGINPAGE_TITLE_ELE}          tag=h1
 ${MESS_SUCCESS_ELE}             css:.h2
@@ -28,7 +29,7 @@ Click the Register button
         Click on button    ${REGISTERLOGINPAGE_BTN_ELE}
         ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${URL_REGISTER}
         Wait Until Location Contains    ${url}
-        The page should be opened    Register
+        The Register page should be opened
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Register button
     END 
