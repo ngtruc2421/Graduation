@@ -4,7 +4,7 @@
 logs/
 *.log
 
-
+*.xml
 #Specifig report files
 log.html
 output.xml
