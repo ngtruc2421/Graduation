@@ -48,6 +48,11 @@ BSG-T53 --- Verify that the search function will support auto-suggestions when u
     ${PRODUCT_DESCRIPTION}
 BSG-T54 --- Verify that the suggestion list should include the produce image, name, and description
     [Tags]    High    Smoke
-    Search product on the search bar    ${PRODUCT_KEYWORD}
-    Get suggestion list
-
+    Search product on the search bar    ${PRODUCT_KEYWORD}    ${SEARCH_BTN_ELE}
+    Display the suggestion list
+BSG-T59 --- Verify that user can enter a custom price range in the " From - to " field
+    [Tags]    High    Smoke
+    Search product on the search bar    ${PRODUCT_KEYWORD}    
+    Enter a value for the From field    1000
+    Enter a value for the To field    3000
+    The entered values still are have    1000    3000
