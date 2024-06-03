@@ -6,19 +6,46 @@ Resource    ../resources/page_objects/sidebar.resource
 Test Setup    There is at least 1 product in shopping cart
 Test Teardown    Close Browser
 *** Variables ***
-${string}    Your string here
-${string1}    $1234
 
 *** Test Cases ***
 BSG-T37 --- Verify that Users can view the items in their shopping cart at any time by clicking the shopping cart icon
+    [Tags]    High
     Click on the "Shopping Basket" button
     Display sizebar "Shopping Cart" tab
 
-BSG-38 --- Verify that The shopping cart view should display a list of items with product images, names, quantities, and prices.
+BSG-T38 --- Verify that The shopping cart view should display a list of items with product images, names, quantities, and prices.
+    [Tags]    High
     The image "Best Grilling Recipes" should be displayed
     The name "Best Grilling Recipes" should be displayed
     The quantities "Best Grilling Recipes" should be displayed
     The price"Best Grilling Recipes" should be displayed
 
-BSG-39 --- Verify that Users can increase the quantity of each item in their cart directly from the shopping cart view
+BSG-T39 --- Verify that Users can increase the quantity of each item in their cart directly from the shopping cart view
+    [Tags]    High
     Click on add quantity button of product "Best Grilling Recipes"
+
+    
+BSG-T40 --- Verify that Users can reduce the quantity of each item in their cart directly from the shopping cart view
+    [Tags]    High
+    Click the Reduce quantity button of product "Best Grilling Recipes"
+
+BSG-T41 --- Verify that Users can remove individual items from their shopping cart using a remove (trash can) icon or similar control 
+    [Tags]    High
+    Click the Remove product button of product "Best Grilling Recipes"
+    The product Best Grilling Recipes should not be display
+
+BSG-T42 --- Verify that Upon removal, the cart should update immediately to reflect the changes
+    [Tags]    High
+    Click the Remove product button of product "Best Grilling Recipes"
+    The product Best Grilling Recipes should not be display
+
+BSG-T43 --- Verify that Users can proceed to the checkout process from the shopping cart view by clicking a clearly labeled "Checkout" button
+    [Tags]    High
+    Click the "Checkout" button in the sidebar
+    The Shopping cart page should be opened
+    Click the "Checkout" button in the Shopping cart page
+    The Billing address page should be opened
+
+BSG-T44 --- Verify that The checkout button should show a summary of the total cost (excluding tax) to provide transparency before finalizing the purchase
+    # Get Subtotal shopping cart 
+    Calculate Total price of product 

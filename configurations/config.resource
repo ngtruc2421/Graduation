@@ -25,7 +25,7 @@ ${URL_ABOUTUS}    ${URL_HOME}/aboutus
 ${URL_DISCLAIMER}    ${URL_HOME}/disclaimer
 ${URL_SHIPPINGINFO}    ${URL_HOME}/shippinginfo
 ${URL_CONDITIONSOFUSE}    ${URL_HOME}/conditionsofuse
-
+${URL_CART}               ${URL_HOME}/cart
 
 
 

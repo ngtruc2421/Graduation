@@ -1,4 +1,3 @@
-
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
 Resource    ../pages/home_page.resource
@@ -10,7 +9,12 @@ ${PRODUCT_ELE}                                css:.offcanvas-cart-item
 ${PRICE_ELE}                                  css:.price.unit-price
 ${QUANTITY_ELE}                               css:[name="item.EnteredQuantity"]
 ${ADDQUANTITY_BUTTON_ELE}                     css:.fa.fa-plus
-
+${REDUCEQUANTITY_BUTTON_ELE}                  css:.fa.fa-minus
+${REMOVE_BUTTON_ELE}                          css:.btn.remove.ajax-cart-link
+${CHECKOUTSIDEBAR_BUTTON_ELE}                 css:.btn.btn-clear.btn-action
+${CHECKOUTCRTPAGE_BUTTON_ELE}                 id:checkout
+${URL_LOGIN_CHECKOUT}                         ${URL_HOME}/login?checkoutAsGuest=True&returnUrl=%2Fcart
+${SUBTORAL_PRICE_ELE}                             css:.sub-total.price
 *** Keywords ***
 Display sizebar "${NAME}" tab    
     TRY
@@ -34,9 +38,9 @@ Display sizebar "${NAME}" tab
 Hover Over The product item "${name}"
     Hover Over Elenment    css:[title="${name}"]
 
-Dislay "${name}" in shopping cart tab 
-    Wait Until Element Is Visible    css:.offcanvas-cart-items a[title="${name}"]
-    Page Should Contain Element    css:.offcanvas-cart-items a[title="${name}"]
+Dislay "${NAME}" in shopping cart tab 
+    Wait Until Element Is Visible    css:.offcanvas-cart-items a[title="${NAME}"]
+    Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
 Click on Add Product on Cart button 
     Click on Button    ${ADDCART_BUTTON_ELE}
 There is at least 1 product in shopping cart
@@ -57,28 +61,7 @@ The image "${NAME}" should be displayed
     Page Should Contain Element    css:.img-center-container[title="Show details for ${NAME}"]
 
 The name "${NAME}" should be displayed
-    Page Should Contain Element    css:.offcanvas-cart-items a[title="${name}"]
-Display quantity of product "${NAME}"
-    TRY
-        @{LIST}=    Get WebElements    ${PRODUCT_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST}            
-            ${class}=    Get Element Attribute    ${element}    class
-            ${title}=    Set Variable    a[title="${NAME}"]
-            ${name_product}=    Set Variable    ${class} ${title}
-            ${text}=    Get Text   css:.${name_product}
-            IF    "${text}" == "${NAME}"
-                @{LIST_quantities}=    Get WebElements    ${QUANTITY_ELE}               
-                ${quantity_ele}=    Get From List    ${LIST_quantities}    ${INDEX}
-                ${quantity}=    Get Value    ${quantity_ele}
-                RETURN    ${quantity}
-            END
-            ${INDEX}=     Evaluate    ${INDEX} + 1
-        END
-    EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Display quantity of product "${NAME}"
-    END
-
+    Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
 Get product price "${NAME}"
     TRY
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
@@ -109,7 +92,6 @@ Trim data
     [Arguments]    ${data}    ${searchString}    
     ${trimmed_string}    Replace String    ${data}    ${searchString}    ${EMPTY}
 
-
 Get product quantity "${NAME}"
     TRY
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
@@ -136,7 +118,7 @@ The quantities "${NAME}" should be displayed
 The price"${NAME}" should be displayed
     Get product price "${NAME}"
 
-Click on add quantity button of product "${NAME}"
+Click on ${BUTTON} button of product "${NAME}"
     TRY
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -146,10 +128,10 @@ Click on add quantity button of product "${NAME}"
             ${name_product}=    Set Variable    ${class} ${title}
             ${text}=    Get Text   css:.${name_product}
             IF    "${text}" == "${NAME}"
-                @{LIST_ADDBUTTONQUANTITY}=    Get WebElements    ${ADDCART_BUTTON_ELE}               
-                ${ADDBUTTON_ELE}=    Get From List    ${LIST_ADDBUTTONQUANTITY}    ${INDEX}
-                Hover Over Elenment    ${ADDBUTTON_ELE}
-                Click on button    ${ADDBUTTON_ELE}
+                @{LIST_BUTTON}=    Get WebElements    ${BUTTON}             
+                ${BUTTON_ELE}=    Get From List    ${LIST_BUTTON}    ${INDEX}
+                Hover Over Elenment    ${BUTTON_ELE}
+                Click on button    ${BUTTON_ELE}
                 Exit For Loop
             END
             ${INDEX}=     Evaluate    ${INDEX} + 1
@@ -158,3 +140,62 @@ Click on add quantity button of product "${NAME}"
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on add quantity button of product ${NAME}
     END
 
+Click the Add quantity button of product "${NAME}"
+    Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}"
+
+Click the Reduce quantity button of product "${NAME}"
+    Click on ${REDUCEQUANTITY_BUTTON_ELE} button of product "${NAME}"
+
+Click the Remove product button of product "${NAME}"
+    Click on ${REMOVE_BUTTON_ELE} button of product "${NAME}"
+
+The product ${NAME} should not be display
+    Wait Until Element Is Not Visible    css:.offcanvas-cart-items a[title="${NAME}"]
+    Page Should Not Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
+
+Click the "Checkout" button in the sidebar 
+    Click on button    ${CHECKOUTSIDEBAR_BUTTON_ELE}
+
+The Shopping cart page should be opened
+    ${Login}=    Set Variable    Login
+    ${is_login}=    Run Keyword And Return Status    Page Should Contain Element    css:a.menubar-link>span[title="${Login}"]
+    IF    (${is_login}==True)
+        Access to url    ${URL_LOGIN_CHECKOUT}
+        Input username    0306211267@caothang.edu.vn 
+        Input pass    Ttkn1234@
+        Click the Login button
+        The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}
+    ELSE
+        The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}
+    END
+Click the "Checkout" button in the Shopping cart page 
+    Click on button    ${CHECKOUTCRTPAGE_BUTTON_ELE}
+
+The Billing address page should be opened 
+    The page should be opened    Billing address    ${PAGE_TITLE_ELE}
+
+Get Subtotal shopping cart 
+    ${SUBTOTAL}=    Get Text    ${SUBTORAL_PRICE_ELE}
+    ${SUBTOTAL}=    Split String    ${SUBTOTAL}    ${SPACE}
+    ${SUBTOTAL}=    Get From List    ${SUBTOTAL}    0
+    ${SUBTOTAL}=    Get Substring    ${SUBTOTAL}    1
+    RETURN    ${SUBTOTAL}
+
+Calculate Total price of product 
+    TRY
+        @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+        ${INDEX}=    Set Variable    0
+        ${Total}=    Set Variable    0    
+        FOR    ${element}    IN    @{LIST}
+            ${class}=    Get Element Attribute    ${element}    class
+            ${LIST_TITLE}=    Get WebElements    css:.name.font-weight-medium
+            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+            ${TITLE}=    Get Text    ${TITLE_ELE}    
+            ${price}=    Get product price "${TITLE}"
+            ${quantity}=    Get product quantity "${TITLE}"
+            ${Total}=    Evaluate    ${Total} + ${price} * ${quantity}
+            ${INDEX}=     Evaluate    ${INDEX} + 1
+        END
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Total price of product 
+    END
