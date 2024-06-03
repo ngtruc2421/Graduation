@@ -60,17 +60,27 @@ Observe the search bar
     RETURN    ${ATTRIBUTE}
 # Display the produce image, name, and description on the suggestion product
 Get suggestion list
-    ${SUGGESLIST_LIST}=    Get Value    class="instasearch-hits"
-    RETURN    ${SUGGESLIST_LIST}    
+    ${SUGGGES_LST}    Create List
+    ${SUGGESLIST_LIST}=    Get WebElements    css:ul.instasearch-hits li
+    ${length}    Get Length    ${SUGGESLIST_LIST}
+        FOR    ${element}    IN    @{SUGGESLIST_LIST}
+            ${PRODUCT}=    Get Text    ${element}
+            Append To List    ${SUGGGES_LST}    ${PRODUCT}           
+        END
+
+    RETURN    ${SUGGGES_LST}    
 
 
 
 # Start common keyword [
 Search product on the search bar
-    [Arguments]    ${TEXT} 
-    Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE}
-    Click on button    ${SEARCH_BTN_ELE}
-
+    [Arguments]    ${TEXT}    ${CONDITION}=${None} 
+    IF    ${CONDITION}!=${None}
+        Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE}
+        Click Button    ${SEARCH_BTN_ELE}
+    ELSE
+        Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
+    END
 
 
 # End common keyword ]
