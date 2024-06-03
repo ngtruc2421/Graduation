@@ -58,28 +58,44 @@ Observe the search bar
         Run Keyword And Continue On Failure    Fail    There are issues on "Observe the search bar" keyword
     END
     RETURN    ${ATTRIBUTE}
-# Display the produce image, name, and description on the suggestion product
-Get suggestion list
-    ${SUGGGES_LST}    Create List
-    ${SUGGESLIST_LIST}=    Get WebElements    css:ul.instasearch-hits li
-    ${length}    Get Length    ${SUGGESLIST_LIST}
-        FOR    ${element}    IN    @{SUGGESLIST_LIST}
-            ${PRODUCT}=    Get Text    ${element}
-            Append To List    ${SUGGGES_LST}    ${PRODUCT}           
-        END
-
-    RETURN    ${SUGGGES_LST}    
-
-
-
+Get image list
+    ${IMG_LIST}=    Create List    
+    ${IMG_LIST}=    Get WebElements    class=img-fluid
+    ${LENGTH}=    Get Length    ${IMG_LIST}
+    ${LENGTH}=    Evaluate    ${LENGTH} - 1
+    RETURN    ${LENGTH}
+Get description list
+    ${DESCRIPTION_LIST}=    Create List    
+    ${DESCRIPTION_LIST}=    Get WebElements    class=instasearch-hit-label-secondary.d-block.text-truncate
+    ${LENGTH}=    Get Length    ${DESCRIPTION_LIST}
+    RETURN    ${LENGTH}
+Get title list
+    ${TITLE_LIST}=    Create List    
+    ${TITLE_LIST}=    Get WebElements    css=span:first-child[class="d-block text-truncate"]
+    ${LENGTH}=    Get Length    ${TITLE_LIST}
+    RETURN    ${LENGTH}
+Checks
+    ${IMG}=    Get image list
+    ${DESCRIPTION}=    Get description list
+    ${TITLE}=    Get title list
+    IF    ${IMG} == ${DESCRIPTION} == ${TITLE}    
+        RETURN    True
+    ELSE
+        RETURN    False
+    END     
+Display the suggestion list
+    ${CHECK}=    Checks
+    Run Keyword If    '${CHECK}'=='True'    Pass Execution    Suggestion list was enough image, description, and title
+    ...         ELSE    Fail    Suggestion list is not enough image, description, or title
+    
 # Start common keyword [
 Search product on the search bar
-    [Arguments]    ${TEXT}    ${CONDITION}=${None} 
-    IF    ${CONDITION}!=${None}
+    [Arguments]    ${TEXT}    ${LOCATOR}=${None} 
+    IF    '${LOCATOR}'!='${None}'
+        Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
+    ELSE
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE}
         Click Button    ${SEARCH_BTN_ELE}
-    ELSE
-        Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
     END
 
 
