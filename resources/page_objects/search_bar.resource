@@ -98,5 +98,4 @@ Search product on the search bar
         Click Button    ${SEARCH_BTN_ELE}
     END
 
-
 # End common keyword ]
