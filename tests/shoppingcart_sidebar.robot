@@ -15,8 +15,10 @@ BSG-T37 --- Verify that Users can view the items in their shopping cart at any t
     Display sizebar "Shopping Cart" tab
 
 BSG-38 --- Verify that The shopping cart view should display a list of items with product images, names, quantities, and prices.
-    # Display image of product "Überman: The novel"
-    # Display quantity of product "Trainer Ball"
-    Display price of product "Überman: The novel"
+    The image "Best Grilling Recipes" should be displayed
+    The name "Best Grilling Recipes" should be displayed
+    The quantities "Best Grilling Recipes" should be displayed
+    The price"Best Grilling Recipes" should be displayed
 
-
+BSG-39 --- Verify that Users can increase the quantity of each item in their cart directly from the shopping cart view
+    Click on add quantity button of product "Best Grilling Recipes"

@@ -75,12 +75,11 @@ Get suggestion list
 # Start common keyword [
 Search product on the search bar
     [Arguments]    ${TEXT}    ${CONDITION}=${None} 
-    IF    ${CONDITION}!=${None}
+    IF    ${CONDITION}==${None}
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE}
         Click Button    ${SEARCH_BTN_ELE}
     ELSE
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
     END
-
 
 # End common keyword ]
