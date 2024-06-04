@@ -7,6 +7,8 @@ ${INFO_MENU_ELE}    id=menubar-my-account
 ${LOGOUT_OPTION_ELE}    css:a[href="/logout"]
 ${LOGIN_OPTION_ELE}    id=menubar-my-account
 ${PROFILE_ELE}    css:a[href="/customer/info"]
+${MENUBAR_ELE}        css:a.menubar-link
+${MENUBARSPAN_ELE}        css:a.menubar-link>span
 *** Keywords ***
 Click on the account's name on the top at the corner
     Click on the web element    ${INFO_MENU_ELE}
@@ -22,3 +24,16 @@ Show on the logged in user's name on the top right
     ${tem}    Get Text    ${LOCATOR}
     Should Be Equal As Strings    ${USERNAME.upper()}    ${tem.upper()}
     
+Check user login
+    @{LIST}=    Get WebElements    ${MENUBAR_ELE}
+    ${INDEX}=    Set Variable    0
+    FOR    ${element}    IN    @{LIST}
+        @{LIST_TITLE}=    Get WebElements    ${MENUBARSPAN_ELE} 
+        ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+        ${TITLE}=    Get Text    ${TITLE_ELE}
+        IF    "${TITLE}" == "LOG IN"
+            RETURN    ${True}
+        END
+        ${INDEX}=    Evaluate    ${INDEX} + 1
+    END
+        RETURN    ${False}
