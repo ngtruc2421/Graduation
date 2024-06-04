@@ -25,10 +25,12 @@ The entered values still are have
         Run Keyword And Continue On Failure    Log    There is a issue on progress performent
     END
 Get pagination list
-    Display Element    css:select[id=artlist-action-page]
+    # Display Element    css:button[class="btn-artlist-action"]
     ${PAGE_LIST}    Create List
-    ${PAGE_LIST}=    Get WebElements    css:select[id=artlist-action-page]>option
+    ${PAGE_LIST}=    Get WebElements    css:select[id="artlist-action-page"]>option
     ${LENGTH}=    Get Length    ${PAGE_LIST}
+    ${LENGTH}=    Evaluate    ${LENGTH}/2
+    ${LENGTH}=    Convert To Integer    ${LENGTH}
     RETURN    ${LENGTH}
 The system performed paginated
     ${CHECK}=    Get pagination list

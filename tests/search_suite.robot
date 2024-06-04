@@ -56,3 +56,7 @@ BSG-T59 --- Verify that user can enter a custom price range in the " From - to "
     Enter a value for the From field    1000
     Enter a value for the To field    3000
     The entered values still are have    1000    3000
+BSG-T62 --- Verify that the search results should be paginated
+    [Tags]    High    Smoke
+    Search product on the search bar    an
+    The system performed paginated
