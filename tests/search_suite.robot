@@ -7,7 +7,6 @@ Test Teardown   Close Browser
 ${PRODUCT_KEYWORD}            Sa
 ${PRODUCT_NAME}        Dining table
 ${PRODUCT_DESCRIPTION}        Save with this set 5%!
-
 *** Test Cases ***
 BSG-T50 --- Verify that the search bar should be prominently on every page
     [Tags]    High    Smoke
@@ -60,3 +59,20 @@ BSG-T62 --- Verify that the search results should be paginated
     [Tags]    High    Smoke
     Search product on the search bar    an
     The system performed paginated
+BSG-T63 --- Verify that users should have the option to view a specific number of results per page
+    [Tags]    High    Smoke
+    Search product on the search bar    an
+    The system displays the option to view the results per page
+BSG-T64 --- Verify that users should receive clear error messages if no results are found
+    [Tags]    High    Smoke
+    [Template]    Display messages when the product are found
+    t            The minimum length for the search term is 2 characters.
+    !!#@         Your search did not match any products.
+    house        Your search did not match any products.
+BSG-T56 --- Verify that results should be sortable by relevance, price (low to high, high to low), and newest arrivals
+    [Tags]    High    Smoke
+    Search product on the search bar    an
+    Observe the curent results list
+    Select Option From Dropdown    id=artlist-action-sort    Name: A to Z
+    Observe the new results list
+    After select the sort option the search results sorted

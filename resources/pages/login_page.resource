@@ -71,9 +71,11 @@ Appear the error message when users input incorrect value for the Username or em
     Input pass    ${PASS}
     Click the Login button
     Display the web element    ${MESS}
-
-# Click on the Forgot password link
-#     Click on the web element    ${FORGOTPASS_LINK_ELE}
+Log in the system
+    [Arguments]    ${USERNAME}    ${PASSWORD}
+    Input username    ${USERNAME}
+    Input pass    ${PASSWORD}
+    Click the Login button
 Access the Sign In page 
     Access to url    ${URL_LOGIN}
     Display the Login page    Sign In
