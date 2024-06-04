@@ -26,7 +26,7 @@ ${URL_DISCLAIMER}    ${URL_HOME}/disclaimer
 ${URL_SHIPPINGINFO}    ${URL_HOME}/shippinginfo
 ${URL_CONDITIONSOFUSE}    ${URL_HOME}/conditionsofuse
 ${URL_CART}               ${URL_HOME}/cart
-
+${URL_LOGIN_CHECKOUT}                         ${URL_HOME}/login?checkoutAsGuest=True&returnUrl=%2Fcart
 
 
 

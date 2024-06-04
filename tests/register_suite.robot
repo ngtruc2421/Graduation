@@ -16,7 +16,7 @@ BSG-T35 --- Verify that the user can register account successfull when user inpu
     Page Should Contain    Your registration completed
     Is auto-login with username account
 BSG-T26 --- Verify that the system displays an error when users input non-alphabetic characters in the First Name field
-    [Tags]    Normal
+    [Tags]    Medium
     [Template]    It should show warning message when user input the "First name" field with specific value
     123                Data First Name not a valid
     @@                 Data First Name not a valid
@@ -79,7 +79,7 @@ BSG-T25 --- Verify that Last Name should accept alphabetic characters only
     The error "Data Last Name not a valid" should not be display
     
 BSG-T27 --- Verify that the system displays an error when users input non-alphabetic characters in the Last Name field
-    [Tags]    Normal
+    [Tags]    Medium
     [Template]    It should show warning message when user input the "Last namr" field with specific value
     123                Data Last Name not a valid
     @@                 Data Last Name not a valid
@@ -95,7 +95,7 @@ BSG-T8 --- Verify that Email Addresses should be in a valid email fomat
     The error "'Email' is not a valid email address." should not be display
     
 BSG-T28 --- Verify that the system show error when user input email not in a valid email format in the Email Addresses field
-    [Tags]    Normal
+    [Tags]    Medium
     [Template]    It should show warning message when user input the "Email" field with specific value
     kim                               'Email' is not a valid email address.
     kimngan123                        'Email' is not a valid email address.
@@ -120,7 +120,7 @@ BSG-T11 -- Password must be at least 8 characters long and include a mix of uppe
     The error "Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters" should not be display
 
 BSG-T30 --- Verify that Password not accept when not satisfy the condition at least 8 characters long and include a mix of upper and lower case letters, numbers, and special characters
-    [Tags]    Normal
+    [Tags]    Medium
     [Template]    It should show warning message when user input the "Password" field with specific value
     Kimnga@                Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
     kimngan1234            Password need long of less than 8 characters and include a mix of upper and lower case letters, numbers, and special characters
@@ -139,7 +139,7 @@ BSG-T14 --- Verify that Confirm Password must match the Password field
     The error "The password and confirmation password do not match." should not be display
 
 BSG-T31 --- Verify that Confirm Password show error when not match the Password field
-    [Tags]    Normal
+    [Tags]    Medium
     Input the "Password" field with value "Kimngan12@@"
     Input the "Confirm password" field with value "Kimngan1234@@"
     Click the Register button in the Register page
@@ -204,7 +204,7 @@ BSG-T20 --- Verify that the system Display appropriate error messages for: Passw
     InvalidPassword                Password not meeting complexity requirements
 
 BSG-T19 --- Verify that the system Display appropriate error messages for: Password and Confirm Password mismatch
-        [Tags]    Normal
+    [Tags]    Medium
     Input the "Password" field with value "Kimngan12@@"
     Input the "Confirm password" field with value "Kimngan1234@@"
     Click the Register button in the Register page

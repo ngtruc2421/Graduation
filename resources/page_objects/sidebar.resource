@@ -3,6 +3,7 @@ Resource    ../keywords/common_keywords.resource
 Resource    ../pages/home_page.resource
 Resource    top_menu.resource
 Resource    search_bar.resource
+Resource    header.resource
 *** Variables ***
 ${ADDCART_BUTTON_ELE}                         css:.btn.btn-primary.ajax-cart-link.px-sm-2.btn-lg.art-btn.col
 ${PRODUCT_ELE}                                css:.offcanvas-cart-item
@@ -13,8 +14,9 @@ ${REDUCEQUANTITY_BUTTON_ELE}                  css:.fa.fa-minus
 ${REMOVE_BUTTON_ELE}                          css:.btn.remove.ajax-cart-link
 ${CHECKOUTSIDEBAR_BUTTON_ELE}                 css:.btn.btn-clear.btn-action
 ${CHECKOUTCRTPAGE_BUTTON_ELE}                 id:checkout
-${URL_LOGIN_CHECKOUT}                         ${URL_HOME}/login?checkoutAsGuest=True&returnUrl=%2Fcart
-${SUBTORAL_PRICE_ELE}                             css:.sub-total.price
+${SUBTORAL_PRICE_ELE}                         css:.sub-total.price
+${TITLE_PRODUCT_ELE}                          css:.name.font-weight-medium
+${WISHLIST_TAB_ELE}                           id:wishlist-tab
 *** Keywords ***
 Display sizebar "${NAME}" tab    
     TRY
@@ -43,6 +45,8 @@ Dislay "${NAME}" in shopping cart tab
     Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
 Click on Add Product on Cart button 
     Click on Button    ${ADDCART_BUTTON_ELE}
+Click the Wishlist tab 
+    Click on button    ${WISHLIST_TAB_ELE}
 There is at least 1 product in shopping cart
     Open the Home Page
     Search product on the search bar    The Prisoner of Heaven: A Novel
@@ -56,7 +60,8 @@ There is at least 1 product in shopping cart
     Click on Add Product on Cart button 
     Display sizebar "Shopping Cart" tab
     Dislay "Best Grilling Recipes" in shopping cart tab
-    
+    # Click the Wishlist tab
+    # Display sizebar "Wishlist" tab
 The image "${NAME}" should be displayed
     Page Should Contain Element    css:.img-center-container[title="Show details for ${NAME}"]
 
@@ -67,17 +72,16 @@ Get product price "${NAME}"
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
-            ${class}=    Get Element Attribute    ${element}    class
-            ${title}=    Set Variable    a[title="${NAME}"]
-            ${name_product}=    Set Variable    ${class} ${title}
-            ${text}=    Get Text   css:.${name_product}
-            IF    "${text}" == "${NAME}"
-                @{LIST_price}=    Get WebElements    ${PRICE_ELE}               
-                ${value}=    Get From List    ${LIST_price}    ${INDEX}
-                ${price}=    Get text    ${value}
-                ${price}=    Split String    ${price}    ${SPACE}
-                ${price}=    Get From List    ${price}    0
-                ${price}=    Get Substring    ${price}    1
+            ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            IF    "${TITLE}" == "${NAME}"
+                @{LIST_PRICE}=    Get WebElements    ${PRICE_ELE}               
+                ${VALUE}=    Get From List    ${LIST_PRICE}    ${INDEX}
+                ${PRICE}=    Get text    ${value}
+                ${PRICE}=    Split String    ${PRICE}    ${SPACE}
+                ${PRICE}=    Get From List    ${PRICE}    0
+                ${PRICE}=    Get Substring    ${PRICE}    1
                 RETURN    ${price}
             END
             ${INDEX}=     Evaluate    ${INDEX} + 1
@@ -97,11 +101,10 @@ Get product quantity "${NAME}"
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
-            ${class}=    Get Element Attribute    ${element}    class
-            ${title}=    Set Variable    a[title="${NAME}"]
-            ${name_product}=    Set Variable    ${class} ${title}
-            ${text}=    Get Text   css:.${name_product}
-            IF    "${text}" == "${NAME}"
+            ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            IF    "${TITLE}" == "${NAME}"
                 @{LIST_quantities}=    Get WebElements    ${QUANTITY_ELE}               
                 ${quantity_ele}=    Get From List    ${LIST_quantities}    ${INDEX}
                 ${quantity}=    Get Value    ${quantity_ele}
@@ -123,11 +126,10 @@ Click on ${BUTTON} button of product "${NAME}"
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
-            ${class}=    Get Element Attribute    ${element}    class
-            ${title}=    Set Variable    a[title="${NAME}"]
-            ${name_product}=    Set Variable    ${class} ${title}
-            ${text}=    Get Text   css:.${name_product}
-            IF    "${text}" == "${NAME}"
+           ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            IF    "${TITLE}" == "${NAME}"
                 @{LIST_BUTTON}=    Get WebElements    ${BUTTON}             
                 ${BUTTON_ELE}=    Get From List    ${LIST_BUTTON}    ${INDEX}
                 Hover Over Elenment    ${BUTTON_ELE}
@@ -144,6 +146,7 @@ Click the Add quantity button of product "${NAME}"
     Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}"
 
 Click the Reduce quantity button of product "${NAME}"
+    # ${QUANTITYBEFORE}=   Get product quantity "${NAME}"
     Click on ${REDUCEQUANTITY_BUTTON_ELE} button of product "${NAME}"
 
 Click the Remove product button of product "${NAME}"
@@ -157,17 +160,7 @@ Click the "Checkout" button in the sidebar
     Click on button    ${CHECKOUTSIDEBAR_BUTTON_ELE}
 
 The Shopping cart page should be opened
-    ${Login}=    Set Variable    Login
-    ${is_login}=    Run Keyword And Return Status    Page Should Contain Element    css:a.menubar-link>span[title="${Login}"]
-    IF    (${is_login}==True)
-        Access to url    ${URL_LOGIN_CHECKOUT}
-        Input username    0306211267@caothang.edu.vn 
-        Input pass    Ttkn1234@
-        Click the Login button
-        The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}
-    ELSE
-        The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}
-    END
+    The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}
 Click the "Checkout" button in the Shopping cart page 
     Click on button    ${CHECKOUTCRTPAGE_BUTTON_ELE}
 
@@ -185,17 +178,57 @@ Calculate Total price of product
     TRY
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
-        ${Total}=    Set Variable    0    
+        ${TOTAL}=    Set Variable    0    
         FOR    ${element}    IN    @{LIST}
-            ${class}=    Get Element Attribute    ${element}    class
-            ${LIST_TITLE}=    Get WebElements    css:.name.font-weight-medium
+            ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
             ${TITLE}=    Get Text    ${TITLE_ELE}    
-            ${price}=    Get product price "${TITLE}"
-            ${quantity}=    Get product quantity "${TITLE}"
-            ${Total}=    Evaluate    ${Total} + ${price} * ${quantity}
+            ${PRICE}=    Get product price "${TITLE}"
+            ${QUANTITY}=    Get product quantity "${TITLE}"
+            ${TOTAL}=    Evaluate    ${TOTAL} + ${PRICE} * ${QUANTITY}
+            ${TOTAL}=    Evaluate    round(${TOTAL},2)
             ${INDEX}=     Evaluate    ${INDEX} + 1
         END
+            RETURN    ${TOTAL}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Total price of product 
     END
+
+The Subtotal shopping cart should be equal total price of product 
+    ${SUBTOTAL}=    Get Subtotal shopping cart
+    ${TOTAL}=    Calculate Total price of product
+    ${TOTAL}=    Convert To String    ${TOTAL}
+    Should Be Equal    ${SUBTOTAL}    ${TOTAL}
+Is user not logged in yet 
+    ${IS_LOGIN}=    Check user login
+    Should Be True    ${IS_LOGIN}
+
+User not logged in yet and There is at least 1 product in shopping cart
+    Is user not logged in yet 
+    There is at least 1 product in shopping cart
+The Sign In page should be opened
+    Go To    ${URL_LOGIN_CHECKOUT}
+    The page should be opened    Sign In    ${PAGE_TITLE_ELE}
+
+Get total product in ${name}
+    @{LIST}=    Get WebElements    css:.nav-item [role="tab"]
+        FOR    ${element}    IN    @{LIST}
+            ${class_attribute}=    Get Element Attribute    ${element}    class
+            ${is_Active}=    Run Keyword And Return Status    Should Contain    ${class_attribute}    active
+            IF    (${is_Active}!= False)
+                ${value}=    Get Text    ${element}
+                ${is_contain}=    Run Keyword And Return Status    Should Contain    ${value}    ${name}
+                IF    (${is_contain}!= False)
+                     ${cart_items_count}=    Get Element Attribute    xpath://*[@class='title' and text()='${name}']/following-sibling::*[@class='badge badge-pill label-cart-amount badge-warning']    data-bind-to
+                    ${TOTAL}=    Get Text    css:.badge.badge-warning[data-bind-to="${cart_items_count}"]
+                    RETURN    ${TOTAL}
+                END   
+            END
+        END
+    
+The quantity of product "${NAME}" reduce when user click on reduce button
+    ${QUANTITYBEFORE}=   Get product quantity "${NAME}"
+    Click the Reduce quantity button of product "${NAME}"
+    ${QUANTITYCURRENT}=    Get product price "${NAME}"
+    ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
+    Should Be Equal As Numbers    ${RESULT}    1
