@@ -9,7 +9,7 @@ ${SEARCH_BTN_ELE}    class=instasearch-button
 ${SUGGESLIST_TITLE}    class="instasearch-group-header"   
 *** Keywords ***
 # Start template [
-Display the search bar on the page
+It should display the search bar on the page
     [Arguments]    ${URL}    @{SEARCH_OBJECT}
     TRY
         Access to url    ${URL}

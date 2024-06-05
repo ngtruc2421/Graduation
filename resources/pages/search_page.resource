@@ -1,12 +1,19 @@
 *** Settings ***
 Resource    ../../configurations/config.resource
 Resource    ../keywords/common_keywords.resource
-Library    Process
 Resource    ../page_objects/search_bar.resource
 *** Variables ***
-${FROM_INPUT_ELE}=    id=price-range-from
-${TO_INPUT_ELE}=    id=price-range-to
-${PRICEFILTER_BTN_ELE}    id=btn-custom-price-range
+${FROM_INPUT_ELE}=            id=price-range-from
+${TO_INPUT_ELE}=              id=price-range-to
+${PRICEFILTER_BTN_ELE}        id=btn-custom-price-range
+${CATEGORY_CHECKBOX_ELE}      xpath=//label//span[contains(text(), 'Basketball')]
+${PRICE_RADIO_ELE}            xpath=//label//span[contains(text(),'up to $10.00')]
+${RATING_RADIO_ELE}           css:div[title="4 stars & more"]
+${SELECTEDITEM_ELE}           css:div[class="active-filters-container"] li
+${CATEGORY_SELECTED_ELE}      xpath=//div[@data-key="notfeaturedcategoryid"]//input[@checked="checked"]
+${RATING_SELECTED_ELE}        xpath=//div[@data-key="rating"]//input[@checked="checked"]
+${PRICE_SELECTED_ELE}         xpath=//div[@data-key="price"]//input[@checked="checked"]
+
 *** Keywords ***
 Enter a value for the From field
     [Arguments]    ${TEXT}
@@ -44,7 +51,7 @@ The system displays the option to view the results per page
     ${CHECK_LENGTH}=    Get list length    css:select[id="artlist-action-pagesize"]>option    
     Run Keyword If    ${CHECK_LENGTH}>1    Pass Execution    The system performed displays the option to view the results per page
     ...    ELSE    Fail    The system wasn't displays the option to view the results per page
-Display messages when the product are found
+It should display messages when the product are found
     [Arguments]    ${CONTENT}    ${MESS}
     Search product on the search bar    ${CONTENT}
     Display the web element    ${MESS}
@@ -57,37 +64,27 @@ Observe the curent results list
 Observe the new results list
     ${CURRENT_RESULT_LIST}=    Get list    css:article[class="art"]
     RETURN    ${CURRENT_RESULT_LIST}
-After select the sort option the search results sorted
-    ${NEW}=    Observe the new results list
-    ${CURRENT}=    Observe the new results list
-    ${NEW_LENGTH}=    Get Length    ${NEW}
-    ${CURRENT_LENGTH}=    Get Length    ${CURRENT}
-    Should Be Equal    ${NEW_LENGTH}    ${CURRENT_LENGTH}
-    FOR    ${i}    IN RANGE    ${NEW_LENGTH}
-        ${A_ELE}=    Get From List    ${NEW}    ${i}
-        ${B_ELE}=    Get From List    ${CURRENT}    ${i}
-        Elements Should Be Equal    ${A_ELE}    ${B_ELE}
+Users should view the search results after seleted the view options
+    [Arguments]    ${SELECT_VALUE}
+    Search product on the search bar    an
+    Select Option From Dropdown    id=artlist-action-sort    ${SELECT_VALUE}
+    ${SELECTED_VALUE}=    Get Text    css:select>option[selected="selected"]
+    Should Be Equal As Strings    ${SELECTED_VALUE}    ${SELECT_VALUE}
+Select the checkbox
+    [Arguments]    ${LOCATOR}
+    Click on the web element    ${LOCATOR}
+Display the result after select checkbox
+    [Arguments]    ${LOCATOR_ATR}    ${LOCATOR_LIST}
+    ${CHECKBOX_VALUE}=    Get Element Attribute    ${LOCATOR_ATR}    value
+    ${LST}=    Create List
+    ${LST2}=    Create List
+    ${LST}=    Get WebElements    ${LOCATOR_LIST}
+    ${LENGTH}=    Get Length    ${LST}
+    FOR    ${element}    IN    @{LST}
+        ${ITEM}=    Get Element Attribute    ${element}    data-key
+        Append To List    ${LST2}    ${ITEM}
     END
-    Run Keyword If    ${NEW} != ${CURRENT}    Pass Execution    Success    ELSE    Fail    There is a issue on the progress keyword
-    
-
-# Get text list
-#     ${LIST}=    Get list    css:select[id="artlist-action-pagesize"]>option
-#     # ${l}=    Get list length    css:select[id="artlist-action-pagesize"]>option
-#     ${TEXT_LIST}=    Create List
-#     ${TEXT_LIST}=    Get Slice From List    ${LIST}    0    5
-#     Click on the web element    css:div>select[id="artlist-action-pagesize"]
-#     FOR    ${ELEMENT}    IN    ${TEXT_LIST}
-#         # ${TEM}=    Get Text    ${ELEMENT}
-#         ${TEM}=    Get Element Attribute    ${ELEMENT}    value
-#         Append To List    ${LIST}    "${TEM}"
-#     END
-#     RETURN    ${TEXT_LIST}
-# Select the option on the Pagesize dropdown to view the search results
-#     ${TEXT_LIST}=    Get text list
-#     FOR    ${ELEMENT}    IN    ${TEXT_LIST}
-#         Select Option From Dropdown    css:select[id="artlist-action-pagesize"]    ${ELEMENT}
-#         ${VALUE}=    Get Element Attribute    css:select[id="artlist-action-pagesize"]    title
-#         ${VALUE_SLICED}=    Get Substring    ${VALUE}    0    2
-#         Should Be Equal As Strings    ${VALUE_SLICED}    ${VALUE_SLICED}
-#     END
+    FOR    ${element}    IN    @{LST2}       
+            Run Keyword If    ${CHECKBOX_VALUE} == ${element}    Pass Execution    Sucessfully
+        
+    END
