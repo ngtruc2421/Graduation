@@ -166,12 +166,13 @@ Input on the "Username" field with value created automatic
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process input on the "Username" field with value created automatic     
     END
 
-Is auto-login with username account
+
+The system should auto-login with username account
     TRY
         Wait Until Element Is Visible    css:a.menubar-link>span[title="${USERNAME_INPUT}"]
         Page Should Contain Element    css:a.menubar-link>span[title="${USERNAME_INPUT}"]
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process verify is auto-login with username account     
+        Run Keyword If Test Failed    Fail    There is a error happen in process verify      
     END
 
 

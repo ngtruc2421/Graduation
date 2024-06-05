@@ -14,7 +14,8 @@ BSG-T35 --- Verify that the user can register account successfull when user inpu
     Click the Register button in the Register page
     Wait Until Page Contains    Your registration completed
     Page Should Contain    Your registration completed
-    Is auto-login with username account
+    The system should auto-login with username account
+
 BSG-T26 --- Verify that the system displays an error when users input non-alphabetic characters in the First Name field
     [Tags]    Medium
     [Template]    It should show warning message when user input the "First name" field with specific value
@@ -39,7 +40,8 @@ BSG-T36 --- Verify that the user can register account successfull when user inpu
     Click the Register button in the Register page
     Wait Until Page Contains    Your registration completed
     Page Should Contain    Your registration completed
-    Is auto-login with username account
+    The system should auto-login with username account
+
 BSG-T2 --- Verify that the user can navigate to the Register page by clicking on the Register button on the Sign-In page 
     [Tags]    High
     [Setup]    Access the Sign In page
@@ -178,7 +180,8 @@ BSG-T22 --- Verify that The user is auto-login with a created account
     Input the "Confirm password" field with value "Kimngan12@@"
     Click the Register button in the Register page
     Wait Until Page Contains    Your registration completed
-    Is auto-login with username account
+    The system should auto-login with username account
+
 
 BSG-T23 --- Verify that The user can click on the Continue button to navigate to the register page to create a new account
     [Tags]    High
@@ -189,7 +192,7 @@ BSG-T23 --- Verify that The user can click on the Continue button to navigate to
     Click the Register button in the Register page
     Wait Until Page Contains    Your registration completed
     Page Should Contain    Your registration completed
-    Is auto-login with username account
+    The system should auto-login with username account
     Click the Continue button
     The Register page should be opened
 

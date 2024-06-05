@@ -17,8 +17,12 @@ ${CHECKOUTCRTPAGE_BUTTON_ELE}                 id:checkout
 ${SUBTORAL_PRICE_ELE}                         css:.sub-total.price
 ${TITLE_PRODUCT_ELE}                          css:.name.font-weight-medium
 ${WISHLIST_TAB_ELE}                           id:wishlist-tab
+${LISTTAB_ELE}                                css:.nav-item [role="tab"]
+${HOMEPAGE_ELE}                               css:.canvas-blocker.canvas-slidable
+${USERNAME}=                                  0306211267@caothang.edu.vn
+${PASSWORD}=                                  Ttkn1234@
 *** Keywords ***
-Display sizebar "${NAME}" tab    
+Display sidebar "${NAME}" tab    
     TRY
         @{LIST}=    Get WebElements    css:.nav-item [role="tab"]
 
@@ -33,14 +37,14 @@ Display sizebar "${NAME}" tab
         END
         
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Display sizebar ${NAME} tab 
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Display sidebar ${NAME} tab 
         
     END
 
 Hover Over The product item "${name}"
     Hover Over Elenment    css:[title="${name}"]
 
-Dislay "${NAME}" in shopping cart tab 
+The "${NAME}" should show on shopping cart tab
     Wait Until Element Is Visible    css:.offcanvas-cart-items a[title="${NAME}"]
     Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
 Click on Add Product on Cart button 
@@ -52,16 +56,16 @@ There is at least 1 product in shopping cart
     Search product on the search bar    The Prisoner of Heaven: A Novel
     Hover Over The product item "The Prisoner of Heaven: A Novel"
     Click on Add Product on Cart button 
-    Display sizebar "Shopping Cart" tab
-    Dislay "The Prisoner of Heaven: A Novel" in shopping cart tab
+    Display sidebar "Shopping Cart" tab
+    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
     Click on the Home page
     Search product on the search bar    Best Grilling Recipes
     Hover Over The product item "Best Grilling Recipes"
     Click on Add Product on Cart button 
-    Display sizebar "Shopping Cart" tab
-    Dislay "Best Grilling Recipes" in shopping cart tab
+    Display sidebar "Shopping Cart" tab
+    The "Best Grilling Recipes" should show on shopping cart tab
     # Click the Wishlist tab
-    # Display sizebar "Wishlist" tab
+    # Display sidebar "Wishlist" tab
 The image "${NAME}" should be displayed
     Page Should Contain Element    css:.img-center-container[title="Show details for ${NAME}"]
 
@@ -90,7 +94,7 @@ Get product price "${NAME}"
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Display quantity of product "${NAME}"
     END
 Click on the Home page
-    Click on the web element    css:.canvas-blocker.canvas-slidable
+    Click on the web element    ${HOMEPAGE_ELE}    
 
 Trim data
     [Arguments]    ${data}    ${searchString}    
@@ -143,16 +147,23 @@ Click on ${BUTTON} button of product "${NAME}"
     END
 
 Click the Add quantity button of product "${NAME}"
+    ${QUANTITY}=   Get product quantity "${NAME}"
+    ${SUBTOTAL}=    Get Subtotal shopping cart
+    Set Suite Variable    ${SUBTOTALBEFORE}    ${SUBTOTAL}    
+    Set Suite Variable    ${QUANTITYAFTER}    ${QUANTITY}    
     Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}"
 
 Click the Reduce quantity button of product "${NAME}"
-    # ${QUANTITYBEFORE}=   Get product quantity "${NAME}"
+    ${QUANTITY}=   Get product quantity "${NAME}"
+    ${SUBTOTAL}=    Get Subtotal shopping cart
+    Set Suite Variable    ${SUBTOTALBEFORE}    ${SUBTOTAL}   
+    Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY}    
     Click on ${REDUCEQUANTITY_BUTTON_ELE} button of product "${NAME}"
 
 Click the Remove product button of product "${NAME}"
     Click on ${REMOVE_BUTTON_ELE} button of product "${NAME}"
 
-The product ${NAME} should not be display
+The product ${NAME} should not show on shopping cart tab
     Wait Until Element Is Not Visible    css:.offcanvas-cart-items a[title="${NAME}"]
     Page Should Not Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
 
@@ -204,14 +215,40 @@ Is user not logged in yet
     Should Be True    ${IS_LOGIN}
 
 User not logged in yet and There is at least 1 product in shopping cart
+    Open the Home Page
     Is user not logged in yet 
-    There is at least 1 product in shopping cart
+    Search product on the search bar    The Prisoner of Heaven: A Novel
+    Hover Over The product item "The Prisoner of Heaven: A Novel"
+    Click on Add Product on Cart button 
+    Display sidebar "Shopping Cart" tab
+    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
+    Click on the Home page
+    Search product on the search bar    Best Grilling Recipes
+    Hover Over The product item "Best Grilling Recipes"
+    Click on Add Product on Cart button 
+    Display sidebar "Shopping Cart" tab
+    The "Best Grilling Recipes" should show on shopping cart tab
+
+User logged in yet and There is at least 1 product in shopping cart
+    Access the Sign In page
+    Log in the system    ${USERNAME}    ${PASSWORD}
+    Search product on the search bar    The Prisoner of Heaven: A Novel
+    Hover Over The product item "The Prisoner of Heaven: A Novel"
+    Click on Add Product on Cart button 
+    Display sidebar "Shopping Cart" tab
+    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
+    Click on the Home page
+    Search product on the search bar    Best Grilling Recipes
+    Hover Over The product item "Best Grilling Recipes"
+    Click on Add Product on Cart button 
+    Display sidebar "Shopping Cart" tab
+    The "Best Grilling Recipes" should show on shopping cart tab
 The Sign In page should be opened
     Go To    ${URL_LOGIN_CHECKOUT}
     The page should be opened    Sign In    ${PAGE_TITLE_ELE}
 
 Get total product in ${name}
-    @{LIST}=    Get WebElements    css:.nav-item [role="tab"]
+    @{LIST}=    Get WebElements    ${LISTTAB_ELE}   
         FOR    ${element}    IN    @{LIST}
             ${class_attribute}=    Get Element Attribute    ${element}    class
             ${is_Active}=    Run Keyword And Return Status    Should Contain    ${class_attribute}    active
@@ -226,9 +263,17 @@ Get total product in ${name}
             END
         END
     
-The quantity of product "${NAME}" reduce when user click on reduce button
-    ${QUANTITYBEFORE}=   Get product quantity "${NAME}"
-    Click the Reduce quantity button of product "${NAME}"
-    ${QUANTITYCURRENT}=    Get product price "${NAME}"
+The quantity of product "${NAME}" should be reduce when user click on reduce button
+    ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
     ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
     Should Be Equal As Numbers    ${RESULT}    1
+
+The quantity of product "${NAME}" should be increase when user click on add button
+    ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
+    ${RESULT}=    Evaluate    ${QUANTITYCURRENT} - ${QUANTITYAFTER}
+    Should Be Equal As Numbers    ${RESULT}    1
+
+The total product should be changes after changing the product quantity
+    ${TOTAL}=    Calculate Total price of product
+    ${TOTAL}=    Convert To String    ${TOTAL}
+    Should Not Be Equal    ${SUBTOTALBEFORE}    ${TOTAL}
