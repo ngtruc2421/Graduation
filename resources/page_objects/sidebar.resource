@@ -42,35 +42,65 @@ Display sidebar "${NAME}" tab
     END
 
 Hover Over The product item "${name}"
-    Hover Over Elenment    css:[title="${name}"]
+    TRY
+        Hover Over Elenment    css:[title="${name}"]
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Hover Over The product item "${name}"
+    END
+
 
 The "${NAME}" should show on shopping cart tab
-    Wait Until Element Is Visible    css:.offcanvas-cart-items a[title="${NAME}"]
-    Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
+    TRY
+        Wait Until Element Is Visible    css:.offcanvas-cart-items a[title="${NAME}"]
+        Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]   
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The "${NAME}" should show on shopping cart tab
+    END
+
 Click on Add Product on Cart button 
-    Click on Button    ${ADDCART_BUTTON_ELE}
+    TRY
+        Click on Button    ${ADDCART_BUTTON_ELE}
+    EXCEPT    message
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on Add Product on Cart button 
+    END
+    
 Click the Wishlist tab 
-    Click on button    ${WISHLIST_TAB_ELE}
+    TRY
+        Click on button    ${WISHLIST_TAB_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Wishlist tab 
+    END
 There is at least 1 product in shopping cart
-    Open the Home Page
-    Search product on the search bar    The Prisoner of Heaven: A Novel
-    Hover Over The product item "The Prisoner of Heaven: A Novel"
-    Click on Add Product on Cart button 
-    Display sidebar "Shopping Cart" tab
-    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
-    Click on the Home page
-    Search product on the search bar    Best Grilling Recipes
-    Hover Over The product item "Best Grilling Recipes"
-    Click on Add Product on Cart button 
-    Display sidebar "Shopping Cart" tab
-    The "Best Grilling Recipes" should show on shopping cart tab
-    # Click the Wishlist tab
-    # Display sidebar "Wishlist" tab
+    TRY
+        Open the Home Page
+        Search product on the search bar    The Prisoner of Heaven: A Novel
+        Hover Over The product item "The Prisoner of Heaven: A Novel"
+        Click on Add Product on Cart button 
+        Display sidebar "Shopping Cart" tab
+        The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
+        Click on the Home page
+        Search product on the search bar    Best Grilling Recipes
+        Hover Over The product item "Best Grilling Recipes"
+        Click on Add Product on Cart button 
+        Display sidebar "Shopping Cart" tab
+        The "Best Grilling Recipes" should show on shopping cart tab    
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process There is at least 1 product in shopping cart
+    END
 The image "${NAME}" should be displayed
-    Page Should Contain Element    css:.img-center-container[title="Show details for ${NAME}"]
+    TRY
+        Page Should Contain Element    css:.img-center-container[title="Show details for ${NAME}"]  
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The image "${NAME}" should be displayed
+    END
 
 The name "${NAME}" should be displayed
-    Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
+    TRY
+        Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The name "${NAME}" should be displayed
+    END
+    
 Get product price "${NAME}"
     TRY
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
@@ -94,12 +124,11 @@ Get product price "${NAME}"
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Display quantity of product "${NAME}"
     END
 Click on the Home page
-    Click on the web element    ${HOMEPAGE_ELE}    
-
-Trim data
-    [Arguments]    ${data}    ${searchString}    
-    ${trimmed_string}    Replace String    ${data}    ${searchString}    ${EMPTY}
-
+    TRY
+        Click on the web element    ${HOMEPAGE_ELE}    
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on the Home page
+    END
 Get product quantity "${NAME}"
     TRY
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
@@ -120,10 +149,20 @@ Get product quantity "${NAME}"
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Display quantity of product "${NAME}"
     END
 The quantities "${NAME}" should be displayed
-    Get product quantity "${NAME}"
+    TRY
+        Get product quantity "${NAME}"
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantities "${NAME}" should be displayed
+    END
+    
 
 The price"${NAME}" should be displayed
-    Get product price "${NAME}"
+    TRY
+        Get product price "${NAME}"
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The price"${NAME}" should be displayed
+    END
+    
 
 Click on ${BUTTON} button of product "${NAME}"
     TRY
@@ -147,43 +186,86 @@ Click on ${BUTTON} button of product "${NAME}"
     END
 
 Click the Add quantity button of product "${NAME}"
-    ${QUANTITY}=   Get product quantity "${NAME}"
-    ${SUBTOTAL}=    Get Subtotal shopping cart
-    Set Suite Variable    ${SUBTOTALBEFORE}    ${SUBTOTAL}    
-    Set Suite Variable    ${QUANTITYAFTER}    ${QUANTITY}    
-    Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}"
+    TRY
+        ${QUANTITY}=   Get product quantity "${NAME}"
+        ${SUBTOTAL}=    Get Subtotal shopping cart
+        Set Suite Variable    ${SUBTOTALBEFORE}    ${SUBTOTAL}    
+        Set Suite Variable    ${QUANTITYAFTER}    ${QUANTITY}    
+        Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}" 
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Add quantity button of product "${NAME}"
+    END
+
 
 Click the Reduce quantity button of product "${NAME}"
-    ${QUANTITY}=   Get product quantity "${NAME}"
-    ${SUBTOTAL}=    Get Subtotal shopping cart
-    Set Suite Variable    ${SUBTOTALBEFORE}    ${SUBTOTAL}   
-    Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY}    
-    Click on ${REDUCEQUANTITY_BUTTON_ELE} button of product "${NAME}"
+    TRY
+        ${QUANTITY}=   Get product quantity "${NAME}"
+        ${SUBTOTAL}=    Get Subtotal shopping cart
+        Set Suite Variable    ${SUBTOTALBEFORE}    ${SUBTOTAL}   
+        Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY}    
+        Click on ${REDUCEQUANTITY_BUTTON_ELE} button of product "${NAME}"    
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Reduce quantity button of product "${NAME}"
+    END
 
 Click the Remove product button of product "${NAME}"
-    Click on ${REMOVE_BUTTON_ELE} button of product "${NAME}"
+    TRY
+        Click on ${REMOVE_BUTTON_ELE} button of product "${NAME}"
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Remove product button of product "${NAME}"
+    END
+    
 
 The product ${NAME} should not show on shopping cart tab
-    Wait Until Element Is Not Visible    css:.offcanvas-cart-items a[title="${NAME}"]
-    Page Should Not Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
+    TRY
+        Wait Until Element Is Not Visible    css:.offcanvas-cart-items a[title="${NAME}"]
+        Page Should Not Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
+
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The product ${NAME} should not show on shopping cart tab
+    END
 
 Click the "Checkout" button in the sidebar 
-    Click on button    ${CHECKOUTSIDEBAR_BUTTON_ELE}
+    TRY
+        Click on button    ${CHECKOUTSIDEBAR_BUTTON_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the "Checkout" button in the sidebar 
+    END
+    
 
 The Shopping cart page should be opened
-    The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}
-Click the "Checkout" button in the Shopping cart page 
-    Click on button    ${CHECKOUTCRTPAGE_BUTTON_ELE}
+    TRY
+        The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The Shopping cart page should be opened
+    END
+    
+Click the "Checkout" button in the Shopping cart page
+    TRY
+        Click on button    ${CHECKOUTCRTPAGE_BUTTON_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the "Checkout" button in the Shopping cart page
+    END 
 
 The Billing address page should be opened 
-    The page should be opened    Billing address    ${PAGE_TITLE_ELE}
+    TRY
+        The page should be opened    Billing address    ${PAGE_TITLE_ELE}
+    EXCEPT   
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The Billing address page should be opened 
+    END
+    
 
 Get Subtotal shopping cart 
-    ${SUBTOTAL}=    Get Text    ${SUBTORAL_PRICE_ELE}
-    ${SUBTOTAL}=    Split String    ${SUBTOTAL}    ${SPACE}
-    ${SUBTOTAL}=    Get From List    ${SUBTOTAL}    0
-    ${SUBTOTAL}=    Get Substring    ${SUBTOTAL}    1
-    RETURN    ${SUBTOTAL}
+    TRY
+        ${SUBTOTAL}=    Get Text    ${SUBTORAL_PRICE_ELE}
+        ${SUBTOTAL}=    Split String    ${SUBTOTAL}    ${SPACE}
+        ${SUBTOTAL}=    Get From List    ${SUBTOTAL}    0
+        ${SUBTOTAL}=    Get Substring    ${SUBTOTAL}    1
+        RETURN    ${SUBTOTAL}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Get Subtotal shopping cart 
+    END
+
 
 Calculate Total price of product 
     TRY
@@ -206,49 +288,75 @@ Calculate Total price of product
     END
 
 The Subtotal shopping cart should be equal total price of product 
-    ${SUBTOTAL}=    Get Subtotal shopping cart
-    ${TOTAL}=    Calculate Total price of product
-    ${TOTAL}=    Convert To String    ${TOTAL}
-    Should Be Equal    ${SUBTOTAL}    ${TOTAL}
-Is user not logged in yet 
-    ${IS_LOGIN}=    Check user login
-    Should Be True    ${IS_LOGIN}
+    TRY
+        ${SUBTOTAL}=    Get Subtotal shopping cart
+        ${TOTAL}=    Calculate Total price of product
+        ${TOTAL}=    Convert To String    ${TOTAL}
+        Should Be Equal    ${SUBTOTAL}    ${TOTAL}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The Subtotal shopping cart should be equal total price of product 
+    END
+
+Is user not logged in yet
+    TRY
+        ${IS_LOGIN}=    Check user login
+        Should Be True    ${IS_LOGIN}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Is user not logged in yet
+    END 
+    
 
 User not logged in yet and There is at least 1 product in shopping cart
-    Open the Home Page
-    Is user not logged in yet 
-    Search product on the search bar    The Prisoner of Heaven: A Novel
-    Hover Over The product item "The Prisoner of Heaven: A Novel"
-    Click on Add Product on Cart button 
-    Display sidebar "Shopping Cart" tab
-    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
-    Click on the Home page
-    Search product on the search bar    Best Grilling Recipes
-    Hover Over The product item "Best Grilling Recipes"
-    Click on Add Product on Cart button 
-    Display sidebar "Shopping Cart" tab
-    The "Best Grilling Recipes" should show on shopping cart tab
+    TRY
+        Open the Home Page
+        Is user not logged in yet 
+        Search product on the search bar    The Prisoner of Heaven: A Novel
+        Hover Over The product item "The Prisoner of Heaven: A Novel"
+        Click on Add Product on Cart button 
+        Display sidebar "Shopping Cart" tab
+        The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
+        Click on the Home page
+        Search product on the search bar    Best Grilling Recipes
+        Hover Over The product item "Best Grilling Recipes"
+        Click on Add Product on Cart button 
+        Display sidebar "Shopping Cart" tab
+        The "Best Grilling Recipes" should show on shopping cart tab    
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process User not logged in yet and There is at least 1 product in shopping cart
+    END
+
 
 User logged in yet and There is at least 1 product in shopping cart
-    Access the Sign In page
-    Log in the system    ${USERNAME}    ${PASSWORD}
-    Search product on the search bar    The Prisoner of Heaven: A Novel
-    Hover Over The product item "The Prisoner of Heaven: A Novel"
-    Click on Add Product on Cart button 
-    Display sidebar "Shopping Cart" tab
-    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
-    Click on the Home page
-    Search product on the search bar    Best Grilling Recipes
-    Hover Over The product item "Best Grilling Recipes"
-    Click on Add Product on Cart button 
-    Display sidebar "Shopping Cart" tab
-    The "Best Grilling Recipes" should show on shopping cart tab
+    TRY
+        Access the Sign In page
+        Log in the system    ${USERNAME}    ${PASSWORD}
+        Search product on the search bar    The Prisoner of Heaven: A Novel
+        Hover Over The product item "The Prisoner of Heaven: A Novel"
+        Click on Add Product on Cart button 
+        Display sidebar "Shopping Cart" tab
+        The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
+        Click on the Home page
+        Search product on the search bar    Best Grilling Recipes
+        Hover Over The product item "Best Grilling Recipes"
+        Click on Add Product on Cart button 
+        Display sidebar "Shopping Cart" tab
+        The "Best Grilling Recipes" should show on shopping cart tab    
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process User logged in yet and There is at least 1 product in shopping cart
+    END
+
 The Sign In page should be opened
-    Go To    ${URL_LOGIN_CHECKOUT}
-    The page should be opened    Sign In    ${PAGE_TITLE_ELE}
+    TRY
+        Go To    ${URL_LOGIN_CHECKOUT}
+        The page should be opened    Sign In    ${PAGE_TITLE_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The Sign In page should be opened
+    END
+
 
 Get total product in ${name}
-    @{LIST}=    Get WebElements    ${LISTTAB_ELE}   
+    TRY
+        @{LIST}=    Get WebElements    ${LISTTAB_ELE}   
         FOR    ${element}    IN    @{LIST}
             ${class_attribute}=    Get Element Attribute    ${element}    class
             ${is_Active}=    Run Keyword And Return Status    Should Contain    ${class_attribute}    active
@@ -262,18 +370,36 @@ Get total product in ${name}
                 END   
             END
         END
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Get total product in ${name}
+    END
+
     
 The quantity of product "${NAME}" should be reduce when user click on reduce button
-    ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
-    ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
-    Should Be Equal As Numbers    ${RESULT}    1
+    TRY
+        ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
+        ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
+        Should Be Equal As Numbers    ${RESULT}    1
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${NAME}" should be reduce when user click on reduce button
+    END
+
 
 The quantity of product "${NAME}" should be increase when user click on add button
-    ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
-    ${RESULT}=    Evaluate    ${QUANTITYCURRENT} - ${QUANTITYAFTER}
-    Should Be Equal As Numbers    ${RESULT}    1
+    TRY
+        ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
+        ${RESULT}=    Evaluate    ${QUANTITYCURRENT} - ${QUANTITYAFTER}
+        Should Be Equal As Numbers    ${RESULT}    1
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${NAME}" should be increase when user click on add button
+    END
+
 
 The total product should be changes after changing the product quantity
-    ${TOTAL}=    Calculate Total price of product
-    ${TOTAL}=    Convert To String    ${TOTAL}
-    Should Not Be Equal    ${SUBTOTALBEFORE}    ${TOTAL}
+    TRY
+        ${TOTAL}=    Calculate Total price of product
+        ${TOTAL}=    Convert To String    ${TOTAL}
+        Should Not Be Equal    ${SUBTOTALBEFORE}    ${TOTAL}
+    EXCEPT   
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The total product should be changes after changing the product quantity
+    END
