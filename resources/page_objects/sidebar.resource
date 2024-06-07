@@ -2,7 +2,7 @@
 Resource    ../keywords/common_keywords.resource
 Resource    ../pages/home_page.resource
 Resource    top_menu.resource
-Resource    search_bar.resource
+Resource    searchBar.resource
 Resource    header.resource
 *** Variables ***
 ${ADDCART_BUTTON_ELE}                         css:.btn.btn-primary.ajax-cart-link.px-sm-2.btn-lg.art-btn.col

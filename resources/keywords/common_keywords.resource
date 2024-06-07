@@ -110,15 +110,13 @@ Select Option From Dropdown
 
 Hover Over Elenment
     [Arguments]       ${element}
-    ${status}=    Run Keyword And Return Status    Page Should Not Contain Element    ${element}
-    IF    "${status}"=="True"
+     Scroll Element Into View    ${element}
+    ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${element}
+    IF    "${status}"=="False"
         Execute JavaScript    window.scrollBy(0, 500);
         Mouse Over    ${element} 
     ELSE
         Mouse Over    ${element}
     END
-   
-
-
         
    
