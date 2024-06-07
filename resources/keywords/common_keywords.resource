@@ -2,6 +2,8 @@
 Resource    ../../configurations/config.resource
 Library    XML
 
+*** Variables ***
+${PAGE_TITLE_ELE}            css:.page-title
 *** Keywords ***
 Access to url
     [Documentation]    This keyword to access to a url address by chrome browser
@@ -110,10 +112,10 @@ Select Option From Dropdown
 
 Hover Over Elenment
     [Arguments]       ${element}
-    ${status}=    Run Keyword And Return Status    Page Should Not Contain Element    ${element}
-    IF    "${status}"=="True"
-        Execute JavaScript    window.scrollBy(0, 500);
-        Mouse Over    ${element} 
+     Scroll Element Into View    ${element}
+    ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${element}
+    IF    "${status}"=="False"
+        Run Keyword And Continue On Failure    Fail    No look for element
     ELSE
         Mouse Over    ${element}
     END

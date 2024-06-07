@@ -25,15 +25,21 @@ Show on the logged in user's name on the top right
     Should Be Equal As Strings    ${USERNAME.upper()}    ${tem.upper()}
     
 Check user login
-    @{LIST}=    Get WebElements    ${MENUBAR_ELE}
-    ${INDEX}=    Set Variable    0
-    FOR    ${element}    IN    @{LIST}
-        @{LIST_TITLE}=    Get WebElements    ${MENUBARSPAN_ELE} 
-        ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-        ${TITLE}=    Get Text    ${TITLE_ELE}
-        IF    "${TITLE}" == "LOG IN"
+    TRY
+        @{LIST}=    Get WebElements    ${MENUBAR_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST}
+            @{LIST_TITLE}=    Get WebElements    ${MENUBARSPAN_ELE} 
+            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+            ${TITLE}=    Get Text    ${TITLE_ELE}
+            IF    "${TITLE}" == "LOG IN"
             RETURN    ${True}
         END
         ${INDEX}=    Evaluate    ${INDEX} + 1
+        END
+            RETURN    ${False}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Check user login
+        
     END
-        RETURN    ${False}
+    
