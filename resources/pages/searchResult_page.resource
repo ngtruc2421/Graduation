@@ -31,8 +31,13 @@ ${ACTION_PAGE_ELE}            css:select[id="artlist-action-page"]>option
 ${ACTION_PAGESIZE_ELE}        css:select[id="artlist-action-pagesize"]>option
 ${DATAKEY_RATING}             css:div[data-key="rating"]
 *** Keywords ***
-Click on the Add product button 
-    Click on button    ${ADDPRODUCTSEARCH_BTN_ELE}
+Click on the Add product button on search result page
+    TRY
+        Click on button    ${ADDPRODUCTSEARCH_BTN_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the Add product button
+    END 
+    
 Enter a value for the From field
     [Arguments]    ${TEXT}
     Input value for a field    ${TEXT}    ${FROM_INPUT_ELE}
