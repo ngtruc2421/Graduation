@@ -5,7 +5,7 @@ Resource    ../pages/products_page.resource
 Resource    top_menu.resource
 Resource    searchBar.resource
 Resource    header.resource
-Resource    ../pages/search_result.resource
+Resource    ../pages/searchResult_page.resource
 *** Variables ***
 ${PRODUCT_ELE}                                css:.offcanvas-cart-item
 ${PRICE_ELE}                                  css:.price.unit-price

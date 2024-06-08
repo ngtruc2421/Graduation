@@ -64,7 +64,7 @@ BSG-T17 --- Verify that the system will update the login's status when users log
     Click the Login button
     Show on the logged in user's name on the top right    ${USER_NAME_RIGHT}
 BSG-T29 --- Verify that the system will display the error message when users input invalid email on the Forgot Password page
-    [Tags]               Normal
+    [Tags]               Medium
     [Template]           Appear error message when users input invalid email
     User123@gmail.com    Email not found
     @User321gmail.com    'Your email address' is not a valid email address

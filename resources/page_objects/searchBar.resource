@@ -25,7 +25,6 @@ It should display the search results page
         Input value for a field    ${DATA}    ${SEARCHBAR_INPUT_ELE}
         Click on button    ${SEARCH_BTN_ELE}
         Display the web element    Search
-        Close the web page 
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are the issue on the "Search the product with" keyword
     END
@@ -42,21 +41,22 @@ The suggestions list should display with
 
 
 
-It should display the hint text on the search search_bar
-    [Arguments]    ${RESULT}
+It should display the hint text on the search_bar
     TRY
+        Wait Until Element Is Visible    ${SEARCHBAR_INPUT_ELE}
+        ${RESULT}=    Get Element Attribute    ${SEARCHBAR_INPUT_ELE}    placeholder
         Should Be Equal As Strings    What are you looking for?    ${RESULT}    
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are issues on "Display the hint text on the search search_bar" keyword
     END
-Observe the search bar 
-    TRY
-        Wait Until Element Is Visible    ${SEARCHBAR_INPUT_ELE}
-        ${ATTRIBUTE}=    Get Element Attribute    ${SEARCHBAR_INPUT_ELE}    placeholder
-    EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There are issues on "Observe the search bar" keyword
-    END
-    RETURN    ${ATTRIBUTE}
+# Observe the search bar 
+#     TRY
+#         Wait Until Element Is Visible    ${SEARCHBAR_INPUT_ELE}
+#         ${ATTRIBUTE}=    Get Element Attribute    ${SEARCHBAR_INPUT_ELE}    placeholder
+#     EXCEPT    
+#         Run Keyword And Continue On Failure    Fail    There are issues on "Observe the search bar" keyword
+#     END
+#     RETURN    ${ATTRIBUTE}
 Get image list
     ${IMG_LIST}=    Create List    
     ${IMG_LIST}=    Get WebElements    class=img-fluid
@@ -82,7 +82,7 @@ Checks
     ELSE
         RETURN    False
     END     
-It should display the suggestion list
+It should display the image, description, and title on suggestion list
     ${CHECK}=    Checks
     Run Keyword If    '${CHECK}'=='True'    Pass Execution    Suggestion list was enough image, description, and title
     ...         ELSE    Fail    Suggestion list is not enough image, description, or title

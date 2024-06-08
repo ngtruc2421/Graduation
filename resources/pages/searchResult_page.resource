@@ -89,7 +89,7 @@ Observe the curent results list
 Observe the new results list
     ${CURRENT_RESULT_LIST}=    Get list    ${SEARCH_RESULT_ELE} 
     RETURN    ${CURRENT_RESULT_LIST}
-Users should view the search results after seleted the view options
+Users should view the search results after selected the view options
     [Arguments]    ${SELECT_VALUE}
     TRY
     Search product on the search bar    an
@@ -108,6 +108,14 @@ Select the checkbox
     [Arguments]    ${LOCATOR}
     Hover Over Elenment    ${LOCATOR}
     Click on the web element    ${LOCATOR}
+Select the Category checkbox
+    Select the checkbox    ${CATEGORY_CHECKBOX_ELE}
+Select the Price radio button
+    Select the checkbox    ${PRICE_RADIO_ELE}
+Select the Rating radio button
+    Select the checkbox    ${RATING_RADIO_ELE}
+Select the Delivery checkbox
+    Select the checkbox    ${DELIVERY_CHECKBOX_ELE}
 It should be display the result after select checkbox
     [Arguments]    ${LOCATOR_ATR}    ${LOCATOR_LIST}
     ${CHECKBOX_VALUE}=    Get Element Attribute    ${LOCATOR_ATR}    value
@@ -148,4 +156,5 @@ The search result should be display enough information with image, name, rating,
 
 It should display the error message
     [Arguments]    ${TEXT}
+    # Wait Until Element Is Visible    class=alert-warning
     Display the web element    ${TEXT}
