@@ -403,3 +403,6 @@ The total product should be changes after changing the product quantity
     EXCEPT   
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The total product should be changes after changing the product quantity
     END
+
+# The availability status of the product "${NAME}"
+    

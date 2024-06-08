@@ -60,6 +60,10 @@ BSG-T67 --- Verify that when user clicking the "Checkout" button the Sign In pag
 BSG-T44 --- Verify that The checkout button should show a summary of the total cost (excluding tax) to provide transparency before finalizing the purchase
     [Tags]    High
     The Subtotal shopping cart should be equal total price of product 
+
+# BSG-T45 --- Verify that The cart should display the most current prices and availability status of the items
+#     [Tags]    High
+
 BSG-T47 --- Verify that Changes in quantity should automatically update the subtotal for that item and the overall cart total
     [Tags]    High
     Click the Reduce quantity button of product "Best Grilling Recipes"
