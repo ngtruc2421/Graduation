@@ -98,7 +98,7 @@ Remove all product in shopping cart
         Click the Remove product button of product "${TITLE}"
         ${INDEX}=    Evaluate    ${INDEX}+1
     END
-User is the Home Page andThere are not product in shopping cart
+User is the Home Page and There are not product in shopping cart
     Open the Home Page
     Click on the "Shopping Basket" button
     ${STATUS}=    Check list empty
@@ -106,7 +106,16 @@ User is the Home Page andThere are not product in shopping cart
         Remove all product in shopping cart  
     END
     Click on the Home page
-
+User is the Home Page and There are 1 product with quantity is 2 in shopping cart
+    Open the Home Page
+    Hover Over The product item "Club Lounge Chair"
+    Click on the product "Club Lounge Chair"
+    Click on Increase quantity button of product "Club Lounge Chair" in product detail page
+    The quantity of product "Club Lounge Chair" in the product detail page should be increase when user click on icrease button
+    Click on Add Product button from product detail page
+    Display sidebar "Shopping Cart" tab
+    The "Club Lounge Chair" should show on shopping cart tab
+    Click on the Home page
 
 # There are product "${NAME}" quantity added in shopping cart
 #     ${QUANTITY}=    Get quantity of product "${NAME}"
