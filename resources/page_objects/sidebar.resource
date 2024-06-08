@@ -1,11 +1,12 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
 Resource    ../pages/home_page.resource
+Resource    ../pages/products_page.resource
 Resource    top_menu.resource
 Resource    search_bar.resource
 Resource    header.resource
+Resource    ../pages/search_result.resource
 *** Variables ***
-${ADDCART_BUTTON_ELE}                         css:.btn.btn-primary.ajax-cart-link.px-sm-2.btn-lg.art-btn.col
 ${PRODUCT_ELE}                                css:.offcanvas-cart-item
 ${PRICE_ELE}                                  css:.price.unit-price
 ${QUANTITY_ELE}                               css:[name="item.EnteredQuantity"]
@@ -18,7 +19,6 @@ ${SUBTORAL_PRICE_ELE}                         css:.sub-total.price
 ${TITLE_PRODUCT_ELE}                          css:.name.font-weight-medium
 ${WISHLIST_TAB_ELE}                           id:wishlist-tab
 ${LISTTAB_ELE}                                css:.nav-item [role="tab"]
-${HOMEPAGE_ELE}                               css:.canvas-blocker.canvas-slidable
 ${USERNAME}=                                  0306211267@caothang.edu.vn
 ${PASSWORD}=                                  Ttkn1234@
 *** Keywords ***
@@ -40,30 +40,25 @@ Display sidebar "${NAME}" tab
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Display sidebar ${NAME} tab 
         
     END
-
-Hover Over The product item "${name}"
-    TRY
-        Hover Over Elenment    css:[title="${name}"]
-    EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Hover Over The product item "${name}"
-    END
-
-
 The "${NAME}" should show on shopping cart tab
     TRY
-        Wait Until Element Is Visible    css:.offcanvas-cart-items a[title="${NAME}"]
-        Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]   
+         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST}            
+            ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            IF    "${TITLE}" == "${NAME}"
+                Page Should Contain Element    ${TITLE_ELE}
+                RETURN
+            END
+            ${INDEX}=     Evaluate    ${INDEX} + 1
+        END
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The "${NAME}" should show on shopping cart tab
     END
 
-Click on Add Product on Cart button 
-    TRY
-        Click on Button    ${ADDCART_BUTTON_ELE}
-    EXCEPT    message
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on Add Product on Cart button 
-    END
-    
+
 Click the Wishlist tab 
     TRY
         Click on button    ${WISHLIST_TAB_ELE}
@@ -75,13 +70,13 @@ There is at least 1 product in shopping cart
         Open the Home Page
         Search product on the search bar    The Prisoner of Heaven: A Novel
         Hover Over The product item "The Prisoner of Heaven: A Novel"
-        Click on Add Product on Cart button 
+        Click on Add Product button from type product page 
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
         Hover Over The product item "Best Grilling Recipes"
-        Click on Add Product on Cart button 
+        Click on Add Product button from type product page 
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
     EXCEPT    
@@ -123,12 +118,7 @@ Get product price "${NAME}"
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Display quantity of product "${NAME}"
     END
-Click on the Home page
-    TRY
-        Click on the web element    ${HOMEPAGE_ELE}    
-    EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on the Home page
-    END
+
 Get product quantity "${NAME}"
     TRY
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
@@ -312,13 +302,13 @@ User not logged in yet and There is at least 1 product in shopping cart
         Is user not logged in yet 
         Search product on the search bar    The Prisoner of Heaven: A Novel
         Hover Over The product item "The Prisoner of Heaven: A Novel"
-        Click on Add Product on Cart button 
+        Click on Add Product button from type product page  
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
         Hover Over The product item "Best Grilling Recipes"
-        Click on Add Product on Cart button 
+        Click on Add Product button from type product page 
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
     EXCEPT    
@@ -332,13 +322,13 @@ User logged in yet and There is at least 1 product in shopping cart
         Log in the system    ${USERNAME}    ${PASSWORD}
         Search product on the search bar    The Prisoner of Heaven: A Novel
         Hover Over The product item "The Prisoner of Heaven: A Novel"
-        Click on Add Product on Cart button 
+        Click on Add Product button from type product page  
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
         Hover Over The product item "Best Grilling Recipes"
-        Click on Add Product on Cart button 
+        Click on Add Product button from type product page  
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
     EXCEPT    
