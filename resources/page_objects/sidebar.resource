@@ -3,7 +3,7 @@ Resource    ../keywords/common_keywords.resource
 Resource    ../pages/home_page.resource
 Resource    ../pages/products_page.resource
 Resource    top_menu.resource
-Resource    search_bar.resource
+Resource    searchBar.resource
 Resource    header.resource
 Resource    ../pages/search_result.resource
 *** Variables ***

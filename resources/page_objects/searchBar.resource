@@ -6,7 +6,7 @@ Resource    ../pages/login_page.resource
 ${SEARCHBAR_INPUT_ELE}    class=instasearch-term
 ${SEARCH_BTN_ELE}    class=instasearch-button
 @{SEARCHBAR}=    ${SEARCHBAR_INPUT_ELE}    ${SEARCH_BTN_ELE} 
-${SUGGESLIST_TITLE}    class="instasearch-group-header"   
+${SUGGESLIST_TITLE}    class=instasearch-group-header   
 *** Keywords ***
 # Start template [
 It should display the search bar on the page
@@ -19,7 +19,7 @@ It should display the search bar on the page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are the issue on the "Display the search bar on the page" keyword
     END
-Search the product with
+It should display the search results page
     [Arguments]    ${DATA}
     TRY
         Input value for a field    ${DATA}    ${SEARCHBAR_INPUT_ELE}
@@ -29,12 +29,11 @@ Search the product with
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are the issue on the "Search the product with" keyword
     END
-The suggestions list will display with 
+The suggestions list should display with 
     [Arguments]    ${TEXT}
     TRY
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
         Display element    ${SUGGESLIST_TITLE}
-        Close the web page
     EXCEPT    AssertionError
         Run Keyword And Continue On Failure    Log    There are the issue on the "The suggestions list will display with" keyword    
         Fail
@@ -43,7 +42,7 @@ The suggestions list will display with
 
 
 
-Display the hint text on the search search_bar
+It should display the hint text on the search search_bar
     [Arguments]    ${RESULT}
     TRY
         Should Be Equal As Strings    What are you looking for?    ${RESULT}    
@@ -83,7 +82,7 @@ Checks
     ELSE
         RETURN    False
     END     
-Display the suggestion list
+It should display the suggestion list
     ${CHECK}=    Checks
     Run Keyword If    '${CHECK}'=='True'    Pass Execution    Suggestion list was enough image, description, and title
     ...         ELSE    Fail    Suggestion list is not enough image, description, or title
