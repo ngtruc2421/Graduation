@@ -4,7 +4,6 @@ Resource    ../keywords/common_keywords.resource
 *** Variables ***
 ${LOGIN_BTN_ELE}              css:.menubar-link[href="/login?returnUrl=%2F"]
 ${URL_SIGNIN}                /login
-${PAGE_TITLE_ELE}            css:.page-title
 ${REGISTER_BTN_ELE}          id:register-button
 ${URL_REGISTER}              /register
 ${PAGENAME_TITLE}            Register
@@ -13,10 +12,10 @@ ${CONTINUE_BTN_ELE}          css:.register-continue-button
 
 *** Keywords ***
 Open Register page
-    Open page    Register    css:.page-title
+    Open page    Register    ${PAGE_TITLE_ELE}
 
 The Register page should be opened
-    The page should be opened    Register    css:.page-title
+    The page should be opened    Register    ${PAGE_TITLE_ELE}
 Is reuired field
     [Arguments]    ${NAME}
     TRY
