@@ -8,7 +8,7 @@ Library    SeleniumLibrary
 
 *** Variables ***
 # Server and domain info
-${URL_HOME}    https://bearstore-testsite.smartbear.com
+${URL_HOME}    https://bearstore-testsite.smartbear.com/
 ${URL_LOGIN}    ${URL_HOME}/login 
 ${URL_PASSWORDRECOVERY}    ${URL_HOME}/customer/passwordrecovery
 ${URL_CONTACT}    ${URL_HOME}/contactus

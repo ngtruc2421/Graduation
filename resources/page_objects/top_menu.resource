@@ -7,7 +7,6 @@ Resource    ../pages/products_page.resource
 *** Keywords ***
 Click Menu Item "${NAME}"   
     ${NAME_LOWER}=    Evaluate     "${NAME}".lower()
-    Wait Until Element Is Visible    css:.megamenu a[href="/${NAME_LOWER}"]
-    Click on the web element    css:.megamenu a[href="/${NAME_LOWER}"]
+    Click on the web element    css:.megamenu a[href$="/${NAME_LOWER}"]
     The type "${NAME}" page should be opened
     
