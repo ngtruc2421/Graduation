@@ -41,6 +41,7 @@ Display sidebar "${NAME}" tab
         
     END
 The "${NAME}" should show on shopping cart tab
+    [Timeout]    3
     TRY
          @{LIST}=    Get WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -394,5 +395,38 @@ The total product should be changes after changing the product quantity
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The total product should be changes after changing the product quantity
     END
 
-# The availability status of the product "${NAME}"
-    
+The availability status of the product "${NAME}" should be display
+    TRY
+        ${STATUS_TITLE}=    Get availability status of the product ${NAME}
+        Click on the "Shopping Basket" button  
+        @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST}            
+           ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            IF    "${TITLE}" == "${NAME}"
+               Page Should Contain    ${STATUS_TITLE}
+            END
+            ${INDEX}=     Evaluate    ${INDEX} + 1
+        END
+    EXCEPT    message
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process The availability status of the product "${NAME}" should be display
+    END
+
+There are 2 product in shopping cart
+    Open the Home Page
+    Search product on the search bar    The Prisoner of Heaven: A Novel
+    Hover Over The product item "The Prisoner of Heaven: A Novel"
+    Click on Add Product button from type product page 
+    Display sidebar "Shopping Cart" tab
+    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
+    Click on the Home page
+    Search product on the search bar    Best Grilling Recipes
+    Hover Over The product item "Best Grilling Recipes"
+    Click on Add Product button from type product page 
+    Display sidebar "Shopping Cart" tab
+    The "Best Grilling Recipes" should show on shopping cart tab
+    Click on the Home page
+    Click Menu Item "Books"
+    Hover Over The product item "$The Prisoner of Heaven: A Novel"
