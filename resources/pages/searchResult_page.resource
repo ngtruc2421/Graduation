@@ -2,6 +2,7 @@
 Resource    ../../configurations/config.resource
 Resource    ../keywords/common_keywords.resource
 Resource    ../page_objects/searchBar.resource
+Resource    ../pages/home_page.resource
 *** Variables ***
 ${ADDPRODUCTSEARCH_BTN_ELE}        css:.fa.fa-cart-arrow-down
 ${FROM_INPUT_ELE}=            id=price-range-from
@@ -78,6 +79,7 @@ The system should be displays the option to view the results per page
     ...    ELSE    Fail    The system wasn't displays the option to view the results per page
 It should display messages when the product are found
     [Arguments]    ${CONTENT}    ${MESS}
+    Open the Home Page
     Search product on the search bar    ${CONTENT}
     Display the web element    ${MESS}
 Click the sort dropdown
@@ -92,6 +94,7 @@ Observe the new results list
 Users should view the search results after selected the view options
     [Arguments]    ${SELECT_VALUE}
     TRY
+    Open the Home Page
     Search product on the search bar    an
     Select Option From Dropdown    ${ACTION_sORT_ELE}    ${SELECT_VALUE}
     ${SELECTED_VALUE}=    Get Text    ${SELECT_OPTION_ELE}

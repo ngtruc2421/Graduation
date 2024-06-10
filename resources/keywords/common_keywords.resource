@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    ../../configurations/config.resource
 Library    XML
-Library    ../../.venv/Lib/site-packages/robot/libraries/Telnet.py
+# Library    ../../.venv/Lib/site-packages/robot/libraries/Telnet.py
 
 *** Variables ***
 ${PAGE_TITLE_ELE}            css:.page-title

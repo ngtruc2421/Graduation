@@ -2,6 +2,7 @@
 Resource    ../../configurations/config.resource
 Resource    ../keywords/common_keywords.resource
 Resource    ../pages/login_page.resource
+Resource    ../pages/home_page.resource
 *** Variables ***
 ${SEARCHBAR_INPUT_ELE}    class=instasearch-term
 ${SEARCH_BTN_ELE}    class=instasearch-button
@@ -22,6 +23,7 @@ It should display the search bar on the page
 It should display the search results page
     [Arguments]    ${DATA}
     TRY
+        Open the Home Page
         Input value for a field    ${DATA}    ${SEARCHBAR_INPUT_ELE}
         Click on button    ${SEARCH_BTN_ELE}
         Display the web element    Search
@@ -31,6 +33,7 @@ It should display the search results page
 The suggestions list should display with 
     [Arguments]    ${TEXT}
     TRY
+        Open the Home Page
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
         Display element    ${SUGGESLIST_TITLE}
     EXCEPT    AssertionError
