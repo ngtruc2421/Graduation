@@ -2,7 +2,6 @@
 Resource    ../../configurations/config.resource
 Resource    ../keywords/common_keywords.resource
 Resource    ../page_objects/searchBar.resource
-Library    ../../../Graduation_thesis/resources/pages/base_page.resource
 Resource    ../pages/home_page.resource
 *** Variables ***
 ${ADDPRODUCTSEARCH_BTN_ELE}        css:.fa.fa-cart-arrow-down
