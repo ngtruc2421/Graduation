@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../../configurations/config.resource
 
+
 *** Variables ***
 ${PAGE_TITLE_ELE}            css:.page-title
 *** Keywords ***
