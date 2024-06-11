@@ -2,8 +2,8 @@
 Resource         ../resources/pages/login_page.resource
 Resource         ../resources/pages/passwordRecovery_page.resource
 Resource         ../resources/page_objects/header.resource
-Test Setup       Access to url    ${URL_LOGIN}
-Test Teardown    Close Browser
+Test Setup       Open the Login page
+Test Teardown    Close the web page
 *** Variables ***
 ${USER_NAME_WRONG}=          @trantruc
 ${PASS_WHITESPACE}           @us   er123

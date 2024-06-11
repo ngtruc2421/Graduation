@@ -62,8 +62,13 @@ Compare text
     END
 The system saved the account information
     [Arguments]     ${USERNAME}    ${USERNAME_LOCATOR}    ${PASSWORD}    ${PASSWORD_LOCATOR}
-    Compare text    ${USERNAME}    ${USERNAME_LOCATOR}  
-    Compare text    ${PASSWORD}    ${PASSWORD_LOCATOR}
+        TRY
+        Compare text    ${USERNAME}    ${USERNAME_LOCATOR}  
+        Compare text    ${PASSWORD}    ${PASSWORD_LOCATOR}
+    EXCEPT    AssertionError
+        Log    The text not be equal    ERROR
+        Fail    The text not be equal
+    END
 
 Appear the error message when users input incorrect value for the Username or email field and Password field
     [Arguments]    ${USERNAME_EMAIL}    ${PASS}    ${MESS}
@@ -80,4 +85,5 @@ Access the Sign In page
     Access to url    ${URL_LOGIN}
     Display the Login page    Sign In
 
-
+Open the Login page
+    Access to url    ${URL_LOGIN}
