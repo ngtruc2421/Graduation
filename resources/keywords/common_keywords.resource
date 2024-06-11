@@ -115,8 +115,10 @@ Select Option From Dropdown
     END
 
 Hover Over Elenment
+    [Documentation]    This keyword is used to move the mouse to a provided locator
     [Arguments]       ${ELEMENT}
-     Scroll Element Into View    ${ELEMENT}
+    Scroll Element Into View    ${ELEMENT}
+    Execute JavaScript    window.scrollBy(0, 500)
     ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${ELEMENT}
     IF    "${status}"=="False"
         Run Keyword And Continue On Failure    Fail    No look for element
@@ -124,7 +126,8 @@ Hover Over Elenment
         Mouse Over    ${ELEMENT}
     END
         
-Wait until page contain element    
+Wait until page contain element
+    [Documentation]    This keyword is used to wait and check page contain provided locator
     [Arguments]    ${ELEMENT}
     TRY
         Wait Until Element Is Visible    ${ELEMENT}
@@ -134,6 +137,7 @@ Wait until page contain element
     END   
 
 Get list WebElements
+    [Documentation]    This keyword is used to get list WebElements from the provided locator
      [Arguments]    ${LOCATOR}
     TRY
         Wait Until Element Is Visible    ${LOCATOR}
@@ -144,6 +148,7 @@ Get list WebElements
     END
 
 Wait and get element text
+    [Documentation]    This keyword is used to wait and get element text from provided locator
     [Arguments]     ${ELEMENT}
     TRY
         Wait Until Element Is Visible    ${ELEMENT}
@@ -153,9 +158,8 @@ Wait and get element text
         Run Keyword And Continue On Failure    Fail    Wait and get element text
     END
 
-
-
 Compare two Numbers
+    [Documentation]    This keyword is used to Compare two Numbers from provided locator
     [Arguments]     ${NUM1}    ${NUM2} 
     TRY
         ${NUMBER1}=    Convert To Number    ${NUM1}
