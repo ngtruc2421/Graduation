@@ -2,7 +2,6 @@
 Resource    ../resources/pages/searchResult_page.resource
 Resource    ../resources/page_objects/searchBar.resource
 Resource    ../resources/pages/home_page.resource
-Test Setup    Open the Home Page
 Test Teardown   Close Browser
 *** Variables ***
 ${PRODUCT_KEYWORD}            an

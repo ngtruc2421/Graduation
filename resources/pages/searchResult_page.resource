@@ -2,6 +2,7 @@
 Resource    ../../configurations/config.resource
 Resource    ../keywords/common_keywords.resource
 Resource    ../page_objects/searchBar.resource
+Library    ../../../Graduation_thesis/resources/pages/base_page.resource
 Resource    ../pages/home_page.resource
 *** Variables ***
 ${ADDPRODUCTSEARCH_BTN_ELE}        css:.fa.fa-cart-arrow-down
@@ -82,6 +83,7 @@ It should display messages when the product are found
     Open the Home Page
     Search product on the search bar    ${CONTENT}
     Display the web element    ${MESS}
+    Close Browser
 Click the sort dropdown
     [Arguments]    ${LOCATOR}
     Click on the web element    ${LOCATOR}
@@ -99,6 +101,7 @@ Users should view the search results after selected the view options
     Select Option From Dropdown    ${ACTION_sORT_ELE}    ${SELECT_VALUE}
     ${SELECTED_VALUE}=    Get Text    ${SELECT_OPTION_ELE}
     Should Be Equal As Strings    ${SELECTED_VALUE}    ${SELECT_VALUE}
+    Close Browser
     EXCEPT
         Run Keyword And Continue On Failure    Log    Issues are happing 
     END

@@ -27,6 +27,7 @@ It should display the search results page
         Input value for a field    ${DATA}    ${SEARCHBAR_INPUT_ELE}
         Click on button    ${SEARCH_BTN_ELE}
         Display the web element    Search
+        Close Browser
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are the issue on the "Search the product with" keyword
     END
@@ -36,6 +37,7 @@ The suggestions list should display with
         Open the Home Page
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
         Display element    ${SUGGESLIST_TITLE}
+        Close Browser
     EXCEPT    AssertionError
         Run Keyword And Continue On Failure    Log    There are the issue on the "The suggestions list will display with" keyword    
         Fail
@@ -52,14 +54,6 @@ It should display the hint text on the search_bar
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are issues on "Display the hint text on the search search_bar" keyword
     END
-# Observe the search bar 
-#     TRY
-#         Wait Until Element Is Visible    ${SEARCHBAR_INPUT_ELE}
-#         ${ATTRIBUTE}=    Get Element Attribute    ${SEARCHBAR_INPUT_ELE}    placeholder
-#     EXCEPT    
-#         Run Keyword And Continue On Failure    Fail    There are issues on "Observe the search bar" keyword
-#     END
-#     RETURN    ${ATTRIBUTE}
 Get image list
     ${IMG_LIST}=    Create List    
     ${IMG_LIST}=    Get WebElements    class=img-fluid
