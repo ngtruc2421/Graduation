@@ -139,7 +139,7 @@ It should be display the result after select checkbox
     ${LST2}=    Create List
     ${LST}=    Get WebElements    ${LOCATOR_LIST}
     ${LENGTH}=    Get Length    ${LST}
-    FOR    ${eLEMENT}    IN    @{LST}
+    FOR    ${ELEMENT}    IN    @{LST}
         ${ITEM}=    Get Element Attribute    ${ELEMENT}    data-key
         Append To List    ${LST2}    ${ITEM}
     END
@@ -152,7 +152,9 @@ The search results page should be display the result of the filtered option
     TRY
     ${LST}=       Create List
     ${LST}=       Get WebElements    ${LOCATOR_LIST}
-    FOR    ${ELEMENT}    IN    @{LST}
+    FOR    ${ELEMENT}    IN    ${LST}
+        ${ll}=    Get Length    ${ELEMENT}
+
         Element Should Contain    ${ELEMENT}    ${CHECKBOXNAME}
     END
     EXCEPT

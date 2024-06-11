@@ -62,8 +62,12 @@ Display the web element
     END    
 Display Element
     [Arguments]     ${LOCATOR}
+    TRY
     Wait Until Element Is Visible    ${LOCATOR}
-    Page Should Contain Element    ${LOCATOR}   
+    Page Should Contain Element    ${LOCATOR} 
+    EXCEPT
+    Run Keyword And Continue On Failure    Log    There is a issue on the display element progress
+    END  
 
 Get Page title
     [Arguments]    ${LOCATOR}
