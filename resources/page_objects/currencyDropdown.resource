@@ -1,11 +1,14 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
+Library    ../../.venv/Lib/site-packages/robot/libraries/XML.py
 Resource    ../../configurations/config.resource
 *** Variables ***
 ${CURRENCY_DROPDOWN_ELE}    class=currency-selector
 ${CURRENCY_OPTIONS_ELE}     css:.currency-selector div[class="dropdown-menu show"]>a
 ${WATCHES_OPTION_ELE}    xpath=//ul[@id="menu-main"]//li//span[contains(text(),'Watches')] 
 @{DEFAULT_VALUE_LIST}=    US Dollar - USD ($)    Pound Sterling - GBP (£)    Australian Dollar - AUD ($)    Canadian Dollar - CAD ($)
+${RESULTS_WATCHES_TAB_ELE}    css:article[class="art"] div[class="art-price-block"] span
+${CURRENCY_SYMBOL}    £
 *** Keywords ***
 It should display the currency dropdown
     Display Element    ${CURRENCY_DROPDOWN_ELE}
@@ -53,10 +56,19 @@ Select the Watches tab
 Select the ${VALUE} option on the Currency dropdown
     ${LOCATOR}=    Set Variable    css:div.currency-selector div.dropdown-menu.show a[title="${VALUE}"]
     Click on the web element    ${LOCATOR}
-All product on Listing page should change currency type
-    ${PRODUCT_LIST_ELE}=    Get list WebElements    css:article:first-of-type[class="art"] span[class="art-price"]
+All product on ${NAME} page should change currency type
+    [Arguments]    ${LOCATOR}
+    ${PRODUCT_LIST_ELE}=    Get list WebElements    ${LOCATOR}
     ${LENGTH}=    Get Length    ${PRODUCT_LIST_ELE}
-    FOR    ${element}    IN    ${PRODUCT_LIST_ELE}
-        Log    ${element}
+    ${TEXT_LIST}=    Create List
+    FOR    ${element}    IN    @{PRODUCT_LIST_ELE}
+        ${TEXT}=    Get Text    ${element}
+        Append To List    ${TEXT_LIST}    ${TEXT}
     END
+    ${LENGTH}=    Get Length    ${TEXT_LIST}
+    ${CHECK}=    Set Variable    ${True}
+    FOR    ${e}    IN    @{TEXT_LIST}
+        Should Contain    ${e}    ${CURRENCY_SYMBOL}
+    END
+
     
