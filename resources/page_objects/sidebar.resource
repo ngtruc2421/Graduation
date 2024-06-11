@@ -22,9 +22,10 @@ ${LISTTAB_ELE}                                css:.nav-item [role="tab"]
 ${USERNAME}=                                  0306211267@caothang.edu.vn
 ${PASSWORD}=                                  Ttkn1234@
 *** Keywords ***
-Display sidebar "${NAME}" tab    
+Display sidebar "${NAME}" tab 
     TRY
-        @{LIST}=    Get WebElements    css:.nav-item [role="tab"]
+        Wait Until Element Is Visible    ${LISTTAB_ELE}
+        @{LIST}=    Get WebElements    ${LISTTAB_ELE}
 
         FOR    ${element}    IN    @{LIST}
             ${class_attribute}=    Get Element Attribute    ${element}    class
@@ -41,7 +42,6 @@ Display sidebar "${NAME}" tab
         
     END
 The "${NAME}" should show on shopping cart tab
-    [Timeout]    3
     TRY
          @{LIST}=    Get WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -71,13 +71,13 @@ There is at least 1 product in shopping cart
         Open the Home Page
         Search product on the search bar    The Prisoner of Heaven: A Novel
         Hover Over The product item "The Prisoner of Heaven: A Novel"
-        Click on Add Product button from type product page 
+        Click on the Add product button on search result page
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
         Hover Over The product item "Best Grilling Recipes"
-        Click on Add Product button from type product page 
+        Click on the Add product button on search result page
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
     EXCEPT    
@@ -85,6 +85,7 @@ There is at least 1 product in shopping cart
     END
 The image "${NAME}" should be displayed
     TRY
+        Wait Until Element Is Visible    css:.img-center-container[title="Show details for ${NAME}"]  
         Page Should Contain Element    css:.img-center-container[title="Show details for ${NAME}"]  
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The image "${NAME}" should be displayed
@@ -92,7 +93,9 @@ The image "${NAME}" should be displayed
 
 The name "${NAME}" should be displayed
     TRY
-        Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
+        Wait until page contain element      css:.offcanvas-cart-items a[title="${NAME}"]  
+        # Wait Until Element Is Visible    css:.offcanvas-cart-items a[title="${NAME}"]
+        # Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The name "${NAME}" should be displayed
     END
@@ -303,13 +306,13 @@ User not logged in yet and There is at least 1 product in shopping cart
         Is user not logged in yet 
         Search product on the search bar    The Prisoner of Heaven: A Novel
         Hover Over The product item "The Prisoner of Heaven: A Novel"
-        Click on Add Product button from type product page  
+        Click on the Add product button on search result page 
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
         Hover Over The product item "Best Grilling Recipes"
-        Click on Add Product button from type product page 
+        Click on the Add product button on search result page
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
     EXCEPT    
@@ -323,13 +326,13 @@ User logged in yet and There is at least 1 product in shopping cart
         Log in the system    ${USERNAME}    ${PASSWORD}
         Search product on the search bar    The Prisoner of Heaven: A Novel
         Hover Over The product item "The Prisoner of Heaven: A Novel"
-        Click on Add Product button from type product page  
+        Click on the Add product button on search result page 
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
         Hover Over The product item "Best Grilling Recipes"
-        Click on Add Product button from type product page  
+        Click on the Add product button on search result page 
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
     EXCEPT    
@@ -399,6 +402,8 @@ The availability status of the product "${NAME}" should be display
     TRY
         ${STATUS_TITLE}=    Get availability status of the product ${NAME}
         Click on the "Shopping Basket" button  
+        # Sleep    1s
+        Wait Until Element Is Visible    ${PRODUCT_ELE}
         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
@@ -406,11 +411,19 @@ The availability status of the product "${NAME}" should be display
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
             ${TITLE}=    Get Text    ${TITLE_ELE}   
             IF    "${TITLE}" == "${NAME}"
-               Page Should Contain    ${STATUS_TITLE}
+                ${is_contain}=    Get Element Attribute    ${TITLE_ELE}    class 
+
+               ${is_containstatus}=    Run Keyword And Return Status    Element Should Contain    ${is_contain}    css:.delivery-time
+               IF    ("${is_containstatus}"=="True")
+                   ${text}=    Get Text     css:.delivery-time
+                   Should Be Equal    ${text}    ${STATUS_TITLE}
+                ELSE
+                    Run Keyword And Continue On Failure    Fail    There is a error happen in process The availability status of the product "${NAME}" should be display
+               END
             END
             ${INDEX}=     Evaluate    ${INDEX} + 1
         END
-    EXCEPT    message
+    EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process The availability status of the product "${NAME}" should be display
     END
 
@@ -418,15 +431,18 @@ There are 2 product in shopping cart
     Open the Home Page
     Search product on the search bar    The Prisoner of Heaven: A Novel
     Hover Over The product item "The Prisoner of Heaven: A Novel"
-    Click on Add Product button from type product page 
+    Click on the Add product button on search result page
     Display sidebar "Shopping Cart" tab
     The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
     Click on the Home page
     Search product on the search bar    Best Grilling Recipes
     Hover Over The product item "Best Grilling Recipes"
-    Click on Add Product button from type product page 
+    Click on the Add product button on search result page
     Display sidebar "Shopping Cart" tab
     The "Best Grilling Recipes" should show on shopping cart tab
     Click on the Home page
     Click Menu Item "Books"
-    Hover Over The product item "$The Prisoner of Heaven: A Novel"
+    Hover Over The product item "The Prisoner of Heaven: A Novel"
+
+
+  

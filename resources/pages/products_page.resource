@@ -27,8 +27,11 @@ Get Name product "${NAME}"
         ${INDEX}=    Evaluate    ${INDEX}+1
     END    
 Hover Over The product item "${NAME}"
+    # Sleep    2s
     TRY
+        # Wait Until Element Is Visible    css:.search-page
         ${PRODUCT}=    Get Name product "${NAME}"
+        Wait Until Element Is Visible    ${PRODUCT}
         Hover Over Elenment    ${PRODUCT}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Hover Over The product item "${NAME}"
@@ -36,6 +39,7 @@ Hover Over The product item "${NAME}"
 
 Click on the Home page
     TRY
+        Wait Until Element Is Visible    ${HOMEPAGE_ELE}  
         Click on the web element    ${HOMEPAGE_ELE}    
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on the Home page

@@ -23,6 +23,7 @@ The Home page should be open
 
 Click on the "Shopping Basket" button
     TRY
+        Wait Until Element Is Visible    ${SHOPPING_BASKET_BTN_ELE}
         Click on button    ${SHOPPING_BASKET_BTN_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the "Shopping Basket" button

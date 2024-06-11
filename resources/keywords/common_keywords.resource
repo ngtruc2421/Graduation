@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    ../../configurations/config.resource
-Library    XML
-# Library    ../../.venv/Lib/site-packages/robot/libraries/Telnet.py
+
 
 *** Variables ***
 ${PAGE_TITLE_ELE}            css:.page-title
@@ -121,4 +120,11 @@ Hover Over Elenment
         Mouse Over    ${element}
     END
         
-   
+Wait until page contain element    
+    [Arguments]    ${element}
+    TRY
+        Wait Until Element Is Visible    ${element}
+        Page Should Contain Element    ${element}
+    EXCEPT    
+            Run Keyword And Continue On Failure    Fail    No look for element
+    END   
