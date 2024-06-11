@@ -3,14 +3,27 @@ Resource    ../keywords/common_keywords.resource
 Resource    productdetail_page.resource
 
 *** Variables ***
-${ADDCART_BUTTON_ELE}                         css:.btn.btn-primary.ajax-cart-link.px-sm-2.btn-lg.art-btn.col
+${ADDCART_BUTTON_ELE}                         css:.fa-cart-arrow-down
 ${HOMEPAGE_ELE}                               css:.canvas-blocker.canvas-slidable
-${PRODUCTLIST_ELE}                                css:.art
+${PRODUCTLIST_ELE}                            css:.product-list-container .art
 ${PRODUCTNAME_ELE}                            css:.art-name
 *** Keywords ***
-Click on Add Product button from type product page 
+Click on Add Product button of product "${NAME}" from type product page
     TRY
-        Click on Button    ${ADDCART_BUTTON_ELE}
+        ${LIST_PRODUCT}=    Get list WebElements   ${PRODUCTLIST_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST_PRODUCT}
+            ${LIST_NAME}=    Get list WebElements    ${PRODUCTNAME_ELE}
+            ${NAME_PRODUCT}=    Get From List    ${LIST_NAME}    ${INDEX}
+            ${NAME_TEXT}=    Get Text    ${NAME_PRODUCT}
+            IF    "${NAME_TEXT}" == "${NAME}"
+                ${LIST_ICONS}=    Get WebElements    ${ADDCART_BUTTON_ELE}
+                Wait Until Element Is Visible    ${LIST_ICONS}[${INDEX}]   
+                Click on Button    ${LIST_iCONS}[${INDEX}]  
+                RETURN
+            END
+            ${INDEX}=    Evaluate    ${INDEX}+1
+        END  
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on Add Product button from product page 
     END
