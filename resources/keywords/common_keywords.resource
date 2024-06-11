@@ -110,20 +110,53 @@ Select Option From Dropdown
     END
 
 Hover Over Elenment
-    [Arguments]       ${element}
-     Scroll Element Into View    ${element}
-    ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${element}
+    [Arguments]       ${ELEMENT}
+     Scroll Element Into View    ${ELEMENT}
+    ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${ELEMENT}
     IF    "${status}"=="False"
         Run Keyword And Continue On Failure    Fail    No look for element
     ELSE
-        Mouse Over    ${element}
+        Mouse Over    ${ELEMENT}
     END
         
 Wait until page contain element    
-    [Arguments]    ${element}
+    [Arguments]    ${ELEMENT}
     TRY
-        Wait Until Element Is Visible    ${element}
-        Page Should Contain Element    ${element}
+        Wait Until Element Is Visible    ${ELEMENT}
+        Page Should Contain Element    ${ELEMENT}
     EXCEPT    
-            Run Keyword And Continue On Failure    Fail    No look for element
+        Run Keyword And Continue On Failure    Fail    No look for element
     END   
+
+Get list WebElements
+     [Arguments]    ${LOCATOR}
+    TRY
+        Wait Until Element Is Visible    ${LOCATOR}
+        @{ELEMENTS}=    Get WebElements    ${LOCATOR}
+        RETURN     @{ELEMENTS}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    Get list WebElements
+    END
+
+Wait and get element text
+    [Arguments]     ${ELEMENT}
+    TRY
+        Wait Until Element Is Visible    ${ELEMENT}
+        ${TEXT}=    Get Text    ${ELEMENT}
+        RETURN    ${TEXT}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    Wait and get element text
+    END
+
+
+
+Compare two Numbers
+    [Arguments]     ${NUM1}    ${NUM2} 
+    TRY
+        ${NUMBER1}=    Convert To Number    ${NUM1}
+        ${NUMBER2}=    Convert To Number    ${NUM2}
+        Should Be Equal As Numbers    ${NUMBER1}    ${NUMBER2}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    Compare two Numbers
+    END
+   

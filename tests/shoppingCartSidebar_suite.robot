@@ -63,7 +63,6 @@ BSG-T44 --- Verify that The checkout button should show a summary of the total c
 
 BSG-T45 --- Verify that The cart should display the most current prices and availability status of the items
     [Tags]    High
-    [Setup]    There are 2 product in shopping cart
     The availability status of the product "The Prisoner of Heaven: A Novel" should be display
 
 BSG-T47 --- Verify that Changes in quantity should automatically update the subtotal for that item and the overall cart total

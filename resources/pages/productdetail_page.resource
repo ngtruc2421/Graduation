@@ -108,7 +108,7 @@ User is the Home Page and There are not product in shopping cart
     Click on the Home page
 User is the Home Page and There are 1 product with quantity is 2 in shopping cart
     Open the Home Page
-    Hover Over The product item "Club Lounge Chair"
+    Hover Over The product item "Club Lounge Chair" in result page
     Click on the product "Club Lounge Chair"
     Click on Increase quantity button of product "Club Lounge Chair" in product detail page
     The quantity of product "Club Lounge Chair" in the product detail page should be increase when user click on icrease button
