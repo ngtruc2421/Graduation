@@ -108,7 +108,6 @@ The error "${ERROR}" should be display
 
 It should show warning message when user input the "${FIELD_NAME}" field with specific value 
     [Arguments]      ${TEXT}      ${ERROR}
-
     TRY
         Input the "${FIELD_NAME}" field with value "${TEXT}"
         Click the Register button in the Register page

@@ -21,11 +21,11 @@ ${WISHLIST_TAB_ELE}                           id:wishlist-tab
 ${LISTTAB_ELE}                                css:.nav-item [role="tab"]
 ${USERNAME}=                                  0306211267@caothang.edu.vn
 ${PASSWORD}=                                  Ttkn1234@
+${ATRIBUTESPRODUCT_ELE}                                   css:.attributes
 *** Keywords ***
 Display sidebar "${NAME}" tab 
     TRY
         @{LIST}=    Get list WebElements    ${LISTTAB_ELE}
-
         FOR    ${element}    IN    @{LIST}
             ${class_attribute}=    Get Element Attribute    ${element}    class
             ${is_Active}=    Run Keyword And Return Status    Should Contain    ${class_attribute}    active
@@ -400,7 +400,6 @@ The availability status of the product "${NAME}" should be display
     TRY
         ${STATUS_TITLE}=    Get availability status of the product ${NAME}
         Click on the "Shopping Basket" button  
-        # Sleep    1s
         Wait Until Element Is Visible    ${PRODUCT_ELE}
         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -442,5 +441,24 @@ There are 2 product in shopping cart
     Click Menu Item "Books"
     Hover Over The product item "The Prisoner of Heaven: A Novel" in product page
 
-
+The Material option "${MATERIAL}" of product "${NAME}" should be display in shopping cart sidebar tab
+    Wait Until Element Is Visible    ${ATRIBUTESPRODUCT_ELE}  
+    TRY
+        @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST}            
+           ${LIST_TITLE}=    Get list WebElements    ${TITLE_PRODUCT_ELE} 
+            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
+            ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
+            IF    "${TITLE}" == "${NAME}"
+                @{LIST_ATRIBUTES}=    Get list WebElements   ${ATRIBUTESPRODUCT_ELE}            
+                ${ATRIBUTES_ELE}=    Get From List    ${LIST_ATRIBUTES}    ${INDEX}
+                ${MATERIAl_TEXT}=    Wait and get element text    ${ATRIBUTES_ELE}
+                Should Contain    ${MATERIAl_TEXT}   ${MATERIAL}
+            END
+            ${INDEX}=     Evaluate    ${INDEX} + 1
+        END
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process The Material option ${MATERIAL} of product ${NAME} should be display in shopping cart sidebar tab
+    END
   
