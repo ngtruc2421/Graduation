@@ -15,10 +15,10 @@ Click on Add Product button from type product page
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on Add Product button from product page 
     END
 Get Name product "${NAME}"
-    ${LIST}=    Get WebElements    ${PRODUCTLIST_ELE}
+    ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
     ${INDEX}=    Set Variable    0
     FOR    ${element}    IN    @{LIST}
-        ${list}=    Get WebElements    ${PRODUCTNAME_ELE}  
+        ${list}=    Get list WebElements   ${PRODUCTNAME_ELE}  
         ${class}=    Get From List    ${list}    ${INDEX}
         ${name_text}=    Get Text    ${class}
         IF    "${name_text}" == "${NAME}"
@@ -26,15 +26,13 @@ Get Name product "${NAME}"
         END
         ${INDEX}=    Evaluate    ${INDEX}+1
     END    
-Hover Over The product item "${NAME}"
-    # Sleep    2s
+Hover Over The product item "${NAME}" in product page 
     TRY
-        # Wait Until Element Is Visible    css:.search-page
         ${PRODUCT}=    Get Name product "${NAME}"
         Wait Until Element Is Visible    ${PRODUCT}
         Hover Over Elenment    ${PRODUCT}
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Hover Over The product item "${NAME}"
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Hover Over The product item "${NAME}" in product page 
     END
 
 Click on the Home page
@@ -58,14 +56,14 @@ Click on the product "${NAME}"
     The product detail "${NAME}" page should be opened
 
 Get availability status of the product ${NAME}
-    ${LIST}=    Get WebElements    ${PRODUCTLIST_ELE}
+    ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
     ${INDEX}=    Set Variable    0
     FOR    ${element}    IN    @{LIST}
-        ${list}=    Get WebElements    ${PRODUCTNAME_ELE}  
+        ${list}=    Get list WebElements   ${PRODUCTNAME_ELE}  
         ${class}=    Get From List    ${list}    ${INDEX}
         ${name_text}=    Get Text    ${class}
         IF    "${name_text}" == "${NAME}"
-            ${LISTSTATUS}=    Get WebElements    css:.delivery-time>span[dir="auto"]
+            ${LISTSTATUS}=    Get list WebElements   css:.delivery-time>span[dir="auto"]
             ${CLASS}=    Get From List    ${LISTSTATUS}    ${INDEX}
             ${STATUS}=    Get Text    ${CLASS}
             RETURN    ${STATUS}

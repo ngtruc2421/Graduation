@@ -24,14 +24,13 @@ ${PASSWORD}=                                  Ttkn1234@
 *** Keywords ***
 Display sidebar "${NAME}" tab 
     TRY
-        Wait Until Element Is Visible    ${LISTTAB_ELE}
-        @{LIST}=    Get WebElements    ${LISTTAB_ELE}
+        @{LIST}=    Get list WebElements    ${LISTTAB_ELE}
 
         FOR    ${element}    IN    @{LIST}
             ${class_attribute}=    Get Element Attribute    ${element}    class
             ${is_Active}=    Run Keyword And Return Status    Should Contain    ${class_attribute}    active
             IF    (${is_Active}!= False)
-                ${value}=    Get Text    ${element}
+                ${value}=    Wait and get element text    ${element}
                 Should Contain    ${value}    ${name}
                 RETURN      
             END
@@ -43,12 +42,12 @@ Display sidebar "${NAME}" tab
     END
 The "${NAME}" should show on shopping cart tab
     TRY
-         @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
-            ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${LIST_TITLE}=    Get list WebElements    ${TITLE_PRODUCT_ELE} 
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
             IF    "${TITLE}" == "${NAME}"
                 Page Should Contain Element    ${TITLE_ELE}
                 RETURN
@@ -70,13 +69,13 @@ There is at least 1 product in shopping cart
     TRY
         Open the Home Page
         Search product on the search bar    The Prisoner of Heaven: A Novel
-        Hover Over The product item "The Prisoner of Heaven: A Novel"
+        Hover Over The product item "The Prisoner of Heaven: A Novel" in result page
         Click on the Add product button on search result page
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
-        Hover Over The product item "Best Grilling Recipes"
+        Hover Over The product item "Best Grilling Recipes" in result page
         Click on the Add product button on search result page
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
@@ -85,8 +84,7 @@ There is at least 1 product in shopping cart
     END
 The image "${NAME}" should be displayed
     TRY
-        Wait Until Element Is Visible    css:.img-center-container[title="Show details for ${NAME}"]  
-        Page Should Contain Element    css:.img-center-container[title="Show details for ${NAME}"]  
+        Wait until page contain element    css:.img-center-container[title="Show details for ${NAME}"] 
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The image "${NAME}" should be displayed
     END
@@ -94,24 +92,22 @@ The image "${NAME}" should be displayed
 The name "${NAME}" should be displayed
     TRY
         Wait until page contain element      css:.offcanvas-cart-items a[title="${NAME}"]  
-        # Wait Until Element Is Visible    css:.offcanvas-cart-items a[title="${NAME}"]
-        # Page Should Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The name "${NAME}" should be displayed
     END
     
 Get product price "${NAME}"
     TRY
-        @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+        @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
-            ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${LIST_TITLE}=    Get list WebElements    ${TITLE_PRODUCT_ELE} 
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
             IF    "${TITLE}" == "${NAME}"
-                @{LIST_PRICE}=    Get WebElements    ${PRICE_ELE}               
+                @{LIST_PRICE}=    Get list WebElements    ${PRICE_ELE}               
                 ${VALUE}=    Get From List    ${LIST_PRICE}    ${INDEX}
-                ${PRICE}=    Get text    ${value}
+                ${PRICE}=    Wait and get element text    ${value}
                 ${PRICE}=    Split String    ${PRICE}    ${SPACE}
                 ${PRICE}=    Get From List    ${PRICE}    0
                 ${PRICE}=    Get Substring    ${PRICE}    1
@@ -123,16 +119,17 @@ Get product price "${NAME}"
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Display quantity of product "${NAME}"
     END
 
+
 Get product quantity "${NAME}"
     TRY
-        @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+        @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
-            ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${LIST_TITLE}=    Get list WebElements    ${TITLE_PRODUCT_ELE} 
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
             IF    "${TITLE}" == "${NAME}"
-                @{LIST_quantities}=    Get WebElements    ${QUANTITY_ELE}               
+                @{LIST_quantities}=    Get list WebElements    ${QUANTITY_ELE}               
                 ${quantity_ele}=    Get From List    ${LIST_quantities}    ${INDEX}
                 ${quantity}=    Get Value    ${quantity_ele}
                 RETURN    ${quantity}
@@ -160,14 +157,14 @@ The price"${NAME}" should be displayed
 
 Click on ${BUTTON} button of product "${NAME}"
     TRY
-        @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+        @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
-           ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+           ${LIST_TITLE}=    Get list WebElements    ${TITLE_PRODUCT_ELE} 
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
             IF    "${TITLE}" == "${NAME}"
-                @{LIST_BUTTON}=    Get WebElements    ${BUTTON}             
+                @{LIST_BUTTON}=    Get list WebElements    ${BUTTON}             
                 ${BUTTON_ELE}=    Get From List    ${LIST_BUTTON}    ${INDEX}
                 Hover Over Elenment    ${BUTTON_ELE}
                 Click on button    ${BUTTON_ELE}
@@ -247,11 +244,12 @@ The Billing address page should be opened
     EXCEPT   
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The Billing address page should be opened 
     END
-    
+
+
 
 Get Subtotal shopping cart 
     TRY
-        ${SUBTOTAL}=    Get Text    ${SUBTORAL_PRICE_ELE}
+        ${SUBTOTAL}=    Wait and get element text    ${SUBTORAL_PRICE_ELE}
         ${SUBTOTAL}=    Split String    ${SUBTOTAL}    ${SPACE}
         ${SUBTOTAL}=    Get From List    ${SUBTOTAL}    0
         ${SUBTOTAL}=    Get Substring    ${SUBTOTAL}    1
@@ -263,13 +261,13 @@ Get Subtotal shopping cart
 
 Calculate Total price of product 
     TRY
-        @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+        @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         ${TOTAL}=    Set Variable    0    
         FOR    ${element}    IN    @{LIST}
-            ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+            ${LIST_TITLE}=    Get list WebElements    ${TITLE_PRODUCT_ELE} 
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-            ${TITLE}=    Get Text    ${TITLE_ELE}    
+            ${TITLE}=    Wait and get element text    ${TITLE_ELE}    
             ${PRICE}=    Get product price "${TITLE}"
             ${QUANTITY}=    Get product quantity "${TITLE}"
             ${TOTAL}=    Evaluate    ${TOTAL} + ${PRICE} * ${QUANTITY}
@@ -305,13 +303,13 @@ User not logged in yet and There is at least 1 product in shopping cart
         Open the Home Page
         Is user not logged in yet 
         Search product on the search bar    The Prisoner of Heaven: A Novel
-        Hover Over The product item "The Prisoner of Heaven: A Novel"
+        Hover Over The product item "The Prisoner of Heaven: A Novel" in result page
         Click on the Add product button on search result page 
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
-        Hover Over The product item "Best Grilling Recipes"
+        Hover Over The product item "Best Grilling Recipes" in result page
         Click on the Add product button on search result page
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
@@ -325,13 +323,13 @@ User logged in yet and There is at least 1 product in shopping cart
         Access the Sign In page
         Log in the system    ${USERNAME}    ${PASSWORD}
         Search product on the search bar    The Prisoner of Heaven: A Novel
-        Hover Over The product item "The Prisoner of Heaven: A Novel"
+        Hover Over The product item "The Prisoner of Heaven: A Novel" in result page
         Click on the Add product button on search result page 
         Display sidebar "Shopping Cart" tab
         The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
         Click on the Home page
         Search product on the search bar    Best Grilling Recipes
-        Hover Over The product item "Best Grilling Recipes"
+        Hover Over The product item "Best Grilling Recipes" in result page
         Click on the Add product button on search result page 
         Display sidebar "Shopping Cart" tab
         The "Best Grilling Recipes" should show on shopping cart tab    
@@ -350,16 +348,16 @@ The Sign In page should be opened
 
 Get total product in ${name}
     TRY
-        @{LIST}=    Get WebElements    ${LISTTAB_ELE}   
+        @{LIST}=    Get list WebElements    ${LISTTAB_ELE}   
         FOR    ${element}    IN    @{LIST}
             ${class_attribute}=    Get Element Attribute    ${element}    class
             ${is_Active}=    Run Keyword And Return Status    Should Contain    ${class_attribute}    active
             IF    (${is_Active}!= False)
-                ${value}=    Get Text    ${element}
+                ${value}=    Wait and get element text    ${element}
                 ${is_contain}=    Run Keyword And Return Status    Should Contain    ${value}    ${name}
                 IF    (${is_contain}!= False)
                      ${cart_items_count}=    Get Element Attribute    xpath://*[@class='title' and text()='${name}']/following-sibling::*[@class='badge badge-pill label-cart-amount badge-warning']    data-bind-to
-                    ${TOTAL}=    Get Text    css:.badge.badge-warning[data-bind-to="${cart_items_count}"]
+                    ${TOTAL}=    Wait and get element text    css:.badge.badge-warning[data-bind-to="${cart_items_count}"]
                     RETURN    ${TOTAL}
                 END   
             END
@@ -373,7 +371,7 @@ The quantity of product "${NAME}" should be reduce when user click on reduce but
     TRY
         ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
         ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
-        Should Be Equal As Numbers    ${RESULT}    1
+        Compare two Numbers    ${RESULT}    1
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${NAME}" should be reduce when user click on reduce button
     END
@@ -404,18 +402,18 @@ The availability status of the product "${NAME}" should be display
         Click on the "Shopping Basket" button  
         # Sleep    1s
         Wait Until Element Is Visible    ${PRODUCT_ELE}
-        @{LIST}=    Get WebElements    ${PRODUCT_ELE}
+        @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            
-           ${LIST_TITLE}=    Get WebElements    ${TITLE_PRODUCT_ELE} 
+           ${LIST_TITLE}=    Get list WebElements    ${TITLE_PRODUCT_ELE} 
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-            ${TITLE}=    Get Text    ${TITLE_ELE}   
+            ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
             IF    "${TITLE}" == "${NAME}"
                 ${is_contain}=    Get Element Attribute    ${TITLE_ELE}    class 
 
                ${is_containstatus}=    Run Keyword And Return Status    Element Should Contain    ${is_contain}    css:.delivery-time
                IF    ("${is_containstatus}"=="True")
-                   ${text}=    Get Text     css:.delivery-time
+                   ${text}=    Wait and get element text     css:.delivery-time
                    Should Be Equal    ${text}    ${STATUS_TITLE}
                 ELSE
                     Run Keyword And Continue On Failure    Fail    There is a error happen in process The availability status of the product "${NAME}" should be display
@@ -430,19 +428,19 @@ The availability status of the product "${NAME}" should be display
 There are 2 product in shopping cart
     Open the Home Page
     Search product on the search bar    The Prisoner of Heaven: A Novel
-    Hover Over The product item "The Prisoner of Heaven: A Novel"
+    Hover Over The product item "The Prisoner of Heaven: A Novel" in result page
     Click on the Add product button on search result page
     Display sidebar "Shopping Cart" tab
     The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
     Click on the Home page
     Search product on the search bar    Best Grilling Recipes
-    Hover Over The product item "Best Grilling Recipes"
+    Hover Over The product item "Best Grilling Recipes" in result page
     Click on the Add product button on search result page
     Display sidebar "Shopping Cart" tab
     The "Best Grilling Recipes" should show on shopping cart tab
     Click on the Home page
     Click Menu Item "Books"
-    Hover Over The product item "The Prisoner of Heaven: A Novel"
+    Hover Over The product item "The Prisoner of Heaven: A Novel" in product page
 
 
   

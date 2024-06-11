@@ -32,13 +32,24 @@ ${ACTION_sORT_ELE}            id=artlist-action-sort
 ${ACTION_PAGE_ELE}            css:select[id="artlist-action-page"]>option
 ${ACTION_PAGESIZE_ELE}        css:select[id="artlist-action-pagesize"]>option
 ${DATAKEY_RATING}             css:div[data-key="rating"]
+${TITLESEARCHPAGE_ELE}
 *** Keywords ***
 Click on the Add product button on search result page
     TRY
         Click on button    ${ADDPRODUCTSEARCH_BTN_ELE}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the Add product button
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the Add product button on search result page
     END 
+
+Hover Over The product item "${NAME}" in result page
+    TRY
+        Wait Until Element Is Visible    ${TITLESEARCHPAGE_ELE}
+        ${PRODUCT}=    Get Name product "${NAME}"
+        Wait Until Element Is Visible    ${PRODUCT}
+        Hover Over Elenment    ${PRODUCT}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Hover Over The product item "${NAME}" in result page
+    END
     
 Enter a value for the From field
     [Arguments]    ${TEXT}
