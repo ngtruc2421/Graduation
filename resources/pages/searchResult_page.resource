@@ -3,6 +3,7 @@ Resource    ../../configurations/config.resource
 Resource    ../keywords/common_keywords.resource
 Resource    ../page_objects/searchBar.resource
 Resource    ../pages/home_page.resource
+Resource    products_page.resource
 *** Variables ***
 ${ADDPRODUCTSEARCH_BTN_ELE}        css:.fa.fa-cart-arrow-down
 ${FROM_INPUT_ELE}=            id=price-range-from
@@ -31,7 +32,7 @@ ${ACTION_sORT_ELE}            id=artlist-action-sort
 ${ACTION_PAGE_ELE}            css:select[id="artlist-action-page"]>option
 ${ACTION_PAGESIZE_ELE}        css:select[id="artlist-action-pagesize"]>option
 ${DATAKEY_RATING}             css:div[data-key="rating"]
-${TITLESEARCHPAGE_ELE}
+${LISTPRODUCT_ELE}            css:.art
 *** Keywords ***
 Click on the Add product button on search result page
     TRY
@@ -40,10 +41,22 @@ Click on the Add product button on search result page
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the Add product button on search result page
     END 
 
+Get Name product "${NAME}" in result page
+    ${LIST}=    Get list WebElements   ${LISTPRODUCT_ELE}
+    ${INDEX}=    Set Variable    0
+    FOR    ${element}    IN    @{LIST}
+        ${list}=    Get list WebElements   ${PRODUCTNAME_ELE}  
+        ${class}=    Get From List    ${list}    ${INDEX}
+        ${name_text}=    Get Text    ${class}
+        IF    "${name_text}" == "${NAME}"
+            RETURN    ${class}
+        END
+        ${INDEX}=    Evaluate    ${INDEX}+1
+    END   
 Hover Over The product item "${NAME}" in result page
     TRY
-        Wait Until Element Is Visible    ${TITLESEARCHPAGE_ELE}
-        ${PRODUCT}=    Get Name product "${NAME}"
+        Wait Until Element Is Visible    ${PAGE_TITLE_ELE}
+        ${PRODUCT}=    Get Name product "${NAME}" in result page
         Wait Until Element Is Visible    ${PRODUCT}
         Hover Over Elenment    ${PRODUCT}
     EXCEPT    

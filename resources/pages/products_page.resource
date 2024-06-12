@@ -27,7 +27,7 @@ Click on Add Product button of product "${NAME}" from type product page
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on Add Product button from product page 
     END
-Get Name product "${NAME}"
+Get Name product "${NAME}" in product page
     ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
     ${INDEX}=    Set Variable    0
     FOR    ${element}    IN    @{LIST}
@@ -41,7 +41,7 @@ Get Name product "${NAME}"
     END    
 Hover Over The product item "${NAME}" in product page 
     TRY
-        ${PRODUCT}=    Get Name product "${NAME}"
+        ${PRODUCT}=    Get Name product "${NAME}" in product page
         Wait Until Element Is Visible    ${PRODUCT}
         Hover Over Elenment    ${PRODUCT}
     EXCEPT    
@@ -64,7 +64,7 @@ The type "${NAME}" page should be opened
     END 
     
 Click on the product "${NAME}"
-     ${PRODUCT}=    Get Name product "${NAME}"
+     ${PRODUCT}=    Get Name product "${NAME}" in product page
     Click on button    ${PRODUCT}
     The product detail "${NAME}" page should be opened
 
