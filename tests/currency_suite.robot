@@ -20,7 +20,7 @@ BSG-T98 --- Verify that the selected currency should display on all product pric
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
     Select the Watches tab
-    All product on Listing page should change currency type
+    All product on Listing page should change currency type    ${RESULTS_WATCHES_TAB_ELE}
 # BSG-T99 --- Verify that the selected currency should load on all product price on Detail page
 # BSG-T100 --- Verify that the selected currency should load on all product price on Shopping cart
 # BSG-T101 --- Verify that the selected currency should load on all product price on Wishlist page
