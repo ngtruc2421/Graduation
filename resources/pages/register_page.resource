@@ -2,7 +2,7 @@
 Resource    ../keywords/common_keywords.resource
 
 *** Variables ***
-${LOGIN_BTN_ELE}              css:.menubar-link[href="/login?returnUrl=%2F"]
+# ${LOGIN_BTN_ELE}              css:.menubar-link[href="/login?returnUrl=%2F"]
 ${URL_SIGNIN}                /login
 ${REGISTER_BTN_ELE}          id:register-button
 ${URL_REGISTER}              /register
@@ -23,7 +23,7 @@ Is reuired field
         ${STATUS}=    Run Keyword And Return Status    Should Contain    ${ELEMENTS}    required
         RETURN    ${STATUS} 
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process verify is required field    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify is required field    
     END    
   
 
@@ -32,7 +32,7 @@ The "${NAME}" field should be required
         ${IS_REQUIRED}=    Is reuired field    ${NAME}
         Should Be True    ${IS_REQUIRED}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process verify ${NAME} is required field     
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is required field     
     END 
 
 
@@ -41,18 +41,18 @@ The "${NAME}" field should not be required
         ${IS_REQUIRED}=    Is reuired field    ${NAME}
         Should Not Be True    ${IS_REQUIRED}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process verify ${NAME} is not required field     
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is not required field     
     END 
     
 The "${NAME}" field is type free text
     [Arguments]    ${TEXT}
     TRY
-        ${locator}=    Get ID field by lable ${NAME}    
+        ${locator}=    Get ID field by lable ${NAME} in register page    
         Input value for a field    ${TEXT}       ${LOCATOR}
         ${value}=    Get Value    ${LOCATOR}
         Should Be Equal    ${VALUE}    ${TEXT}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process verify ${NAME} is type free text    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is type free text    
     END
 
     
@@ -64,29 +64,29 @@ The "${NAME}" field is type Dropdown
         Run Keyword If    '${tag_name}' == 'select'    Log    The element is a dropdown
         Run Keyword Unless    '${tag_name}' == 'select'    Log    The element is not a dropdown
     EXCEPT   
-        Run Keyword If Test Failed    Fail    There is a error happen in process verify ${NAME} is type Dropdown     
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is type Dropdown     
         
     END
  
-Get ID field by lable ${NAME}
+Get ID field by lable ${NAME} in register page
     TRY
         ${XPATH}=    Set Variable    //label[text()='${NAME}']/following-sibling::div[contains(@class, 'col-md-9')]//input
         ${ELEMENT}=    Get WebElement    ${XPATH}
         ${ID}=    Call Method    ${ELEMENT}    get_attribute    id
         RETURN    id:${ID}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process Get ID field by lable ${NAME}    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get ID field by lable ${NAME} in register page    
     END
    
 
 Input the "${NAME}" field with value "${TEXT}" 
     TRY
-        ${LOCATOR}=    Get ID field by lable ${NAME}
+        ${LOCATOR}=    Get ID field by lable ${NAME} in register page
         Input value for a field    ${TEXT}    ${LOCATOR}
         ${CURRENT_TEXT}=    Get Value    ${LOCATOR}
         Should Contain    ${CURRENT_TEXT}    ${TEXT}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error when input    
+        Run Keyword And Continue On Failure    Fail    There is a error when input    
     END
 
 
@@ -94,7 +94,7 @@ The error "${ERROR}" should not be display
     TRY
         Page Should Not Contain    ${ERROR}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    The error not contain in page     
+        Run Keyword And Continue On Failure    Fail    The error not contain in page     
     END
     
 
@@ -103,7 +103,7 @@ The error "${ERROR}" should be display
         Page Should Contain    ${ERROR}
     EXCEPT
         Log    The ${ERROR} not contain in page    
-        Run Keyword If Test Failed    Fail    The ${ERROR} not contain in page     
+        Run Keyword And Continue On Failure    Fail    The ${ERROR} not contain in page     
     END
 
 It should show warning message when user input the "${FIELD_NAME}" field with specific value 
@@ -119,7 +119,7 @@ Click the Register button in the Register page
     TRY
         Click on button    ${REGISTER_BTN_ELE}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error when click on button    
+        Run Keyword And Continue On Failure    Fail    There is a error when click on button    
     END
     
 
@@ -131,7 +131,7 @@ Create Email
         ${UNIQUE_EMAIL}=    Set Variable    user_${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}@gmail.com
         RETURN    ${UNIQUE_EMAIL}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process ctrate email     
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process ctrate email     
     END 
     
 
@@ -143,7 +143,7 @@ Create Username
         ${UNIQUE_EMAIL}=    Set Variable    user_${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}
         RETURN    ${UNIQUE_EMAIL}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process create username    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process create username    
     END
 
 Input on the "Email" field with value created automatic
@@ -170,7 +170,7 @@ The system should auto-login with username account
         Wait Until Element Is Visible    css:a.menubar-link>span[title="${USERNAME_INPUT}"]
         Page Should Contain Element    css:a.menubar-link>span[title="${USERNAME_INPUT}"]
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process verify      
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify      
     END
 
 
