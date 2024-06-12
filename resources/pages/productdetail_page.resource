@@ -11,10 +11,15 @@ ${REDUCEQUANTITY_BTN_ELE}                     css:.fa.fa-minus
 ${PRODUCT_ELE}                                css:.offcanvas-cart-item
 ${TITLE_PRODUCT_ELE}                          css:.name.font-weight-medium
 ${PRICE_ELE}                                  css:.pd-price
+${ADDTOLIST_BTN_ELE}                          css:a[title="Add to wishlist"]
+${COMPARE_BTN_ELE}                            css:a[title="Add to compare list"]
 *** Keywords ***
 Click on Add Product button from product detail page
-        Click on button    ${ADDPRODUCT_BTN_ELE}
-    
+    Click on button    ${ADDPRODUCT_BTN_ELE}
+Click on Add to List button from product detail page
+    Click on button    ${ADDTOLIST_BTN_ELE}
+Click on Compare button from product detail page
+    Click on button    ${COMPARE_BTN_ELE}
 The product detail "${NAME}" page should be opened
     ${PRODUCT_NAME}=    Wait and get element text    ${PRODUCT_TITLE_ELE}
     Should Be Equal    ${PRODUCT_NAME}    ${NAME}

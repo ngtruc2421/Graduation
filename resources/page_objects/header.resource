@@ -9,6 +9,7 @@ ${LOGIN_OPTION_ELE}    id=menubar-my-account
 ${PROFILE_ELE}    css:a[href="/customer/info"]
 ${MENUBAR_ELE}        css:a.menubar-link
 ${MENUBARSPAN_ELE}        css:a.menubar-link>span
+${SHOPBARCART_OPTION_ELE}    id=shopbar-cart
 *** Keywords ***
 Click on the account's name on the top at the corner
     Click on the web element    ${INFO_MENU_ELE}
@@ -18,6 +19,8 @@ Click on the Log in option on the top of the corner
     ${result}    Get Text    ${LOGIN_OPTION_ELE}
     Should Be Equal As Strings    ${result}    LOG IN
     Click on the web element    ${LOGIN_OPTION_ELE}
+Select the Shopping Basket option on the header
+    Click on the web element    ${SHOPBARCART_OPTION_ELE}
 Show on the logged in user's name on the top right    
     [Arguments]    ${USERNAME}
     ${LOCATOR}    Set Variable    css:a.menubar-link > span[title="${USERNAME}"]
