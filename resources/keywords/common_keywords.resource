@@ -149,7 +149,7 @@ Wait and get element text
     [Documentation]    This keyword is used to wait and get element text from provided locator
     [Arguments]     ${ELEMENT}
     TRY
-        Wait Until Element Is Visible    ${ELEMENT}
+        Wait Until Element Is Visible    ${ELEMENT}    timeout=5s
         ${TEXT}=    Get Text    ${ELEMENT}
         RETURN    ${TEXT}
     EXCEPT    

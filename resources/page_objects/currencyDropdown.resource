@@ -1,6 +1,5 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
-Library    ../../.venv/Lib/site-packages/robot/libraries/XML.py
 Resource    ../../configurations/config.resource
 *** Variables ***
 ${CURRENCY_DROPDOWN_ELE}    class=currency-selector
@@ -70,5 +69,26 @@ All product on ${NAME} page should change currency type
     FOR    ${e}    IN    @{TEXT_LIST}
         Should Contain    ${e}    ${CURRENCY_SYMBOL}
     END
-
-    
+Select a product on the Featured product secsion
+    Hover Over Elenment    css:article[data-id="1"]
+    Click on the web element    css:article[data-id="1"]
+It should changes the curency on the Detail page
+    ${VALUE}=    Wait and get element text    css:div.pd-price-block div.pd-price span
+    Should Contain    ${VALUE}    ${CURRENCY_SYMBOL}
+It should changes the currency on the Shopping cart
+    ${VALUE1}=    Wait and get element text    css:#occ-cart span.price.unit-price
+    Should Contain    ${VALUE1}    ${CURRENCY_SYMBOL}
+    ${VALUE2}=    Wait and get element text    css:div.offcanvas-cart-footer div.sub-total.price
+    Should Contain    ${VALUE2}    ${CURRENCY_SYMBOL}
+It should changes the currency on the Wishlist tab
+    ${VALUE}=    Wait and get element text    css:#occ-wishlist span.price.unit-price
+    Should Contain    ${VALUE}    ${CURRENCY_SYMBOL}
+It should changes the currency on the Compare tab
+    ${VALUE}=    Wait and get element text    css:#occ-compare span.price.unit-price
+    Should Contain    ${VALUE}    ${CURRENCY_SYMBOL}
+It should change in real time when the user changes the currency type
+    @{LIST}    Get list WebElements    css:.art-price
+    FOR    ${e}    IN    @{LIST}
+        ${V}=    Wait and get element text    ${e}
+        Should Contain    ${V}    ${CURRENCY_SYMBOL}
+    END
