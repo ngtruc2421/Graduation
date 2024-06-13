@@ -61,7 +61,7 @@ The "${NAME}" field is type Dropdown
         ${LOCATOR}=    Set Variable    ${ID_DAYOFBIRTH}${NAME}
         ${ELEMENT}=    Get WebElement    ${LOCATOR}    
         ${tag_name}=    Call Method    ${ELEMENT}    get_attribute    tagName
-        Run Keyword If    '${tag_name}' == 'select'    Log    The element is a dropdown
+        Run Keyword If    '${tag_name}' == 'SELECT'    Log    The element is a dropdown
         Run Keyword Unless    '${tag_name}' == 'select'    Log    The element is not a dropdown
     EXCEPT   
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is type Dropdown     
