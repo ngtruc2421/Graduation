@@ -91,5 +91,7 @@ BSG-T89 --- Verify that If the save action fails, a clear error message should b
 
 BSG-T91 --- Verify that Input fields should be appropriately labeled, and required fields marked with an asterisk (*)
     [Tags]    High
-    The Last name field is required
-    
+    The "First name" field is required
+    The "Last name" field is required
+    The "Email" field is required
+    The field "Username" is required

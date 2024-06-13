@@ -91,8 +91,7 @@ Clear data in ${NAME} field
     ${LOCATOR}=    Get ID field by lable ${NAME} in customer info page
     Clear Element Text    id:${LOCATOR}
 
-Is field ${${NAME}}include asterisk character    
-    [Arguments]    ${NAME}
+Is field ${NAME} include asterisk character    
     ${ID}=    Get ID field by lable ${NAME} in customer info page
     ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='${ID}']"), "::after").getPropertyValue("content");
      ${stripped_result}=    Evaluate    ${result}.strip('"')
@@ -103,6 +102,21 @@ The "${NAME}" field is required
     FOR    ${element}    IN    @{LIST_LABLE}
         ${LABLE}=    Wait and get element text    ${element}
         IF    "${LABLE}" == "${NAME}"
-            Is field ${${NAME}} include asterisk character    
+            Is field ${NAME} include asterisk character
+            RETURN    
+        END
+    END
+
+The field "Username" is required
+    ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
+    ${INDEX}=    Set Variable    0
+    FOR    ${element}    IN    @{LIST_LABLE}
+        ${LABLE}=    Wait and get element text    ${element}
+        IF    "${LABLE}" == "Username"
+            ${ID}=    Set Variable    Username
+            ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='Username']"), "::after").getPropertyValue("content");
+             ${stripped_result}=    Evaluate    ${result}.strip('"')
+             Should Contain    ${stripped_result}    *
+            RETURN    
         END
     END
