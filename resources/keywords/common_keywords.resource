@@ -114,9 +114,9 @@ Select Option From Dropdown
 
 Hover Over Elenment
     [Documentation]    This keyword is used to move the mouse to a provided locator
-    [Arguments]       ${ELEMENT}
+    [Arguments]       ${ELEMENT}    ${COORDINATES}=500
     Scroll Element Into View    ${ELEMENT}
-    Execute JavaScript    window.scrollBy(0, 500)
+    Execute JavaScript    window.scrollBy(0, ${COORDINATES})
     ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${ELEMENT}
     IF    "${status}"=="False"
         Run Keyword And Continue On Failure    Fail    No look for element
@@ -149,7 +149,7 @@ Wait and get element text
     [Documentation]    This keyword is used to wait and get element text from provided locator
     [Arguments]     ${ELEMENT}
     TRY
-        Wait Until Element Is Visible    ${ELEMENT}    timeout=5s
+        Wait Until Element Is Visible    ${ELEMENT}    timeout=10s    
         ${TEXT}=    Get Text    ${ELEMENT}
         RETURN    ${TEXT}
     EXCEPT    

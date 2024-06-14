@@ -22,19 +22,19 @@ BSG-T98 --- Verify that the selected currency should display on all product pric
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
     Select the Watches tab
-    All product on Listing page should change currency type    ${RESULTS_WATCHES_TAB_ELE}
+    All product on Listing page should change currency type
 BSG-T99 --- Verify that the selected currency should load on all product price on Detail page
     Open the Home Page
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
-    Select a product on the Featured product secsion
-    It should changes the curency on the Detail page
+    Select a product on the Featured product section
+    It should changes the currency on the Detail page
 
 BSG-T100 --- Verify that the selected currency should load on all product price on Shopping cart
     Open the Home Page
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
-    Select a product on the Featured product secsion
+    Select a product on the Featured product section
     Click on Add Product button from product detail page
     It should changes the currency on the Shopping cart
     
@@ -42,14 +42,14 @@ BSG-T101 --- Verify that the selected currency should load on all product price 
     Open the Home Page
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
-    Select a product on the Featured product secsion
+    Select a product on the Featured product section
     Click on Add to List button from product detail page
     It should changes the currency on the Wishlist tab
 BSG-T102 --- Verify that the selected currency should load on all product price on Compare page
     Open the Home Page
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
-    Select a product on the Featured product secsion
+    Select a product on the Featured product section
     Click on Compare button from product detail page
     It should changes the currency on the Compare tab
 BSG-T103 --- Verify that the currency value on the product should change in real time when the user changes the currency type
