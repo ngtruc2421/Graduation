@@ -6,7 +6,12 @@ Resource    ../pages/products_page.resource
 
 *** Keywords ***
 Click Menu Item "${NAME}"   
-    ${NAME_LOWER}=    Evaluate     "${NAME}".lower()
-    Click on the web element    css:.megamenu a[href$="/${NAME_LOWER}"]
-    The type "${NAME}" page should be opened
+    TRY
+        ${NAME_LOWER}=    Evaluate     "${NAME}".lower()
+        Click on the web element    css:.megamenu a[href$="/${NAME_LOWER}"]
+        The type "${NAME}" page should be opened
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click Menu Item "${NAME}"
+    END
+
     

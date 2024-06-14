@@ -40,23 +40,47 @@ Get class field by Username in customer info page
     END
    
 The "Username" should be display 
-    ${class}=    Get class field by Username in customer info page
-    Wait until page contain element    ${class}
+    TRY
+        ${class}=    Get class field by Username in customer info page
+        Wait until page contain element    ${class}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The "Username" should be display 
+    END
+
 The "${NAME}" field should be display 
-    ${ID}=    Get ID field by lable ${NAME} in customer info page
-    Wait until page contain element    id:${ID}
+    TRY
+        ${ID}=    Get ID field by lable ${NAME} in customer info page
+        Wait until page contain element    id:${ID}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The "${NAME}" field should be display 
+    END
+
 
 The "DateOdBirth" file should be display 
-    Wait until page contain element    ${DATEOFBIRTH_ELE}
+    TRY
+        Wait until page contain element    ${DATEOFBIRTH_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The "DateOdBirth" file should be display 
+    END
 
-The Customer info should be opened 
-    The page should be opened    Customer info    ${PAGE_TITLE_ELE}
+The Customer info page should be opened 
+    TRY
+        The page should be opened    Customer info    ${PAGE_TITLE_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The Customer info should be opened 
+    END
+
 The user is logged in and is now on the Customer Infor page
-    Open the Login page
-    Log in the system    ${USERNAME}    ${PASSWORD}
-    Click on the account's name on the top at the corner
-    Click on the "My account" in top right
-    The Customer info should be opened 
+    TRY
+        Open the Login page
+        Log in the system    ${USERNAME}    ${PASSWORD}
+        Click on the account's name on the top at the corner
+        Click on the "My account" in top right
+        The Customer info page should be opened 
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The user is logged in and is now on the Customer Infor page
+    END
+
 
 Click on the Save button in the Customer infor page
     TRY
@@ -76,47 +100,85 @@ It should show warning message when user input the "${FIELD_NAME}" field with sp
         Run Keyword And Continue On Failure   FAIL     There is a error happen in process verify It should show warning message when user input the "${FIELD_NAME}" field with specific value ${text}        
     END
 
-Clear all data in required field 
-    ${LOCATOR_FN}=    Get ID field by lable First name in customer info page
-    Clear Element Text    id:${LOCATOR_FN}
-    ${LOCATOR_LN}=    Get ID field by lable Last name in customer info page
-    Clear Element Text    id:${LOCATOR_LN}
-    ${LOCATOR_Email}=    Get ID field by lable Email in customer info page
-    Clear Element Text    id:${LOCATOR_Email}
+Clear all data in required field
+    TRY
+        ${LOCATOR_FN}=    Get ID field by lable First name in customer info page
+        Clear Element Text    id:${LOCATOR_FN}
+        ${LOCATOR_LN}=    Get ID field by lable Last name in customer info page
+        Clear Element Text    id:${LOCATOR_LN}
+        ${LOCATOR_Email}=    Get ID field by lable Email in customer info page
+        Clear Element Text    id:${LOCATOR_Email}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify Clear all data in required field
+    END 
 
-The "Save" button should be displayed 
-    Wait until page contain element    ${SAVE_BTN_ELE}
+
+The "Save" button should be displayed
+    TRY
+        Wait until page contain element    ${SAVE_BTN_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The "Save" button should be displayed
+    END 
+    
 
 Clear data in ${NAME} field 
-    ${LOCATOR}=    Get ID field by lable ${NAME} in customer info page
-    Clear Element Text    id:${LOCATOR}
+    TRY
+        ${LOCATOR}=    Get ID field by lable ${NAME} in customer info page
+        Clear Element Text    id:${LOCATOR}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Clear data in ${NAME} field 
+    END
+
 
 Is field ${NAME} include asterisk character    
-    ${ID}=    Get ID field by lable ${NAME} in customer info page
-    ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='${ID}']"), "::after").getPropertyValue("content");
-     ${stripped_result}=    Evaluate    ${result}.strip('"')
-    Should Contain    ${stripped_result}    *
-The "${NAME}" field is required 
-    ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
-    ${INDEX}=    Set Variable    0
-    FOR    ${element}    IN    @{LIST_LABLE}
-        ${LABLE}=    Wait and get element text    ${element}
-        IF    "${LABLE}" == "${NAME}"
-            Is field ${NAME} include asterisk character
-            RETURN    
-        END
+    TRY
+        ${ID}=    Get ID field by lable ${NAME} in customer info page
+        ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='${ID}']"), "::after").getPropertyValue("content");
+         ${stripped_result}=    Evaluate    ${result}.strip('"')
+        Should Contain    ${stripped_result}    *
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify Is field ${NAME} include asterisk character  
     END
 
-The field "Username" is required
-    ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
-    ${INDEX}=    Set Variable    0
-    FOR    ${element}    IN    @{LIST_LABLE}
-        ${LABLE}=    Wait and get element text    ${element}
-        IF    "${LABLE}" == "Username"
-            ${ID}=    Set Variable    Username
-            ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='Username']"), "::after").getPropertyValue("content");
-             ${stripped_result}=    Evaluate    ${result}.strip('"')
-             Should Contain    ${stripped_result}    *
-            RETURN    
+The "${NAME}" field is required 
+    TRY
+        ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST_LABLE}
+            ${LABLE}=    Wait and get element text    ${element}
+            IF    "${LABLE}" == "${NAME}"
+                Is field ${NAME} include asterisk character
+                RETURN    
+            END
         END
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify
     END
+ 
+
+The field "Username" is required
+    TRY
+        ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST_LABLE}
+            ${LABLE}=    Wait and get element text    ${element}
+            IF    "${LABLE}" == "Username"
+                ${ID}=    Set Variable    Username
+                ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='Username']"), "::after").getPropertyValue("content");
+                 ${stripped_result}=    Evaluate    ${result}.strip('"')
+                 Should Contain    ${stripped_result}    *
+                RETURN    
+            END
+        END
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The field "Username" is required
+    END
+    
+
+The message "Customer information has been updated successfully" should be display
+    TRY
+        Wait Until Page Contains    Customer information has been updated successfully
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The message "Customer information has been updated successfully" should be display
+    END 
+    

@@ -64,13 +64,18 @@ BSG- T84 --- Verify that A "Save" button should be prominently displayed at the 
     [Tags]    High
     The "Save" button should be displayed 
 
-# BSG-T85 --- Verify that On clicking "Save," the system should validate all input fields
-#     [Tags]    High
+BSG-T85 --- Verify that On clicking "Save," the system should validate all input fields
+    [Tags]    High
+    Clear all data in required field
+    Click on the Save button in the Customer infor page
+    The error "'First name' should not be empty." should be display    
+    The error "'Last name' should not be empty." should be display    
+    The error "'Email' should not be empty." should be display
 BSG-T86 --- Verify that If validation is successful, the information should be saved, and a success message should be displayed
     [Tags]    High
     Input the "Company name" field with value "WaverSoftware" in customer info page
     Click on the Save button in the Customer infor page
-    Wait Until Page Contains    Customer information has been updated successfully
+    The message "Customer information has been updated successfully" should be display
 
 BSG-87 --- Verify that If there are validation errors, the form should highlight the errors and provide appropriate messages to guide the user in correcting them
     [Tags]    High
@@ -81,7 +86,7 @@ BSG-T88 --- Verify that After saving the form, users should receive a confirmati
     [Tags]    High
     Input the "Company name" field with value "WaverSoftware" in customer info page
     Click on the Save button in the Customer infor page
-    Wait Until Page Contains    Customer information has been updated successfully
+    The message "Customer information has been updated successfully" should be display
 
 BSG-T89 --- Verify that If the save action fails, a clear error message should be displayed explaining what went wrong and how to rectify it
     [Tags]    High
@@ -94,4 +99,15 @@ BSG-T91 --- Verify that Input fields should be appropriately labeled, and requir
     The "First name" field is required
     The "Last name" field is required
     The "Email" field is required
+    The field "Username" is required
+BSG-T92 --- Verify that Last name is mandatory field
+    [Tags]    High
+    The "Last name" field should be required
+
+BSG-T93 --- Verify that Email is mandatory field
+    [Tags]    High
+    The "Email" field should be required
+
+BSG-T94 --- Verify that Username is mandatory field
+    [Tags]    High
     The field "Username" is required
