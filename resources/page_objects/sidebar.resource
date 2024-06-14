@@ -425,25 +425,30 @@ The availability status of the product "${NAME}" should be display
     END
 
 There are 2 product in shopping cart
-    Open the Home Page
-    Search product on the search bar    The Prisoner of Heaven: A Novel
-    Hover Over The product item "The Prisoner of Heaven: A Novel" in result page
-    Click on the Add product button on search result page
-    Display sidebar "Shopping Cart" tab
-    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
-    Click on the Home page
-    Search product on the search bar    Best Grilling Recipes
-    Hover Over The product item "Best Grilling Recipes" in result page
-    Click on the Add product button on search result page
-    Display sidebar "Shopping Cart" tab
-    The "Best Grilling Recipes" should show on shopping cart tab
-    Click on the Home page
-    Click Menu Item "Books"
-    Hover Over The product item "The Prisoner of Heaven: A Novel" in product page
+    TRY
+        Open the Home Page
+        Search product on the search bar    The Prisoner of Heaven: A Novel
+        Hover Over The product item "The Prisoner of Heaven: A Novel" in result page
+        Click on the Add product button on search result page
+        Display sidebar "Shopping Cart" tab
+        The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
+        Click on the Home page
+        Search product on the search bar    Best Grilling Recipes
+        Hover Over The product item "Best Grilling Recipes" in result page
+        Click on the Add product button on search result page
+        Display sidebar "Shopping Cart" tab
+        The "Best Grilling Recipes" should show on shopping cart tab
+        Click on the Home page
+        Click Menu Item "Books"
+        Hover Over The product item "The Prisoner of Heaven: A Novel" in product page
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify There are 2 product in shopping cart
+    END
+
 
 The Material option "${MATERIAL}" of product "${NAME}" should be display in shopping cart sidebar tab
-    Wait Until Element Is Visible    ${ATRIBUTESPRODUCT_ELE}  
     TRY
+        Wait Until Element Is Visible    ${ATRIBUTESPRODUCT_ELE}  
         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST}            

@@ -28,17 +28,22 @@ Click on Add Product button of product "${NAME}" from type product page
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on Add Product button from product page 
     END
 Get Name product "${NAME}" in product page
-    ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
-    ${INDEX}=    Set Variable    0
-    FOR    ${element}    IN    @{LIST}
-        ${list}=    Get list WebElements   ${PRODUCTNAME_ELE}  
-        ${class}=    Get From List    ${list}    ${INDEX}
-        ${name_text}=    Get Text    ${class}
-        IF    "${name_text}" == "${NAME}"
-            RETURN    ${class}
-        END
-        ${INDEX}=    Evaluate    ${INDEX}+1
-    END    
+    TRY
+            ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST}
+            ${list}=    Get list WebElements   ${PRODUCTNAME_ELE}  
+            ${class}=    Get From List    ${list}    ${INDEX}
+            ${name_text}=    Get Text    ${class}
+            IF    "${name_text}" == "${NAME}"
+                RETURN    ${class}
+            END
+            ${INDEX}=    Evaluate    ${INDEX}+1
+        END 
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify  Name product "${NAME}" in product page
+    END
+   
 Hover Over The product item "${NAME}" in product page 
     TRY
         ${PRODUCT}=    Get Name product "${NAME}" in product page
@@ -64,22 +69,31 @@ The type "${NAME}" page should be opened
     END 
     
 Click on the product "${NAME}"
-     ${PRODUCT}=    Get Name product "${NAME}" in product page
-    Click on button    ${PRODUCT}
-    The product detail "${NAME}" page should be opened
+    TRY
+        ${PRODUCT}=    Get Name product "${NAME}" in product page
+        Click on button    ${PRODUCT}
+        The product detail "${NAME}" page should be opened
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the product "${NAME}"
+    END
+
 
 Get availability status of the product ${NAME}
-    ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
-    ${INDEX}=    Set Variable    0
-    FOR    ${element}    IN    @{LIST}
-        ${list}=    Get list WebElements   ${PRODUCTNAME_ELE}  
-        ${class}=    Get From List    ${list}    ${INDEX}
-        ${name_text}=    Get Text    ${class}
-        IF    "${name_text}" == "${NAME}"
-            ${LISTSTATUS}=    Get list WebElements   css:.delivery-time>span[dir="auto"]
-            ${CLASS}=    Get From List    ${LISTSTATUS}    ${INDEX}
-            ${STATUS}=    Get Text    ${CLASS}
-            RETURN    ${STATUS}
-        END
-        ${INDEX}=    Evaluate    ${INDEX}+1
-    END 
+    TRY
+        ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
+        ${INDEX}=    Set Variable    0
+        FOR    ${element}    IN    @{LIST}
+            ${list}=    Get list WebElements   ${PRODUCTNAME_ELE}  
+            ${class}=    Get From List    ${list}    ${INDEX}
+            ${name_text}=    Get Text    ${class}
+            IF    "${name_text}" == "${NAME}"
+                ${LISTSTATUS}=    Get list WebElements   css:.delivery-time>span[dir="auto"]
+                ${CLASS}=    Get From List    ${LISTSTATUS}    ${INDEX}
+                ${STATUS}=    Get Text    ${CLASS}
+                RETURN    ${STATUS}
+            END
+            ${INDEX}=    Evaluate    ${INDEX}+1
+        END 
+    EXCEPT   
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get availability status of the product ${NAME}
+    END
