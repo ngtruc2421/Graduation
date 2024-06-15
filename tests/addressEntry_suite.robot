@@ -52,7 +52,7 @@ BSG-T108 --- Verify that the system should be validate addresses for completenes
     Input data for the "Firstname, Lastname, Address 1, Address 2" fields
     Click on the Next button
     It should validate the address
-BSG-T109 --- Verify that the system should be include a "Back" button to return to the Cart page
+BSG-T135 --- Verify that the system should be include a "Back" button to return to the Cart page
     Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
