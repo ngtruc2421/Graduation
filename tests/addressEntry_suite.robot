@@ -9,6 +9,7 @@ Test Teardown    Close the web page
 *** Variables ***
 *** Test Cases ***
 BSG-T105 --- Verify that the system should provide input fields for shipping and billing address details
+    [Tags]    High    Smoke
     Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
@@ -18,6 +19,7 @@ BSG-T105 --- Verify that the system should provide input fields for shipping and
     Click on the Next button
     It should provides input fields for shipping address details
 BSG-T106 --- Verify that the system should be Include options to save addresses for future use
+    [Tags]    High    Smoke
     Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
@@ -31,6 +33,7 @@ BSG-T106 --- Verify that the system should be Include options to save addresses 
     It should be include options to save addresses for future use
 
 BSG-T107 --- Verify that the system should allow using the same address for billing and shipping
+    [Tags]    High    Smoke
     Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
@@ -44,6 +47,7 @@ BSG-T107 --- Verify that the system should allow using the same address for bill
     It should allow using the same address for billing and shipping
 
 BSG-T108 --- Verify that the system should be validate addresses for completeness and accuracy before proceeding
+    [Tags]    High    Smoke
     Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
@@ -53,6 +57,7 @@ BSG-T108 --- Verify that the system should be validate addresses for completenes
     Click on the Next button
     It should validate the address
 BSG-T135 --- Verify that the system should be include a "Back" button to return to the Cart page
+    [Tags]    High    Smoke
     Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
