@@ -11,7 +11,6 @@ ${CURRENCY_SYMBOL}    £
 ${ARTPRICE_ELE}    css:.art-price
 ${PRICEONCOMPARETAB_ELE}    css:#occ-compare span.price.unit-price
 ${CURRENCY_ITEM_ELE}    css:.currency-selector .dropdown-menu>a.dropdown-item
-${PRODUCT_ITEM_ELE}    css:article[data-id="1"]
 ${PRICEBLOCK_ELE}    css:div.pd-price-block div.pd-price span
 ${PRICEONCART_ELE}    css:#occ-cart span.price.unit-price
 ${FOOTERCART_ELE}    css:div.offcanvas-cart-footer div.sub-total.price
@@ -91,13 +90,6 @@ All product on Listing page should change currency type
         Run Keyword And Continue On Failure    Fail    There is a issue on the "All product on Listing page should change currency type" keyword 
     END
 
-Select a product on the Featured product section
-    TRY
-        Hover Over Elenment    ${PRODUCT_ITEM_ELE}    300
-        Click on the web element    ${PRODUCT_ITEM_ELE}
-    EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select a product on the Featured product secsion" keyword 
-    END
 
 It should changes the currency on the Detail page
     TRY

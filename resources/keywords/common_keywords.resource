@@ -33,6 +33,8 @@ Click on button
     [Documentation]    This keyword to click on a button by provided locator
     [Arguments]    ${LOCATOR}
         TRY
+            Wait Until Element Is Visible    ${LOCATOR}
+            Wait Until Element Is Enabled    ${LOCATOR}
             Click on the web element    ${LOCATOR}
         EXCEPT    
             Run Keyword And Continue On Failure    Fail    There is a error happen in process click on ${LOCATOR} button 
@@ -42,6 +44,7 @@ Input value for a field
     [Documentation]    This keyword input a value for a field by provided value and locator 
     [Arguments]    ${TEXT}    ${LOCATOR} 
     TRY
+        Hover Over Elenment    ${LOCATOR}    100
         Wait Until Element Is Visible    ${LOCATOR}      
         Clear Element Text               ${LOCATOR}
         Input Text    ${LOCATOR}    ${TEXT}

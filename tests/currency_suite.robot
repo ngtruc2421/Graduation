@@ -3,6 +3,7 @@ Resource    ../resources/page_objects/currencyDropdown.resource
 Resource    ../resources/pages/home_page.resource
 Resource    ../resources/page_objects/header.resource
 Resource    ../resources/pages/productdetail_page.resource
+Resource    ../resources/pages/home_page.resource
 Test Teardown    Close the web page
 *** Variables ***
 *** Test Cases ***
