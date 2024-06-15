@@ -58,7 +58,7 @@ Hover Over The product item "${NAME}" in result page
         Wait Until Element Is Visible    ${PAGE_TITLE_ELE}
         ${PRODUCT}=    Get Name product "${NAME}" in result page
         Wait Until Element Is Visible    ${PRODUCT}
-        Hover Over Elenment    ${PRODUCT}
+        Hover Over Elenment    ${PRODUCT}    300
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Hover Over The product item "${NAME}" in result page
     END

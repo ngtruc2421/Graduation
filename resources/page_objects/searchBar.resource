@@ -91,7 +91,8 @@ Search product on the search bar
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
     ELSE
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE}
-        Click Button    ${SEARCH_BTN_ELE}
+        Sleep    1s
+        Click on button    ${SEARCH_BTN_ELE}
     END
 
 # End common keyword ]
