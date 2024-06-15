@@ -27,8 +27,8 @@ ${URL_SHIPPINGINFO}    ${URL_HOME}/shippinginfo
 ${URL_CONDITIONSOFUSE}    ${URL_HOME}/conditionsofuse
 ${URL_CART}               ${URL_HOME}/cart
 ${URL_LOGIN_CHECKOUT}                         ${URL_HOME}/login?checkoutAsGuest=True&returnUrl=%2Fcart
-
-
+${URL_BILLINGADDRESS}    ${URL_HOME}/checkout/billingaddress
+${URL_SHIPPINGADDRESS}    ${URL_HOME}/shippingaddress
 
 # User infor
 ${NORMAL_USER}    tt1999@gmail.com
