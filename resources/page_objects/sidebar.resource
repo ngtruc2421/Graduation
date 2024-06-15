@@ -21,7 +21,8 @@ ${WISHLIST_TAB_ELE}                           id:wishlist-tab
 ${LISTTAB_ELE}                                css:.nav-item [role="tab"]
 ${USERNAME}=                                  0306211267@caothang.edu.vn
 ${PASSWORD}=                                  Ttkn1234@
-${ATRIBUTESPRODUCT_ELE}                                   css:.attributes
+${ATRIBUTESPRODUCT_ELE}                       css:.attributes
+${GOTOCART_BTN_ELE}                           css:.btn-action[href="/cart"]
 *** Keywords ***
 Display sidebar "${NAME}" tab 
     TRY
@@ -467,3 +468,9 @@ The Material option "${MATERIAL}" of product "${NAME}" should be display in shop
         Run Keyword And Continue On Failure    Fail    There is a error happen in process The Material option ${MATERIAL} of product ${NAME} should be display in shopping cart sidebar tab
     END
   
+Click on the "Go To Cart" button
+    TRY
+        Click on button    ${GOTOCART_BTN_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the "Go To Cart" button
+    END
