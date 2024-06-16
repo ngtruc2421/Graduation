@@ -57,7 +57,7 @@ Click on the Ship to this address button on the Shipping page
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Click on the Ship to this address button on the Shipping page" keyword
     END
 
-Click on the Back button on the Billing page
+Click on the Back button on the ${NAME} page
     TRY
         Hover Over Elenment    ${BACK_BTN_ELE}
         Click on button    ${BACK_BTN_ELE}
