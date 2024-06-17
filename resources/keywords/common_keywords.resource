@@ -12,6 +12,9 @@ Access to url
     EXCEPT   
         Run Keyword And Continue On Failure    Fail    There is a error happen in process access to ${URL}
     END
+Scroll to 
+    [Arguments]    ${VALUE}
+    Execute Javascript    window.scrollBy(0,${VALUE})
 Close the web page
     TRY
         Close Browser
@@ -44,7 +47,7 @@ Input value for a field
     [Documentation]    This keyword input a value for a field by provided value and locator 
     [Arguments]    ${TEXT}    ${LOCATOR} 
     TRY
-        Hover Over Elenment    ${LOCATOR}    100
+        Scroll to    window.scrollBy(0,100)
         Wait Until Element Is Visible    ${LOCATOR}      
         Clear Element Text               ${LOCATOR}
         Input Text    ${LOCATOR}    ${TEXT}
@@ -112,7 +115,7 @@ Select Option From Dropdown
     TRY
         Select From List By Label    ${DROPDOWN_LOCATOR}    ${OPTION_TEXT}
     EXCEPT    
-        Run Keyword If Test Failed    Fail    There is a error happen in process Select Option From Dropdown
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Select Option From Dropdown
     END
 
 Hover Over Elenment
