@@ -112,7 +112,7 @@ Get product price "${NAME}"
                 ${PRICE}=    Split String    ${PRICE}    ${SPACE}
                 ${PRICE}=    Get From List    ${PRICE}    0
                 ${PRICE}=    Get Substring    ${PRICE}    1
-                RETURN    ${price}
+                RETURN    ${PRICE}
             END
             ${INDEX}=     Evaluate    ${INDEX} + 1
         END
