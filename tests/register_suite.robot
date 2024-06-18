@@ -6,7 +6,7 @@ Test Setup    Open Register page
 Test Teardown    Close Browser
 *** Test Cases ***
 BSG-T35 --- Verify that the user can register account successfull when user input all required field
-    [Tags]    High
+    [Tags]    High    Smoke
     Input on the "Email" field with value created automatic
     Input on the "Username" field with value created automatic
     Input the "Password" field with value "Kimngan12@@" 
@@ -26,7 +26,7 @@ BSG-T26 --- Verify that the system displays an error when users input non-alphab
     @@12               Data First Name not a valid
     
 BSG-T36 --- Verify that the user can register account successfull when user input all field
-    [Tags]    High
+    [Tags]    High    
     Input the "First name" field with value "Kim"
     Input the "Last name" field with value "Ngan"
     Select "1" from the list "Day" dropdown
@@ -43,7 +43,7 @@ BSG-T36 --- Verify that the user can register account successfull when user inpu
     The system should auto-login with username account
 
 BSG-T2 --- Verify that the user can navigate to the Register page by clicking on the Register button on the Sign-In page 
-    [Tags]    High
+    [Tags]    High    Smoke
     [Setup]    Access the Sign In page
     Click the Register button
     The Register page should be opened

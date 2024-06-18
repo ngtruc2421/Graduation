@@ -11,14 +11,14 @@ ${USERNAME}=        0306211267@caothang.edu.vn
 ${PASSWORD}=        Ttkn1234@
 *** Test Cases ***
 BSG-T37 --- Verify that Users can view the items in their shopping cart at any time by clicking the shopping cart icon
-    [Tags]    High
+    [Tags]    High    Smoke
     Click on the Home page
     Click on the "Shopping Basket" button
     Display sidebar "Shopping Cart" tab
     The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
     The "Best Grilling Recipes" should show on shopping cart tab
 BSG-T38 --- Verify that The shopping cart view should display a list of items with product images, names, quantities, and prices.
-    [Tags]    High
+    [Tags]    High    Smoke
     The image "Best Grilling Recipes" should be displayed
     The name "Best Grilling Recipes" should be displayed
     The quantities "Best Grilling Recipes" should be displayed

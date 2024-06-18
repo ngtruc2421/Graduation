@@ -5,7 +5,7 @@ Test Setup    There is 2 product in shopping cart
 Test Teardown    Close Browser
 *** Test Cases ***
 BSG-T111 --- Verify that Display a list of all items in the cart, each with: A thumbnail image
-    [Tags]    High
+    [Tags]    High    Smoke
     The image "The Prisoner of Heaven: A Novel" should be displayed in the shopping cart page
 
 BSG-T112 --- Verify that Display a list of all items in the cart, each with: Product name
@@ -32,7 +32,7 @@ BSG-T117 --- Verify that users to increase the quantity of each item using a dro
     The quantity of product "The Prisoner of Heaven: A Novel" should be increase when user click on add button in shopping cart page
 
 BSG-T118 --- Verify that the system automatically updates the total price of the item in real time when the quantity changes
-    [Tags]    High 
+    [Tags]    High     Smoke
     Click the Add quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page
     The quantity of product "The Prisoner of Heaven: A Novel" should be increase when user click on add button in shopping cart page
     The total of product "The Prisoner of Heaven: A Novel" should be equal quantity * price
@@ -42,7 +42,7 @@ BSG-T119 --- Verify that the system automatically updates the cart subtotal of t
     The Subtotal of all items shopping cart page should be equal total price of product 
 
 BSG-T120 --- Verify that the system Provide an "X" button for each item to remove it from the cart
-    [Tags]    High 
+    [Tags]    High     Smoke
     Click on the "X" button of product "The Prisoner of Heaven: A Novel" in the shopping cart page 
     The product "The Prisoner of Heaven: A Novel" should be remove it from the cart
 
@@ -81,14 +81,31 @@ BSG-T128 --- Verify that the system Add fields for entering discount codes
     Click on the "I have a discount code" option
     The field for entering discount codes should be display
 
-# BSG-T129 --- Verify that the system Apply the discount to the order total and update the displayed totals upon entering a valid code
-#     [Tags]    High 
-
-
-
-
-
-
+BSG-T130 --- Verify that the system Provide a link or button for estimating shipping costs
+    [Tags]    High
+    Click on the "Estimate shipping" option
+    The "Estimate shipping" should be visible 
+BSG-T131 --- Verify that the system Allow users to enter location details to calculate shipping costs
+    [Tags]    High 
+    Click on the "Estimate shipping" option
+    The Country field should be visible
+    The Provide field should be visible
+    The Postal code field should be visible
+BSG-T32 --- Verify that the system have a "Continue Shopping" button that redirects users back to the product listing page
+    [Tags]    High 
+    Click on the "Continue shopping" button in the shopping cart page
+    The Home page should be open
+BSG-T133 --- Verify that Retain items in the cart between sessions, users can to return and see previously added items
+    [Tags]    High 
+    Open the Home Page
+    Open the Shopping cart page
+    The name "The Prisoner of Heaven: A Novel" should be displayed in shopping cart page
+    The name "Best Grilling Recipes" should be displayed in shopping cart page
+BSG-T134 --- Verify that the system Allow users to enter location details to display shipping costs
+    Click on the "Estimate shipping" option
+    The Country field should be visible
+    The Provide field should be visible
+    The Postal code field should be visible
 BSG-T150 --- Verify that users to reduce the quantity of each item using a dropdown or stepper
     [Tags]    High
     Click the Reduce quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page

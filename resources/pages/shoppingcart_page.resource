@@ -19,6 +19,12 @@ ${DISCOUNT_ELE}                    css:.cart-action.cart-action-coupon
 ${GIFTCARRD_ELE}                   css:.cart-action.cart-action-giftcard
 ${DISCOUNTFIELD_ELE}               css:[name="discountcouponcode"]
 ${GIFTCARDFIELD_ELE}               css:[name="giftcardcouponcode"]
+${ESTIMATESHIPPING_BTN_ELE}        css:[name="estimateshipping"]
+${ESTIMATESHIPPING_ELE}            css:.cart-action-shipping
+${COUNTRYFIELD_ELE}                id:CountryId
+${PROVINCEFIELD_ELE}               css:.state-input
+${POSTALCODEFIELD_ELE}             id:ZipPostalCode
+${CONTINUESHOPPING_BTN_ELE}        css:.btn-continue-shopping
 *** Keywords ***
 The image "${NAME}" should be displayed in the shopping cart page
     TRY
@@ -219,22 +225,9 @@ Calculate Total price of product "${NAME}" in shopping cart page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Total price of product 
     END
-# Get Subtotal shopping cart in shopping cart page
-#     TRY
-#         ${SUBTOTAL}=    Wait and get element text    ${SUBTORAL_PRICE_ELE}
-#         ${SUBTOTAL}=    Split String    ${SUBTOTAL}    ${SPACE}
-#         ${SUBTOTAL}=    Get From List    ${SUBTOTAL}    0
-#         ${SUBTOTAL}=    Get Substring    ${SUBTOTAL}    1
-#         RETURN    ${SUBTOTAL}
-#     EXCEPT    
-#         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Get Subtotal shopping cart 
-#     END
-
 Click the Reduce quantity button of product "${NAME}" in shopping cart page
     TRY
         ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
-        # ${SUBTOTAL}=    Get Subtotal shopping cart
-        # Set Suite Variable    ${SUBTOTALBEFORE}    ${SUBTOTAL}   
         Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY}    
         Click on ${REDUCEQUANTITY_BTN_ELE} button of product "${NAME}"    
     EXCEPT    
@@ -253,8 +246,6 @@ The quantity of product "${NAME}" should be reduce when user click on reduce but
 Click the Add quantity button of product "${NAME}" in shopping cart page
     TRY
         ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
-        # ${SUBTOTAL}=    Get Subtotal shopping cart
-        # Set Suite Variable    ${SUBTOTALBEFORE}    ${SUBTOTAL}    
         Set Suite Variable    ${QUANTITYAFTER}    ${QUANTITY}    
         Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}" 
     EXCEPT    
@@ -457,3 +448,44 @@ The field for entering gift cards should be display
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The fields for entering discount codes should be display
     END
+Click on the "Estimate shipping" option
+    TRY
+        Click on the web element    ${ESTIMATESHIPPING_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on the "Estimate shipping" option
+    END
+The "Estimate shipping" should be visible 
+    TRY
+        Wait until page contain element    ${ESTIMATESHIPPING_BTN_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The "Estimate shipping" should be visible 
+    END
+The Country field should be visible
+    TRY
+        Wait until page contain element    ${COUNTRYFIELD_ELE}
+    EXCEPT   
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Country field should be visible
+    END
+The Provide field should be visible
+    TRY
+        Wait until page contain element    ${PROVINCEFIELD_ELE}
+    EXCEPT   
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Country field should be visible
+    END
+The Postal code field should be visible
+    TRY
+        Wait until page contain element    ${POSTALCODEFIELD_ELE}
+    EXCEPT   
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Country field should be visible
+    END
+
+Click on the "Continue shopping" button in the shopping cart page
+    TRY
+        Click on button    ${CONTINUESHOPPING_BTN_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on the "Continue shopping" button in the shopping cart page
+    END
+
+Open the Shopping cart page 
+    Open page    Cart    ${PAGE_TITLE_ELE}
+    The page should be opened    Shopping cart     ${PAGE_TITLE_ELE}
