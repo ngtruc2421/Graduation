@@ -12,3 +12,6 @@ report.html
 
 #ignore images
 *.png
+
+# specìic file 
+api_credentials.resource
