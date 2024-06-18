@@ -25,6 +25,7 @@ ${COUNTRYFIELD_ELE}                id:CountryId
 ${PROVINCEFIELD_ELE}               css:.state-input
 ${POSTALCODEFIELD_ELE}             id:ZipPostalCode
 ${CONTINUESHOPPING_BTN_ELE}        css:.btn-continue-shopping
+${CIRCLE_ELE}                      css:.circle
 *** Keywords ***
 The image "${NAME}" should be displayed in the shopping cart page
     TRY
@@ -33,7 +34,7 @@ The image "${NAME}" should be displayed in the shopping cart page
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The image "${NAME}" should be displayed in the shopping cart page
     END
 
-There is 2 product in shopping cart 
+There is 2 product in shopping cart and user is on the Shopping cart page
     TRY
         There is at least 1 product in shopping cart
         Click on the "Go To Cart" button
@@ -127,7 +128,7 @@ The Total price for the item of product "${NAME}" should be display in shopping 
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Price per item of product "${NAME}" should be display in shopping cart page
     END
 
-Click on ${BUTTON} button of product "${NAME}"
+Click on ${BUTTON} button of product "${NAME}" in shopping cart page
     TRY
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -186,6 +187,7 @@ Get product price of product "${NAME}" in shopping cart page
     END
 Get total of product "${NAME}" in shopping cart page 
     TRY
+        Wait Until Element Is Visible    ${LISTNAME_ELE}
        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST_NAME}
@@ -193,7 +195,8 @@ Get total of product "${NAME}" in shopping cart page
             IF    ("${name_text}"=="${NAME}")
                 ${LIST_TOTAL}=    Get list WebElements    ${LISTTOTAL_ELE}               
                 ${TOTAL_ELE}=    Get From List    ${LIST_TOTAL}    ${INDEX}
-                ${total}=    Wait and get element text    ${TOTAL_ELE}
+                # Sleep    3s
+                ${TOTAL}=    Wait and get element text    ${TOTAL_ELE}
                 ${TOTAL}=    Split String    ${TOTAL}    ${SPACE}
                 ${TOTAL}=    Get From List    ${TOTAL}    0
                 ${TOTAL}=    Get Substring    ${TOTAL}    1
@@ -229,7 +232,7 @@ Click the Reduce quantity button of product "${NAME}" in shopping cart page
     TRY
         ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
         Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY}    
-        Click on ${REDUCEQUANTITY_BTN_ELE} button of product "${NAME}"    
+        Click on ${REDUCEQUANTITY_BTN_ELE} button of product "${NAME}" in shopping cart page   
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Reduce quantity button of product "${NAME}"
     END
@@ -247,7 +250,7 @@ Click the Add quantity button of product "${NAME}" in shopping cart page
     TRY
         ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
         Set Suite Variable    ${QUANTITYAFTER}    ${QUANTITY}    
-        Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}" 
+        Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}" in shopping cart page
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Add quantity button of product "${NAME}"
     END
@@ -261,11 +264,16 @@ The quantity of product "${NAME}" should be increase when user click on add butt
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${NAME}" should be increase when user click on add button
     END
+
+Wait for page loaded
+    Wait Until Element Is Visible    ${CIRCLE_ELE}
+    Wait Until Element Is Not Visible    ${CIRCLE_ELE}
 The total of product "${NAME}" should be equal quantity * price 
     TRY
+        Wait for page loaded
         ${TOTAL}=    Get total of product "${NAME}" in shopping cart page
         ${TOTAL_CALCULATE}=    Calculate Total price of product "${NAME}" in shopping cart page
-        ${TOTAL_CALCULATE}=    Convert To String    ${TOTAL}
+        ${TOTAL_CALCULATE}=    Convert To String    ${TOTAL_CALCULATE}
         Should Be Equal    ${TOTAL_CALCULATE}    ${TOTAL}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The total of product "${NAME}" should be equal quantity * price 
@@ -333,6 +341,7 @@ Click on the "X" button of product "${NAME}" in the shopping cart page
 
 The product "${NAME}" should be remove it from the cart
     TRY
+        Wait Until Page Contains    The product has been removed.
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${STATUS}=    Set Variable    False
         FOR    ${element}    IN    @{LIST_NAME}

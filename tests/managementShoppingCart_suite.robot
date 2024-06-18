@@ -1,8 +1,10 @@
 *** Settings ***
 Resource    ../resources/keywords/common_keywords.resource
 Resource    ../resources/pages/shoppingcart_page.resource
-Test Setup    There is 2 product in shopping cart
-Test Teardown    Close Browser
+Resource    ../resources/keywords/zephyr_scale_integrate.resource
+Suite Setup    Test Suite Setup of management shopping cart in page
+Test Setup    Test case Setup of management shopping cart in page
+Test Teardown    Test case Teardown of management shopping cart in page
 *** Test Cases ***
 BSG-T111 --- Verify that Display a list of all items in the cart, each with: A thumbnail image
     [Tags]    High    Smoke
@@ -72,7 +74,7 @@ BSG-T126 --- Verify that the system Show a summary section with: Grand total (su
 
 BSG-T127 --- Verify that Include a "Checkout" button that takes users to the next step in the checkout process
     [Tags]    High 
-    [Setup]    User logged in yet and There is 2 product in shopping cart
+    [Setup]    User logged in yet and There is 2 product in shopping cart of management shopping cart in page
     Click on the "Checkout" button in the shopping cart page
     The Billing address page should be opened
 
@@ -115,3 +117,18 @@ BSG-T151 --- Verify that the system Add field for entering gift cards
     [Tags]    High 
     Click on the "I have a gift card" option
     The field for entering gift cards should be display
+*** Keywords ***
+Test Suite Setup of management shopping cart in page
+    # Create test cycle at folder    Smoke Testing
+    Create test cycle at folder     Regression Testing
+    Log    This is suite setup
+Test case Setup of management shopping cart in page
+    Set test case start time
+    There is 2 product in shopping cart and user is on the Shopping cart page
+Test case Teardown of management shopping cart in page
+    Close Browser
+    Update test case result to Zephyr Scale
+
+User logged in yet and There is 2 product in shopping cart of management shopping cart in page
+    Set test case start time
+    User logged in yet and There is 2 product in shopping cart

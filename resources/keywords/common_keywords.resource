@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ../../configurations/config.resource
+Resource    ../pages/paymentInformation_page.resource
 *** Variables ***
 ${PAGE_TITLE_ELE}            css:.page-title
 *** Keywords ***
@@ -12,6 +13,11 @@ Access to url
     EXCEPT   
         Run Keyword And Continue On Failure    Fail    There is a error happen in process access to ${URL}
     END
+
+Navigate to URL 
+    [Arguments]    ${URL}  
+    Go To    ${URL}
+
 Scroll to 
     [Arguments]    ${VALUE}
     Execute Javascript    window.scrollBy(0,${VALUE})

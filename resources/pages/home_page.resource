@@ -9,6 +9,7 @@ ${PRODUCT_ITEM_ELE}    css:article[data-id="1"]
 Open the Home Page
     TRY
         Access to url    ${URL_HOME}
+        Navigate to URL     ${URL_HOME}
         The Home page should be open
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process open the Home page
