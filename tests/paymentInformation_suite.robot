@@ -5,7 +5,12 @@ Resource    ../resources/pages/login_page.resource
 Resource    ../resources/pages/home_page.resource
 Resource    ../resources/pages/addressEntry_page.resource
 Resource    ../resources/pages/productdetail_page.resource
-Test Teardown    Close the web page
+Resource    ../resources/keywords/utils.resource
+Resource    ../resources/keywords/zephyr_scale_integrate.resource
+
+Suite Setup         Test Suite Setup
+Test Setup    Test case Setup
+Test Teardown    Test case Teardown
 *** Variables ***
 *** Test Cases ***
 BSG-T140 --- Verify that the Payment page will provide secure input fields for credit card details
@@ -55,8 +60,15 @@ BSG-T143 --- Verify that the Payment page will be include a "Back" button to ret
     The Payement page should be have the Back button for return to the Shipping page
 #BSG-T144 --- Verify that the "Select your credit card" field can select
 #     [Tags]    Medium
-#BSG-T145 --- Verify that the "Cardholder name" field can enters data
-#     [Tags]    Medium
+BSG-T145 --- Verify that the system should display the warning message when "Cardholder name" field has incorrect data
+    [Tags]    Medium
+    [Template]    It should display the warning message
+    ${EMPTY}    4444 5555 5555 5555    1234        'Cardholder name' should not be empty
+    //@//@#/    4444 5555 5555 5555    1234        'Cardholder name' should not be special character
+    User        4444 5555 5555 555     1234         Wrong card number
+    User        4                      1234         Wrong card number
+    User        4444 5555 5555 5555    1           'Card code' is not in the correct format
+    User        4444 5555 5555 5555    12345       'Card code' is not in the correct format
 #BSG-T146 --- Verify that the "Card number" field can enters data
 #     [Tags]    Medium
 #BSG-T147 --- Verify that the "Valid until" field can select the month
@@ -65,3 +77,14 @@ BSG-T143 --- Verify that the Payment page will be include a "Back" button to ret
 #     [Tags]    Medium
 #BSG-T149 --- Verify that the "Card code" field can enters data
 #     [Tags]    Medium
+*** Keywords ***
+Test case Setup
+    Set test case start time
+
+Test case Teardown
+    Close Browser
+    Update test case result to Zephyr Scale
+
+Test Suite Setup
+    Create test cycle at folder    Smoke Testing
+    Log    This is suite setup

@@ -108,3 +108,26 @@ It should validate payment information before proceeding
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should validate payment information before proceeding" keyword
     END
+It should display the warning message
+    [Arguments]    ${CARDHOLDERNAME}    ${CARDNUMBER}    ${CARDCODE}    ${MESS}
+    TRY
+        Open the Login page
+        Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+        Select a product on the Featured product section
+        Click on Add Product button from product detail page
+        Click the "Checkout" button in the sidebar
+        Click on the Bill to this address button on the Billing page
+        Click on the Ship to this address button on the Shipping page
+        Navigative to the Payement page
+        Select the Credit card option on the Payment page
+        Select the "Master Card" on the "Select your credit card" dropdown field
+        Enters the "${CARDHOLDERNAME}" on the "Cardholder name" field
+        Enters the "${CARDNUMBER}" on the "Card number" field
+        Select the "05" on the "Valid until" month dropdown field
+        Select the "2030" on the "Valid until" year dropdown field
+        Enters the "${CARDCODE}" on the "Card code" field
+        Click on the Next button on the Payement page
+        Display the web element    ${MESS}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a issue with the "It should display the warning message" keyword
+    END
