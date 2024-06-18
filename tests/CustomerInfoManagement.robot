@@ -5,7 +5,7 @@ Test Setup    The user is logged in and is now on the Customer Infor page
 Test Teardown    Close Browser
 *** Test Cases ***
 BSG-T77 --- Verify that The form should include fields for first name, last name, date of birth, email, username, and company name
-    [Tags]    High
+    [Tags]    High    Smoke
     The "First name" field should be display 
     The "Last name" field should be display
     The "DateOdBirth" file should be display
@@ -44,7 +44,7 @@ BSG-T80 --- Verify that The system should validate the email format
     kimngan@example .com              'Email' is not a valid email address.
 
 BSG-T81 --- Verify that Mandatory fields should be highlighted if left empty upon submission attempt
-    [Tags]    High
+    [Tags]    High    
     Clear all data in required field
     Click on the Save button in the Customer infor page
     The error "'First name' should not be empty." should be display    

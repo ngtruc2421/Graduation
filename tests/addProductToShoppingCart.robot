@@ -41,15 +41,6 @@ BSG-T73 --- Verify that Verify that Adjust product quantity by clicking on the +
     6                 $1,619.10 excl tax
     8                 $1,619.10 excl tax
 
-# BSG-T74 --- Verify that user can Add product with specification: Material
-#     [Tags]    High
-#     # Get class dropdown field by lable Material
-#     Select "Material" option "Leather Aniline" of product "Club Lounge Chair"
-#     Click on Add Product button from product detail page
-#     Display sidebar "Shopping Cart" tab
-#     The "Club Lounge Chair" should show on shopping cart tab
-#     The Material option "Leather Aniline" of product "Club Lounge Chair" should be display in shopping cart sidebar tab
-
 BSG-T104 --- Verify that user can reduce product quantity by clicking on the reduce button then the total quantity is reduce
     [Tags]    High
     Click on Reduce quantity button of produce "Club Lounge Chair" in product detail page
