@@ -24,7 +24,7 @@ ${OPTION_NAME}                available and ready to ship
 ${SEARCH_RESULT_ELE}          css:article:first-of-type[class="art"]
 ${IMAGE_ELE}                  class=art-picture-block
 ${NAME_ELE}                   class=art-name
-${PRICE_ELE}                  class=art-price-block
+${PRICESEARCHRESULT_ELE}      class=art-price-block
 ${RATING_ELE}                 class=rating
 ${RATINGBOX_ELE}              id=content
 ${SELECT_OPTION_ELE}          css:select>option[selected="selected"]
@@ -178,7 +178,7 @@ The search result should be display enough information with image, name, rating,
     ${RESULT}=    Get WebElement    ${SEARCH_RESULT_ELE}    
     Page Should Contain Element                ${IMAGE_ELE}    ${RESULT}
     Page Should Contain Element                ${NAME_ELE}             ${RESULT}
-    Page Should Contain Element                ${PRICE_ELE}      ${RESULT}
+    Page Should Contain Element                ${PRICESEARCHRESULT_ELE}      ${RESULT}
     Click on the web element                                              ${RESULT}
     Page Should Contain Element                ${RATING_ELE}      ${RATINGBOX_ELE}
     EXCEPT

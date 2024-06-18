@@ -4,16 +4,18 @@ Resource    ../resources/pages/home_page.resource
 Resource    ../resources/page_objects/top_menu.resource
 Resource    ../resources/pages/products_page.resource
 Resource    ../resources/page_objects/sidebar.resource
-Test Setup    User is the Product Detail Page 
-Task Teardown    Close Browser
+Resource    ../resources/keywords/zephyr_scale_integrate.resource
+Suite Setup    Test Suite Setup of addProduct
+Test Setup    Test case Setup of addProduct
+Test Teardown    Test case Teardown of addProduct
 *** Test Cases ***
 BSG-T69 --- Verify that the "Add to Cart" button should be visible
     [Tags]    High
     The "Add to Cart" button should be Visible
 
 BSG-T70 --- Verify that The "Add to Cart" button accessible on each product card in the details page
-    [Tags]    High
-    [Setup]    Open the Home Page
+    [Tags]    High    Smoke
+    [Setup]    Open the Home Page setup of addProduct
     Click Menu Item "Furniture"
     Hover Over The product item "Club Lounge Chair" in product page
     Click on Add Product button of product "Club Lounge Chair" from type product page 
@@ -45,3 +47,18 @@ BSG-T104 --- Verify that user can reduce product quantity by clicking on the red
     [Tags]    High
     Click on Reduce quantity button of produce "Club Lounge Chair" in product detail page
     The quantity of product "Club Lounge Chair" in the product detail page should be reduce when user click on reduce button
+*** Keywords ***
+Test Suite Setup of addProduct
+    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder     Regression Testing
+    Log    This is suite setup
+Test case Setup of addProduct
+    Set test case start time
+    User is the Product Detail Page 
+Test case Teardown of addProduct
+    Close Browser
+    Update test case result to Zephyr Scale
+
+Open the Home Page setup of addProduct
+    Set test case start time
+    Open the Home Page

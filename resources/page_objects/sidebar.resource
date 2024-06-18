@@ -8,8 +8,8 @@ Resource    header.resource
 Resource    ../pages/searchResult_page.resource
 *** Variables ***
 ${PRODUCT_ELE}                                css:.offcanvas-cart-item
-${PRICE_ELE}                                  css:.price.unit-price
-${QUANTITY_ELE}                               css:[name="item.EnteredQuantity"]
+${PRICESIDEBAR_ELE}                                  css:.price.unit-price
+${QUANTITYSIDEBAR_ELE}                        css:[name="item.EnteredQuantity"]
 ${ADDQUANTITY_BUTTON_ELE}                     css:.fa.fa-plus
 ${REDUCEQUANTITY_BUTTON_ELE}                  css:.fa.fa-minus
 ${REMOVE_BUTTON_ELE}                          css:.btn.remove.ajax-cart-link
@@ -106,7 +106,7 @@ Get product price "${NAME}"
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
             ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
             IF    "${TITLE}" == "${NAME}"
-                @{LIST_PRICE}=    Get list WebElements    ${PRICE_ELE}               
+                @{LIST_PRICE}=    Get list WebElements    ${PRICESIDEBAR_ELE}               
                 ${VALUE}=    Get From List    ${LIST_PRICE}    ${INDEX}
                 ${PRICE}=    Wait and get element text    ${value}
                 ${PRICE}=    Split String    ${PRICE}    ${SPACE}
@@ -130,7 +130,7 @@ Get product quantity "${NAME}"
             ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
             ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
             IF    "${TITLE}" == "${NAME}"
-                @{LIST_quantities}=    Get list WebElements    ${QUANTITY_ELE}               
+                @{LIST_quantities}=    Get list WebElements    ${QUANTITYSIDEBAR_ELE}               
                 ${quantity_ele}=    Get From List    ${LIST_quantities}    ${INDEX}
                 ${quantity}=    Get Value    ${quantity_ele}
                 RETURN    ${quantity}

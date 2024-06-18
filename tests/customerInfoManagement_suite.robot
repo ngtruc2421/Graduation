@@ -1,8 +1,10 @@
 *** Settings ***
 Resource    ../resources/keywords/common_keywords.resource
 Resource    ../resources/pages/customerinfor_page.resource
-Test Setup    The user is logged in and is now on the Customer Infor page
-Test Teardown    Close Browser
+Resource    ../resources/keywords/zephyr_scale_integrate.resource
+Suite Setup    Test Suite Setup of customer infor
+Test Setup    Test case Setup of customer infor
+Test Teardown    Test case Teardown of customer infor
 *** Test Cases ***
 BSG-T77 --- Verify that The form should include fields for first name, last name, date of birth, email, username, and company name
     [Tags]    High    Smoke
@@ -111,3 +113,15 @@ BSG-T93 --- Verify that Email is mandatory field
 BSG-T94 --- Verify that Username is mandatory field
     [Tags]    High
     The field "Username" is required
+
+*** Keywords ***
+Test Suite Setup of customer infor
+    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder     Regression Testing
+    Log    This is suite setup
+Test case Setup of customer infor
+    Set test case start time
+    The user is logged in and is now on the Customer Infor page
+Test case Teardown of customer infor
+    Close Browser
+    Update test case result to Zephyr Scale

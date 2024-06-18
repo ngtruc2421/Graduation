@@ -27,7 +27,7 @@ Click on the Forgot password link
 Click the Register button
     TRY
         Click on button    ${REGISTERLOGINPAGE_BTN_ELE}
-        ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${URL_REGISTER}
+        ${url}=    Catenate    SEPARATOR=    ${URL_HOME}    ${URL_REGISTER}
         Wait Until Location Contains    ${url}
         The Register page should be opened
     EXCEPT    
