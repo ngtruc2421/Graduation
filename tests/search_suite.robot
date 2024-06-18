@@ -52,7 +52,7 @@ BSG-T53 --- Verify that the search function will support auto-suggestions when u
 BSG-T54 --- Verify that the suggestion list should include the produce image, name, and description
     [Tags]    High    Smoke
     Open the Home Page
-    Search product on the search bar    ${PRODUCT_KEYWORD}    ${SEARCH_BTN_ELE}
+    Enters the text on the search bar    ${PRODUCT_KEYWORD}
     It should display the image, description, and title on suggestion list
 BSG-T55 --- Verify that each search result display enough information
     [Tags]    High    Smoke

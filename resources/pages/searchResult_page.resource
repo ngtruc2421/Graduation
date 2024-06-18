@@ -104,7 +104,7 @@ The system should be displays the option to view the results per page
 It should display messages when the product are found
     [Arguments]    ${CONTENT}    ${MESS}
     Open the Home Page
-    Search product on the search bar    ${CONTENT}
+    Enters the text on the search bar    ${CONTENT}
     Display the web element    ${MESS}
     Close Browser
 Click the sort dropdown
@@ -120,7 +120,7 @@ Users should view the search results after selected the view options
     [Arguments]    ${SELECT_VALUE}
     TRY
     Open the Home Page
-    Search product on the search bar    an
+    Enters the text on the search bar    an
     Select Option From Dropdown    ${ACTION_sORT_ELE}    ${SELECT_VALUE}
     ${SELECTED_VALUE}=    Get Text    ${SELECT_OPTION_ELE}
     Should Be Equal As Strings    ${SELECTED_VALUE}    ${SELECT_VALUE}
@@ -187,5 +187,4 @@ The search result should be display enough information with image, name, rating,
 
 It should display the error message
     [Arguments]    ${TEXT}
-    # Wait Until Element Is Visible    class=alert-warning
     Display the web element    ${TEXT}

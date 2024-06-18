@@ -84,16 +84,14 @@ It should display the image, description, and title on suggestion list
     Run Keyword If    '${CHECK}'=='True'    Pass Execution    Suggestion list was enough image, description, and title
     ...         ELSE    Fail    Suggestion list is not enough image, description, or title
     
-   
+Enters the text on the search bar 
+    [Arguments]    ${TEXT} 
+    Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
+
 # Start common keyword [
 Search product on the search bar
-    [Arguments]    ${TEXT}    ${LOCATOR}=${None} 
-    IF    '${LOCATOR}'!='${None}'
-        Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
-    ELSE
+    [Arguments]    ${TEXT} 
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE}
         Wait until page contain element    css:.instasearch-drop    
         Click on button    ${SEARCH_BTN_ELE}
-    END
-
 # End common keyword ]
