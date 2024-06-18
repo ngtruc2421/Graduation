@@ -11,7 +11,7 @@ ${EXMONTH_INPUT_ELE}    id=ExpireMonth
 ${EXYEAR_INPUT_ELE}    id=ExpireYear
 ${CARDCODE_INPUT_ELE}    id=CardCode
 *** Keywords ***
-Navigative to the Payement page
+Navigate to the Payment page
     TRY
         Click on the Next button           
     EXCEPT    
@@ -49,6 +49,13 @@ Get the Card type list
         RETURN    ${LIST}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Click on the Next button on the Payement page" keyword
+    END
+The Payment page should be safe
+    TRY
+        ${LOCATION}=    Get Location
+        Should Contain    ${LOCATION}    https
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the Credit card option on the Payment page" keyword
     END
 
 Select the "${OPTION_NAME}" on the "Select your credit card" dropdown field
@@ -95,7 +102,7 @@ Select the "${YYYY}" on the "Valid until" year dropdown field
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the ${YYYY} on the "Valid until" dropdown field" keyword
     END
 
-Click on the Next button on the Payement page
+Click on the Next button on the Payment page
     TRY
         Click on the Next button
     EXCEPT
@@ -118,7 +125,7 @@ It should display the warning message
         Click the "Checkout" button in the sidebar
         Click on the Bill to this address button on the Billing page
         Click on the Ship to this address button on the Shipping page
-        Navigative to the Payement page
+        Navigate to the Payment page
         Select the Credit card option on the Payment page
         Select the "Master Card" on the "Select your credit card" dropdown field
         Enters the "${CARDHOLDERNAME}" on the "Cardholder name" field
@@ -126,8 +133,9 @@ It should display the warning message
         Select the "05" on the "Valid until" month dropdown field
         Select the "2030" on the "Valid until" year dropdown field
         Enters the "${CARDCODE}" on the "Card code" field
-        Click on the Next button on the Payement page
+        Click on the Next button on the Payment page
         Display the web element    ${MESS}
+        Close the web page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue with the "It should display the warning message" keyword
     END
