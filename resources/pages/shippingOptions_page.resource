@@ -6,6 +6,7 @@ Resource    ../../resources/pages/addressEntry_page.resource
 Resource    ../../resources/pages/productdetail_page.resource
 *** Variables ***
 ${SHIPPING_OPTION_ELE}     css:td[class="cart-summary-label"]>span:nth-child(2)
+${TOTAL_ELE}               css:tr[class="cart-summary-total"]>td[class="cart-summary-value"]>span
 ${SHIPPING_OPTIONS_ELE}    css:ul.shipping-options>li
 ${JAVASCRIP_VALUE}         window.scrollTo(0, document.body.scrollHeight)
 ${SHIPPING_ITEM_ELE}       xpath=//span[contains(text(),"By Ground")]
@@ -14,7 +15,7 @@ It should display available options for shipping
     TRY
         ${SHIPPING_OPTION_LIST}=    Get list WebElements    ${SHIPPING_OPTIONS_ELE}
         FOR    ${E}    IN    @{SHIPPING_OPTION_LIST}
-            Display Element    ${E}
+            Wait until page contain element    ${E}
         END
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should display available options for shipping" keyword
@@ -32,6 +33,12 @@ The system should be update the order total accordingly after user select the sh
         Execute Javascript    ${JAVASCRIP_VALUE}
         ${VALUE}=    Wait and get element text    ${SHIPPING_OPTION_ELE}
         Should Be Equal As Strings    ${VALUE}    By Ground
+        ${SUM}=    Wait and get element text    ${TOTAL_ELE}
+        ${SUM}=    Split String    ${SUM}    $    1
+        ${NUMBER_STRING_WITHOUT_COMMAS}=    Replace String    ${SUM}[1]    ,    ${EMPTY}
+        ${NUMBER_STRING_WITHOUT_DECIMAL}=    Replace String    ${NUMBER_STRING_WITHOUT_COMMAS}    .    ${EMPTY}
+        ${NUMBER_STRING_COVERT_INT}=    Convert To Integer    ${NUMBER_STRING_WITHOUT_DECIMAL}
+        Run Keyword If    ${NUMBER_STRING_COVERT_INT}<0    Fail    Don't have total price
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "User should select the shipping option" keyword
     END

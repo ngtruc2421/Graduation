@@ -18,7 +18,7 @@ ${WISHLIST_ELE}    css:#occ-wishlist span.price.unit-price
 *** Keywords ***
 It should display the currency dropdown
     TRY
-        Display Element    ${CURRENCY_DROPDOWN_ELE}
+        Wait until page contain element    ${CURRENCY_DROPDOWN_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should display the currency dropdown" keyword 
     END

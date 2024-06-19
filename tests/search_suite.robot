@@ -2,7 +2,12 @@
 Resource    ../resources/pages/searchResult_page.resource
 Resource    ../resources/page_objects/searchBar.resource
 Resource    ../resources/pages/home_page.resource
-Test Teardown   Close Browser
+Resource    ../resources/keywords/utils.resource
+Resource    ../resources/keywords/zephyr_scale_integrate.resource
+Suite Setup         Test Suite Setup
+Test Setup          Test case Setup
+Test Teardown       Test case Teardown
+
 *** Variables ***
 ${PRODUCT_KEYWORD}            an
 ${PRODUCT_NAME}               Dining table
@@ -33,7 +38,7 @@ BSG-T50 --- Verify that the search bar should be prominently on every page
     ${URL_SHIPPINGINFO}              @{SEARCHBAR}
     ${URL_CONDITIONSOFUSE}           @{SEARCHBAR}
 BSG-T51 --- Verify that the search bar should be clearly labeled / hint-text
-    [Tags]     High    Smoke
+    [Tags]     High
     Open the Home Page
     It should display the hint text on the search_bar 
 
@@ -74,13 +79,13 @@ BSG-T57 --- Verify that the search result will update to show only products with
     Select the Category checkbox
     It should be display the result after select checkbox    ${CATEGORY_SELECTED_ELE}    ${SELECTEDITEM_ELE}
 BSG-T58 --- Verify that the search result will update to show only products within the selected a price range when user selects the price range from the price range filter
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Search product on the search bar            ${PRODUCT_KEYWORD}
     Select the Price radio button
     It should be display the result after select checkbox    ${PRICE_SELECTED_ELE}    ${SELECTEDITEM_ELE}
 BSG-T59 --- Verify that user can enter a custom price range in the " From - to " field
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Search product on the search bar            ${PRODUCT_KEYWORD}    
     Enter a value for the From field            ${FROM_VALUE}
@@ -101,12 +106,12 @@ BSG-T61 --- Verify that the search result will update to show only products when
     The search results page should be display the result of the filtered option    ${DELIVERY_SELECTED_ELE}    ${DELIVERY_OPTIONS_ELE}    ${OPTION_NAME}
 
 BSG-T62 --- Verify that the search results should be paginated
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Search product on the search bar            ${PRODUCT_KEYWORD}
     The system should be performed paginated
 BSG-T63 --- Verify that users should have the option to view a specific number of results per page
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Search product on the search bar            ${PRODUCT_KEYWORD}
     The system should be displays the option to view the results per page
@@ -125,3 +130,15 @@ BSG-T65 --- Verify that users should receive clear error messages if no filter r
     Enter a value for the To field         ${TO}
     Click the Custom Range button
     It should display the error message    ${ERRORFILTER_MESS}
+
+*** Keywords ***
+Test case Setup
+    Set test case start time
+
+Test case Teardown
+    Update test case result to Zephyr Scale
+    Close Browser
+
+Test Suite Setup
+    Create test cycle at folder    Smoke Testing
+    Log    This is suite setup
