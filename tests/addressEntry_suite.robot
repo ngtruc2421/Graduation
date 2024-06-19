@@ -5,7 +5,12 @@ Resource    ../resources/pages/productdetail_page.resource
 Resource    ../resources/pages/home_page.resource
 Resource    ../resources/page_objects/searchBar.resource
 Resource    ../resources/page_objects/header.resource
-Test Teardown    Close the web page
+Resource    ../resources/keywords/utils.resource
+Resource    ../resources/keywords/zephyr_scale_integrate.resource
+Suite Setup         Test Suite Setup
+Test Setup          Test case Setup
+Test Teardown       Test case Teardown
+
 *** Variables ***
 *** Test Cases ***
 BSG-T105 --- Verify that the system should provide input fields for shipping and billing address details
@@ -65,3 +70,14 @@ BSG-T135 --- Verify that the system should be include a "Back" button to return 
     Click the "Checkout" button in the sidebar 
     Click on the Back button on the Billing page
     It should be include Back button for return to the Cart page
+*** Keywords ***
+Test case Setup
+    Set test case start time
+
+Test case Teardown
+    Close the web page
+    Update test case result to Zephyr Scale
+
+Test Suite Setup
+    Create test cycle at folder    Smoke Testing
+    Log    This is suite setup

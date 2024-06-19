@@ -10,6 +10,7 @@ ${CARDNUM_INPUT_ELE}    id=CardNumber
 ${EXMONTH_INPUT_ELE}    id=ExpireMonth
 ${EXYEAR_INPUT_ELE}    id=ExpireYear
 ${CARDCODE_INPUT_ELE}    id=CardCode
+${CREDITCARD_FROM_ELE}    id=payment-info-validation-summary
 *** Keywords ***
 Navigate to the Payment page
     TRY
@@ -31,14 +32,14 @@ Select the Credit card option on the Payment page
     END
 It should displays the Credit card form and the input fields for Credit card option
     TRY
-        Display the web element    Once your order is placed, you will be contacted by our staff to confirm the order
+        Check the text elememt    Once your order is placed, you will be contacted by our staff to confirm the order
         Scroll to    document.body.scrollHeight
-        Display Element    ${CARDTYPE_INPUT_ELE}
-        Display Element    ${CARDNAME_INPUT_ELE}
-        Display Element    ${CARDNUM_INPUT_ELE}
-        Display Element    ${EXMONTH_INPUT_ELE}
-        Display Element    ${EXYEAR_INPUT_ELE}
-        Display Element    ${CARDCODE_INPUT_ELE}
+        Wait until page contain element    ${CARDTYPE_INPUT_ELE}
+        Wait until page contain element    ${CARDNAME_INPUT_ELE}
+        Wait until page contain element    ${CARDNUM_INPUT_ELE}
+        Wait until page contain element    ${EXMONTH_INPUT_ELE}
+        Wait until page contain element    ${EXYEAR_INPUT_ELE}
+        Wait until page contain element    ${CARDCODE_INPUT_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should displays the Credit card form and the input fields for Credit card option" keyword
     END
@@ -111,7 +112,7 @@ Click on the Next button on the Payment page
 
 It should validate payment information before proceeding
     TRY
-        Display element    id=payment-info-validation-summary
+        Wait until page contain element    ${CREDITCARD_FROM_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should validate payment information before proceeding" keyword
     END
@@ -134,7 +135,7 @@ It should display the warning message
         Select the "2030" on the "Valid until" year dropdown field
         Enters the "${CARDCODE}" on the "Card code" field
         Click on the Next button on the Payment page
-        Display the web element    ${MESS}
+        Check the text elememt    ${MESS}
         Close the web page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue with the "It should display the warning message" keyword

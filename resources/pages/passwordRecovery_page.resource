@@ -13,11 +13,11 @@ Input the email for the Email field
     [Arguments]    ${EMAIL}
     Input value for a field    ${EMAIL}    ${EMAIL_INPUT_ELE}
 Users reset password success
-    Display the web element    ${SUCCES_MESSAGE}
+    Check the text elememt    ${SUCCES_MESSAGE}
 Appear error message when users input invalid email
     [Arguments]    ${VALUES}    ${NOTIFICATION}
-    Access to url    ${URL_PASSWORDRECOVERY}
+    Access to url                          ${URL_PASSWORDRECOVERY}
     Input the email for the Email field    ${VALUES}
     Click the Submit button
-    Display the web element    ${NOTIFICATION}
-    Close Browser
+    Check the text elememt                 ${NOTIFICATION}
+    Close the web page

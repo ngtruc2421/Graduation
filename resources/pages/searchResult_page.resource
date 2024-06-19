@@ -105,8 +105,8 @@ It should display messages when the product are found
     [Arguments]    ${CONTENT}    ${MESS}
     Open the Home Page
     Enters the text on the search bar    ${CONTENT}
-    Display the web element    ${MESS}
-    Close Browser
+    Check the text elememt    ${MESS}
+    Close the web page
 Click the sort dropdown
     [Arguments]    ${LOCATOR}
     Click on the web element    ${LOCATOR}
@@ -187,4 +187,4 @@ The search result should be display enough information with image, name, rating,
 
 It should display the error message
     [Arguments]    ${TEXT}
-    Display the web element    ${TEXT}
+    Check the text elememt    ${TEXT}

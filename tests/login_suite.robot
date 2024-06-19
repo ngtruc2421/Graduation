@@ -2,8 +2,11 @@
 Resource         ../resources/pages/login_page.resource
 Resource         ../resources/pages/passwordRecovery_page.resource
 Resource         ../resources/page_objects/header.resource
-Test Setup       Open the Login page
-Test Teardown    Close the web page
+Resource    ../resources/keywords/utils.resource
+Resource    ../resources/keywords/zephyr_scale_integrate.resource
+Suite Setup         Test Suite Setup
+Test Setup          Test case Setup
+Test Teardown       Test case Teardown
 *** Variables ***
 ${USER_NAME_WRONG}=          @trantruc
 ${PASS_WHITESPACE}           @us   er123
@@ -22,10 +25,11 @@ ${LOGINPAGE_TITLE}           Sign In
 
 *** Test Cases ***
 BSG-T1 --- Verify that there is a page for users log in to the system
-    [Tags]    High    Smoke
+    [Tags]    High
+    Open the Login page
     Display the Login page    ${LOGINPAGE_TITLE}
 BSG-T3 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
-    [Tags]    High    Smoke
+    [Tags]    High
     [Template]    Appear the error message when users input incorrect value for the Username or email field and Password field
     ${EMAIL_NOTREGISTER}    ${PASS_RIGHT}         ${EMAIL_NOTREGISTER_MESS}
     @user123.gmail.com      ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
@@ -41,7 +45,8 @@ BSG-T3 --- Verify that the system will display the error message when users inpu
     
 
 BSG-T13 --- Verify that the users can use "Remember Me" option
-    [Tags]    High    Smoke
+    [Tags]    High
+    Open the Login page
     Input username    ${USER_NAME_RIGHT}
     Input pass    ${PASS_RIGHT}
     Click the "Remember me" option
@@ -52,13 +57,15 @@ BSG-T13 --- Verify that the users can use "Remember Me" option
     The system saved the account information    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
     ...    ${PASS_RIGHT}    ${PASSWORD_ELE}
 BSG-T15 --- Verify that the system provided a "Forgot Password" link for users who need to reset their password
-    [Tags]    High    Smoke
+    [Tags]    High
+    Open the Login page
     Click on the Forgot password link
     Input the email for the Email field    ${EMAIL_REGISTERED}
     Click the Submit button
     Users reset password success
 BSG-T17 --- Verify that the system will update the login's status when users login success
     [Tags]    High    Smoke
+    Open the Login page
     Input username    ${USER_NAME_RIGHT}
     Input pass    ${PASS_RIGHT}
     Click the Login button
@@ -73,17 +80,31 @@ BSG-T29 --- Verify that the system will display the error message when users inp
 
 BSG-T32 --- Verify that user can input data for the Username or email field
     [Tags]    High    Smoke
+    Open the Login page
     Input username    ${USER_NAME_RIGHT}
     Unfocus the field
     The data of the Username or email field is still    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
 BSG-T34 --- Verify that user can input data for the Password field
     [Tags]    High    Smoke
+    Open the Login page
     Input pass    ${PASS_RIGHT}
     Unfocus the field
     The data of the Username or email field is still    ${PASS_RIGHT}    ${PASSWORD_ELE}
 BSG-T49 --- Verify that users can login success into the system
     [Tags]    High    Smoke
-    Input username    ${USER_NAME_RIGHT}
-    Input pass    ${PASS_RIGHT}
+    Open the Login page
+    Input username            ${USER_NAME_RIGHT}
+    Input pass                ${PASS_RIGHT}
     Click the Login button
-    Log in success    ${MESS_SUCCESS}
+    Log in success            ${MESS_SUCCESS}
+
+*** Keywords ***
+Test case Setup
+    Set test case start time
+Test case Teardown
+    Update test case result to Zephyr Scale
+    Close the web page
+
+Test Suite Setup
+    Create test cycle at folder    Smoke Testing
+    Log    This is suite setup

@@ -14,8 +14,8 @@ It should display the search bar on the page
     [Arguments]    ${URL}    @{SEARCH_OBJECT}
     TRY
         Access to url    ${URL}
-        Display Element    ${SEARCH_OBJECT}[0]
-        Display Element    ${SEARCH_OBJECT}[1] 
+        Wait until page contain element    ${SEARCH_OBJECT}[0]
+        Wait until page contain element    ${SEARCH_OBJECT}[1] 
         Close the web page  
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are the issue on the "Display the search bar on the page" keyword
@@ -26,7 +26,7 @@ It should display the search results page
         Open the Home Page
         Input value for a field    ${DATA}    ${SEARCHBAR_INPUT_ELE}
         Click on button    ${SEARCH_BTN_ELE}
-        Display the web element    Search
+        Check the text elememt    Search
         Close Browser
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are the issue on the "Search the product with" keyword
@@ -36,7 +36,7 @@ The suggestions list should display with
     TRY
         Open the Home Page
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE} 
-        Display element    ${SUGGESLIST_TITLE}
+        Wait until page contain element    ${SUGGESLIST_TITLE}
         Close Browser
     EXCEPT    AssertionError
         Run Keyword And Continue On Failure    Log    There are the issue on the "The suggestions list will display with" keyword    
