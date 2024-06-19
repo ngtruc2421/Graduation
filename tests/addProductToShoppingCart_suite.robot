@@ -45,6 +45,8 @@ BSG-T73 --- Verify that Verify that Adjust product quantity by clicking on the +
 
 BSG-T104 --- Verify that user can reduce product quantity by clicking on the reduce button then the total quantity is reduce
     [Tags]    High
+    Click on Increase quantity button of product "Club Lounge Chair" in product detail page
+    The quantity of product "Club Lounge Chair" in the product detail page should be increase when user click on icrease button
     Click on Reduce quantity button of produce "Club Lounge Chair" in product detail page
     The quantity of product "Club Lounge Chair" in the product detail page should be reduce when user click on reduce button
 *** Keywords ***
@@ -58,7 +60,6 @@ Test case Setup of addProduct
 Test case Teardown of addProduct
     Close Browser
     Update test case result to Zephyr Scale
-
 Open the Home Page setup of addProduct
     Set test case start time
     Open the Home Page

@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
 Resource    ../page_objects/sidebar.resource
+Resource    shoppingcart_page.resource
 
 *** Variables ***
 ${ADDPRODUCT_BTN_ELE}                         css:.btn.ajax-cart-link
@@ -80,7 +81,7 @@ Click on Reduce quantity button of produce "${NAME}" in product detail page
         Hover Over Elenment    ${REDUCEQUANTITY_BTN_ELE}
         ${QUANTITY}=   Get quantity of product "${NAME}" 
         Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY} 
-        Click on button    ${REDUCEQUANTITY_BTN_ELE} 
+        Click on button    ${REDUCEQUANTITY_BTN_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on Reduce quantity button of produce "${NAME}" in product detail page 
     END
@@ -158,6 +159,7 @@ User is the Product Detail Page
         Click Menu Item "Furniture"
         Hover Over The product item "Club Lounge Chair" in product page
         Click on the product "Club Lounge Chair"
+        The product detail "Club Lounge Chair" page should be opened
     EXCEPT   
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify User is the Product Detail Page 
     END
@@ -221,6 +223,7 @@ The price of product "${NAME}" should be price when user select quantity
     [Arguments]      ${QUANTITY}      ${PRICE}
     TRY
         ${QUANTITY_CURENT}=    Adjust quantity of product ${NAME}    ${QUANTITY} 
+        Scroll Element Into View    ${PRICE_ELE}
         Compare price    ${NAME}    ${PRICE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The price of product "${NAME}" should be price when user select quantity
