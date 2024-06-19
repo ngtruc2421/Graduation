@@ -9,7 +9,7 @@ Resource    ../resources/keywords/utils.resource
 Resource    ../resources/keywords/zephyr_scale_integrate.resource
 
 Suite Setup         Test Suite Setup
-Test Setup    Test case Setup
+Test Setup        Test case Setup
 Test Teardown    Test case Teardown
 *** Variables ***
 *** Test Cases ***
@@ -22,12 +22,21 @@ BSG-T140 --- Verify that the Payment page will provide secure input fields for c
     Click the "Checkout" button in the sidebar
     Click on the Bill to this address button on the Billing page
     Click on the Ship to this address button on the Shipping page
-    Navigative to the Payement page
+    Navigate to the Payment page
     Select the Credit card option on the Payment page
     It should displays the Credit card form and the input fields for Credit card option
 
-#BSG-T141 --- Verify that the Payment Page will allow the use of saved payment methods if available
-
+BSG-T141 --- Verify that the Payment Page will ensure the page is secure by HTTPS compliance
+    [Tags]    High
+    Open the Login page
+    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Select a product on the Featured product section
+    Click on Add Product button from product detail page
+    Click the "Checkout" button in the sidebar
+    Click on the Bill to this address button on the Billing page
+    Click on the Ship to this address button on the Shipping page
+    Navigate to the Payment page
+    The Payment page should be safe
 BSG-T142 --- Verify that the Payment page will be validate payment information before proceeding
     [Tags]    High    Smoke
     Open the Login page
@@ -37,7 +46,7 @@ BSG-T142 --- Verify that the Payment page will be validate payment information b
     Click the "Checkout" button in the sidebar
     Click on the Bill to this address button on the Billing page
     Click on the Ship to this address button on the Shipping page
-    Navigative to the Payement page
+    Navigate to the Payment page
     Select the Credit card option on the Payment page
     Select the "Master Card" on the "Select your credit card" dropdown field
     Enters the "User normal" on the "Cardholder name" field
@@ -45,10 +54,10 @@ BSG-T142 --- Verify that the Payment page will be validate payment information b
     Select the "05" on the "Valid until" month dropdown field
     Select the "2030" on the "Valid until" year dropdown field
     Enters the "123" on the "Card code" field
-    Click on the Next button on the Payement page
+    Click on the Next button on the Payment page
     It should validate payment information before proceeding
 BSG-T143 --- Verify that the Payment page will be include a "Back" button to return to the Shipping Options page
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
@@ -56,11 +65,10 @@ BSG-T143 --- Verify that the Payment page will be include a "Back" button to ret
     Click the "Checkout" button in the sidebar
     Click on the Bill to this address button on the Billing page
     Click on the Ship to this address button on the Shipping page
-    Navigative to the Payement page
+    Navigate to the Payment page
     The Payement page should be have the Back button for return to the Shipping page
-#BSG-T144 --- Verify that the "Select your credit card" field can select
-#     [Tags]    Medium
-BSG-T145 --- Verify that the system should display the warning message when "Cardholder name" field has incorrect data
+
+BSG-T144 --- Verify that the system should display the warning message when user inputs incorrect data
     [Tags]    Medium
     [Template]    It should display the warning message
     ${EMPTY}    4444 5555 5555 5555    1234        'Cardholder name' should not be empty
@@ -69,14 +77,6 @@ BSG-T145 --- Verify that the system should display the warning message when "Car
     User        4                      1234         Wrong card number
     User        4444 5555 5555 5555    1           'Card code' is not in the correct format
     User        4444 5555 5555 5555    12345       'Card code' is not in the correct format
-#BSG-T146 --- Verify that the "Card number" field can enters data
-#     [Tags]    Medium
-#BSG-T147 --- Verify that the "Valid until" field can select the month
-#     [Tags]    Medium
-#BSG-T148 --- Verify that the "Valid until" field can select the year
-#     [Tags]    Medium
-#BSG-T149 --- Verify that the "Card code" field can enters data
-#     [Tags]    Medium
 *** Keywords ***
 Test case Setup
     Set test case start time
