@@ -40,7 +40,7 @@ BSG-T118 --- Verify that the system automatically updates the total price of the
     The total of product "The Prisoner of Heaven: A Novel" should be equal quantity * price
 
 BSG-T119 --- Verify that the system automatically updates the cart subtotal of the item in real time when the quantity changes
-    [Tags]    High
+    [Tags]    High    
     The Subtotal of all items shopping cart page should be equal total price of product 
 
 BSG-T120 --- Verify that the system Provide an "X" button for each item to remove it from the cart
@@ -57,7 +57,7 @@ BSG-T122 --- Verify that the system automatically recalculate totals when an ite
     The Subtotal of product should be change when an item is removed
 
 BSG-T123 --- Verify that the system Show a summary section with: Subtotal of all items
-    [Tags]    High 
+    [Tags]    High     
     The Subtotal of all items shopping cart page should be equal total price of product 
 
 BSG-T124 --- Verify that the system Show a summary section with: Shipping costs (initially estimated as $0.00 or dynamically updated if available)
@@ -99,8 +99,8 @@ BSG-T32 --- Verify that the system have a "Continue Shopping" button that redire
     The Home page should be open
 BSG-T133 --- Verify that Retain items in the cart between sessions, users can to return and see previously added items
     [Tags]    High 
-    Open the Home Page
-    Open the Shopping cart page
+    Go to the Home Page
+    Go the Shopping cart page
     The name "The Prisoner of Heaven: A Novel" should be displayed in shopping cart page
     The name "Best Grilling Recipes" should be displayed in shopping cart page
 BSG-T134 --- Verify that the system Allow users to enter location details to display shipping costs

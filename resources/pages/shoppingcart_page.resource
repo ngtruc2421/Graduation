@@ -25,7 +25,7 @@ ${COUNTRYFIELD_ELE}                id:CountryId
 ${PROVINCEFIELD_ELE}               css:.state-input
 ${POSTALCODEFIELD_ELE}             id:ZipPostalCode
 ${CONTINUESHOPPING_BTN_ELE}        css:.btn-continue-shopping
-${CIRCLE_ELE}                      css:.circle
+${THROBBER_ELE}                    css:.throbber-flex
 *** Keywords ***
 The image "${NAME}" should be displayed in the shopping cart page
     TRY
@@ -232,7 +232,8 @@ Click the Reduce quantity button of product "${NAME}" in shopping cart page
     TRY
         ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
         Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY}    
-        Click on ${REDUCEQUANTITY_BTN_ELE} button of product "${NAME}" in shopping cart page   
+        Click on ${REDUCEQUANTITY_BTN_ELE} button of product "${NAME}" in shopping cart page
+        Wait for page loaded   
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Reduce quantity button of product "${NAME}"
     END
@@ -251,6 +252,7 @@ Click the Add quantity button of product "${NAME}" in shopping cart page
         ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
         Set Suite Variable    ${QUANTITYAFTER}    ${QUANTITY}    
         Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}" in shopping cart page
+        Wait for page loaded
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Add quantity button of product "${NAME}"
     END
@@ -266,11 +268,15 @@ The quantity of product "${NAME}" should be increase when user click on add butt
     END
 
 Wait for page loaded
-    Wait Until Element Is Visible    ${CIRCLE_ELE}
-    Wait Until Element Is Not Visible    ${CIRCLE_ELE}
+    TRY
+        Wait Until Element Is Visible    ${THROBBER_ELE}
+        Wait Until Element Is Not Visible    ${THROBBER_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Wait for page loaded
+    END
+
 The total of product "${NAME}" should be equal quantity * price 
     TRY
-        Wait for page loaded
         ${TOTAL}=    Get total of product "${NAME}" in shopping cart page
         ${TOTAL_CALCULATE}=    Calculate Total price of product "${NAME}" in shopping cart page
         ${TOTAL_CALCULATE}=    Convert To String    ${TOTAL_CALCULATE}
@@ -357,7 +363,8 @@ The product "${NAME}" should be remove it from the cart
 
 Get quantity of product in header
     TRY
-        ${TOTALPRODUCT}=    Get Text    ${TOTALPRODUCT_ELE}
+        Hover Over Elenment    ${TOTALPRODUCT_ELE}
+        ${TOTALPRODUCT}=    Wait and get element text   ${TOTALPRODUCT_ELE}
         RETURN    ${TOTALPRODUCT}
     EXCEPT   
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify Get total of product in shopping cart page
@@ -376,7 +383,7 @@ The total of product should be change when an item is removed
         ${QUANTITY}=    Convert To String    ${QUANTITY}
         Should Be Equal    ${QUANTITY}    1
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The total of product shuld be change when an item is removed
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The total of product should be change when an item is removed
     END
 
 The Subtotal of product should be change when an item is removed
@@ -495,6 +502,11 @@ Click on the "Continue shopping" button in the shopping cart page
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on the "Continue shopping" button in the shopping cart page
     END
 
-Open the Shopping cart page 
-    Open page    Cart    ${PAGE_TITLE_ELE}
-    The page should be opened    Shopping cart     ${PAGE_TITLE_ELE}
+Go the Shopping cart page
+    TRY
+        ${URL}=    Catenate    SEPARATOR=/    ${URL_HOME}    cart
+        Go To    ${URL} 
+        The page should be opened    Shopping cart     ${PAGE_TITLE_ELE}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Go the Shopping cart page
+    END 

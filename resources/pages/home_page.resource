@@ -39,3 +39,10 @@ Click on the "Shopping Basket" button
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the "Shopping Basket" button
     END
     
+Go to the Home Page
+    TRY
+        Navigate to URL     ${URL_HOME}
+        The Home page should be open
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Go to the Home Page
+    END
