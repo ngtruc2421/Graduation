@@ -28,6 +28,7 @@ ${CONTINUESHOPPING_BTN_ELE}        css:.btn-continue-shopping
 ${THROBBER_ELE}                    css:.throbber-flex
 *** Keywords ***
 The image "${NAME}" should be displayed in the shopping cart page
+    [Documentation]       This keyword is used to verify The image of product should be displayed in the shopping cart page from provided product name
     TRY
         Wait until page contain element    css:.img-fluid[alt="Picture of ${NAME}"]
     EXCEPT    
@@ -35,6 +36,7 @@ The image "${NAME}" should be displayed in the shopping cart page
     END
 
 There is 2 product in shopping cart and user is on the Shopping cart page
+    [Documentation]       This keyword is used to verify There is 2 product in shopping cart and user is on the Shopping cart page
     TRY
         There is at least 1 product in shopping cart
         Click on the "Go To Cart" button
@@ -44,6 +46,7 @@ There is 2 product in shopping cart and user is on the Shopping cart page
     END
 
 The name "${NAME}" should be displayed in shopping cart page
+    [Documentation]       This keyword is used to verify The name of product should be displayed in shopping cart page from provided product name
     TRY
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         FOR    ${element}    IN    @{LIST_NAME}
@@ -57,6 +60,7 @@ The name "${NAME}" should be displayed in shopping cart page
     END
 
 The arrival date of product "${NAME}" should be display in shopping cart page
+    [Documentation]       This keyword is used to verify The arrival date of product should be display in shopping cart page from provided product name
     TRY
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -75,6 +79,7 @@ The arrival date of product "${NAME}" should be display in shopping cart page
     END
 
 The Price per item of product "${NAME}" should be display in shopping cart page
+    [Documentation]       This keyword is used to verify The Price per item of product should be display in shopping cart page from provided product name
     TRY
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -93,6 +98,7 @@ The Price per item of product "${NAME}" should be display in shopping cart page
     END
 
 The quantity of product "${NAME}" should be display in shopping cart page
+    [Documentation]       This keyword is used to verify The quantity of product should be display in shopping cart page from provided product name
     TRY
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -111,6 +117,7 @@ The quantity of product "${NAME}" should be display in shopping cart page
     END
 
 The Total price for the item of product "${NAME}" should be display in shopping cart page
+    [Documentation]       This keyword is used to verify The Total price for the item of product should be display in shopping cart page from provided product name
     TRY
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -129,6 +136,7 @@ The Total price for the item of product "${NAME}" should be display in shopping 
     END
 
 Click on ${BUTTON} button of product "${NAME}" in shopping cart page
+    [Documentation]       This keyword is used to Click on button of product in shopping cart page from provided product name and provied name button
     TRY
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -148,6 +156,7 @@ Click on ${BUTTON} button of product "${NAME}" in shopping cart page
     END
 
 Get product quantity of product "${NAME}" in shopping cart page
+    [Documentation]       This keyword is used to Get product quantity of product in shopping cart page from provided product name
     TRY
        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -166,6 +175,7 @@ Get product quantity of product "${NAME}" in shopping cart page
     END
 
 Get product price of product "${NAME}" in shopping cart page
+    [Documentation]       This keyword is used to Get product price of product in shopping cart page from provided product name
     TRY
        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -186,6 +196,7 @@ Get product price of product "${NAME}" in shopping cart page
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Get product price of product "${NAME}" in shopping cart page
     END
 Get total of product "${NAME}" in shopping cart page 
+    [Documentation]       This keyword is used to Get total of product in shopping cart page from provided product name
     TRY
         Wait Until Element Is Visible    ${LISTNAME_ELE}
        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
@@ -209,6 +220,7 @@ Get total of product "${NAME}" in shopping cart page
     END
 
 Calculate Total price of product "${NAME}" in shopping cart page
+    [Documentation]       This keyword is used to Calculate Total price of product in shopping cart page from provided product name
     TRY
       ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -229,16 +241,18 @@ Calculate Total price of product "${NAME}" in shopping cart page
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Total price of product 
     END
 Click the Reduce quantity button of product "${NAME}" in shopping cart page
+    [Documentation]       This keyword is used to Click the Reduce quantity button of product in shopping cart page from provided product name
     TRY
         ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
         Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY}    
         Click on ${REDUCEQUANTITY_BTN_ELE} button of product "${NAME}" in shopping cart page
-        Wait for page loaded   
+        Wait for page loaded in shopping cart page   
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Reduce quantity button of product "${NAME}"
     END
 
 The quantity of product "${NAME}" should be reduce when user click on reduce button in shopping cart page
+    [Documentation]       This keyword is used to verify The quantity of product should be reduce when user click on reduce button in shopping cart pagefrom provided product name
     TRY
         ${QUANTITYCURRENT}=    Get product quantity of product "${NAME}" in shopping cart page
         ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
@@ -248,17 +262,19 @@ The quantity of product "${NAME}" should be reduce when user click on reduce but
     END
 
 Click the Add quantity button of product "${NAME}" in shopping cart page
+    [Documentation]       This keyword is used to Click the Add quantity button of product in shopping cart page from provided product name
     TRY
         ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
         Set Suite Variable    ${QUANTITYAFTER}    ${QUANTITY}    
         Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}" in shopping cart page
-        Wait for page loaded
+        Wait for page loaded in shopping cart page
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Add quantity button of product "${NAME}"
     END
 
 
 The quantity of product "${NAME}" should be increase when user click on add button in shopping cart page
+    [Documentation]       This keyword is used to verify The quantity of product should be increase when user click on add button in shopping cart pagefrom provided product name
     TRY
         ${QUANTITYCURRENT}=    Get product quantity of product "${NAME}" in shopping cart page
         ${RESULT}=    Evaluate    ${QUANTITYCURRENT} - ${QUANTITYAFTER}
@@ -267,15 +283,16 @@ The quantity of product "${NAME}" should be increase when user click on add butt
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${NAME}" should be increase when user click on add button
     END
 
-Wait for page loaded
+Wait for page loaded in shopping cart page
+    [Documentation]       This keyword is used to verify Wait for page loaded in shopping cart page
     TRY
-        Wait Until Element Is Visible    ${THROBBER_ELE}
-        Wait Until Element Is Not Visible    ${THROBBER_ELE}
+        Wait for page loaded    ${THROBBER_ELE}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Wait for page loaded
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Wait for page loaded in shopping cart page
     END
 
 The total of product "${NAME}" should be equal quantity * price 
+    [Documentation]       This keyword is used to verify The total of product should be equal quantity * price from provided product name
     TRY
         ${TOTAL}=    Get total of product "${NAME}" in shopping cart page
         ${TOTAL_CALCULATE}=    Calculate Total price of product "${NAME}" in shopping cart page
@@ -286,6 +303,7 @@ The total of product "${NAME}" should be equal quantity * price
     END
 
 Get Subtotal in shopping cart page 
+    [Documentation]       This keyword is used to Get Subtotal in shopping cart page 
     TRY
         ${SUBTOTAL}    Wait and get element text    ${SUBTOTAL_ELE}
         ${SUBTOTAL}=    Split String    ${SUBTOTAL}    ${SPACE}
@@ -297,6 +315,7 @@ Get Subtotal in shopping cart page
     END
     
 Calculate Total price in shopping cart page
+    [Documentation]       This keyword is used to Calculate Total price in shopping cart page
     TRY
       ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -315,6 +334,7 @@ Calculate Total price in shopping cart page
     END
 
 The Subtotal of all items shopping cart page should be equal total price of product 
+    [Documentation]       This keyword is used to verify The Subtotal of all items shopping cart page should be equal total price of product 
     TRY
         ${TOATL}=    Get Subtotal in shopping cart page 
         ${SUBTOTAL}=    Calculate Total price in shopping cart page
@@ -326,6 +346,7 @@ The Subtotal of all items shopping cart page should be equal total price of prod
 
 
 Click on the "X" button of product "${NAME}" in the shopping cart page 
+    [Documentation]       This keyword is used to Click on the "X" button of product in the shopping cart page from provided product name
     TRY
       ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
@@ -346,6 +367,7 @@ Click on the "X" button of product "${NAME}" in the shopping cart page
     END
 
 The product "${NAME}" should be remove it from the cart
+    [Documentation]       This keyword is used to verify The product should be remove it from the cart from provided product name
     TRY
         Wait Until Page Contains    The product has been removed.
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
@@ -362,6 +384,7 @@ The product "${NAME}" should be remove it from the cart
     END
 
 Get quantity of product in header
+    [Documentation]       This keyword is used to verify Get quantity of product in header
     TRY
         Hover Over Elenment    ${TOTALPRODUCT_ELE}
         ${TOTALPRODUCT}=    Wait and get element text   ${TOTALPRODUCT_ELE}
@@ -372,6 +395,7 @@ Get quantity of product in header
     
 
 The total of product should be change when an item is removed
+    [Documentation]       This keyword is used to verify The total of product should be change when an item is removed
     TRY
         Click the Add quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page
         The quantity of product "The Prisoner of Heaven: A Novel" should be increase when user click on add button in shopping cart page
@@ -387,6 +411,7 @@ The total of product should be change when an item is removed
     END
 
 The Subtotal of product should be change when an item is removed
+    [Documentation]       This keyword is used to verify The Subtotal of product should be change when an item is removed
    TRY
         Click the Add quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page
         The quantity of product "The Prisoner of Heaven: A Novel" should be increase when user click on add button in shopping cart page
@@ -400,6 +425,7 @@ The Subtotal of product should be change when an item is removed
     END
 
 The shipping costs should be display 
+    [Documentation]       This keyword is used to verify The shipping costs should be display 
     TRY
         Wait until page contain element    ${SHIPPING_ELE}
     EXCEPT    
@@ -407,6 +433,7 @@ The shipping costs should be display
     END
     
 The Applicable taxes should be display 
+    [Documentation]       This keyword is used to verify The Applicable taxes should be display 
     TRY
         Wait until page contain element    ${TAX_ELE}
     EXCEPT    
@@ -414,6 +441,7 @@ The Applicable taxes should be display
     END
 
 The Grand total should be display 
+    [Documentation]       This keyword is used to verify The Grand total should be display
     TRY
         Wait until page contain element    ${TOTAL_ELE}
     EXCEPT    
@@ -421,6 +449,7 @@ The Grand total should be display
     END
 
 User logged in yet and There is 2 product in shopping cart
+    [Documentation]       This keyword is used to verify User logged in yet and There is 2 product in shopping cart
     TRY
         User logged in yet and There is at least 1 product in shopping cart
         Click on the "Go To Cart" button
@@ -430,6 +459,7 @@ User logged in yet and There is 2 product in shopping cart
     END
 
 Click on the "Checkout" button in the shopping cart page
+    [Documentation]       This keyword is used to Click on the "Checkout" button in the shopping cart page
     TRY
         Click on button    ${CHECKOUT_BTN_ELE}
     EXCEPT    
@@ -437,6 +467,7 @@ Click on the "Checkout" button in the shopping cart page
     END 
 
 Click on the "I have a discount code" option 
+    [Documentation]       This keyword is used to Click on the "I have a discount code" option 
     TRY
         Click on the web element    ${DISCOUNT_ELE}
     EXCEPT    
@@ -444,6 +475,7 @@ Click on the "I have a discount code" option
     END
     
 Click on the "I have a gift card" option 
+    [Documentation]       This keyword is used to Click on the "I have a gift card" option 
     TRY
         Click on the web element    ${GIFTCARRD_ELE}
     EXCEPT    
@@ -451,6 +483,7 @@ Click on the "I have a gift card" option
     END
 
 The field for entering discount codes should be display
+    [Documentation]       This keyword is used to verify The field for entering discount codes should be display
     TRY
         Wait until page contain element    ${DISCOUNTFIELD_ELE}
     EXCEPT    
@@ -459,36 +492,42 @@ The field for entering discount codes should be display
 
 
 The field for entering gift cards should be display
+    [Documentation]       This keyword is used to verify The field for entering gift cards should be display
     TRY
         Wait until page contain element    ${GIFTCARDFIELD_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The fields for entering discount codes should be display
     END
 Click on the "Estimate shipping" option
+    [Documentation]       This keyword is used to Click on the "Estimate shipping" option
     TRY
         Click on the web element    ${ESTIMATESHIPPING_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on the "Estimate shipping" option
     END
-The "Estimate shipping" should be visible 
+The "Estimate shipping" should be visible
+    [Documentation]       This keyword is used to verify The "Estimate shipping" should be visible
     TRY
         Wait until page contain element    ${ESTIMATESHIPPING_BTN_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The "Estimate shipping" should be visible 
     END
 The Country field should be visible
+    [Documentation]       This keyword is used to verify The Country field should be visible
     TRY
         Wait until page contain element    ${COUNTRYFIELD_ELE}
     EXCEPT   
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Country field should be visible
     END
 The Provide field should be visible
+    [Documentation]       This keyword is used to verify The Provide field should be visible
     TRY
         Wait until page contain element    ${PROVINCEFIELD_ELE}
     EXCEPT   
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Country field should be visible
     END
 The Postal code field should be visible
+    [Documentation]       This keyword is used to verify The Postal code field should be visible
     TRY
         Wait until page contain element    ${POSTALCODEFIELD_ELE}
     EXCEPT   
@@ -496,6 +535,7 @@ The Postal code field should be visible
     END
 
 Click on the "Continue shopping" button in the shopping cart page
+    [Documentation]       This keyword is used to Click on the "Continue shopping" button in the shopping cart page
     TRY
         Click on button    ${CONTINUESHOPPING_BTN_ELE}
     EXCEPT    
@@ -503,6 +543,7 @@ Click on the "Continue shopping" button in the shopping cart page
     END
 
 Go the Shopping cart page
+    [Documentation]       This keyword is used to Go the Shopping cart page
     TRY
         ${URL}=    Catenate    SEPARATOR=/    ${URL_HOME}    cart
         Go To    ${URL} 

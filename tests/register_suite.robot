@@ -6,6 +6,10 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup    Test Suite Setup of register 
 Test Setup    Test case Setup of register
 Test Teardown    Test case Teardown of register
+Documentation    This suite cover all test cases related to the user story [BSG-1] - User Registration
+          ...    As a new user
+          ...    I want to register for an account on the application
+          ...    So that I can access personalized features and services
 *** Test Cases ***
 BSG-T35 --- Verify that the user can register account successfull when user input all required field
     [Tags]    High    Smoke

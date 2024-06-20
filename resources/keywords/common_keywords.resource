@@ -180,3 +180,12 @@ Compare two Numbers
         Run Keyword And Continue On Failure    Fail    The two numbers are not equal
     END
    
+Wait for page loaded
+    [Documentation]       This keyword is used to Wait for page loaded from provided locator
+    [Arguments]    ${locator}
+    TRY
+        Wait Until Element Is Visible    ${locator}
+        Wait Until Element Is Not Visible    ${locator}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Wait for page loaded
+    END

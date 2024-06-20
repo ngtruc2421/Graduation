@@ -8,6 +8,11 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup    Test Suite Setup of addProduct
 Test Setup    Test case Setup of addProduct
 Test Teardown    Test case Teardown of addProduct
+Documentation    This suite cover all test cases related to the user story [BSG-16] - Efficiently Add Products to the Shopping Cart from the Detail Page
+          ...    As a user, 
+          ...    I want to add a product to my shopping cart directly from the product listing page 
+          ...    so that I can quickly select items without navigating to individual product pages.
+                    
 *** Test Cases ***
 BSG-T69 --- Verify that the "Add to Cart" button should be visible
     [Tags]    High
