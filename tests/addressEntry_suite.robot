@@ -10,7 +10,10 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup         Test Suite Setup
 Test Setup          Test case Setup
 Test Teardown       Test case Teardown
-
+Documentation   This suite cover all test cases related to the user story [BSG-36] - Address Entry Page
+ ...           - As a customer,
+ ...           - I want to enter and confirm my shipping and billing addresses,
+ ...           - So that my order can be delivered to the correct location and I can proceed to the payment step.
 *** Variables ***
 *** Test Cases ***
 BSG-T105 --- Verify that the system should provide input fields for shipping and billing address details

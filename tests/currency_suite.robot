@@ -9,8 +9,10 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup         Test Suite Setup
 Test Setup          Test case Setup
 Test Teardown       Test case Teardown
-
-*** Variables ***
+Documentation   This suite cover all test cases related to the user story [BSG-24] - Management currency type
+...            - As a user
+...            - I want to select the currency type
+...            - So that I can be aware of the product in the selected currency
 *** Test Cases ***
 BSG-T95 --- Verify that there is a currency dropdown
     [Tags]    High

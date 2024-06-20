@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../../configurations/config.resource
 Resource    ../keywords/common_keywords.resource
+
 *** Variables ***
 ${ADDRESSCARD_ELE}                      class=address-list-item
 ${FIRSTNAME_INPUT_ELE}                  id=NewAddress_FirstName

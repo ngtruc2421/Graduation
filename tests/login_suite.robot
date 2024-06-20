@@ -7,6 +7,11 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup         Test Suite Setup
 Test Setup          Test case Setup
 Test Teardown       Test case Teardown
+Documentation    This suite cover all test cases related to the user story [BSG-3] - User Login
+...            - As a registered user
+...            - I want to log into my account
+...            - So that I can access my personalized dashboard and features
+
 *** Variables ***
 ${USER_NAME_WRONG}=          @trantruc
 ${PASS_WHITESPACE}           @us   er123
@@ -27,10 +32,10 @@ ${LOGINPAGE_TITLE}           Sign In
 BSG-T1 --- Verify that there is a page for users log in to the system
     [Tags]    High
     Open the Login page
-    Display the Login page    ${LOGINPAGE_TITLE}
+    It should display the Login page    ${LOGINPAGE_TITLE}
 BSG-T3 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
     [Tags]    High
-    [Template]    Appear the error message when users input incorrect value for the Username or email field and Password field
+    [Template]    It should appear the error message when users input incorrect value for the Username or email field and Password field
     ${EMAIL_NOTREGISTER}    ${PASS_RIGHT}         ${EMAIL_NOTREGISTER_MESS}
     @user123.gmail.com      ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
     11111.com               ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
@@ -54,7 +59,7 @@ BSG-T13 --- Verify that the users can use "Remember Me" option
     Click on the account's name on the top at the corner
     Select the Log out option
     Click on the Log in option on the top of the corner
-    The system saved the account information    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
+    The system should save the account information    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
     ...    ${PASS_RIGHT}    ${PASSWORD_ELE}
 BSG-T15 --- Verify that the system provided a "Forgot Password" link for users who need to reset their password
     [Tags]    High
@@ -62,7 +67,7 @@ BSG-T15 --- Verify that the system provided a "Forgot Password" link for users w
     Click on the Forgot password link
     Input the email for the Email field    ${EMAIL_REGISTERED}
     Click the Submit button
-    Users reset password success
+    Users should reset password success
 BSG-T17 --- Verify that the system will update the login's status when users login success
     [Tags]    High    Smoke
     Open the Login page
@@ -72,7 +77,7 @@ BSG-T17 --- Verify that the system will update the login's status when users log
     Show on the logged in user's name on the top right    ${USER_NAME_RIGHT}
 BSG-T29 --- Verify that the system will display the error message when users input invalid email on the Forgot Password page
     [Tags]               Medium
-    [Template]           Appear error message when users input invalid email
+    [Template]           It should appear error message when users input invalid email
     User123@gmail.com    Email not found
     @User321gmail.com    'Your email address' is not a valid email address
     !!!@#####            'Your email address' is not a valid email address
@@ -83,20 +88,20 @@ BSG-T32 --- Verify that user can input data for the Username or email field
     Open the Login page
     Input username    ${USER_NAME_RIGHT}
     Unfocus the field
-    The data of the Username or email field is still    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
+    It should input the data    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
 BSG-T34 --- Verify that user can input data for the Password field
     [Tags]    High    Smoke
     Open the Login page
     Input pass    ${PASS_RIGHT}
     Unfocus the field
-    The data of the Username or email field is still    ${PASS_RIGHT}    ${PASSWORD_ELE}
+    It should input the data    ${PASS_RIGHT}    ${PASSWORD_ELE}
 BSG-T49 --- Verify that users can login success into the system
     [Tags]    High    Smoke
     Open the Login page
     Input username            ${USER_NAME_RIGHT}
     Input pass                ${PASS_RIGHT}
     Click the Login button
-    Log in success            ${MESS_SUCCESS}
+    It should log in success            ${MESS_SUCCESS}
 
 *** Keywords ***
 Test case Setup
