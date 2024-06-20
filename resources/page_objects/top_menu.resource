@@ -5,7 +5,8 @@ Resource    ../pages/products_page.resource
 *** Variables ***
 
 *** Keywords ***
-Click Menu Item "${NAME}"   
+Click Menu Item "${NAME}"
+    [Documentation]       This keyword is used to Click Menu Item from provided item name
     TRY
         ${NAME_LOWER}=    Evaluate     "${NAME}".lower()
         Click on the web element    css:.megamenu a[href$="/${NAME_LOWER}"]

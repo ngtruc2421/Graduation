@@ -12,11 +12,14 @@ ${CONTINUE_BTN_ELE}          css:.register-continue-button
 
 *** Keywords ***
 Open Register page
+    [Documentation]       This keyword is used to Open Register page
     Open page    Register    ${PAGE_TITLE_ELE}
 
 The Register page should be opened
+    [Documentation]       This keyword is used to verify The Register page should be opened
     The page should be opened    Register    ${PAGE_TITLE_ELE}
 Is reuired field
+    [Documentation]       This keyword is used to verify Is reuired field from provided field name
     [Arguments]    ${NAME}
     TRY
         ${ELEMENTS}=    Get Element Attribute    xpath=//label[text()="${NAME}"]     class
@@ -28,6 +31,7 @@ Is reuired field
   
 
 The "${NAME}" field should be required
+    [Documentation]       This keyword is used to verify The name field should be required from provided field name
     TRY
         ${IS_REQUIRED}=    Is reuired field    ${NAME}
         Should Be True    ${IS_REQUIRED}
@@ -37,6 +41,7 @@ The "${NAME}" field should be required
 
 
 The "${NAME}" field should not be required
+    [Documentation]       This keyword is used to verify The field should not be required from provided field name
     TRY
         ${IS_REQUIRED}=    Is reuired field    ${NAME}
         Should Not Be True    ${IS_REQUIRED}
@@ -45,6 +50,7 @@ The "${NAME}" field should not be required
     END 
     
 The "${NAME}" field is type free text
+    [Documentation]       This keyword is used to verify The name field is type free text from provided field name
     [Arguments]    ${TEXT}
     TRY
         ${locator}=    Get ID field by lable ${NAME} in register page    
@@ -57,6 +63,7 @@ The "${NAME}" field is type free text
 
     
 The "${NAME}" field is type Dropdown 
+    [Documentation]       This keyword is used to verify The name field is type Dropdown from provided field name
     TRY
         ${LOCATOR}=    Set Variable    ${ID_DAYOFBIRTH}${NAME}
         ${ELEMENT}=    Get WebElement    ${LOCATOR}    
@@ -69,6 +76,7 @@ The "${NAME}" field is type Dropdown
     END
  
 Get ID field by lable ${NAME} in register page
+    [Documentation]       This keyword is used to Get ID field by lable in register page from provided lable name
     TRY
         ${XPATH}=    Set Variable    //label[text()='${NAME}']/following-sibling::div[contains(@class, 'col-md-9')]//input
         ${ELEMENT}=    Get WebElement    ${XPATH}
@@ -80,6 +88,7 @@ Get ID field by lable ${NAME} in register page
    
 
 Input the "${NAME}" field with value "${TEXT}" 
+    [Documentation]       This keyword is used to Input the name field with value from provided field name and provided value
     TRY
         ${LOCATOR}=    Get ID field by lable ${NAME} in register page
         Input value for a field    ${TEXT}    ${LOCATOR}
@@ -91,6 +100,7 @@ Input the "${NAME}" field with value "${TEXT}"
 
 
 The error "${ERROR}" should not be display
+    [Documentation]       This keyword is used to verify The error should not be display from provided error
     TRY
         Page Should Not Contain    ${ERROR}
     EXCEPT    
@@ -99,6 +109,7 @@ The error "${ERROR}" should not be display
     
 
 The error "${ERROR}" should be display
+    [Documentation]       This keyword is used to verify The error should be display from provided error
     TRY
         Page Should Contain    ${ERROR}
     EXCEPT
@@ -107,6 +118,7 @@ The error "${ERROR}" should be display
     END
 
 It should show warning message when user input the "${FIELD_NAME}" field with specific value 
+    [Documentation]       This keyword is used to verify It should show warning message when user input the name field with specific value from provided field name
     [Arguments]      ${TEXT}      ${ERROR}
     TRY
         Input the "${FIELD_NAME}" field with value "${TEXT}"
@@ -116,6 +128,7 @@ It should show warning message when user input the "${FIELD_NAME}" field with sp
         Run Keyword And Continue On Failure   FAIL     There is a error happen in process verify It should show warning message when user input the "${FIELD_NAME}" field with specific value ${text}        
     END
 Click the Register button in the Register page
+    [Documentation]       This keyword is used to Click the Register button in the Register page
     TRY
         Click on button    ${REGISTER_BTN_ELE}
     EXCEPT    
@@ -124,6 +137,7 @@ Click the Register button in the Register page
     
 
 Create Email
+    [Documentation]       This keyword is used to Create Email
     TRY
         ${CURRENT_HOUR}=    Get Current Date    result_format=%H
         ${CURRENT_MINUTE}=  Get Current Date    result_format=%M
@@ -136,6 +150,7 @@ Create Email
     
 
 Create Username
+    [Documentation]       This keyword is used to Create Username
     TRY
         ${CURRENT_HOUR}=    Get Current Date    result_format=%H
         ${CURRENT_MINUTE}=  Get Current Date    result_format=%M
@@ -147,6 +162,7 @@ Create Username
     END
 
 Input on the "Email" field with value created automatic
+    [Documentation]       This keyword is used to Input on the "Email" field with value created automatic
     TRY
         ${EMAIL}=    Create Email
         Input the "Email" field with value "${EMAIL}"
@@ -156,6 +172,7 @@ Input on the "Email" field with value created automatic
 
 
 Input on the "Username" field with value created automatic
+    [Documentation]       This keyword is used to Input on the "Username" field with value created automatic
     TRY
         ${USERNAME}=    Create Username
         Input the "Username" field with value "${USERNAME}"
@@ -166,6 +183,7 @@ Input on the "Username" field with value created automatic
 
 
 The system should auto-login with username account
+    [Documentation]       This keyword is used to The system should auto-login with username account
     TRY
         Wait Until Element Is Visible    css:a.menubar-link>span[title="${USERNAME_INPUT}"]
         Page Should Contain Element    css:a.menubar-link>span[title="${USERNAME_INPUT}"]
@@ -175,6 +193,7 @@ The system should auto-login with username account
 
 
 Select "${VALUE}" from the list "${NAME}" dropdown
+    [Documentation]       This keyword is used to Select value from the list dropdown from provided option and provied list
     TRY
         ${LOCATOR}=    Set Variable    ${ID_DAYOFBIRTH}${NAME}
         Select Option From Dropdown    ${LOCATOR}    ${VALUE}
@@ -184,6 +203,7 @@ Select "${VALUE}" from the list "${NAME}" dropdown
    
 
 Click the Continue button
+    [Documentation]       This keyword is used to Click the Continue button
     TRY
         Click on button    ${CONTINUE_BTN_ELE}
     EXCEPT    

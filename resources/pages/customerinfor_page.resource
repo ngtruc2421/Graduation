@@ -11,6 +11,7 @@ ${SAVE_BTN_ELE}                               css:[name="save-info-button"]
 ${LABLELIST_ELE}                              css:.col-form-label                               
 *** Keywords ***
 Get ID field by lable ${NAME} in customer info page
+    [Documentation]       This keyword is used to Get ID field by lable in customer info page from provided lable name
     TRY
         ${XPATH}=    Set Variable    //label[text()='${NAME}']/following-sibling::div[contains(@class, 'col-lg-9')]//input
         ${ELEMENT}=    Get WebElement    ${XPATH}
@@ -21,6 +22,7 @@ Get ID field by lable ${NAME} in customer info page
     END
 
 Input the "${NAME}" field with value "${TEXT}" in customer info page
+    [Documentation]       This keyword is used to Input the field with value in customer info page from provided field name and provided value
     TRY
         ${LOCATOR}=    Get ID field by lable ${NAME} in customer info page
         Input value for a field    ${TEXT}    id:${LOCATOR}
@@ -30,6 +32,7 @@ Input the "${NAME}" field with value "${TEXT}" in customer info page
         Run Keyword And Continue On Failure    Fail    There is a error when input    
     END
 Get class field by Username in customer info page
+    [Documentation]       This keyword is used to Get class field by Username in customer info page
     TRY
         ${XPATH}=    Set Variable    //label[text()='Username']/following-sibling::div[contains(@class, 'col-lg-9')]//div
         ${ELEMENT}=    Get WebElement    ${XPATH}
@@ -40,6 +43,7 @@ Get class field by Username in customer info page
     END
    
 The "Username" should be display 
+    [Documentation]       This keyword is used to verify The "Username" should be display 
     TRY
         ${class}=    Get class field by Username in customer info page
         Wait until page contain element    ${class}
@@ -48,6 +52,7 @@ The "Username" should be display
     END
 
 The "${NAME}" field should be display 
+    [Documentation]       This keyword is used to verify The name field should be display from provided field name
     TRY
         ${ID}=    Get ID field by lable ${NAME} in customer info page
         Wait until page contain element    id:${ID}
@@ -57,6 +62,7 @@ The "${NAME}" field should be display
 
 
 The "DateOdBirth" file should be display 
+    [Documentation]       This keyword is used to verify The "DateOdBirth" file should be display 
     TRY
         Wait until page contain element    ${DATEOFBIRTH_ELE}
     EXCEPT    
@@ -64,6 +70,7 @@ The "DateOdBirth" file should be display
     END
 
 The Customer info page should be opened 
+    [Documentation]       This keyword is used to verify The Customer info page should be opened 
     TRY
         The page should be opened    Customer info    ${PAGE_TITLE_ELE}
     EXCEPT    
@@ -71,6 +78,7 @@ The Customer info page should be opened
     END
 
 The user is logged in and is now on the Customer Infor page
+    [Documentation]       This keyword is used to verify The user is logged in and is now on the Customer Infor page
     TRY
         Open the Login page
         Log in the system    ${USERNAME}    ${PASSWORD}
@@ -83,12 +91,14 @@ The user is logged in and is now on the Customer Infor page
 
 
 Click on the Save button in the Customer infor page
+    [Documentation]       This keyword is used to Click on the Save button in the Customer infor page
     TRY
         Click on button    ${SAVE_BTN_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is  There is a error happen in process Click on the Save button in the Customer infor page
     END
 It should show warning message when user input the "${FIELD_NAME}" field with specific value in customer info page
+    [Documentation]       This keyword is used to verify It should show warning message when user input the field with specific value in customer info page from provided text and provided eror
     [Arguments]      ${TEXT}      ${ERROR}
     TRY
         ${LOCATOR}=    Get ID field by lable ${FIELD_NAME} in customer info page
@@ -101,6 +111,7 @@ It should show warning message when user input the "${FIELD_NAME}" field with sp
     END
 
 Clear all data in required field
+    [Documentation]       This keyword is used to Clear all data in required field
     TRY
         ${LOCATOR_FN}=    Get ID field by lable First name in customer info page
         Clear Element Text    id:${LOCATOR_FN}
@@ -114,6 +125,7 @@ Clear all data in required field
 
 
 The "Save" button should be displayed
+    [Documentation]       This keyword is used to verify The "Save" button should be displayed
     TRY
         Wait until page contain element    ${SAVE_BTN_ELE}
     EXCEPT    
@@ -122,6 +134,7 @@ The "Save" button should be displayed
     
 
 Clear data in ${NAME} field 
+    [Documentation]       This keyword is used to Clear data in name field from provided field name
     TRY
         ${LOCATOR}=    Get ID field by lable ${NAME} in customer info page
         Clear Element Text    id:${LOCATOR}
@@ -130,7 +143,8 @@ Clear data in ${NAME} field
     END
 
 
-Is field ${NAME} include asterisk character    
+Is field ${NAME} include asterisk character
+    [Documentation]       This keyword is used to verify Is name field include asterisk character from provided field name    
     TRY
         ${ID}=    Get ID field by lable ${NAME} in customer info page
         ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='${ID}']"), "::after").getPropertyValue("content");
@@ -141,6 +155,7 @@ Is field ${NAME} include asterisk character
     END
 
 The "${NAME}" field is required 
+    [Documentation]       This keyword is used to verifyThe name field is required  from provided field name
     TRY
         ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
         ${INDEX}=    Set Variable    0
@@ -157,6 +172,7 @@ The "${NAME}" field is required
  
 
 The field "Username" is required
+    [Documentation]       This keyword is used to verify The field "Username" is required
     TRY
         ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
         ${INDEX}=    Set Variable    0
@@ -176,6 +192,7 @@ The field "Username" is required
     
 
 The message "Customer information has been updated successfully" should be display
+    [Documentation]       This keyword is used to verify The message "Customer information has been updated successfully" should be display
     TRY
         Wait Until Page Contains    Customer information has been updated successfully
     EXCEPT    

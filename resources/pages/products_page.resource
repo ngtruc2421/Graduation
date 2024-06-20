@@ -9,6 +9,7 @@ ${PRODUCTLIST_ELE}                            css:.product-list-container .art
 ${PRODUCTNAME_ELE}                            css:.art-name
 *** Keywords ***
 Click on Add Product button of product "${NAME}" from type product page
+    [Documentation]       This keyword is used to Click on Add Product button of product from type product page from provided product name
     TRY
         ${LIST_PRODUCT}=    Get list WebElements   ${PRODUCTLIST_ELE}
         ${INDEX}=    Set Variable    0
@@ -28,6 +29,7 @@ Click on Add Product button of product "${NAME}" from type product page
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on Add Product button from product page 
     END
 Get Name product "${NAME}" in product page
+    [Documentation]       This keyword is used to Get Name product name in product page from provided product name
     TRY
             ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
         ${INDEX}=    Set Variable    0
@@ -45,6 +47,7 @@ Get Name product "${NAME}" in product page
     END
    
 Hover Over The product item "${NAME}" in product page 
+    [Documentation]       This keyword is used to Hover Over The product item in product page  from provided item name
     TRY
         ${PRODUCT}=    Get Name product "${NAME}" in product page
         Wait Until Element Is Visible    ${PRODUCT}
@@ -54,6 +57,7 @@ Hover Over The product item "${NAME}" in product page
     END
 
 Click on the Home page
+    [Documentation]       This keyword is used to Click on the Home page
     TRY
         Wait Until Element Is Visible    ${HOMEPAGE_ELE}  
         Click on the web element    ${HOMEPAGE_ELE}    
@@ -62,6 +66,7 @@ Click on the Home page
     END
 
 The type "${NAME}" page should be opened
+    [Documentation]       This keyword is used to verify The type page should be opened from provided page name
     TRY
         The page should be opened    ${NAME}    ${PAGE_TITLE_ELE}
     EXCEPT 
@@ -69,6 +74,7 @@ The type "${NAME}" page should be opened
     END 
     
 Click on the product "${NAME}"
+    [Documentation]       This keyword is used to Click on the product from provided product name
     TRY
         ${PRODUCT}=    Get Name product "${NAME}" in product page
         Click on button    ${PRODUCT}
@@ -79,6 +85,7 @@ Click on the product "${NAME}"
 
 
 Get availability status of the product ${NAME}
+    [Documentation]       This keyword is used to Get availability status of the product name from provided product name
     TRY
         ${LIST}=    Get list WebElements   ${PRODUCTLIST_ELE}
         ${INDEX}=    Set Variable    0

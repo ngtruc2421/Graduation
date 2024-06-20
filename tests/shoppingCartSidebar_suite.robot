@@ -8,6 +8,10 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup    Test Suite Setup of management shopping cart sidebar
 Test Setup    Test case Setup of management shopping cart sidebar
 Test Teardown    Test case Teardown of management shopping cart sidebar
+Documentation    This suite cover all test cases related to the user story [BSG-17] - Enhance User Experience by Providing Comprehensive Shopping Cart Management - Side bar
+          ...    As a user, 
+          ...    I want to be able to easily manage items in my shopping cart, 
+          ...    so that I can review, update, and finalize my purchases efficiently
 *** Variables ***
 ${USERNAME}=        0306211267@caothang.edu.vn
 ${PASSWORD}=        Ttkn1234@

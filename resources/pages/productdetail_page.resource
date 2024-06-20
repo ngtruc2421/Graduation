@@ -16,6 +16,7 @@ ${ADDTOLIST_BTN_ELE}                          css:a[title="Add to wishlist"]
 ${COMPARE_BTN_ELE}                            css:a[title="Add to compare list"]
 *** Keywords ***
 Click on Add Product button from product detail page
+    [Documentation]       This keyword is used to Click on Add Product button from product detail page
     TRY
         Click on button    ${ADDPRODUCT_BTN_ELE}
     EXCEPT    
@@ -23,6 +24,7 @@ Click on Add Product button from product detail page
     END
     
 Click on Add to List button from product detail page
+    [Documentation]       This keyword is used to Click on Add to List button from product detail page
     TRY
         Click on button    ${ADDTOLIST_BTN_ELE}
     EXCEPT    
@@ -30,6 +32,7 @@ Click on Add to List button from product detail page
     END
     
 Click on Compare button from product detail page
+    [Documentation]       This keyword is used to Click on Compare button from product detail page
     TRY
         Click on button    ${COMPARE_BTN_ELE}
     EXCEPT    
@@ -37,6 +40,7 @@ Click on Compare button from product detail page
     END
     
 The product detail "${NAME}" page should be opened
+    [Documentation]       This keyword is used to verify The product detail name page should be opened from provided page name
     TRY
         ${PRODUCT_NAME}=    Wait and get element text    ${PRODUCT_TITLE_ELE}
         Should Be Equal    ${PRODUCT_NAME}    ${NAME}
@@ -44,19 +48,8 @@ The product detail "${NAME}" page should be opened
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The product detail "${NAME}" page should be opened
     END
 
-
-# Select color "${COLOR}" of product
-#     Click on the Home page
-#     Execute JavaScript    window.scrollBy(0, 500)
-#     # Click Element    css:[data-original-title="${COLOR}"] > span
-#     Hover Over Elenment    css:.choice-box-label span[data-original-title="Yellow"] .choice-box-element
-#     Click Element    css:.choice-box-label span[data-original-title="Yellow"] .choice-box-element
-#     The yellow tick should be display in ${COLOR}
-# The yellow tick should be display in "${NAME}"
-#     ${is_visible}=    Execute JavaScript    return window.getComputedStyle(document.querySelector("${NAME}"), "::after").getPropertyValue("content") !== '' && window.getComputedStyle(document.querySelector("${NAME}"), "::after").getPropertyValue("content") !== 'none';
-#     Should Be True    ${is_visible}
-
 Get quantity of product "${NAME}"
+    [Documentation]       This keyword is used to Get quantity of product from provided product name
     TRY
         Wait Until Element Is Visible    ${QUANTITY_ELE}
         ${quantity}=    Get Value    ${QUANTITY_ELE}
@@ -67,6 +60,7 @@ Get quantity of product "${NAME}"
 
 
 Click on Increase quantity button of product "${NAME}" in product detail page
+    [Documentation]       This keyword is used to Click on Increase quantity button of product name in product detail page from provided product name
     TRY
         Hover Over Elenment    ${INCREASEUANTITY_BTN_ELE}
         ${QUANTITY}=   Get quantity of product "${NAME}" 
@@ -77,6 +71,7 @@ Click on Increase quantity button of product "${NAME}" in product detail page
     END
 
 Click on Reduce quantity button of produce "${NAME}" in product detail page 
+    [Documentation]       This keyword is used to Click on Reduce quantity button of product name in product detail page from provided product name
     TRY
         Hover Over Elenment    ${REDUCEQUANTITY_BTN_ELE}
         ${QUANTITY}=   Get quantity of product "${NAME}" 
@@ -88,6 +83,7 @@ Click on Reduce quantity button of produce "${NAME}" in product detail page
 
 
 The quantity of product "${NAME}" in the product detail page should be reduce when user click on reduce button
+    [Documentation]       This keyword is used to verify The quantity of product name in the product detail page should be reduce when user click on reduce button from provided product name
     TRY
         ${QUANTITYCURRENT}=    Get quantity of product "${NAME}"
         ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
@@ -98,6 +94,7 @@ The quantity of product "${NAME}" in the product detail page should be reduce wh
 
 
 The quantity of product "${NAME}" in the product detail page should be increase when user click on icrease button
+    [Documentation]       This keyword is used to verify The quantity of product name in the product detail page should be increase when user click on icrease button from provided product name
     TRY
         ${QUANTITYCURRENT}=    Get quantity of product "${NAME}"
         ${RESULT}=    Evaluate    ${QUANTITYCURRENT} - ${QUANTITYBEFORE}
@@ -107,6 +104,7 @@ The quantity of product "${NAME}" in the product detail page should be increase 
     END
 
 Check product "${NAME}" have in shopping cart 
+    [Documentation]       This keyword is used to Check product have in shopping cart from provided product name
     TRY
         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -125,6 +123,7 @@ Check product "${NAME}" have in shopping cart
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Display quantity of product "${NAME}"
     END
 Check list empty
+    [Documentation]       This keyword is used to Check list empty
     TRY
         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${length}=    Get Length    ${LIST}
@@ -137,6 +136,7 @@ Check list empty
 
 
 User is the Home Page and There are 1 product with quantity is 2 in shopping cart
+    [Documentation]       This keyword is used to verify User is the Home Page and There are 1 product with quantity is 2 in shopping cart
     TRY
         Open the Home Page
         Click Menu Item "Furniture"
@@ -154,6 +154,7 @@ User is the Home Page and There are 1 product with quantity is 2 in shopping car
 
 
 User is the Product Detail Page 
+    [Documentation]       This keyword is used to verify User is the Product Detail Page 
     TRY
         Open the Home Page
         Click Menu Item "Furniture"
@@ -166,6 +167,7 @@ User is the Product Detail Page
 
 
 The "Add to Cart" button should be Visible
+    [Documentation]       This keyword is used to verify The "Add to Cart" button should be Visible
     TRY
         Wait Until Element Is Visible    ${ADDPRODUCT_BTN_ELE}
     EXCEPT    
@@ -174,8 +176,8 @@ The "Add to Cart" button should be Visible
 
 
 Get price of product "${NAME}" in detail page
+    [Documentation]       This keyword is used to Get price of product name in detail page from provided product name
     TRY
-        # Hover Over Elenment    ${PRICE_ELE}
         Wait Until Element Is Visible    ${PRICE_ELE}
         ${PRICE}=    Wait and get element text    ${PRICE_ELE}
         RETURN    ${PRICE}
@@ -185,6 +187,7 @@ Get price of product "${NAME}" in detail page
 
 
 Compare price 
+    [Documentation]       This keyword is used to Compare price from 2 provided value
     [Arguments]     ${NAME}    ${PRICING}
     TRY
         ${price}=    Get price of product "${NAME}" in detail page
@@ -194,6 +197,7 @@ Compare price
     END
 
 Adjust quantity of product ${NAME}
+    [Documentation]       This keyword is used to Adjust quantity of product from provided product name
     [Arguments]    ${QUANTITY}
     TRY
             ${QUANTITY_CURENT}=    Get quantity of product "${NAME}"
@@ -220,6 +224,7 @@ Adjust quantity of product ${NAME}
 
 
 The price of product "${NAME}" should be price when user select quantity
+    [Documentation]       This keyword is used to verify The price of product name should be price when user select quantity from provided product name
     [Arguments]      ${QUANTITY}      ${PRICE}
     TRY
         ${QUANTITY_CURENT}=    Adjust quantity of product ${NAME}    ${QUANTITY} 
@@ -229,18 +234,8 @@ The price of product "${NAME}" should be price when user select quantity
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The price of product "${NAME}" should be price when user select quantity
     END
 
-
-
-Select "${MATERIAL}" option "${OPTION}" of product "${NAME}"
-    TRY
-        ${MATERIAL_DROPDOWN_ELE}=    Get class dropdown field by lable ${MATERIAL}
-        Wait Until Element Is Visible    ${MATERIAL_DROPDOWN_ELE}
-        Select Option From Dropdown    ${MATERIAL_DROPDOWN_ELE}    ${OPTION}
-    EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process select "${MATERIAL}" option "${OPTION}" of product "${NAME}"
-    END
-
 Get class dropdown field by lable ${NAME}
+    [Documentation]       This keyword is used to Get class dropdown field by lable from provided lable name
     TRY
         ${XPATH}=    Set Variable    //label[text()='${NAME}']/following-sibling::div[contains(@class, 'choice-control')]
         ${ELEMENT}=    Get WebElement    ${XPATH}

@@ -5,6 +5,10 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup    Test Suite Setup of customer infor
 Test Setup    Test case Setup of customer infor
 Test Teardown    Test case Teardown of customer infor
+Documentation    This suite cover all test cases related to the user story [BSG-25] - Customer info management
+          ...    As a customer, 
+          ...    I want to enter and update my personal and company information in a form 
+          ...    so that I can maintain accurate and up-to-date details in the system.
 *** Test Cases ***
 BSG-T77 --- Verify that The form should include fields for first name, last name, date of birth, email, username, and company name
     [Tags]    High    Smoke

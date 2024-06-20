@@ -5,6 +5,10 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup    Test Suite Setup of management shopping cart in page
 Test Setup    Test case Setup of management shopping cart in page
 Test Teardown    Test case Teardown of management shopping cart in page
+Documentation    This suite cover all test cases related to the user story [BSG-34] - View and manage the items in my shopping cart
+          ...    As a Customer, 
+          ...    I want to easily view and manage the items in my shopping cart 
+          ...    so that I can efficiently proceed with my purchase.
 *** Test Cases ***
 BSG-T111 --- Verify that Display a list of all items in the cart, each with: A thumbnail image
     [Tags]    High    Smoke

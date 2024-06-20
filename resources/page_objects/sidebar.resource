@@ -24,7 +24,8 @@ ${PASSWORD}=                                  Ttkn1234@
 ${ATRIBUTESPRODUCT_ELE}                       css:.attributes
 ${GOTOCART_BTN_ELE}                           css:.btn-action[href="/cart"]
 *** Keywords ***
-Display sidebar "${NAME}" tab 
+Display sidebar "${NAME}" tab
+    [Documentation]       This keyword is used to Display sidebar tab from provided item name 
     TRY
         @{LIST}=    Get list WebElements    ${LISTTAB_ELE}
         FOR    ${element}    IN    @{LIST}
@@ -42,6 +43,7 @@ Display sidebar "${NAME}" tab
         
     END
 The "${NAME}" should show on shopping cart tab
+    [Documentation]       This keyword is used to verify The should show on shopping cart tab from provided item name
     TRY
          @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -60,13 +62,15 @@ The "${NAME}" should show on shopping cart tab
     END
 
 
-Click the Wishlist tab 
+Click the Wishlist tab
+    [Documentation]       This keyword is used to Click the Wishlist tab
     TRY
         Click on button    ${WISHLIST_TAB_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Wishlist tab 
     END
 There is at least 1 product in shopping cart
+    [Documentation]       This keyword is used to verify There is at least 1 product in shopping cart
     TRY
         Open the Home Page
         Search product on the search bar    The Prisoner of Heaven: A Novel
@@ -84,6 +88,7 @@ There is at least 1 product in shopping cart
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process There is at least 1 product in shopping cart
     END
 The image "${NAME}" should be displayed
+    [Documentation]       This keyword is used to The image should be displayed from provided product name
     TRY
         Wait until page contain element    css:.img-center-container[title="Show details for ${NAME}"] 
     EXCEPT    
@@ -91,6 +96,7 @@ The image "${NAME}" should be displayed
     END
 
 The name "${NAME}" should be displayed
+    [Documentation]       This keyword is used to verify The name should be displayed from provided product name   
     TRY
         Wait until page contain element      css:.offcanvas-cart-items a[title="${NAME}"]  
     EXCEPT    
@@ -98,6 +104,7 @@ The name "${NAME}" should be displayed
     END
     
 Get product price "${NAME}"
+    [Documentation]       This keyword is used to Get product price from provided product name
     TRY
         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -122,6 +129,7 @@ Get product price "${NAME}"
 
 
 Get product quantity "${NAME}"
+    [Documentation]       This keyword is used to Get product quantity from provided product name
     TRY
         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -141,6 +149,7 @@ Get product quantity "${NAME}"
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Display quantity of product "${NAME}"
     END
 The quantities "${NAME}" should be displayed
+    [Documentation]       This keyword is used to verify The quantities should be displayed from provided product name
     TRY
         Get product quantity "${NAME}"
     EXCEPT    
@@ -149,6 +158,7 @@ The quantities "${NAME}" should be displayed
     
 
 The price"${NAME}" should be displayed
+    [Documentation]       This keyword is used to verify The price should be displayed from provided product name
     TRY
         Get product price "${NAME}"
     EXCEPT    
@@ -157,6 +167,7 @@ The price"${NAME}" should be displayed
     
 
 Click on ${BUTTON} button of product "${NAME}"
+    [Documentation]       This keyword is used to Click on button of product from provided product name and provided button
     TRY
         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -178,6 +189,7 @@ Click on ${BUTTON} button of product "${NAME}"
     END
 
 Click the Add quantity button of product "${NAME}"
+    [Documentation]       This keyword is used to Click the Add quantity button of product from provided product name
     TRY
         ${QUANTITY}=   Get product quantity "${NAME}"
         ${SUBTOTAL}=    Get Subtotal shopping cart
@@ -190,6 +202,7 @@ Click the Add quantity button of product "${NAME}"
 
 
 Click the Reduce quantity button of product "${NAME}"
+    [Documentation]       This keyword is used to Click the Reduce quantity button of product from provided product name
     TRY
         ${QUANTITY}=   Get product quantity "${NAME}"
         ${SUBTOTAL}=    Get Subtotal shopping cart
@@ -201,6 +214,7 @@ Click the Reduce quantity button of product "${NAME}"
     END
 
 Click the Remove product button of product "${NAME}"
+    [Documentation]       This keyword is used to Click the Remove product button of product from provided product name
     TRY
         Click on ${REMOVE_BUTTON_ELE} button of product "${NAME}"
     EXCEPT    
@@ -209,6 +223,7 @@ Click the Remove product button of product "${NAME}"
     
 
 The product ${NAME} should not show on shopping cart tab
+    [Documentation]       This keyword is used to verify The product should not show on shopping cart tab from provided item name
     TRY
         Wait Until Element Is Not Visible    css:.offcanvas-cart-items a[title="${NAME}"]
         Page Should Not Contain Element    css:.offcanvas-cart-items a[title="${NAME}"]
@@ -218,6 +233,7 @@ The product ${NAME} should not show on shopping cart tab
     END
 
 Click the "Checkout" button in the sidebar 
+    [Documentation]       This keyword is used to Click the "Checkout" button in the sidebar
     TRY
         Click on button    ${CHECKOUTSIDEBAR_BUTTON_ELE}
     EXCEPT    
@@ -226,6 +242,7 @@ Click the "Checkout" button in the sidebar
     
 
 The Shopping cart page should be opened
+    [Documentation]       This keyword is used to verify The Shopping cart page should be opened
     TRY
         The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}
     EXCEPT    
@@ -233,13 +250,15 @@ The Shopping cart page should be opened
     END
     
 Click the "Checkout" button in the Shopping cart page
+    [Documentation]       This keyword is used to Click the "Checkout" button in the Shopping cart page
     TRY
         Click on button    ${CHECKOUTCRTPAGE_BUTTON_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the "Checkout" button in the Shopping cart page
     END 
 
-The Billing address page should be opened 
+The Billing address page should be opened
+    [Documentation]       This keyword is used to verify The Billing address page should be opened
     TRY
         The page should be opened    Billing address    ${PAGE_TITLE_ELE}
     EXCEPT   
@@ -249,6 +268,7 @@ The Billing address page should be opened
 
 
 Get Subtotal shopping cart 
+    [Documentation]       This keyword is used to Get Subtotal shopping cart 
     TRY
         ${SUBTOTAL}=    Wait and get element text    ${SUBTORAL_PRICE_ELE}
         ${SUBTOTAL}=    Split String    ${SUBTOTAL}    ${SPACE}
@@ -261,6 +281,7 @@ Get Subtotal shopping cart
 
 
 Calculate Total price of product 
+    [Documentation]       This keyword is used to Calculate Total price of product 
     TRY
         @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
         ${INDEX}=    Set Variable    0
@@ -281,6 +302,7 @@ Calculate Total price of product
     END
 
 The Subtotal shopping cart should be equal total price of product 
+    [Documentation]       This keyword is used to verify The Subtotal shopping cart should be equal total price of product 
     TRY
         ${SUBTOTAL}=    Get Subtotal shopping cart
         ${TOTAL}=    Calculate Total price of product
@@ -291,6 +313,7 @@ The Subtotal shopping cart should be equal total price of product
     END
 
 Is user not logged in yet
+    [Documentation]       This keyword is used to verify Is user not logged in yet
     TRY
         ${IS_LOGIN}=    Check user login
         Should Be True    ${IS_LOGIN}
@@ -300,6 +323,7 @@ Is user not logged in yet
     
 
 User not logged in yet and There is at least 1 product in shopping cart
+    [Documentation]       This keyword is used to verify User not logged in yet and There is at least 1 product in shopping cart
     TRY
         Open the Home Page
         Is user not logged in yet 
@@ -320,6 +344,7 @@ User not logged in yet and There is at least 1 product in shopping cart
 
 
 User logged in yet and There is at least 1 product in shopping cart
+    [Documentation]       This keyword is used to verify User logged in yet and There is at least 1 product in shopping cart
     TRY
         Access the Sign In page
         Log in the system    ${USERNAME}    ${PASSWORD}
@@ -339,6 +364,7 @@ User logged in yet and There is at least 1 product in shopping cart
     END
 
 The Sign In page should be opened
+    [Documentation]       This keyword is used to verify The Sign In page should be opened
     TRY
         Go To    ${URL_LOGIN_CHECKOUT}
         The page should be opened    Sign In    ${PAGE_TITLE_ELE}
@@ -348,6 +374,7 @@ The Sign In page should be opened
 
 
 Get total product in ${name}
+    [Documentation]       This keyword is used to Get total product from provided product name
     TRY
         @{LIST}=    Get list WebElements    ${LISTTAB_ELE}   
         FOR    ${element}    IN    @{LIST}
@@ -369,6 +396,7 @@ Get total product in ${name}
 
     
 The quantity of product "${NAME}" should be reduce when user click on reduce button
+    [Documentation]       This keyword is used to verify The quantity of product should be reduce when user click on reduce button from provided product name
     TRY
         ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
         ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
@@ -379,6 +407,7 @@ The quantity of product "${NAME}" should be reduce when user click on reduce but
 
 
 The quantity of product "${NAME}" should be increase when user click on add button
+    [Documentation]       This keyword is used to verify The quantity of product should be increase when user click on add button from provided product name
     TRY
         ${QUANTITYCURRENT}=    Get product quantity "${NAME}"
         ${RESULT}=    Evaluate    ${QUANTITYCURRENT} - ${QUANTITYAFTER}
@@ -389,6 +418,7 @@ The quantity of product "${NAME}" should be increase when user click on add butt
 
 
 The total product should be changes after changing the product quantity
+    [Documentation]       This keyword is used to verify The total product should be changes after changing the product quantity
     TRY
         ${TOTAL}=    Calculate Total price of product
         ${TOTAL}=    Convert To String    ${TOTAL}
@@ -398,6 +428,7 @@ The total product should be changes after changing the product quantity
     END
 
 The availability status of the product "${NAME}" should be display
+    [Documentation]       This keyword is used to verify The availability status of the product should be display from provided product name
     TRY
         ${STATUS_TITLE}=    Get availability status of the product ${NAME}
         Click on the "Shopping Basket" button  
@@ -426,6 +457,7 @@ The availability status of the product "${NAME}" should be display
     END
 
 There are 2 product in shopping cart
+    [Documentation]       This keyword is used to verify There are 2 product in shopping cart
     TRY
         Open the Home Page
         Search product on the search bar    The Prisoner of Heaven: A Novel
@@ -447,28 +479,8 @@ There are 2 product in shopping cart
     END
 
 
-The Material option "${MATERIAL}" of product "${NAME}" should be display in shopping cart sidebar tab
-    TRY
-        Wait Until Element Is Visible    ${ATRIBUTESPRODUCT_ELE}  
-        @{LIST}=    Get list WebElements    ${PRODUCT_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST}            
-           ${LIST_TITLE}=    Get list WebElements    ${TITLE_PRODUCT_ELE} 
-            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-            ${TITLE}=    Wait and get element text    ${TITLE_ELE}   
-            IF    "${TITLE}" == "${NAME}"
-                @{LIST_ATRIBUTES}=    Get list WebElements   ${ATRIBUTESPRODUCT_ELE}            
-                ${ATRIBUTES_ELE}=    Get From List    ${LIST_ATRIBUTES}    ${INDEX}
-                ${MATERIAl_TEXT}=    Wait and get element text    ${ATRIBUTES_ELE}
-                Should Contain    ${MATERIAl_TEXT}   ${MATERIAL}
-            END
-            ${INDEX}=     Evaluate    ${INDEX} + 1
-        END
-    EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process The Material option ${MATERIAL} of product ${NAME} should be display in shopping cart sidebar tab
-    END
-  
 Click on the "Go To Cart" button
+    [Documentation]       This keyword is used to Click on the "Go To Cart" button
     TRY
         Click on button    ${GOTOCART_BTN_ELE}
     EXCEPT    

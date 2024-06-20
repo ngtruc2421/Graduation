@@ -12,6 +12,7 @@ ${LISTOPTIONACCOUNT_ELE}            css:.dropdown-menu.dropdown-menu-right.show 
 ${SHOPBARCART_OPTION_ELE}           id:shopbar-cart
 *** Keywords ***
 Click on the account's name on the top at the corner
+    [Documentation]       This keyword is used to Click on the account's name on the top at the corner
     TRY
         Click on the web element    ${INFO_MENU_ELE}
     EXCEPT    
@@ -19,6 +20,7 @@ Click on the account's name on the top at the corner
     END
 
 Select the Log out option
+    [Documentation]       This keyword is used to Select the Log out option
     TRY
         Click on the "Log out" in top right
     EXCEPT    
@@ -26,6 +28,7 @@ Select the Log out option
     END
 
 Click on the Log in option on the top of the corner
+    [Documentation]       This keyword is used to Click on the Log in option on the top of the corner
     TRY
         ${result}    Get Text    ${LOGIN_OPTION_ELE}
         Should Be Equal As Strings    ${result}    LOG IN
@@ -35,6 +38,7 @@ Click on the Log in option on the top of the corner
     END
 
 Select the Shopping Basket option on the header
+    [Documentation]       This keyword is used to Select the Shopping Basket option on the header
     TRY
         Click on the web element    ${SHOPBARCART_OPTION_ELE}
     EXCEPT    
@@ -42,6 +46,7 @@ Select the Shopping Basket option on the header
     END
 
 Show on the logged in user's name on the top right 
+    [Documentation]       This keyword is used to Show on the logged in user's name on the top right 
     [Arguments]    ${USERNAME}
     TRY
         ${LOCATOR}    Set Variable    css:a.menubar-link > span[title="${USERNAME}"]
@@ -53,6 +58,7 @@ Show on the logged in user's name on the top right
 
     
 Check user login
+    [Documentation]       This keyword is used to Check user login
     TRY
         @{LIST}=    Get WebElements    ${MENUBAR_ELE}
         ${INDEX}=    Set Variable    0
@@ -72,6 +78,7 @@ Check user login
     END
     
 Click on the "${OPTION}" in top right
+    [Documentation]       This keyword is used to Click on the "${OPTION}" in top right from provided option
     TRY
         ${LIST_OPTION}=    Get list WebElements    ${LISTOPTIONACCOUNT_ELE}
         ${INDEX}=    Set Variable    0
