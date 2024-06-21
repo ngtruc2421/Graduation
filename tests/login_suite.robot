@@ -4,9 +4,9 @@ Resource         ../resources/pages/passwordRecovery_page.resource
 Resource         ../resources/page_objects/header.resource
 Resource         ../resources/keywords/utils.resource
 Resource         ../resources/keywords/zephyr_scale_integrate.resource
-Suite Setup         Test Suite Setup for search results suite
-Test Setup          Test case Setup for search results suite
-Test Teardown       Test case Teardown for search results suite
+Suite Setup         Test Suite Setup for login suite
+Test Setup          Test case Setup for login suite
+Test Teardown       Test case Teardown for login suite
 Documentation    This suite cover all test cases related to the user story [BSG-3] - User Login
 ...            - As a registered user
 ...            - I want to log into my account
@@ -34,6 +34,7 @@ BSG-T1 --- Verify that there is a page for users log in to the system
     Open the Login page
     It should display the Login page    ${LOGINPAGE_TITLE}
 BSG-T3 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
+    #F
     [Tags]    High
     [Template]    It should appear the error message when users input incorrect value for the Username or email field and Password field
     ${EMAIL_NOTREGISTER}    ${PASS_RIGHT}         ${EMAIL_NOTREGISTER_MESS}
@@ -50,6 +51,7 @@ BSG-T3 --- Verify that the system will display the error message when users inpu
     
 
 BSG-T13 --- Verify that the users can use "Remember Me" option
+    #F
     [Tags]    High
     Open the Login page
     Input username    ${USER_NAME_RIGHT}
@@ -77,6 +79,7 @@ BSG-T17 --- Verify that the system will update the login's status when users log
     Show on the logged in user's name on the top right    ${USER_NAME_RIGHT}
 BSG-T29 --- Verify that the system will display the error message when users input invalid email on the Forgot Password page
     [Tags]               Medium
+    [Setup]              Open the Password Recovery page
     [Template]           It should appear error message when users input invalid email
     User123@gmail.com    Email not found
     @User321gmail.com    'Your email address' is not a valid email address
@@ -104,12 +107,12 @@ BSG-T49 --- Verify that users can login success into the system
     It should log in success            ${MESS_SUCCESS}
 
 *** Keywords ***
-Test case Setup for search results suite
+Test case Setup for login suite
     Set test case start time
-Test case Teardown for search results suite
+Test case Teardown for login suite
     Update test case result to Zephyr Scale
     Close the web page
 
-Test Suite Setup for search results suite
+Test Suite Setup for login suite
     Create test cycle at folder    Smoke Testing
     Log    This is suite setup

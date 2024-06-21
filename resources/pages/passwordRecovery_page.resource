@@ -35,12 +35,15 @@ It should appear error message when users input invalid email
     [Documentation]    This keyword verifies that the error message appears
     [Arguments]    ${VALUES}    ${NOTIFICATION}
     TRY
-        Access to url                          ${URL_PASSWORDRECOVERY}
         Input the email for the Email field    ${VALUES}
         Click the Submit button
-        Check the text elememt                 ${NOTIFICATION}
-        Close the web page
-        
+        Check the text elememt                 ${NOTIFICATION}        
     EXCEPT
         Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
+    END
+Open the Password Recovery page
+    TRY
+        Access to url                          ${URL_PASSWORDRECOVERY}
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    Couldn't open the Password Recovery page     
     END
