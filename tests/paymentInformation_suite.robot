@@ -8,9 +8,9 @@ Resource    ../resources/pages/productdetail_page.resource
 Resource    ../resources/keywords/utils.resource
 Resource    ../resources/keywords/zephyr_scale_integrate.resource
 
-Suite Setup         Test Suite Setup
-Test Setup        Test case Setup
-Test Teardown    Test case Teardown
+Suite Setup         Test Suite Setup for payment information suite
+Test Setup          Test case Setup payment information suite
+Test Teardown       Test case Teardown payment information suite
 Documentation   This suite cover all test cases related to the user story [BSG-38] - Payment Information Page
  ...           - As a customer,
  ...           - I want to enter my payment information securely,
@@ -82,13 +82,13 @@ BSG-T144 --- Verify that the system should display the warning message when user
     User        4444 5555 5555 5555    1           'Card code' is not in the correct format
     User        4444 5555 5555 5555    12345       'Card code' is not in the correct format
 *** Keywords ***
-Test case Setup
+Test case Setup payment information suite
     Set test case start time
 
-Test case Teardown
+Test case Teardown payment information suite
     Close Browser
     Update test case result to Zephyr Scale
 
-Test Suite Setup
+Test Suite Setup for payment information suite
     Create test cycle at folder    Smoke Testing
     Log    This is suite setup

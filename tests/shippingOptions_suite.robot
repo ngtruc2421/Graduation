@@ -5,9 +5,9 @@ Resource    ../resources/pages/login_page.resource
 Resource    ../resources/pages/productdetail_page.resource
 Resource    ../resources/keywords/utils.resource
 Resource    ../resources/keywords/zephyr_scale_integrate.resource
-Suite Setup         Test Suite Setup
-Test Setup          Test case Setup
-Test Teardown       Test case Teardown
+Suite Setup         Test Suite Setup for shipping options
+Test Setup          Test case Setup for shipping options
+Test Teardown       Test case Teardown for shipping options
 Documentation   This suite cover all test cases related to the user story [BSG-37] - Shipping Options Page
  ...           - As a customer,
  ...           - I want to choose my preferred shipping method,
@@ -48,13 +48,13 @@ BSG-T139 --- Verify that the system show a "Back" button to return to the Addres
     The system should show a "Back" button to return to the Address Entry page
 
 *** Keywords ***
-Test case Setup
+Test case Setup for shipping options
     Set test case start time
 
-Test case Teardown
+Test case Teardown for shipping options
     Update test case result to Zephyr Scale
     Close Browser
 
-Test Suite Setup
+Test Suite Setup for shipping options
     Create test cycle at folder    Smoke Testing
     Log    This is suite setup

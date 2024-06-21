@@ -6,9 +6,9 @@ Resource    ../resources/pages/productdetail_page.resource
 Resource    ../resources/pages/home_page.resource
 Resource    ../resources/keywords/utils.resource
 Resource    ../resources/keywords/zephyr_scale_integrate.resource
-Suite Setup         Test Suite Setup
-Test Setup          Test case Setup
-Test Teardown       Test case Teardown
+Suite Setup         Test Suite Setup for currency suite
+Test Setup          Test case Setup for currency suite
+Test Teardown       Test case Teardown for currency suite
 Documentation   This suite cover all test cases related to the user story [BSG-24] - Management currency type
 ...            - As a user
 ...            - I want to select the currency type
@@ -76,13 +76,13 @@ BSG-T103 --- Verify that the currency value on the product should change in real
     It should change in real time when the user changes the currency type
     
 *** Keywords ***
-Test case Setup
+Test case Setup for currency suite
     Set test case start time
 
-Test case Teardown
+Test case Teardown for currency suite
     Close Browser
     Update test case result to Zephyr Scale
 
-Test Suite Setup
+Test Suite Setup for currency suite
     Create test cycle at folder    Smoke Testing
     Log    This is suite setup
