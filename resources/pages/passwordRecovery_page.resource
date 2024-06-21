@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
 Resource    login_page.resource
+Resource    customerinfor_page.resource
 
 *** Variables ***
 ${RESETPASS_INPUT_ELE}    id=Email
@@ -43,7 +44,7 @@ It should appear error message when users input invalid email
     END
 Open the Password Recovery page
     TRY
-        Access to url                          ${URL_PASSWORDRECOVERY}
+        Navigate to URL                          ${URL_PASSWORDRECOVERY}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't open the Password Recovery page     
     END

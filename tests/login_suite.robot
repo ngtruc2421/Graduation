@@ -31,7 +31,6 @@ ${LOGINPAGE_TITLE}           Sign In
 *** Test Cases ***
 BSG-T1 --- Verify that there is a page for users log in to the system
     [Tags]    High
-    Open the Login page
     It should display the Login page    ${LOGINPAGE_TITLE}
 BSG-T3 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
     #F
@@ -53,7 +52,6 @@ BSG-T3 --- Verify that the system will display the error message when users inpu
 BSG-T13 --- Verify that the users can use "Remember Me" option
     #F
     [Tags]    High
-    Open the Login page
     Input username    ${USER_NAME_RIGHT}
     Input pass    ${PASS_RIGHT}
     Click the "Remember me" option
@@ -65,14 +63,12 @@ BSG-T13 --- Verify that the users can use "Remember Me" option
     ...    ${PASS_RIGHT}    ${PASSWORD_ELE}
 BSG-T15 --- Verify that the system provided a "Forgot Password" link for users who need to reset their password
     [Tags]    High
-    Open the Login page
     Click on the Forgot password link
     Input the email for the Email field    ${EMAIL_REGISTERED}
     Click the Submit button
     Users should reset password success
 BSG-T17 --- Verify that the system will update the login's status when users login success
     [Tags]    High    Smoke
-    Open the Login page
     Input username    ${USER_NAME_RIGHT}
     Input pass    ${PASS_RIGHT}
     Click the Login button
@@ -85,22 +81,18 @@ BSG-T29 --- Verify that the system will display the error message when users inp
     @User321gmail.com    'Your email address' is not a valid email address
     !!!@#####            'Your email address' is not a valid email address
     ${EMPTY}             'Your email address' should not be empty
-
 BSG-T32 --- Verify that user can input data for the Username or email field
     [Tags]    High    Smoke
-    Open the Login page
     Input username    ${USER_NAME_RIGHT}
     Unfocus the field
     It should input the data    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
 BSG-T34 --- Verify that user can input data for the Password field
     [Tags]    High    Smoke
-    Open the Login page
     Input pass    ${PASS_RIGHT}
     Unfocus the field
     It should input the data    ${PASS_RIGHT}    ${PASSWORD_ELE}
 BSG-T49 --- Verify that users can login success into the system
     [Tags]    High    Smoke
-    Open the Login page
     Input username            ${USER_NAME_RIGHT}
     Input pass                ${PASS_RIGHT}
     Click the Login button
@@ -109,6 +101,7 @@ BSG-T49 --- Verify that users can login success into the system
 *** Keywords ***
 Test case Setup for login suite
     Set test case start time
+    Open the Login page
 Test case Teardown for login suite
     Update test case result to Zephyr Scale
     Close the web page
@@ -116,3 +109,7 @@ Test case Teardown for login suite
 Test Suite Setup for login suite
     Create test cycle at folder    Smoke Testing
     Log    This is suite setup
+
+Open the password recovery page
+    Set test case start time
+    Access to url                  ${URL_PASSWORDRECOVERY}

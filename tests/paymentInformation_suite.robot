@@ -73,6 +73,7 @@ BSG-T143 --- Verify that the Payment page will be include a "Back" button to ret
     The Payement page should be have the Back button for return to the Shipping page
 
 BSG-T144 --- Verify that the system should display the warning message when user inputs incorrect data
+    # F
     [Tags]    Medium
     [Template]    It should display the warning message
     ${EMPTY}    4444 5555 5555 5555    1234        'Cardholder name' should not be empty

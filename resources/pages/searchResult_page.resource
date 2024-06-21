@@ -139,11 +139,8 @@ It should display messages when the product are found
     [Documentation]    This keyword verifies that it should display messages when the product are found
     [Arguments]    ${CONTENT}    ${MESS}
     TRY
-        Open the Home Page
         Search product on the search bar    ${CONTENT}
-        Check the text elememt    ${MESS}
-        Close the web page
-    
+        Check the text elememt    ${MESS}    
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't display message when the product is found 
     END

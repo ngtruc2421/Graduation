@@ -4,8 +4,10 @@ robot --include Smoke  tests/register_suite.robot
 robot --include Smoke  tests/shoppingCartSidebar_suite.robot
 robot --include Smoke  tests/managementShoppingCart_suite.robot
 
+
 robot --include High  tests/customerInfoManagement_suite.robot
 robot --include High  tests/addProductToShoppingCart_suite.robot
 robot --include High  tests/register_suite.robot
 robot --include High  tests/shoppingCartSidebar_suite.robot
 robot --include High  tests/managementShoppingCart_suite.robot
+robot --include High  tests/login_suite.robot

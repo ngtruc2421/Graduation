@@ -16,7 +16,6 @@ Documentation   This suite cover all test cases related to the user story [BSG-3
 *** Test Cases ***
 BSG-T136 --- Verify that the system display available shipping methods with costs and estimated delivery times
     [Tags]    High
-    Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
     Click on Add Product button from product detail page
@@ -26,7 +25,6 @@ BSG-T136 --- Verify that the system display available shipping methods with cost
     It should display available options for shipping
 BSG-T137 --- Verify that the system allow selection of a shipping method and update the order total accordingly
     [Tags]    High    Smoke
-    Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
     Click on Add Product button from product detail page
@@ -37,7 +35,6 @@ BSG-T137 --- Verify that the system allow selection of a shipping method and upd
     The system should be update the order total accordingly after user select the shipping option
 BSG-T139 --- Verify that the system show a "Back" button to return to the Address Entry page
     [Tags]    High    Smoke
-    Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
     Click on Add Product button from product detail page
@@ -50,7 +47,7 @@ BSG-T139 --- Verify that the system show a "Back" button to return to the Addres
 *** Keywords ***
 Test case Setup for shipping options
     Set test case start time
-
+    Open the Login page
 Test case Teardown for shipping options
     Update test case result to Zephyr Scale
     Close Browser
