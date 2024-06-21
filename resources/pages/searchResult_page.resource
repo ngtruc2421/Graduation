@@ -103,7 +103,6 @@ The entered values still are have
     [Documentation]    This keyword verifies that 
     [Arguments]    ${FIRST}    ${SECOND}
     TRY
-        Click on the web element    ${DATAKEY_RATING}
         ${FIRST_EXP}=    Get Value    ${FROM_INPUT_ELE}
         ${SECOND_EXP}=    Get Value    ${TO_INPUT_ELE}
         Should Be Equal As Strings    ${FIRST_EXP}    ${FIRST}

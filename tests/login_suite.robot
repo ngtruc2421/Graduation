@@ -2,11 +2,11 @@
 Resource         ../resources/pages/login_page.resource
 Resource         ../resources/pages/passwordRecovery_page.resource
 Resource         ../resources/page_objects/header.resource
-Resource    ../resources/keywords/utils.resource
-Resource    ../resources/keywords/zephyr_scale_integrate.resource
-Suite Setup         Test Suite Setup
-Test Setup          Test case Setup
-Test Teardown       Test case Teardown
+Resource         ../resources/keywords/utils.resource
+Resource         ../resources/keywords/zephyr_scale_integrate.resource
+Suite Setup         Test Suite Setup for search results suite
+Test Setup          Test case Setup for search results suite
+Test Teardown       Test case Teardown for search results suite
 Documentation    This suite cover all test cases related to the user story [BSG-3] - User Login
 ...            - As a registered user
 ...            - I want to log into my account
@@ -104,12 +104,12 @@ BSG-T49 --- Verify that users can login success into the system
     It should log in success            ${MESS_SUCCESS}
 
 *** Keywords ***
-Test case Setup
+Test case Setup for search results suite
     Set test case start time
-Test case Teardown
+Test case Teardown for search results suite
     Update test case result to Zephyr Scale
     Close the web page
 
-Test Suite Setup
+Test Suite Setup for search results suite
     Create test cycle at folder    Smoke Testing
     Log    This is suite setup

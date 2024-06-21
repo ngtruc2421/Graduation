@@ -92,6 +92,5 @@ Enters the text on the search bar
 Search product on the search bar
     [Arguments]    ${TEXT} 
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE}
-        Wait until page contain element    css:.instasearch-drop    
         Click on button    ${SEARCH_BTN_ELE}
 # End common keyword ]

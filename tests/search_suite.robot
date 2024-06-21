@@ -4,9 +4,9 @@ Resource    ../resources/page_objects/searchBar.resource
 Resource    ../resources/pages/home_page.resource
 Resource    ../resources/keywords/utils.resource
 Resource    ../resources/keywords/zephyr_scale_integrate.resource
-Suite Setup         Test Suite Setup
-Test Setup          Test case Setup
-Test Teardown       Test case Teardown
+Suite Setup         Test Suite Setup for search suite
+Test Setup          Test case Setup for search suite
+Test Teardown       Test case Teardown for search suite
 Documentation   This suite cover all test cases related to the user story [BSG-14] - Enhanced Product Search Functionality
  ...           - As a Regular online shopper
  ...           - I want to Efficiently search for products on an e-commerce website
@@ -135,13 +135,13 @@ BSG-T65 --- Verify that users should receive clear error messages if no filter r
     It should display the error message    ${ERRORFILTER_MESS}
 
 *** Keywords ***
-Test case Setup
+Test case Setup for search suite
     Set test case start time
 
-Test case Teardown
+Test case Teardown for search suite
     Update test case result to Zephyr Scale
-    Close Browser
+    Close the web page
 
-Test Suite Setup
+Test Suite Setup for search suite
     Create test cycle at folder    Smoke Testing
     Log    This is suite setup

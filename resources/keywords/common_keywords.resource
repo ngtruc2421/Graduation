@@ -37,7 +37,6 @@ Click on the web element
     [Documentation]    This keyword to click on the any web elememt by provided locator
     [Arguments]    ${LOCATOR}
     TRY
-        Scroll Element Into View    ${LOCATOR}
         Wait Until Element Is Visible    ${LOCATOR}
         Wait Until Element Is Enabled    ${LOCATOR}
         Click Element                    ${LOCATOR}
@@ -58,7 +57,6 @@ Input value for a field
     [Documentation]    This keyword input a value for a field by provided value and locator 
     [Arguments]    ${TEXT}    ${LOCATOR} 
     TRY
-        Scroll Element Into View    ${LOCATOR}
         Wait Until Element Is Visible    ${LOCATOR}      
         Clear Element Text               ${LOCATOR}
         Input Text    ${LOCATOR}    ${TEXT}
