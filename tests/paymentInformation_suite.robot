@@ -11,7 +11,11 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup         Test Suite Setup
 Test Setup        Test case Setup
 Test Teardown    Test case Teardown
-*** Variables ***
+Documentation   This suite cover all test cases related to the user story [BSG-38] - Payment Information Page
+ ...           - As a customer,
+ ...           - I want to enter my payment information securely,
+ ...           - So that I can complete my purchase and be charged correctly.
+
 *** Test Cases ***
 BSG-T140 --- Verify that the Payment page will provide secure input fields for credit card details
     [Tags]    High    Smoke

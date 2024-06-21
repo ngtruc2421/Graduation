@@ -22,7 +22,7 @@ Scroll to
     [Documentation]    This keyword to scroll the visual to the inputed value
     [Arguments]    ${VALUE}
     TRY
-    Execute Javascript    window.scrollBy(0,${VALUE})
+        Execute Javascript    window.scrollBy(0,${VALUE})
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't scroll to the provided value
     END
@@ -37,6 +37,7 @@ Click on the web element
     [Documentation]    This keyword to click on the any web elememt by provided locator
     [Arguments]    ${LOCATOR}
     TRY
+        Scroll Element Into View    ${LOCATOR}
         Wait Until Element Is Visible    ${LOCATOR}
         Wait Until Element Is Enabled    ${LOCATOR}
         Click Element                    ${LOCATOR}
@@ -48,8 +49,6 @@ Click on button
     [Documentation]    This keyword to click on a button by provided locator
     [Arguments]    ${LOCATOR}
         TRY
-            Wait Until Element Is Visible    ${LOCATOR}
-            Wait Until Element Is Enabled    ${LOCATOR}
             Click on the web element    ${LOCATOR}
         EXCEPT    
             Run Keyword And Continue On Failure    Fail    Couldn't click on ${LOCATOR} button 

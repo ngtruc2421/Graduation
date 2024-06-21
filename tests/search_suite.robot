@@ -7,7 +7,10 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup         Test Suite Setup
 Test Setup          Test case Setup
 Test Teardown       Test case Teardown
-
+Documentation   This suite cover all test cases related to the user story [BSG-14] - Enhanced Product Search Functionality
+ ...           - As a Regular online shopper
+ ...           - I want to Efficiently search for products on an e-commerce website
+ ...           - So that I can Quickly find and purchase the items I need
 *** Variables ***
 ${PRODUCT_KEYWORD}            an
 ${PRODUCT_NAME}               Dining table

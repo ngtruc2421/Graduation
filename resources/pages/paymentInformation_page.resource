@@ -13,24 +13,28 @@ ${CARDCODE_INPUT_ELE}    id=CardCode
 ${CREDITCARD_FROM_ELE}    id=payment-info-validation-summary
 *** Keywords ***
 Navigate to the Payment page
+    [Documentation]    This keyword verifies that navigate to the Payment page
     TRY
         Click on the Next button           
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Navigative to the Payement page" keyword
     END
 The Payement page should be have the Back button for return to the Shipping page
+    [Documentation]    This keyword verifies that the Payement page should be have the Back button for return to the Shipping page
     TRY
         Click on the Back button on the Payement page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "The Payement page should be have the Back button for return to the Shipping page" keyword
     END
 Select the Credit card option on the Payment page
+    [Documentation]    This keyword selecting the Credit card option on the Payment page
     TRY
         Click on the web element    ${CREDITCARD_OPTION_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the Credit card option on the Payment page" keyword
     END
 It should displays the Credit card form and the input fields for Credit card option
+    [Documentation]    This keyword verifies that it should displays the Credit card form and the input fields for Credit card option
     TRY
         Check the text elememt    Once your order is placed, you will be contacted by our staff to confirm the order
         Scroll to    document.body.scrollHeight
@@ -45,6 +49,7 @@ It should displays the Credit card form and the input fields for Credit card opt
     END
 
 Get the Card type list
+    [Documentation]    This keyword get the Card type list
     TRY
         ${LIST}=    Get list WebElements    ${CARDTYPE_INPUT_ELE}
         RETURN    ${LIST}
@@ -52,6 +57,7 @@ Get the Card type list
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Click on the Next button on the Payement page" keyword
     END
 The Payment page should be safe
+    [Documentation]    This keyword verifies that the Payment page should be safe
     TRY
         ${LOCATION}=    Get Location
         Should Contain    ${LOCATION}    https
@@ -60,6 +66,7 @@ The Payment page should be safe
     END
 
 Select the "${OPTION_NAME}" on the "Select your credit card" dropdown field
+    [Documentation]    This keyword selecting the "${OPTION_NAME}" on the "Select your credit card" dropdown field
     TRY
         Click on the web element    ${CARDTYPE_INPUT_ELE}
         Click on the web element    xpath=//select[@id="CreditCardType"]//option[contains(text(),"${OPTION_NAME}")]
@@ -68,6 +75,7 @@ Select the "${OPTION_NAME}" on the "Select your credit card" dropdown field
     END
 
 Enters the "${CARD_NAME}" on the "Cardholder name" field
+    [Documentation]    This keyword enters the "${CARD_NAME}" on the "Cardholder name" field
     TRY
         Input value for a field    ${CARD_NAME}    ${CARDNAME_INPUT_ELE}
     EXCEPT
@@ -75,6 +83,7 @@ Enters the "${CARD_NAME}" on the "Cardholder name" field
     END
 
 Enters the "${CARD_NUMBER}" on the "Card number" field
+    [Documentation]    This keyword enters the "${CARD_NUMBER}" on the "Card number" field
     TRY
         Input value for a field    ${CARD_NUMBER}    ${CARDNUM_INPUT_ELE}
     EXCEPT
@@ -82,6 +91,7 @@ Enters the "${CARD_NUMBER}" on the "Card number" field
     END
 
 Enters the "${CARD_CODE}" on the "Card code" field
+    [Documentation]    This keyword enters the "${CARD_CODE}" on the "Card code" field
     TRY
         Input value for a field    ${CARD_CODE}    ${CARDCODE_INPUT_ELE}
     EXCEPT
@@ -89,6 +99,7 @@ Enters the "${CARD_CODE}" on the "Card code" field
     END
 
 Select the "${MM}" on the "Valid until" month dropdown field
+    [Documentation]    This keyword select the "${MM}" on the "Valid until" month dropdown field
     TRY
         Click on the web element    ${EXMONTH_INPUT_ELE}
         Click on the web element    xpath=//select[@id="ExpireMonth"]//option[contains(text(),"${MM}")]
@@ -96,6 +107,7 @@ Select the "${MM}" on the "Valid until" month dropdown field
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the ${MM} on the "Valid until" dropdown field" keyword
     END
 Select the "${YYYY}" on the "Valid until" year dropdown field
+    [Documentation]    This keyword select the "${YYYY}" on the "Valid until" year dropdown field
     TRY
         Click on the web element    ${EXYEAR_INPUT_ELE}
         Click on the web element    xpath=//select[@id="ExpireYear"]//option[contains(text(),"${YYYY}")]
@@ -104,6 +116,7 @@ Select the "${YYYY}" on the "Valid until" year dropdown field
     END
 
 Click on the Next button on the Payment page
+    [Documentation]    This keyword click on the Next button on the Payment page
     TRY
         Click on the Next button
     EXCEPT
@@ -111,12 +124,14 @@ Click on the Next button on the Payment page
     END
 
 It should validate payment information before proceeding
+    [Documentation]    This keyword verifies that it should validate payment information before proceeding
     TRY
         Wait until page contain element    ${CREDITCARD_FROM_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should validate payment information before proceeding" keyword
     END
 It should display the warning message
+    [Documentation]    This keyword verifies that it should display the warning message
     [Arguments]    ${CARDHOLDERNAME}    ${CARDNUMBER}    ${CARDCODE}    ${MESS}
     TRY
         Open the Login page

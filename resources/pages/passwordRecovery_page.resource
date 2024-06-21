@@ -3,21 +3,44 @@ Resource    ../keywords/common_keywords.resource
 Resource    login_page.resource
 
 *** Variables ***
-${EMAIL_INPUT_ELE}    id=Email
+${RESETPASS_INPUT_ELE}    id=Email
 ${SUBMIT_BTN_ELE}    css:input[type="submit"]
 ${SUCCES_MESSAGE}    Email with instructions has been sent to you
 *** Keywords ***
 Click the Submit button
-    Click on the web element    ${SUBMIT_BTN_ELE}
+    [Documentation]    This keyword clicking on the Submit button
+    TRY
+        Click on the web element    ${SUBMIT_BTN_ELE}
+    EXCEPT
+        Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
+    END
+
 Input the email for the Email field
+    [Documentation]    This keyword input email for the Email field
     [Arguments]    ${EMAIL}
-    Input value for a field    ${EMAIL}    ${EMAIL_INPUT_ELE}
-Users reset password success
-    Check the text elememt    ${SUCCES_MESSAGE}
-Appear error message when users input invalid email
+    TRY
+        Input value for a field    ${EMAIL}    ${RESETPASS_INPUT_ELE}
+    EXCEPT
+        Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
+    END
+
+Users should reset password success
+    [Documentation]    This keyword verifies that user reset password success
+    TRY
+        Check the text elememt    ${SUCCES_MESSAGE}        
+    EXCEPT
+        Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
+    END
+It should appear error message when users input invalid email
+    [Documentation]    This keyword verifies that the error message appears
     [Arguments]    ${VALUES}    ${NOTIFICATION}
-    Access to url                          ${URL_PASSWORDRECOVERY}
-    Input the email for the Email field    ${VALUES}
-    Click the Submit button
-    Check the text elememt                 ${NOTIFICATION}
-    Close the web page
+    TRY
+        Access to url                          ${URL_PASSWORDRECOVERY}
+        Input the email for the Email field    ${VALUES}
+        Click the Submit button
+        Check the text elememt                 ${NOTIFICATION}
+        Close the web page
+        
+    EXCEPT
+        Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
+    END

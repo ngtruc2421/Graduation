@@ -7,14 +7,15 @@ ${PRODUCT_ITEM_ELE}    css:article[data-id="1"]
 
 *** Keywords ***
 Open the Home Page
+    [Documentation]    This keyword open the Home Page
     TRY
         Access to url    ${URL_HOME}
-        Navigate to URL     ${URL_HOME}
         The Home page should be open
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process open the Home page
     END
 Select a product on the Featured product section
+    [Documentation]    This keyword selecting a product on the Featured product section
     TRY
         Hover Over Elenment    ${PRODUCT_ITEM_ELE}    300
         Click on the web element    ${PRODUCT_ITEM_ELE}
@@ -23,6 +24,7 @@ Select a product on the Featured product section
     END
 
 The Home page should be open
+    [Documentation]    This keyword verifies that the Home page should be open
     TRY
         Wait Until Page Contains Element           ${HOMEPAGE_TITLE_ELE}  
         ${CURRENT_PAGE_TITLE}=    Get Text    ${HOMEPAGE_TITLE_ELE}   
@@ -32,6 +34,7 @@ The Home page should be open
     END
 
 Click on the "Shopping Basket" button
+    [Documentation]    This keyword clicking on the "Shopping Basket" button
     TRY
         Wait Until Element Is Visible    ${SHOPPING_BASKET_BTN_ELE}
         Click on button    ${SHOPPING_BASKET_BTN_ELE}
@@ -40,6 +43,7 @@ Click on the "Shopping Basket" button
     END
     
 Go to the Home Page
+    [Documentation]    
     TRY
         Navigate to URL     ${URL_HOME}
         The Home page should be open

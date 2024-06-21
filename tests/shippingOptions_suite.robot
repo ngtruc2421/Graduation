@@ -8,6 +8,10 @@ Resource    ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup         Test Suite Setup
 Test Setup          Test case Setup
 Test Teardown       Test case Teardown
+Documentation   This suite cover all test cases related to the user story [BSG-37] - Shipping Options Page
+ ...           - As a customer,
+ ...           - I want to choose my preferred shipping method,
+ ...           - So that I can select an option that best fits my needs for cost and delivery time.
 *** Variables ***
 *** Test Cases ***
 BSG-T136 --- Verify that the system display available shipping methods with costs and estimated delivery times
