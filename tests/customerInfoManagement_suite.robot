@@ -31,6 +31,7 @@ BSG-T79 --- Verify that Date of birth should be entered using a drop-down for da
 
 BSG-T80 --- Verify that The system should validate the email format
     [Tags]    High
+    #FAIL
     [Template]    It should show warning message when user input the "Email" field with specific value in customer info page
     kim                               'Email' is not a valid email address.
     kimngan123                        'Email' is not a valid email address.
@@ -51,6 +52,7 @@ BSG-T80 --- Verify that The system should validate the email format
 
 BSG-T81 --- Verify that Mandatory fields should be highlighted if left empty upon submission attempt
     [Tags]    High    
+    #FAIL
     Clear all data in required field
     Click on the Save button in the Customer infor page
     The error "'First name' should not be empty." should be display    
@@ -66,12 +68,13 @@ BSG-T83 --- Verify that The company name field is optional and should not preven
     [Tags]    High
     The "Company name" field should not be required
 
-BSG- T84 --- Verify that A "Save" button should be prominently displayed at the bottom of the form
+BSG-T84 --- Verify that A "Save" button should be prominently displayed at the bottom of the form
     [Tags]    High
     The "Save" button should be displayed 
 
 BSG-T85 --- Verify that On clicking "Save," the system should validate all input fields
     [Tags]    High
+    #FAIL
     Clear all data in required field
     Click on the Save button in the Customer infor page
     The error "'First name' should not be empty." should be display    
@@ -79,17 +82,19 @@ BSG-T85 --- Verify that On clicking "Save," the system should validate all input
     The error "'Email' should not be empty." should be display
 BSG-T86 --- Verify that If validation is successful, the information should be saved, and a success message should be displayed
     [Tags]    High
+    #FAIL
     Input the "Company name" field with value "WaverSoftware" in customer info page
     Click on the Save button in the Customer infor page
     The message "Customer information has been updated successfully" should be display
 
-BSG-87 --- Verify that If there are validation errors, the form should highlight the errors and provide appropriate messages to guide the user in correcting them
+BSG-T87 --- Verify that If there are validation errors, the form should highlight the errors and provide appropriate messages to guide the user in correcting them
     [Tags]    High
     [Template]    It should show warning message when user input the "Email" field with specific value in customer info page
     InvalidEmail              'Email' is not a valid email address.
 
 BSG-T88 --- Verify that After saving the form, users should receive a confirmation message that their information has been saved successfully
     [Tags]    High
+    #FAIL
     Input the "Company name" field with value "WaverSoftware" in customer info page
     Click on the Save button in the Customer infor page
     The message "Customer information has been updated successfully" should be display
