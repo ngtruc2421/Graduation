@@ -123,8 +123,8 @@ BSG-T151 --- Verify that the system Add field for entering gift cards
     The field for entering gift cards should be display
 *** Keywords ***
 Test Suite Setup of management shopping cart in page
-    # Create test cycle at folder    Smoke Testing
-    Create test cycle at folder     Regression Testing
+    Create test cycle at folder    Smoke Testing
+    # Create test cycle at folder     Regression Testing
     Log    This is suite setup
 Test case Setup of management shopping cart in page
     Set test case start time
