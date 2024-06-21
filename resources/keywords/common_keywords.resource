@@ -69,6 +69,7 @@ Check the text elememt
     [Documentation]    This keyword checks a web text element that is display on the webpage
     [Arguments]    ${TEXT}
     TRY
+        Wait Until Page Contains    ${TEXT}
         Page Should Contain              ${TEXT}
     EXCEPT    
         Run Keyword And Continue On Failure  Fail    The text isn't display on the page

@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
 Resource    login_page.resource
+Resource    customerinfor_page.resource
 
 *** Variables ***
 ${RESETPASS_INPUT_ELE}    id=Email
@@ -35,12 +36,10 @@ It should appear error message when users input invalid email
     [Documentation]    This keyword verifies that the error message appears
     [Arguments]    ${VALUES}    ${NOTIFICATION}
     TRY
-        Access to url                          ${URL_PASSWORDRECOVERY}
         Input the email for the Email field    ${VALUES}
         Click the Submit button
         Check the text elememt                 ${NOTIFICATION}
-        Close the web page
-        
+        Clear Element Text    ${RESETPASS_INPUT_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
     END

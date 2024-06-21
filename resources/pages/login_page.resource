@@ -118,12 +118,12 @@ It should appear the error message when users input incorrect value for the User
     ...                for the Username or email field and Password field
     [Arguments]    ${USERNAME_EMAIL}    ${PASS}    ${MESS}
     TRY
-        Open the Login page
         Input username    ${USERNAME_EMAIL}
         Input pass    ${PASS}
         Click the Login button
         Check the text elememt    ${MESS}
-        Close the web page
+        Clear Element Text    ${USERNAME_ELE}
+        Clear Element Text    ${PASSWORD_ELE} 
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    It doesn't appear the error message
     END
