@@ -25,7 +25,6 @@ BSG-T70 --- Verify that The "Add to Cart" button accessible on each product card
     Hover Over The product item "Club Lounge Chair" in product page
     Click on Add Product button of product "Club Lounge Chair" from type product page 
     The product detail "Club Lounge Chair" page should be opened
-
 BSG-T71 --- Verify that when the "Add to Cart" button is clicked, the product should show on the Shopping Cart
     [Tags]    High
     Click on Add Product button from product detail page

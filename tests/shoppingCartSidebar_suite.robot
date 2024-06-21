@@ -18,7 +18,7 @@ ${PASSWORD}=        Ttkn1234@
 *** Test Cases ***
 BSG-T37 --- Verify that Users can view the items in their shopping cart at any time by clicking the shopping cart icon
     [Tags]    High    Smoke
-    Click on the Home page
+    Go to the Home Page
     Click on the "Shopping Basket" button
     Display sidebar "Shopping Cart" tab
     The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
@@ -52,7 +52,19 @@ BSG-T42 --- Verify that Upon removal, the cart should update immediately to refl
 
 BSG-T43 --- Verify that Users can proceed to the checkout process from the shopping cart view by clicking the "Checkout" button
     [Tags]    High
-    [Setup]    User logged in yet and There is at least 1 product in shopping cart of management shopping cart sidebar
+    [Setup]     Access the Sign In page
+    Log in the system    ${USERNAME}    ${PASSWORD}
+    Search product on the search bar    The Prisoner of Heaven: A Novel
+    Hover Over The product item "The Prisoner of Heaven: A Novel" in result page
+    Click on the Add product button on search result page 
+    Display sidebar "Shopping Cart" tab
+    The "The Prisoner of Heaven: A Novel" should show on shopping cart tab
+    Click on the Home page
+    Search product on the search bar    Best Grilling Recipes
+    Hover Over The product item "Best Grilling Recipes" in result page
+    Click on the Add product button on search result page 
+    Display sidebar "Shopping Cart" tab
+    The "Best Grilling Recipes" should show on shopping cart tab    
     Click the "Checkout" button in the sidebar
     The Billing address page should be opened
 
