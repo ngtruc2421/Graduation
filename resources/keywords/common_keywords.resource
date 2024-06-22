@@ -114,6 +114,8 @@ Select Option From Dropdown
     [Documentation]    This keyword select a option from the dropdown by provided locator and option
     [Arguments]    ${DROPDOWN_LOCATOR}    ${OPTION_TEXT}
     TRY
+        Wait Until Element Is Visible    ${DROPDOWN_LOCATOR}
+        Wait Until Element Is Enabled    ${DROPDOWN_LOCATOR}
         Select From List By Label    ${DROPDOWN_LOCATOR}    ${OPTION_TEXT}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't select the ${OPTION_TEXT} option
@@ -186,4 +188,11 @@ Wait for page loaded
         Wait Until Element Is Not Visible    ${locator}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Wait for page loaded
+    END
+Clear cookies 
+    [Documentation]       This keyword is used to clear all cookies of the openning browser
+    TRY
+        Delete All Cookies
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    Couldn't clear all cookies of browser
     END

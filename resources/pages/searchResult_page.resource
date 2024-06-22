@@ -159,12 +159,11 @@ Users should view the search results after selected the view options
     [Documentation]    This keyword verifies that users should view the search results after selected the view options
     [Arguments]    ${SELECT_VALUE}
     TRY
-        Open the Home Page
+
         Search product on the search bar    an
         Select Option From Dropdown    ${ACTION_SORT_ELE}    ${SELECT_VALUE}
-        ${SELECTED_VALUE}=    Get Text    ${SELECT_OPTION_ELE}
+        ${SELECTED_VALUE}=    Wait and get element text    ${SELECT_OPTION_ELE}
         Should Be Equal As Strings    ${SELECTED_VALUE}    ${SELECT_VALUE}
-        Close All Browsers
     EXCEPT
         Run Keyword And Continue On Failure    Fail    It couldn't view the search results after selected the view options 
     END

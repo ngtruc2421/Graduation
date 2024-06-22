@@ -11,11 +11,11 @@ ${SUGGESLIST_TITLE}    class=instasearch-group-header
 *** Keywords ***
 # Start template [
 It should display the search bar on the page
-    [Arguments]    ${URL}    @{SEARCH_OBJECT}
+    [Arguments]    ${URL}
     TRY
         Navigate to URL    ${URL}
-        Wait until page contain element    ${SEARCH_OBJECT}[0]
-        Wait until page contain element    ${SEARCH_OBJECT}[1] 
+        Wait until page contain element    ${SEARCHBAR_INPUT_ELE}
+        Wait until page contain element    ${SEARCH_BTN_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There are the issue on the "Display the search bar on the page" keyword
     END

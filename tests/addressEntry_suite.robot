@@ -18,7 +18,7 @@ Documentation   This suite cover all test cases related to the user story [BSG-3
 *** Test Cases ***
 BSG-T105 --- Verify that the system should provide input fields for shipping and billing address details
     [Tags]    High    Smoke
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar 
@@ -28,7 +28,7 @@ BSG-T105 --- Verify that the system should provide input fields for shipping and
     
 BSG-T106 --- Verify that the system should be Include options to save addresses for future use
     [Tags]    High    Smoke
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar 
@@ -41,7 +41,7 @@ BSG-T106 --- Verify that the system should be Include options to save addresses 
 
 BSG-T107 --- Verify that the system should allow using the same address for billing and shipping
     [Tags]    High    Smoke
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar 
@@ -55,7 +55,7 @@ BSG-T107 --- Verify that the system should allow using the same address for bill
 BSG-T108 --- Verify that the system should be validate addresses for completeness and accuracy before proceeding
     #F
     [Tags]    High    Smoke
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar 
@@ -65,7 +65,7 @@ BSG-T108 --- Verify that the system should be validate addresses for completenes
 
 BSG-T135 --- Verify that the system should be include a "Back" button to return to the Cart page
     [Tags]    High    Smoke
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar 

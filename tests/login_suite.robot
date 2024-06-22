@@ -13,90 +13,77 @@ Documentation    This suite cover all test cases related to the user story [BSG-
 ...            - So that I can access my personalized dashboard and features
 
 *** Variables ***
-${USER_NAME_WRONG}=          @trantruc
 ${PASS_WHITESPACE}           @us   er123
-${USER_NAME_RIGHT}=          @trantruc2001
-${EMAIL_NOTREGISTER}         user001@gmail.com
-${EMAIL_REGISTERED}=         tt1799917@gmail.com
-${PASS_RIGHT}=               TranPhuongNgocTruc20042001
-${PASS_WRONG}=               TranPhuongNgocTruc200420011
-${EMAIL_INCORRECT_MESS}      The email you entered is incorrect
-${PASS_INCORRECT_MESS}       The password you entered is incorrect    
-${EMPTY_MESS}                Email and Password are required fields
-${EMAIL_NOTREGISTER_MESS}    The email address you entered is not associated with an account
-${MESS_FAIL}                 Login was unsuccessful. Please correct the errors and try again.
-${MESS_SUCCESS}              Welcome to our store.  
-${LOGINPAGE_TITLE}           Sign In
 
 *** Test Cases ***
 BSG-T1 --- Verify that there is a page for users log in to the system
     [Tags]    High
-    It should display the Login page    ${LOGINPAGE_TITLE}
+    It should display the Login page    Sign In
 BSG-T3 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
     #F
     [Tags]    High
     [Template]    It should appear the error message when users input incorrect value for the Username or email field and Password field
-    ${EMAIL_NOTREGISTER}    ${PASS_RIGHT}         ${EMAIL_NOTREGISTER_MESS}
-    @user123.gmail.com      ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
-    11111.com               ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
-    @!!!#@gmail.com         ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
-    ${USER_NAME_WRONG}      ${PASS_RIGHT}         ${EMAIL_INCORRECT_MESS}
-    ${EMPTY}                ${PASS_RIGHT}         ${EMPTY_MESS}
-    ${EMAIL_REGISTERED}     @@@!!!###             ${PASS_INCORRECT_MESS}
-    ${EMAIL_REGISTERED}     1234567               ${PASS_INCORRECT_MESS}
-    ${EMAIL_REGISTERED}     ${PASS_WHITESPACE}    ${PASS_INCORRECT_MESS}
-    ${EMAIL_REGISTERED}     ${EMPTY}              ${EMPTY_MESS}
-    ${EMPTY}                ${EMPTY}              ${EMPTY_MESS}
+    user001@gmail.com       TranPhuongNgocTruc20042001         The email address you entered is not associated with an account
+    @user123.gmail.com      TranPhuongNgocTruc20042001         The email you entered is incorrect
+    11111.com               TranPhuongNgocTruc20042001         The email you entered is incorrect
+    @!!!#@gmail.com         TranPhuongNgocTruc20042001         The email you entered is incorrect
+    @trantruc               TranPhuongNgocTruc20042001         The email you entered is incorrect
+    ${EMPTY}                TranPhuongNgocTruc20042001         Email and Password are required fields
+    tt1799917@gmail.com     @@@!!!###                          The password you entered is incorrect
+    tt1799917@gmail.com     1234567                            The password you entered is incorrect
+    tt1799917@gmail.com     ${PASS_WHITESPACE}                 The password you entered is incorrect
+    tt1799917@gmail.com     ${EMPTY}                           Email and Password are required fields
+    ${EMPTY}                ${EMPTY}                           Email and Password are required fields
     
 
 BSG-T13 --- Verify that the users can use "Remember Me" option
     #F
     [Tags]    High
-    Input username    ${USER_NAME_RIGHT}
-    Input pass    ${PASS_RIGHT}
+    Input username                                        @trantruc2001
+    Input pass                                            TranPhuongNgocTruc20042001
     Click the "Remember me" option
     Click the Login button
     Click on the account's name on the top at the corner
     Select the Log out option
     Click on the Log in option on the top of the corner
-    The system should save the account information    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
-    ...    ${PASS_RIGHT}    ${PASSWORD_ELE}
+    The system should save the account information        @trantruc2001    ${USERNAME_ELE}
+    ...    TranPhuongNgocTruc20042001    ${PASSWORD_ELE}
 BSG-T15 --- Verify that the system provided a "Forgot Password" link for users who need to reset their password
     [Tags]    High
     Click on the Forgot password link
-    Input the email for the Email field    ${EMAIL_REGISTERED}
+    Input the email for the Email field    tt1799917@gmail.com
     Click the Submit button
     Users should reset password success
 BSG-T17 --- Verify that the system will update the login's status when users login success
     [Tags]    High    Smoke
-    Input username    ${USER_NAME_RIGHT}
-    Input pass    ${PASS_RIGHT}
+    Input username    @trantruc2001
+    Input pass        TranPhuongNgocTruc20042001
     Click the Login button
-    Show on the logged in user's name on the top right    ${USER_NAME_RIGHT}
+    Show on the logged in user's name on the top right    @trantruc2001
 BSG-T29 --- Verify that the system will display the error message when users input invalid email on the Forgot Password page
-    [Tags]               Medium
-    [Setup]              Open the Password Recovery page
-    [Template]           It should appear error message when users input invalid email
-    User123@gmail.com    Email not found
+    [Tags]                Medium
+    [Setup]               Open the Password Recovery page
+    [Template]            It should appear error message when users input invalid email
+    User123@gmail.com     Email not found
     @User321gmail.com    'Your email address' is not a valid email address
     !!!@#####            'Your email address' is not a valid email address
     ${EMPTY}             'Your email address' should not be empty
 BSG-T32 --- Verify that user can input data for the Username or email field
     [Tags]    High    Smoke
-    Input username    ${USER_NAME_RIGHT}
+    Input username              @trantruc2001
     Unfocus the field
-    It should input the data    ${USER_NAME_RIGHT}    ${USERNAME_ELE}
+    It should input the data    @trantruc2001    ${USERNAME_ELE}
 BSG-T34 --- Verify that user can input data for the Password field
     [Tags]    High    Smoke
-    Input pass    ${PASS_RIGHT}
+    Input pass                  TranPhuongNgocTruc20042001
     Unfocus the field
-    It should input the data    ${PASS_RIGHT}    ${PASSWORD_ELE}
+    It should input the data    TranPhuongNgocTruc20042001    ${PASSWORD_ELE}
 BSG-T49 --- Verify that users can login success into the system
     [Tags]    High    Smoke
-    Input username            ${USER_NAME_RIGHT}
-    Input pass                ${PASS_RIGHT}
+    Input username                      @trantruc2001
+    Input pass                          TranPhuongNgocTruc20042001
     Click the Login button
-    It should log in success            ${MESS_SUCCESS}
+    It should log in success            Welcome to our store.
 
 *** Keywords ***
 Test case Setup for login suite
@@ -108,8 +95,8 @@ Test case Teardown for login suite
 
 Test Suite Setup for login suite
     Create test cycle at folder    Smoke Testing
-    Log    This is suite setup
+    Log                            This is suite setup
 
 Open the password recovery page
     Set test case start time
-    Access to url                  ${URL_PASSWORDRECOVERY}
+    Access to url                      https://bearstore-testsite.smartbear.com/customer/passwordrecovery          

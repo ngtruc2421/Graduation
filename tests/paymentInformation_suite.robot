@@ -20,7 +20,7 @@ Documentation   This suite cover all test cases related to the user story [BSG-3
 BSG-T140 --- Verify that the Payment page will provide secure input fields for credit card details
     [Tags]    High    Smoke
     Open the Login page
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar
@@ -33,7 +33,7 @@ BSG-T140 --- Verify that the Payment page will provide secure input fields for c
 BSG-T141 --- Verify that the Payment Page will ensure the page is secure by HTTPS compliance
     [Tags]    High
     Open the Login page
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar
@@ -44,7 +44,7 @@ BSG-T141 --- Verify that the Payment Page will ensure the page is secure by HTTP
 BSG-T142 --- Verify that the Payment page will be validate payment information before proceeding
     [Tags]    High    Smoke
     Open the Login page
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar
@@ -63,7 +63,7 @@ BSG-T142 --- Verify that the Payment page will be validate payment information b
 BSG-T143 --- Verify that the Payment page will be include a "Back" button to return to the Shipping Options page
     [Tags]    High
     Open the Login page
-    Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
+    Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
     Click on Add Product button from product detail page
     Click the "Checkout" button in the sidebar
