@@ -14,7 +14,7 @@ ${CONTINUE_BTN_ELE}          css:.register-continue-button
 Open Register page
     [Documentation]       This keyword is used to Open Register page
     Open page    Register    ${PAGE_TITLE_ELE}
-
+    The Register page should be opened
 The Register page should be opened
     [Documentation]       This keyword is used to verify The Register page should be opened
     The page should be opened    Register    ${PAGE_TITLE_ELE}

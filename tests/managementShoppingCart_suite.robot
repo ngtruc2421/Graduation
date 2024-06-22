@@ -12,6 +12,7 @@ Documentation    This suite cover all test cases related to the user story [BSG-
 *** Test Cases ***
 BSG-T111 --- Verify that Display a list of all items in the cart, each with: A thumbnail image
     [Tags]    High    Smoke
+    
     The image "The Prisoner of Heaven: A Novel" should be displayed in the shopping cart page
 
 BSG-T112 --- Verify that Display a list of all items in the cart, each with: Product name
