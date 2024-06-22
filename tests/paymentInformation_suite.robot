@@ -19,7 +19,6 @@ Documentation   This suite cover all test cases related to the user story [BSG-3
 *** Test Cases ***
 BSG-T140 --- Verify that the Payment page will provide secure input fields for credit card details
     [Tags]    High    Smoke
-    Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
     Click on Add Product button from product detail page
@@ -32,7 +31,6 @@ BSG-T140 --- Verify that the Payment page will provide secure input fields for c
 
 BSG-T141 --- Verify that the Payment Page will ensure the page is secure by HTTPS compliance
     [Tags]    High
-    Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
     Click on Add Product button from product detail page
@@ -43,7 +41,6 @@ BSG-T141 --- Verify that the Payment Page will ensure the page is secure by HTTP
     The Payment page should be safe
 BSG-T142 --- Verify that the Payment page will be validate payment information before proceeding
     [Tags]    High    Smoke
-    Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
     Click on Add Product button from product detail page
@@ -62,7 +59,6 @@ BSG-T142 --- Verify that the Payment page will be validate payment information b
     It should validate payment information before proceeding
 BSG-T143 --- Verify that the Payment page will be include a "Back" button to return to the Shipping Options page
     [Tags]    High
-    Open the Login page
     Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
     Select a product on the Featured product section
     Click on Add Product button from product detail page
@@ -85,10 +81,10 @@ BSG-T144 --- Verify that the system should display the warning message when user
 *** Keywords ***
 Test case Setup payment information suite
     Set test case start time
-
+    Open the Login page
 Test case Teardown payment information suite
-    Close Browser
     Update test case result to Zephyr Scale
+    Close All Browsers
 
 Test Suite Setup for payment information suite
     Create test cycle at folder    Smoke Testing

@@ -223,7 +223,7 @@ Select the Delivery checkbox
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't selecting the Delivery checkbox 
     END
-
+# ${CATEGORY_SELECTED_ELE}    ${SELECTEDITEM_ELE}
 It should be display the result after select checkbox
     [Documentation]    This keyword verifies that it should be display the result after select checkbox
     [Arguments]    ${LOCATOR_ATR}    ${LOCATOR_LIST}
