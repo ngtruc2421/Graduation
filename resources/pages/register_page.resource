@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ../keywords/common_keywords.resource
+Library    Telnet
 
 *** Variables ***
 # ${LOGIN_BTN_ELE}              css:.menubar-link[href="/login?returnUrl=%2F"]
@@ -111,6 +112,7 @@ The error "${ERROR}" should not be display
 The error "${ERROR}" should be display
     [Documentation]       This keyword is used to verify The error should be display from provided error
     TRY
+        Wait Until Page Contains    ${ERROR}
         Page Should Contain    ${ERROR}
     EXCEPT
         Log    The ${ERROR} not contain in page    
@@ -124,6 +126,7 @@ It should show warning message when user input the "${FIELD_NAME}" field with sp
         Input the "${FIELD_NAME}" field with value "${TEXT}"
         Click the Register button in the Register page
         The error "${ERROR}" should be display
+        
     EXCEPT  
         Run Keyword And Continue On Failure   FAIL     There is a error happen in process verify It should show warning message when user input the "${FIELD_NAME}" field with specific value ${text}        
     END

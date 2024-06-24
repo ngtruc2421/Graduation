@@ -133,7 +133,7 @@ The "Save" button should be displayed
     END 
     
 
-Clear data in ${NAME} field 
+Clear data in "${NAME}" field 
     [Documentation]       This keyword is used to Clear data in name field from provided field name
     TRY
         ${LOCATOR}=    Get ID field by lable ${NAME} in customer info page

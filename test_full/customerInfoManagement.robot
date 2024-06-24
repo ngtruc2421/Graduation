@@ -47,6 +47,7 @@ BSG-T79 --- Verify that Date of birth should be entered using a drop-down for da
 BSG-T80 --- Verify that The system should validate the email format
     [Tags]    High
     #FAIL
+    [Setup]     The user is logged in and is now on the Customer Infor page
     [Template]    It should show warning message when user input the "Email" field with specific value in customer info page
     kim                               'Email' is not a valid email address.
     kimngan123                        'Email' is not a valid email address.
@@ -81,6 +82,7 @@ BSG-T81 --- Verify that Mandatory fields should be highlighted if left empty upo
 
 BSG-T82 --- Verify that A clear message should appear indicating which fields need correction if there are validation errors
     [Tags]    High
+    [Setup]     The user is logged in and is now on the Customer Infor page
     [Template]    It should show warning message when user input the "Email" field with specific value in customer info page
     InvalidEmail              'Email' is not a valid email address.
 
@@ -129,6 +131,7 @@ BSG-T86 --- Verify that If validation is successful, the information should be s
 
 BSG-T87 --- Verify that If there are validation errors, the form should highlight the errors and provide appropriate messages to guide the user in correcting them
     [Tags]    High
+    [Setup]     The user is logged in and is now on the Customer Infor page
     [Template]    It should show warning message when user input the "Email" field with specific value in customer info page
     InvalidEmail              'Email' is not a valid email address.
 
@@ -195,12 +198,10 @@ BSG-T94 --- Verify that Username is mandatory field
 
 *** Keywords ***
 Test Suite Setup of customer infor
-    Create test cycle at folder    Smoke Testing
     Create test cycle at folder     Regression Testing
     Log    This is suite setup
 Test case Setup of customer infor
     Set test case start time
-    The user is logged in and is now on the Customer Infor page
 Test case Teardown of customer infor
     Close Browser
     Update test case result to Zephyr Scale
