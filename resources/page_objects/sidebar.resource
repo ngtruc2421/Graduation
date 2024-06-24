@@ -8,7 +8,7 @@ Resource    header.resource
 Resource    ../pages/searchResult_page.resource
 *** Variables ***
 ${PRODUCT_ELE}                                css:.offcanvas-cart-item
-${PRICESIDEBAR_ELE}                                  css:.price.unit-price
+${PRICESIDEBAR_ELE}                           css:.price.unit-price
 ${QUANTITYSIDEBAR_ELE}                        css:[name="item.EnteredQuantity"]
 ${ADDQUANTITY_BUTTON_ELE}                     css:.fa.fa-plus
 ${REDUCEQUANTITY_BUTTON_ELE}                  css:.fa.fa-minus
