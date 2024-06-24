@@ -7,10 +7,10 @@ Resource         ../resources/keywords/zephyr_scale_integrate.resource
 Suite Setup         Test Suite Setup for login suite
 Test Setup          Test case Setup for login suite
 Test Teardown       Test case Teardown for login suite
-Documentation    This suite cover all test cases related to the user story [BSG-3] - User Login
-...            - As a registered user
-...            - I want to log into my account
-...            - So that I can access my personalized dashboard and features
+Documentation        This suite cover all test cases related to the user story [BSG-3] - User Login
+...                - As a registered user
+...                - I want to log into my account
+...                - So that I can access my personalized dashboard and features
 
 *** Variables ***
 ${PASS_WHITESPACE}           @us   er123
@@ -18,6 +18,7 @@ ${PASS_WHITESPACE}           @us   er123
 *** Test Cases ***
 BSG-T1 --- Verify that there is a page for users log in to the system
     [Tags]    High
+    Open the Login page
     It should display the Login page    Sign In
 BSG-T3 --- Verify that the system will display the error message when users input incorrect value for the Username or email field and Password field
     #F
@@ -39,6 +40,7 @@ BSG-T3 --- Verify that the system will display the error message when users inpu
 BSG-T13 --- Verify that the users can use "Remember Me" option
     #F
     [Tags]    High
+    Open the Login page
     Input username                                        @trantruc2001
     Input pass                                            TranPhuongNgocTruc20042001
     Click the "Remember me" option
@@ -46,23 +48,24 @@ BSG-T13 --- Verify that the users can use "Remember Me" option
     Click on the account's name on the top at the corner
     Select the Log out option
     Click on the Log in option on the top of the corner
-    The system should save the account information        @trantruc2001    ${USERNAME_ELE}
-    ...    TranPhuongNgocTruc20042001    ${PASSWORD_ELE}
+    The system should save the account information        @trantruc2001    TranPhuongNgocTruc20042001
 BSG-T15 --- Verify that the system provided a "Forgot Password" link for users who need to reset their password
     [Tags]    High
+    Open the Login page
     Click on the Forgot password link
     Input the email for the Email field    tt1799917@gmail.com
     Click the Submit button
     Users should reset password success
 BSG-T17 --- Verify that the system will update the login's status when users login success
     [Tags]    High    Smoke
+    Open the Login page
     Input username    @trantruc2001
     Input pass        TranPhuongNgocTruc20042001
     Click the Login button
     Show on the logged in user's name on the top right    @trantruc2001
 BSG-T29 --- Verify that the system will display the error message when users input invalid email on the Forgot Password page
     [Tags]                Medium
-    [Setup]               Open the Password Recovery page
+    # [Setup]               Open the Password Recovery page
     [Template]            It should appear error message when users input invalid email
     User123@gmail.com     Email not found
     @User321gmail.com    'Your email address' is not a valid email address
@@ -70,16 +73,19 @@ BSG-T29 --- Verify that the system will display the error message when users inp
     ${EMPTY}             'Your email address' should not be empty
 BSG-T32 --- Verify that user can input data for the Username or email field
     [Tags]    High    Smoke
-    Input username              @trantruc2001
+    Open the Login page
+    Input username                          @trantruc2001
     Unfocus the field
-    It should input the data    @trantruc2001    ${USERNAME_ELE}
+    Username field should input the data    @trantruc2001
 BSG-T34 --- Verify that user can input data for the Password field
     [Tags]    High    Smoke
-    Input pass                  TranPhuongNgocTruc20042001
+    Open the Login page
+    Input pass                              TranPhuongNgocTruc20042001
     Unfocus the field
-    It should input the data    TranPhuongNgocTruc20042001    ${PASSWORD_ELE}
+    Password field should input the data    TranPhuongNgocTruc20042001
 BSG-T49 --- Verify that users can login success into the system
     [Tags]    High    Smoke
+    Open the Login page
     Input username                      @trantruc2001
     Input pass                          TranPhuongNgocTruc20042001
     Click the Login button
@@ -88,7 +94,7 @@ BSG-T49 --- Verify that users can login success into the system
 *** Keywords ***
 Test case Setup for login suite
     Set test case start time
-    Open the Login page
+
 Test case Teardown for login suite
     Update test case result to Zephyr Scale
     Close the web page
@@ -97,6 +103,6 @@ Test Suite Setup for login suite
     Create test cycle at folder    Smoke Testing
     Log                            This is suite setup
 
-Open the password recovery page
-    Set test case start time
-    Access to url                      https://bearstore-testsite.smartbear.com/customer/passwordrecovery          
+# Open the password recovery page
+#     Set test case start time
+#     Access to url                      https://bearstore-testsite.smartbear.com/customer/passwordrecovery          

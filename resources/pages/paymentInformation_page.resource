@@ -3,14 +3,15 @@ Resource    ../../configurations/config.resource
 Resource    ../../resources/keywords/common_keywords.resource
 Resource    ../../resources/pages/shippingOptions_page.resource
 *** Variables ***
-${CREDITCARD_OPTION_ELE}    xpath=//span[contains(text(),"Credit card")]
-${CARDTYPE_INPUT_ELE}    id=CreditCardType
-${CARDNAME_INPUT_ELE}    id=CardholderName
-${CARDNUM_INPUT_ELE}    id=CardNumber
-${EXMONTH_INPUT_ELE}    id=ExpireMonth
-${EXYEAR_INPUT_ELE}    id=ExpireYear
-${CARDCODE_INPUT_ELE}    id=CardCode
-${CREDITCARD_FROM_ELE}    id=payment-info-validation-summary
+${CREDITCARD_OPTION_ELE}     xpath=//span[contains(text(),"Credit card")]
+${CARDTYPE_INPUT_ELE}        id=CreditCardType
+${CARDNAME_INPUT_ELE}        id=CardholderName
+${CARDNUM_INPUT_ELE}         id=CardNumber
+${EXMONTH_INPUT_ELE}         id=ExpireMonth
+${EXYEAR_INPUT_ELE}          id=ExpireYear
+${CARDCODE_INPUT_ELE}        id=CardCode
+${CREDITCARD_FROM_ELE}       id=payment-info-validation-summary
+${PROTOCOL}                  https
 *** Keywords ***
 Navigate to the Payment page
     [Documentation]    This keyword verifies that navigate to the Payment page
@@ -60,7 +61,7 @@ The Payment page should be safe
     [Documentation]    This keyword verifies that the Payment page should be safe
     TRY
         ${LOCATION}=    Get Location
-        Should Contain    ${LOCATION}    https
+        Should Contain    ${LOCATION}    ${PROTOCOL}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the Credit card option on the Payment page" keyword
     END

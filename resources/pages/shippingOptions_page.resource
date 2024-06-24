@@ -5,11 +5,14 @@ Resource    ../../resources/pages/shippingOptions_page.resource
 Resource    ../../resources/pages/addressEntry_page.resource
 Resource    ../../resources/pages/productdetail_page.resource
 *** Variables ***
-${SHIPPING_OPTION_ELE}     css:td[class="cart-summary-label"]>span:nth-child(2)
-${TOTAL_ELE}               css:tr[class="cart-summary-total"]>td[class="cart-summary-value"]>span
-${SHIPPING_OPTIONS_ELE}    css:ul.shipping-options>li
-${JAVASCRIP_VALUE}         window.scrollTo(0, document.body.scrollHeight)
-${SHIPPING_ITEM_ELE}       xpath=//span[contains(text(),"By Ground")]
+${SHIPPING_OPTION_ELE}        css:td[class="cart-summary-label"]>span:nth-child(2)
+${TOTAL_ELE}                  css:tr[class="cart-summary-total"]>td[class="cart-summary-value"]>span
+${SHIPPING_OPTIONS_ELE}       css:ul.shipping-options>li
+${JAVASCRIP_VALUE}            window.scrollTo(0, document.body.scrollHeight)
+${SHIPPING_ITEM_ELE}          xpath=//span[contains(text(),"By Ground")]
+${BYGROUND}                   By Ground
+${DOLAR}                      $
+${SELECTSHIPPINGMETHOD}       Select shipping method
 *** Keywords ***
 It should display available options for shipping
     [Documentation]    This keyword verifies that it should display available options for shipping
@@ -35,9 +38,9 @@ The system should be update the order total accordingly after user select the sh
         Click on the Next button
         Execute Javascript    ${JAVASCRIP_VALUE}
         ${VALUE}=    Wait and get element text    ${SHIPPING_OPTION_ELE}
-        Should Be Equal As Strings    ${VALUE}    By Ground
+        Should Be Equal As Strings    ${VALUE}    ${BYGROUND}    
         ${SUM}=    Wait and get element text    ${TOTAL_ELE}
-        ${SUM}=    Split String    ${SUM}    $    1
+        ${SUM}=    Split String    ${SUM}    ${DOLAR}    1
         ${NUMBER_STRING_WITHOUT_COMMAS}=    Replace String    ${SUM}[1]    ,    ${EMPTY}
         ${NUMBER_STRING_WITHOUT_DECIMAL}=    Replace String    ${NUMBER_STRING_WITHOUT_COMMAS}    .    ${EMPTY}
         ${NUMBER_STRING_COVERT_INT}=    Convert To Integer    ${NUMBER_STRING_WITHOUT_DECIMAL}
@@ -48,7 +51,7 @@ The system should be update the order total accordingly after user select the sh
 The Shipping page should be Open
     [Documentation]    This keyword the Shipping page should be Open
     TRY
-        The page should be opened    Select shipping method    ${PAGE_TITLE_ELE}
+        The page should be opened    ${SELECTSHIPPINGMETHOD}    ${PAGE_TITLE_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "The Shipping page should be Open" keyword
     END

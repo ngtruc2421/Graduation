@@ -114,9 +114,13 @@ Select Option From Dropdown
     [Documentation]    This keyword select a option from the dropdown by provided locator and option
     [Arguments]    ${DROPDOWN_LOCATOR}    ${OPTION_TEXT}
     TRY
-        Wait Until Element Is Visible    ${DROPDOWN_LOCATOR}
-        Wait Until Element Is Enabled    ${DROPDOWN_LOCATOR}
         Select From List By Label    ${DROPDOWN_LOCATOR}    ${OPTION_TEXT}
+        ${SELECTED_VALUE}=    Wait and get element text    ${SELECT_OPTION_ELE}
+        WHILE    "${SELECTED_VALUE}" != "${OPTION_TEXT}"
+            Wait Until Element Contains    ${SELECT_OPTION_ELE}    ${OPTION_TEXT}
+        END
+
+        # ${current_text}=    Wait and get element text       ${DROPDOWN_LOCATOR}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't select the ${OPTION_TEXT} option
     END
@@ -193,6 +197,7 @@ Clear cookies
     [Documentation]       This keyword is used to clear all cookies of the openning browser
     TRY
         Delete All Cookies
+        Delete All Sessions
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't clear all cookies of browser
     END
