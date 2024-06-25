@@ -1,0 +1,3 @@
+{
+  "text": "A very important thing has occurred! <https://wsvietnam-team.atlassian.net/projects/BSG?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page#!/reports/testresults/board/view?tql=testResult.projectId%20IN%20(10001)%20AND%20testRun.folderName%20IN%20(%22%2FSmoke%20Testing%22)%20AND%20testRun.onlyLastTestResult%20IS%20false&epicJQL=&title=Test%20execution%20results%20(summary)&projectId=10001&traceabilityReportOption=COVERAGE_TEST_CASES&traceabilityTreeOption=COVERAGE_TEST_CASES&traceabilityCustomTreeDisplayOption=CONDENSED&traceabilityMatrixOption=COVERAGE_TEST_CASES&scorecardOption=EXECUTION_RESULTS&displayUnit=COUNT&period=MONTH&timezone=Asia%2FBangkok|Click here> for details!"
+}
