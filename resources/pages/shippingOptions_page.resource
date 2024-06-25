@@ -35,6 +35,7 @@ The system should be update the order total accordingly after user select the sh
     [Documentation]    This keyword verifies that the system should be update the order total accordingly after user select the shipping option
     TRY
         Click on the Next button
+        Wait Until Page Contains Element    ${NEXT_BTN_ELE}
         Click on the Next button
         Execute Javascript    ${JAVASCRIP_VALUE}
         ${VALUE}=    Wait and get element text    ${SHIPPING_OPTION_ELE}

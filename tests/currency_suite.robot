@@ -78,11 +78,9 @@ BSG-T103 --- Verify that the currency value on the product should change in real
 *** Keywords ***
 Test case Setup for currency suite
     Set test case start time
-    Open the Home Page
-
 Test case Teardown for currency suite
     Update test case result to Zephyr Scale
-    Close Browser
+    Close the web page
 
 Test Suite Setup for currency suite
     Create test cycle at folder    Smoke Testing
