@@ -57,7 +57,7 @@ BSG-T107 --- Verify that the system should allow using the same address for bill
 
 BSG-T108 --- Verify that the system should be validate addresses for completeness and accuracy before proceeding
     #F
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Login page
     Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
