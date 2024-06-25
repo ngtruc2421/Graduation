@@ -217,7 +217,6 @@ Test Suite Setup of management shopping cart sidebar
     Log    This is suite setup
 Test case Setup of management shopping cart sidebar
     Set test case start time
-    There is at least 1 product in shopping cart
 Test case Teardown of management shopping cart sidebar
     Close Browser
     Update test case result to Zephyr Scale

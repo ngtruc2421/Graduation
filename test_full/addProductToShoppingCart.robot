@@ -53,6 +53,7 @@ BSG-T72 --- Verify that user can increase product quantity by clicking on the Ad
 
 BSG-T73 --- Verify that Verify that Adjust product quantity by clicking on the +/- then the price should be calculated by Block Pricing
     [Tags]    High
+    [Setup]    User is the Product Detail Page 
     [Template]    The price of product "Club Lounge Chair" should be price when user select quantity
     1                 $2,299.90 excl tax
     2                 $1,709.05 excl tax

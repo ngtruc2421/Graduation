@@ -302,7 +302,7 @@ BSG-T126 --- Verify that the system Show a summary section with: Grand total (su
 
 BSG-T127 --- Verify that Include a "Checkout" button that takes users to the next step in the checkout process
     [Tags]    High 
-     Access the Sign In page
+    Access the Sign In page
     Log in the system    ${USERNAME}    ${PASSWORD}
     Search product on the search bar    The Prisoner of Heaven: A Novel
     Hover Over The product item "The Prisoner of Heaven: A Novel" in result page
