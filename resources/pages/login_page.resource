@@ -6,11 +6,13 @@ ${LOGINPAGE_TITLE_ELE}          tag=h1
 ${MESS_SUCCESS_ELE}             css:.h2
 ${URL_REGISTER}                 register
 ${REMEMBERME_BTN_ELE}           id=RememberMe
+${CONTENT_ELE}           id=content
 ${PASSWORD_ELE}                 css:#Password
 ${LOGIN_BTN_ELE}                css:.btn-login
 ${REGISTERLOGINPAGE_BTN_ELE}    css:.register-button
 ${USERNAME_ELE}                 css:input[id="UsernameOrEmail"]
 ${FORGOTPASS_LINK_ELE}          css:a[href="/customer/passwordrecovery"]
+${SIGNIN}          Sign In
 *** Keywords ***
 Input username
     [Documentation]    Inputs the data provided for the Username field 
@@ -81,15 +83,24 @@ It should display the Login page
 Unfocus the field
     [Documentation]    This keyword unforcus the input field
     TRY
-        Click Element    id=content
+        Click Element    ${CONTENT_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Unfocus failed
     END
-It should input the data
-    [Documentation]    This keyword verifies that users can input data using the provided locator
-    [Arguments]    ${TEXT}    ${LOCATOR}
+Password field should input the data
+    [Documentation]    This keyword verifies that users can input data using the provided locator for password field
+    [Arguments]    ${TEXT}
     TRY
-        ${TEM}    Get Value    ${LOCATOR}
+        ${TEM}    Get Value        ${PASSWORD_ELE}
+        Should Be Equal As Strings    ${TEXT}    ${TEM}  
+    EXCEPT    
+        Run Keyword And Continue On Failure    Fail    Couldn't input data 
+    END
+Username field should input the data
+    [Documentation]    This keyword verifies that users can input data using the provided locator for username field
+    [Arguments]    ${TEXT}
+    TRY
+        ${TEM}    Get Value        ${USERNAME_ELE}
         Should Be Equal As Strings    ${TEXT}    ${TEM}  
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't input data 
@@ -105,10 +116,10 @@ Compare text of input field
     END
 The system should save the account information
     [Documentation]    This keyword verifies that the system save the account information
-    [Arguments]     ${USERNAME}    ${USERNAME_LOCATOR}    ${PASSWORD}    ${PASSWORD_LOCATOR}
+    [Arguments]     ${USERNAME}    ${PASSWORD}
         TRY
-        Compare text of input field    ${USERNAME}    ${USERNAME_LOCATOR}  
-        Compare text of input field    ${PASSWORD}    ${PASSWORD_LOCATOR}
+        Compare text of input field    ${USERNAME}        ${USERNAME_ELE}  
+        Compare text of input field    ${PASSWORD}        ${PASSWORD_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    The system don't save the account information
     END
@@ -118,10 +129,12 @@ It should appear the error message when users input incorrect value for the User
     ...                for the Username or email field and Password field
     [Arguments]    ${USERNAME_EMAIL}    ${PASS}    ${MESS}
     TRY
+        Open the Login page
         Input username    ${USERNAME_EMAIL}
         Input pass    ${PASS}
         Click the Login button
         Check the text elememt    ${MESS}
+        Close the web page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    It doesn't appear the error message
     END
@@ -139,7 +152,7 @@ Access the Sign In page
     [Documentation]    This keyword access to the Sign In page
     TRY
     Access to url    ${URL_LOGIN}
-    It should display the Login page    Sign In
+    It should display the Login page    ${SIGNIN}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't access the Sign In page
     END

@@ -1,0 +1,7 @@
+robot -d results --variable ROBOT_SYSLOG_FILE:/dev/null tests/search_suite.robot
+robot -d results --variable ROBOT_SYSLOG_FILE:/dev/null tests/addressEntry_suite.robot
+robot -d results --variable ROBOT_SYSLOG_FILE:/dev/null tests/currency_suite.robot
+robot -d results --variable ROBOT_SYSLOG_FILE:/dev/null tests/login_suite.robot
+robot -d results --variable ROBOT_SYSLOG_FILE:/dev/null tests/search_suite.robot
+robot -d results --variable ROBOT_SYSLOG_FILE:/dev/null tests/paymentInformation_suite.robot
+robot -d results --variable ROBOT_SYSLOG_FILE:/dev/null tests/shippingOptions_suite.robot

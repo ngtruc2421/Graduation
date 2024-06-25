@@ -33,6 +33,13 @@ ${ACTION_PAGE_ELE}            css:select[id="artlist-action-page"]>option
 ${ACTION_PAGESIZE_ELE}        css:select[id="artlist-action-pagesize"]>option
 ${DATAKEY_RATING}             css:div[data-key="rating"]
 ${LISTPRODUCT_ELE}            css:.art
+${SCROLL_VALUE}               300
+${ARTLIST_ACTION_SORT_ELE}               class=artlist-action--sort
+${PRODUCT_KEYWORD}            an
+${VALUE}                      value
+${DATA_KEY}                   data-key
+
+
 *** Keywords ***
 Click on the Add product button on search result page
     [Documentation]    This keyword clicking on the Add product button on search result page
@@ -67,7 +74,7 @@ Hover over the product item "${NAME}" in result page
         Wait Until Element Is Visible    ${PAGE_TITLE_ELE}
         ${PRODUCT}=    Get name product "${NAME}" in result page
         Wait Until Element Is Visible    ${PRODUCT}
-        Hover Over Elenment    ${PRODUCT}    300
+        Hover Over Elenment    ${PRODUCT}    ${SCROLL_VALUE}   
     EXCEPT    
         Run Keyword And Continue On Failure   Fail    Couldn't Hover over the product item "${NAME}" in result page
     END
@@ -139,8 +146,11 @@ It should display messages when the product are found
     [Documentation]    This keyword verifies that it should display messages when the product are found
     [Arguments]    ${CONTENT}    ${MESS}
     TRY
+        # Open the Home Page
         Search product on the search bar    ${CONTENT}
-        Check the text elememt    ${MESS}    
+        Check the text elememt    ${MESS}  
+        # Clear cookies
+        # Close the web page  
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't display message when the product is found 
     END
@@ -159,12 +169,11 @@ Users should view the search results after selected the view options
     [Documentation]    This keyword verifies that users should view the search results after selected the view options
     [Arguments]    ${SELECT_VALUE}
     TRY
-        Open the Home Page
-        Search product on the search bar    an
+        Search product on the search bar    ${PRODUCT_KEYWORD}
+        Wait until page contain element    ${ARTLIST_ACTION_SORT_ELE}
         Select Option From Dropdown    ${ACTION_SORT_ELE}    ${SELECT_VALUE}
-        ${SELECTED_VALUE}=    Get Text    ${SELECT_OPTION_ELE}
+        ${SELECTED_VALUE}=    Wait and get element text    ${SELECT_OPTION_ELE}
         Should Be Equal As Strings    ${SELECTED_VALUE}    ${SELECT_VALUE}
-        Close All Browsers
     EXCEPT
         Run Keyword And Continue On Failure    Fail    It couldn't view the search results after selected the view options 
     END
@@ -263,7 +272,7 @@ The search result should be display enough information with image, name, rating,
         Page Should Contain Element                ${IMAGE_ELE}    ${RESULT}
         Page Should Contain Element                ${NAME_ELE}             ${RESULT}
         Page Should Contain Element                ${PRICESEARCHRESULT_ELE}      ${RESULT}
-        Click on the web element                                              ${RESULT}
+        Click on the web element                                              ${IMAGE_ELE}
         Page Should Contain Element                ${RATING_ELE}      ${RATINGBOX_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    The search result isn't displayed enough information 

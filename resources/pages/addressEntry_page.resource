@@ -17,6 +17,13 @@ ${SHIPTOTHISADDRESS_BTN_ELE}            xpath=//span[contains(text(),"Ship to th
 ${BILLTOTHISADDRESS_BTN_ELE}            xpath=//span[contains(text(),"Bill to this address")]
 ${NEXT_BTN_ELE}                         xpath=//span[contains(text(),"Next")]
 ${BRAND_IMG_ELE}                        css:a[class="brand"]
+${FIRST_NAME}                           Truc
+${LAST_NAME}                            Tran
+${LONDON}                               London
+${NEWYORK}                              New York
+${BILLINGADDRESS}                       Billing address
+
+
 *** Keywords ***
 Open the Billing Address page
     [Documentation]    Open the Billing Address page by access to Billing Address URL
@@ -93,10 +100,10 @@ It should allow using the same address for billing and shipping
 Input data for the ${NAME} fields
     [Documentation]    Input text for the Firstname, lastname, address1, address2 field on the page
     TRY
-        Input value for a field    Truc    ${FIRSTNAME_INPUT_ELE}
-        Input value for a field    Tran    ${LASTNAME_INPUT_ELE}
-        Input value for a field    Tran    ${ADDRESS1_INPUT_ELE}
-        Input value for a field    Truc    ${ADDRESS2_INPUT_ELE}
+        Input value for a field    ${FIRST_NAME}    ${FIRSTNAME_INPUT_ELE}
+        Input value for a field    ${LAST_NAME}    ${LASTNAME_INPUT_ELE}
+        Input value for a field    ${LAST_NAME}    ${ADDRESS1_INPUT_ELE}
+        Input value for a field    ${FIRST_NAME}    ${ADDRESS2_INPUT_ELE}
 
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't input data for the ${NAME} fields
@@ -104,17 +111,17 @@ Input data for the ${NAME} fields
 It should validate the address
     [Documentation]    Checking if the system validates address?
     TRY
-        The page should be opened    Billing address    ${PAGE_TITLE_ELE}
+        The page should be opened    ${BILLINGADDRESS}    ${PAGE_TITLE_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    It doesn't validate the address
     END
 It should provides input fields for ${NAME} address details
     [Documentation]    Checking if the system provides the input fields for ${NAME} address details?
     TRY
-        Input value for a field    Truc    ${FIRSTNAME_INPUT_ELE}
-        Input value for a field    Tran    ${LASTNAME_INPUT_ELE}
-        Input value for a field    London    ${ADDRESS1_INPUT_ELE}
-        Input value for a field    New York    ${ADDRESS2_INPUT_ELE}
+        Input value for a field    ${FIRST_NAME}    ${FIRSTNAME_INPUT_ELE}
+        Input value for a field    ${LAST_NAME}     ${LASTNAME_INPUT_ELE}
+        Input value for a field    ${LONDON}        ${ADDRESS1_INPUT_ELE}
+        Input value for a field    ${NEWYORK}       ${ADDRESS2_INPUT_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    It couldn't provide input fields for ${NAME} address details
     END

@@ -36,9 +36,11 @@ It should appear error message when users input invalid email
     [Documentation]    This keyword verifies that the error message appears
     [Arguments]    ${VALUES}    ${NOTIFICATION}
     TRY
+        Open the Password Recovery page
         Input the email for the Email field    ${VALUES}
         Click the Submit button
-        Check the text elememt                 ${NOTIFICATION}        
+        Check the text elememt                 ${NOTIFICATION}
+        Close the web page        
     EXCEPT
         Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
     END
