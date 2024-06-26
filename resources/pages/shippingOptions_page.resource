@@ -13,6 +13,7 @@ ${SHIPPING_ITEM_ELE}          xpath=//span[contains(text(),"By Ground")]
 ${BYGROUND}                   By Ground
 ${DOLAR}                      $
 ${SELECTSHIPPINGMETHOD}       Select shipping method
+${SHIPPINGMETHOD_PAGETITLE_ELE}       css:.page-title
 *** Keywords ***
 It should display available options for shipping
     [Documentation]    This keyword verifies that it should display available options for shipping
@@ -52,7 +53,7 @@ The system should be update the order total accordingly after user select the sh
 The Shipping page should be Open
     [Documentation]    This keyword the Shipping page should be Open
     TRY
-        The page should be opened    ${SELECTSHIPPINGMETHOD}    ${PAGE_TITLE_ELE}
+        The page should be opened    ${SELECTSHIPPINGMETHOD}    ${SHIPPINGMETHOD_PAGETITLE_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "The Shipping page should be Open" keyword
     END
