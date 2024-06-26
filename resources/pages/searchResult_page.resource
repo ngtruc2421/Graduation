@@ -38,7 +38,7 @@ ${ARTLIST_ACTION_SORT_ELE}               class=artlist-action--sort
 ${PRODUCT_KEYWORD}            an
 ${VALUE}                      value
 ${DATA_KEY}                   data-key
-
+${TITLE_SEARCH_PAGE_ELE}      css:.page-title
 
 *** Keywords ***
 Click on the Add product button on search result page
@@ -71,7 +71,7 @@ Get name product "${NAME}" in result page
 Hover over the product item "${NAME}" in result page
     [Documentation]    This keyword hover over the product item "${NAME}" in result page
     TRY
-        Wait Until Element Is Visible    ${PAGE_TITLE_ELE}
+        Wait Until Element Is Visible    ${TITLE_SEARCH_PAGE_ELE}
         ${PRODUCT}=    Get name product "${NAME}" in result page
         Wait Until Element Is Visible    ${PRODUCT}
         Hover Over Elenment    ${PRODUCT}    ${SCROLL_VALUE}   

@@ -2,7 +2,7 @@
 Resource    ../../configurations/config.resource
 Resource    ../pages/paymentInformation_page.resource
 *** Variables ***
-${PAGE_TITLE_ELE}            css:.page-title
+# ${PAGE_TITLE_ELE}            css:.page-title
 *** Keywords ***
 Access to url
     [Documentation]    This keyword to access to a url address by chrome browser
@@ -119,22 +119,20 @@ Select Option From Dropdown
         WHILE    "${SELECTED_VALUE}" != "${OPTION_TEXT}"
             Wait Until Element Contains    ${SELECT_OPTION_ELE}    ${OPTION_TEXT}
         END
-
-        # ${current_text}=    Wait and get element text       ${DROPDOWN_LOCATOR}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't select the ${OPTION_TEXT} option
     END
 Scroll Down in Firefox
-    ${total_height}=    Execute JavaScript    return document.documentElement.scrollHeight
-    ${viewport_height}=    Execute JavaScript    return window.innerHeight
-    ${current_scroll}=    Execute JavaScript    return window.scrollY
+    ${TOTAL_HEIGHT}=    Execute JavaScript    return document.documentElement.scrollHeight
+    ${VIEWPORT_HEIGHT}=    Execute JavaScript    return window.innerHeight
+    ${CURRENT_SCROLL}=    Execute JavaScript    return window.scrollY
 
-    ${scroll_amount}=    Set Variable    700
-    ${target_scroll}=    Evaluate    ${current_scroll} + ${scroll_amount}
+    ${SCROLL_AMOUNT}=    Set Variable    700
+    ${TARGET_SCROLL}=    Evaluate    ${CURRENT_SCROLL} + ${SCROLL_AMOUNT}
     
-    Run Keyword If    ${target_scroll} > ${total_height} - ${viewport_height}    ${target_scroll}=    Set Variable    ${total_height} - ${viewport_height}
+    Run Keyword If    ${TARGET_SCROLL} > ${TOTAL_HEIGHT} - ${VIEWPORT_HEIGHT}    ${TARGET_SCROLL}=    Set Variable    ${TOTAL_HEIGHT} - ${VIEWPORT_HEIGHT}
     
-    Execute JavaScript    window.scrollTo({ top: ${target_scroll}, behavior: 'smooth' })
+    Execute JavaScript    window.scrollTo({ top: ${TARGET_SCROLL}, behavior: 'smooth' })
 Hover Over Elenment
     [Documentation]    This keyword is used to move the mouse to a provided locator
     [Arguments]       ${ELEMENT}    ${COORDINATES}=500
@@ -202,10 +200,10 @@ Compare two Numbers
    
 Wait for page loaded
     [Documentation]       This keyword is used to Wait for page loaded from provided locator
-    [Arguments]    ${locator}
+    [Arguments]    ${LOCATOR}
     TRY
-        Wait Until Element Is Visible    ${locator}
-        Wait Until Element Is Not Visible    ${locator}
+        Wait Until Element Is Visible    ${LOCATOR}
+        Wait Until Element Is Not Visible    ${LOCATOR}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Wait for page loaded
     END

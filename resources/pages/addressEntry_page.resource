@@ -22,7 +22,7 @@ ${LAST_NAME}                            Tran
 ${LONDON}                               London
 ${NEWYORK}                              New York
 ${BILLINGADDRESS}                       Billing address
-
+${ADDRESSTITLE_PAGE_ELE}                           css:.page-title
 
 *** Keywords ***
 Open the Billing Address page
@@ -83,7 +83,7 @@ Click on the Back button on the ${NAME} page
 It should be include Back button for return to the Cart page
     [Documentation]    Checking if the Cart page includes the Back button?
     TRY
-        Wait until page contain element    ${PAGETITLE_ELE}
+        Wait until page contain element    ${ADDRESSTITLE_PAGE_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    It doesn't have the "Back" button for return to the Cart page
     END
@@ -111,7 +111,7 @@ Input data for the ${NAME} fields
 It should validate the address
     [Documentation]    Checking if the system validates address?
     TRY
-        The page should be opened    ${BILLINGADDRESS}    ${PAGE_TITLE_ELE}
+        The page should be opened    ${BILLINGADDRESS}    ${ADDRESSTITLE_PAGE_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    It doesn't validate the address
     END
