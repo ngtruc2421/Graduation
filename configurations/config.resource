@@ -36,5 +36,5 @@ ${NORMAL_USER_PASS}    12345678
 
 
 # System
-${BROWSER}              Chrome
+${BROWSER}              Firefox
 ${DELAY}                0

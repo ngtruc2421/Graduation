@@ -15,7 +15,7 @@ Documentation    This suite cover all test cases related to the user story [BSG-
                     
 *** Test Cases ***
 BSG-T69 --- Verify that the "Add to Cart" button should be visible
-    [Tags]    High
+    [Tags]    Medium
     Open the Home Page
     Click Menu Item "Furniture"
     Hover Over The product item "Club Lounge Chair" in product page

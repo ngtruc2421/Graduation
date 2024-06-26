@@ -124,17 +124,33 @@ Select Option From Dropdown
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't select the ${OPTION_TEXT} option
     END
+Scroll Down in Firefox
+    ${total_height}=    Execute JavaScript    return document.documentElement.scrollHeight
+    ${viewport_height}=    Execute JavaScript    return window.innerHeight
+    ${current_scroll}=    Execute JavaScript    return window.scrollY
 
+    ${scroll_amount}=    Set Variable    700
+    ${target_scroll}=    Evaluate    ${current_scroll} + ${scroll_amount}
+    
+    Run Keyword If    ${target_scroll} > ${total_height} - ${viewport_height}    ${target_scroll}=    Set Variable    ${total_height} - ${viewport_height}
+    
+    Execute JavaScript    window.scrollTo({ top: ${target_scroll}, behavior: 'smooth' })
 Hover Over Elenment
     [Documentation]    This keyword is used to move the mouse to a provided locator
     [Arguments]       ${ELEMENT}    ${COORDINATES}=500
     TRY
-        Scroll Element Into View    ${ELEMENT}
-        Execute JavaScript    window.scrollBy(0, ${COORDINATES})
+        IF    ("${BROWSER}"=="Firefox")
+            Scroll Down in Firefox
+            
+        ELSE
+            Scroll Element Into View    ${ELEMENT}
+            Execute JavaScript    window.scrollBy(0, ${COORDINATES})
+        END
         ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${ELEMENT}
         IF    "${status}"=="False"
             Run Keyword And Continue On Failure    Fail    No look for element
         ELSE
+            Sleep    2s           
             Mouse Over    ${ELEMENT}
         END
     EXCEPT    
