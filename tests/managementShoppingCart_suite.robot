@@ -39,7 +39,7 @@ BSG-T117 --- Verify that users to increase the quantity of each item using a dro
     The quantity of product "The Prisoner of Heaven: A Novel" should be increase when user click on add button in shopping cart page
 
 BSG-T118 --- Verify that the system automatically updates the total price of the item in real time when the quantity changes
-    [Tags]    High     Smoke
+    [Tags]    High
     Click the Add quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page
     The quantity of product "The Prisoner of Heaven: A Novel" should be increase when user click on add button in shopping cart page
     The total of product "The Prisoner of Heaven: A Novel" should be equal quantity * price
