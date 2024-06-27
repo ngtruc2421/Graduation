@@ -2,6 +2,7 @@
 Library     json
 Library     RequestsLibrary
 Library     Collections
+Library    ../../.venv/Lib/site-packages/robot/libraries/OperatingSystem.py
 Resource    utils.resource
 Resource    ../../configurations/api_credentials.resource
 
@@ -114,9 +115,12 @@ Create test execution result
     ${response}=    Call POST request    ${endpoint}    &{payload}
     Delete All Sessions
 ########## COMMON APIS SUPPORT ##############
-
+Get API Access Token
+    ${API_ACCESS_TOKEN}=    Get Environment Variable    ZEPHYR_SCALE_TOKEN
+    [Return]    ${API_ACCESS_TOKEN}
 Create new session
     Set Log Level    NONE    # disable logging
+    ${API_ACCESS_TOKEN}=    Get API Access Token
     ${headers}=    Create Dictionary    Content-Type=${Content_Type}    Authorization=Bearer ${API_ACCESS_TOKEN}
     Create Session    mysession    ${ZS_URL}    headers=${headers}
     Set Log Level    INFO    # enable logging
