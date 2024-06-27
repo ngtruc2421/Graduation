@@ -10,7 +10,7 @@ Resource    ../../configurations/api_credentials.resource
 *** Variables ***
 ${ZS_URL}           https://api.zephyrscale.smartbear.com/v2
 ${Content_Type}     application/json
-
+${PROJECT_KEY}          BSG
 
 *** Keywords ***
 Get curent cycle key
