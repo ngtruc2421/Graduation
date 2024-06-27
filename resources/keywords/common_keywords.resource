@@ -2,7 +2,7 @@
 Resource    ../../configurations/config.resource
 Resource    ../pages/paymentInformation_page.resource
 *** Variables ***
-# ${PAGE_TITLE_ELE}            css:.page-title
+${PAGE_TITLE_ELE}            css:.page-title
 *** Keywords ***
 Access to url
     [Documentation]    This keyword to access to a url address by chrome browser
