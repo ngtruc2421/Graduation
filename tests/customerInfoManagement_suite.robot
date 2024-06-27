@@ -126,7 +126,7 @@ BSG-T94 --- Verify that Username is mandatory field
 *** Keywords ***
 Test Suite Setup of customer infor
     Create test cycle at folder    Smoke Testing
-    Create test cycle at folder     Regression Testing
+    # Create test cycle at folder     Regression Testing
     Log    This is suite setup
 Test case Setup of customer infor
     Set test case start time

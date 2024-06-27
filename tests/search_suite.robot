@@ -85,13 +85,13 @@ BSG-T59 --- Verify that user can enter a custom price range in the " From - to "
     Enter a value for the To field              3000
     The entered values still are have           1000    3000
 BSG-T60 --- Verify that the search result will update to show only products within the selected a rating range when user selects the rating range from the rating range filter
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Search product on the search bar            an
     Select the Rating radio button
     It should be display the result after select checkbox    ${RATING_SELECTED_ELE}    ${SELECTEDITEM_ELE}
 BSG-T61 --- Verify that the search result will update to show only products when user selects the delivery time range from the delivery time range filter
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Search product on the search bar            an 
     Click delivery dropdown                     ${DELIVERY_DROPDOWN_ELE}
@@ -110,7 +110,7 @@ BSG-T63 --- Verify that users should have the option to view a specific number o
     The system should be displays the option to view the results per page
 
 BSG-T64 --- Verify that users should receive clear error messages if no results are found
-    [Tags]    High    Smoke
+    [Tags]    High
     [Setup]    Open the Home Page
     [Template]    It should display messages when the product are found
     t             The minimum length for the search term is 2 characters.
