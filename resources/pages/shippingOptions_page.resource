@@ -18,9 +18,9 @@ ${SHIPPINGMETHOD_PAGETITLE_ELE}       css:.page-title
 It should display available options for shipping
     [Documentation]    This keyword verifies that it should display available options for shipping
     TRY
-        ${SHIPPING_OPTION_LIST}=    Get list WebElements    ${SHIPPING_OPTIONS_ELE}
-        FOR    ${E}    IN    @{SHIPPING_OPTION_LIST}
-            Wait until page contain element    ${E}
+        ${shipping_option_list}=    Get list WebElements    ${SHIPPING_OPTIONS_ELE}
+        FOR    ${e}    IN    @{shipping_option_list}
+            Wait until page contain element    ${e}
         END
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should display available options for shipping" keyword
@@ -39,14 +39,14 @@ The system should be update the order total accordingly after user select the sh
         Wait Until Page Contains Element    ${NEXT_BTN_ELE}
         Click on the Next button
         Execute Javascript    ${JAVASCRIP_VALUE}
-        ${VALUE}=    Wait and get element text    ${SHIPPING_OPTION_ELE}
-        Should Be Equal As Strings    ${VALUE}    ${BYGROUND}    
-        ${SUM}=    Wait and get element text    ${TOTAL_ELE}
-        ${SUM}=    Split String    ${SUM}    ${DOLAR}    1
-        ${NUMBER_STRING_WITHOUT_COMMAS}=    Replace String    ${SUM}[1]    ,    ${EMPTY}
-        ${NUMBER_STRING_WITHOUT_DECIMAL}=    Replace String    ${NUMBER_STRING_WITHOUT_COMMAS}    .    ${EMPTY}
-        ${NUMBER_STRING_COVERT_INT}=    Convert To Integer    ${NUMBER_STRING_WITHOUT_DECIMAL}
-        Run Keyword If    ${NUMBER_STRING_COVERT_INT}<0    Fail    Don't have total price
+        ${value}=    Wait and get element text    ${SHIPPING_OPTION_ELE}
+        Should Be Equal As Strings    ${value}    ${BYGROUND}    
+        ${sum}=    Wait and get element text    ${TOTAL_ELE}
+        ${sum}=    Split String    ${sum}    ${DOLAR}    1
+        ${number_string_without_commas}=    Replace String    ${sum}[1]    ,    ${EMPTY}
+        ${number_string_without_decimal}=    Replace String    ${number_string_without_commas}    .    ${EMPTY}
+        ${number_string_covert_int}=    Convert To Integer    ${number_string_without_decimal}
+        Run Keyword If    ${number_string_covert_int}<0    Fail    Don't have total price
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "User should select the shipping option" keyword
     END
