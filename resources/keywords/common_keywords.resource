@@ -60,6 +60,7 @@ Input value for a field
         Wait Until Element Is Visible    ${LOCATOR}      
         Clear Element Text               ${LOCATOR}
         Input Text    ${LOCATOR}    ${TEXT}
+        
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't input value for the input field  
     END   
@@ -215,3 +216,9 @@ Clear cookies
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't clear all cookies of browser
     END
+
+Wait until load object 
+    [Documentation]       This keyword is used to Wait until load object from provided locator
+    [Arguments]    ${LOCATOR}
+    Wait Until Element Is Visible    ${LOCATOR}
+    Wait Until Element Is Not Visible    ${LOCATOR}
