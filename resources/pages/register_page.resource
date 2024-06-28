@@ -21,114 +21,114 @@ The Register page should be opened
     The page should be opened    Register    ${PAGE_TITLE_ELE}
 Is reuired field
     [Documentation]       This keyword is used to verify Is reuired field from provided field name
-    [Arguments]    ${NAME}
+    [Arguments]    ${name}
     TRY
-        ${ELEMENTS}=    Get Element Attribute    xpath=//label[text()="${NAME}"]     class
-        ${STATUS}=    Run Keyword And Return Status    Should Contain    ${ELEMENTS}    required
-        RETURN    ${STATUS} 
+        ${elements}=    Get Element Attribute    xpath=//label[text()="${name}"]     class
+        ${status}=    Run Keyword And Return Status    Should Contain    ${elements}    required
+        RETURN    ${status} 
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify is required field    
     END    
   
 
-The "${NAME}" field should be required
+The "${name}" field should be required
     [Documentation]       This keyword is used to verify The name field should be required from provided field name
     TRY
-        ${IS_REQUIRED}=    Is reuired field    ${NAME}
-        Should Be True    ${IS_REQUIRED}
+        ${is_required}=    Is reuired field    ${name}
+        Should Be True    ${is_required}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is required field     
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${name} is required field     
     END 
 
 
-The "${NAME}" field should not be required
+The "${name}" field should not be required
     [Documentation]       This keyword is used to verify The field should not be required from provided field name
     TRY
-        ${IS_REQUIRED}=    Is reuired field    ${NAME}
-        Should Not Be True    ${IS_REQUIRED}
+        ${is_required}=    Is reuired field    ${name}
+        Should Not Be True    ${is_required}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is not required field     
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${name} is not required field     
     END 
     
-The "${NAME}" field is type free text
+The "${name}" field is type free text
     [Documentation]       This keyword is used to verify The name field is type free text from provided field name
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        ${locator}=    Get ID field by lable ${NAME} in register page    
-        Input value for a field    ${TEXT}       ${LOCATOR}
-        ${value}=    Get Value    ${LOCATOR}
-        Should Be Equal    ${VALUE}    ${TEXT}
+        ${locator}=    Get ID field by lable ${name} in register page    
+        Input value for a field    ${text}       ${locator}
+        ${value}=    Get Value    ${locator}
+        Should Be Equal    ${value}    ${text}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is type free text    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${name} is type free text    
     END
 
     
-The "${NAME}" field is type Dropdown 
+The "${name}" field is type Dropdown 
     [Documentation]       This keyword is used to verify The name field is type Dropdown from provided field name
     TRY
-        ${LOCATOR}=    Set Variable    ${ID_DAYOFBIRTH}${NAME}
-        ${ELEMENT}=    Get WebElement    ${LOCATOR}    
-        ${tag_name}=    Call Method    ${ELEMENT}    get_attribute    tagName
+        ${locator}=    Set Variable    ${ID_DAYOFBIRTH}${name}
+        ${element}=    Get WebElement    ${locator}   
+        ${tag_name}=    Call Method    ${element}    get_attribute    tagName
         Run Keyword If    '${tag_name}' == 'SELECT'    Log    The element is a dropdown
         Run Keyword Unless    '${tag_name}' == 'select'    Log    The element is not a dropdown
     EXCEPT   
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${NAME} is type Dropdown     
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify ${name} is type Dropdown     
         
     END
  
-Get ID field by lable ${NAME} in register page
+Get ID field by lable ${name} in register page
     [Documentation]       This keyword is used to Get ID field by lable in register page from provided lable name
     TRY
-        ${XPATH}=    Set Variable    //label[text()='${NAME}']/following-sibling::div[contains(@class, 'col-md-9')]//input
-        ${ELEMENT}=    Get WebElement    ${XPATH}
-        ${ID}=    Call Method    ${ELEMENT}    get_attribute    id
-        RETURN    id:${ID}
+        ${xpath}=    Set Variable    //label[text()='${name}']/following-sibling::div[contains(@class, 'col-md-9')]//input
+        ${element}=    Get WebElement    ${xpath}
+        ${id}=    Call Method    ${element}    get_attribute    id
+        RETURN    id:${id}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get ID field by lable ${NAME} in register page    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get ID field by lable ${name} in register page    
     END
    
 
-Input the "${NAME}" field with value "${TEXT}" 
+Input the "${name}" field with value "${text}" 
     [Documentation]       This keyword is used to Input the name field with value from provided field name and provided value
     TRY
-        ${LOCATOR}=    Get ID field by lable ${NAME} in register page
-        Input value for a field    ${TEXT}    ${LOCATOR}
-        ${CURRENT_TEXT}=    Get Value    ${LOCATOR}
-        Should Contain    ${CURRENT_TEXT}    ${TEXT}
+        ${locator}=    Get ID field by lable ${name} in register page
+        Input value for a field    ${text}    ${locator}
+        ${current_text}=    Get Value    ${locator}
+        Should Contain    ${current_text}    ${text}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error when input    
     END
 
 
-The error "${ERROR}" should not be display
+The error "${error}" should not be display
     [Documentation]       This keyword is used to verify The error should not be display from provided error
     TRY
-        Page Should Not Contain    ${ERROR}
+        Page Should Not Contain    ${error}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    The error not contain in page     
     END
     
 
-The error "${ERROR}" should be display
+The error "${error}" should be display
     [Documentation]       This keyword is used to verify The error should be display from provided error
     TRY
-        Wait Until Page Contains    ${ERROR}
-        Page Should Contain    ${ERROR}
+        Wait Until Page Contains    ${error}
+        Page Should Contain    ${error}
     EXCEPT
-        Log    The ${ERROR} not contain in page    
-        Run Keyword And Continue On Failure    Fail    The ${ERROR} not contain in page     
+        Log    The ${error} not contain in page    
+        Run Keyword And Continue On Failure    Fail    The ${error} not contain in page     
     END
 
-It should show warning message when user input the "${FIELD_NAME}" field with specific value 
+It should show warning message when user input the "${field_name}" field with specific value 
     [Documentation]       This keyword is used to verify It should show warning message when user input the name field with specific value from provided field name
-    [Arguments]      ${TEXT}      ${ERROR}
+    [Arguments]      ${text}      ${error}
     TRY
-        Input the "${FIELD_NAME}" field with value "${TEXT}"
+        Input the "${field_name}" field with value "${text}"
         Click the Register button in the Register page
-        The error "${ERROR}" should be display
+        The error "${error}" should be display
         
     EXCEPT  
-        Run Keyword And Continue On Failure   FAIL     There is a error happen in process verify It should show warning message when user input the "${FIELD_NAME}" field with specific value ${text}        
+        Run Keyword And Continue On Failure   FAIL     There is a error happen in process verify It should show warning message when user input the "${field_name}" field with specific value ${text}        
     END
 Click the Register button in the Register page
     [Documentation]       This keyword is used to Click the Register button in the Register page
@@ -142,11 +142,11 @@ Click the Register button in the Register page
 Create Email
     [Documentation]       This keyword is used to Create Email
     TRY
-        ${CURRENT_HOUR}=    Get Current Date    result_format=%H
-        ${CURRENT_MINUTE}=  Get Current Date    result_format=%M
-        ${CURRENT_SECOND}=  Get Current Date    result_format=%S
-        ${UNIQUE_EMAIL}=    Set Variable    user_${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}@gmail.com
-        RETURN    ${UNIQUE_EMAIL}
+        ${current_hour}=    Get Current Date    result_format=%H
+        ${current_minute}=  Get Current Date    result_format=%M
+        ${current_second}=  Get Current Date    result_format=%S
+        ${unique_email}=    Set Variable    user_${current_hour}${current_minute}${current_second}@gmail.com
+        RETURN    ${unique_email}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process ctrate email     
     END 
@@ -155,11 +155,11 @@ Create Email
 Create Username
     [Documentation]       This keyword is used to Create Username
     TRY
-        ${CURRENT_HOUR}=    Get Current Date    result_format=%H
-        ${CURRENT_MINUTE}=  Get Current Date    result_format=%M
-        ${CURRENT_SECOND}=  Get Current Date    result_format=%S
-        ${UNIQUE_EMAIL}=    Set Variable    user_${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}
-        RETURN    ${UNIQUE_EMAIL}
+        ${current_hour}=    Get Current Date    result_format=%H
+        ${current_minute}=  Get Current Date    result_format=%M
+        ${current_second}=  Get Current Date    result_format=%S
+        ${unique_email}=    Set Variable    user_${current_hour}${current_minute}${current_second}
+        RETURN    ${unique_email}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process create username    
     END
@@ -167,19 +167,19 @@ Create Username
 Input on the "Email" field with value created automatic
     [Documentation]       This keyword is used to Input on the "Email" field with value created automatic
     TRY
-        ${EMAIL}=    Create Email
-        Input the "Email" field with value "${EMAIL}"
+        ${email}=    Create Email
+        Input the "Email" field with value "${email}"
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process input on the "Email" field with value created automatic    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process input on the "email" field with value created automatic    
     END
 
 
 Input on the "Username" field with value created automatic
     [Documentation]       This keyword is used to Input on the "Username" field with value created automatic
     TRY
-        ${USERNAME}=    Create Username
-        Input the "Username" field with value "${USERNAME}"
-        Set Suite Variable    ${USERNAME_INPUT}    ${USERNAME}
+        ${username}=    Create Username
+        Input the "Username" field with value "${username}"
+        Set Suite Variable    ${USERNAME_INPUT}    ${username}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process input on the "Username" field with value created automatic     
     END
@@ -195,13 +195,13 @@ The system should auto-login with username account
     END
 
 
-Select "${VALUE}" from the list "${NAME}" dropdown
+Select "${value}" from the list "${name}" dropdown
     [Documentation]       This keyword is used to Select value from the list dropdown from provided option and provied list
     TRY
-        ${LOCATOR}=    Set Variable    ${ID_DAYOFBIRTH}${NAME}
-        Select Option From Dropdown    ${LOCATOR}    ${VALUE}
+        ${locator}=    Set Variable    ${ID_DAYOFBIRTH}${name}
+        Select Option From Dropdown    ${locator}   ${value}
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process select "${VALUE}" from the list "${NAME}" dropdown    
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process select "${value}" from the list "${name}" dropdown    
     END
    
 

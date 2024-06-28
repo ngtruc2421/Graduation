@@ -49,50 +49,50 @@ Click on the Add product button on search result page
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the Add product button on search result page
     END 
 
-Get name product "${NAME}" in result page
-    [Documentation]    This keyword get name product "${NAME}" in result page
+Get name product "${name}" in result page
+    [Documentation]    This keyword get name product "${name}" in result page
     TRY
-        ${LIST}=    Get list WebElements   ${LISTPRODUCT_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${ELEMENT}    IN    @{LIST}
-            ${LIST}=    Get list WebElements   ${PRODUCTNAME_ELE}  
-            ${CLASS}=    Get From List    ${LIST}    ${INDEX}
-            ${NAME_TEXT}=    Get Text    ${CLASS}
-            IF    "${NAME_TEXT}" == "${NAME}"
-                RETURN    ${CLASS}
+        ${list}=    Get list WebElements   ${LISTPRODUCT_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list}
+            ${list2}=    Get list WebElements   ${PRODUCTNAME_ELE}  
+            ${class}=    Get From List    ${list2}    ${index}
+            ${name_text}=    Get Text    ${class}
+            IF    "${name_text}" == "${NAME}"
+                RETURN    ${class}
             END
-            ${INDEX}=    Evaluate    ${INDEX}+1
+            ${index}=    Evaluate    ${index}+1
         END
     
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    Couldn't get name product "${NAME}" in result page 
+        Run Keyword And Continue On Failure    Fail    Couldn't get name product "${name}" in result page 
     END
    
-Hover over the product item "${NAME}" in result page
-    [Documentation]    This keyword hover over the product item "${NAME}" in result page
+Hover over the product item "${name}" in result page
+    [Documentation]    This keyword hover over the product item "${name}" in result page
     TRY
         Wait Until Element Is Visible    ${TITLE_SEARCH_PAGE_ELE}
-        ${PRODUCT}=    Get name product "${NAME}" in result page
-        Wait Until Element Is Visible    ${PRODUCT}
-        Hover Over Elenment    ${PRODUCT}    ${SCROLL_VALUE}   
+        ${product}=    Get name product "${name}" in result page
+        Wait Until Element Is Visible    ${product}
+        Hover Over Elenment    ${product}    ${SCROLL_VALUE}   
     EXCEPT    
-        Run Keyword And Continue On Failure   Fail    Couldn't Hover over the product item "${NAME}" in result page
+        Run Keyword And Continue On Failure   Fail    Couldn't Hover over the product item "${name}" in result page
     END
     
 Enter a value for the From field
     [Documentation]    This keyword enter a value for the From field
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        Input value for a field    ${TEXT}    ${FROM_INPUT_ELE}
+        Input value for a field    ${text}    ${FROM_INPUT_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't enter a value for the From field 
     END
 
 Enter a value for the To field
     [Documentation]    This keyword enter a value for the To field
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        Input value for a field    ${TEXT}    ${TO_INPUT_ELE}
+        Input value for a field    ${text}    ${TO_INPUT_ELE}
     
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't enter a value for the To field 
@@ -108,58 +108,55 @@ Click the Custom Range button
 
 The entered values still are have
     [Documentation]    This keyword verifies that 
-    [Arguments]    ${FIRST}    ${SECOND}
+    [Arguments]    ${first}    ${second}
     TRY
-        ${FIRST_EXP}=    Get Value    ${FROM_INPUT_ELE}
-        ${SECOND_EXP}=    Get Value    ${TO_INPUT_ELE}
-        Should Be Equal As Strings    ${FIRST_EXP}    ${FIRST}
-        Should Be Equal As Strings    ${SECOND_EXP}    ${SECOND}    
+        ${first_exp}=    Get Value    ${FROM_INPUT_ELE}
+        ${second_exp}=    Get Value    ${TO_INPUT_ELE}
+        Should Be Equal As Strings    ${first_exp}    ${first}
+        Should Be Equal As Strings    ${second_exp}    ${second}    
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on progress performent
     END
 
 Get list length
     [Documentation]    This keyword get list length
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
     TRY
-        ${PAGE_LIST}=    Get list WebElements    ${LOCATOR}
-        ${LENGTH}=    Get Length    ${PAGE_LIST}
-        ${LENGTH}=    Evaluate    ${LENGTH}/2
-        ${LENGTH}=    Convert To Integer    ${LENGTH}
-        RETURN    ${LENGTH}
+        ${page_list}=    Get list WebElements    ${locator}
+        ${length}=    Get Length    ${page_list}
+        ${length}=    Evaluate    ${length}/2
+        ${length}=    Convert To Integer    ${length}
+        RETURN    ${length}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't retrieve the list length 
     END
 
 The system should be performed paginated
     [Documentation]    This keyword verifies that the system should be performed paginated
-    ${CHECK_LENGTH}=    Get list length    ${ACTION_PAGE_ELE}    
-    Run Keyword If    ${CHECK_LENGTH}>1    Pass Execution    The system performed paginated    ELSE    Fail    The system wasn't paginated
+    ${check_length}=    Get list length    ${ACTION_PAGE_ELE}    
+    Run Keyword If    ${check_length}>1    Pass Execution    The system performed paginated    ELSE    Fail    The system wasn't paginated
 
 The system should be displays the option to view the results per page
     [Documentation]    This keyword verifies that the system should be displays the option to view the results per page
-    ${CHECK_LENGTH}=    Get list length    ${ACTION_PAGESIZE_ELE}    
-    Run Keyword If    ${CHECK_LENGTH}>1    Pass Execution    The system performed displays the option to view the results per page
+    ${check_length}=    Get list length    ${ACTION_PAGESIZE_ELE}    
+    Run Keyword If    ${check_length}>1    Pass Execution    The system performed displays the option to view the results per page
     ...    ELSE    Fail    The system wasn't displays the option to view the results per page
 
 It should display messages when the product are found
     [Documentation]    This keyword verifies that it should display messages when the product are found
-    [Arguments]    ${CONTENT}    ${MESS}
+    [Arguments]    ${content}    ${mess}
     TRY
-        # Open the Home Page
-        Search product on the search bar    ${CONTENT}
-        Check the text elememt    ${MESS}  
-        # Clear cookies
-        # Close the web page  
+        Search product on the search bar    ${content}
+        Check the text elememt    ${mess}  
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't display message when the product is found 
     END
 
 Click the sort dropdown
     [Documentation]    This keyword clicking the sort dropdown
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
     TRY
-        Click on the web element    ${LOCATOR}    
+        Click on the web element    ${locator}   
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't clicking the sort dropdown field
     END
@@ -167,33 +164,33 @@ Click the sort dropdown
 
 Users should view the search results after selected the view options
     [Documentation]    This keyword verifies that users should view the search results after selected the view options
-    [Arguments]    ${SELECT_VALUE}
+    [Arguments]    ${select_value}
     TRY
         Search product on the search bar    ${PRODUCT_KEYWORD}
         Wait until page contain element    ${ARTLIST_ACTION_SORT_ELE}
-        Select Option From Dropdown    ${ACTION_SORT_ELE}    ${SELECT_VALUE}
-        ${SELECTED_VALUE}=    Wait and get element text    ${SELECT_OPTION_ELE}
-        Should Be Equal As Strings    ${SELECTED_VALUE}    ${SELECT_VALUE}
+        Select Option From Dropdown    ${ACTION_SORT_ELE}    ${select_value}
+        ${selected_value}=    Wait and get element text    ${SELECT_OPTION_ELE}
+        Should Be Equal As Strings    ${selected_value}    ${select_value}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    It couldn't view the search results after selected the view options 
     END
 
 Click delivery dropdown
     [Documentation]    This keyword clicking delivery dropdown
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
     TRY
-        Hover Over Elenment    ${LOCATOR}
-        Click on the web element    ${LOCATOR}
+        Hover Over Elenment    ${locator}
+        Click on the web element    ${locator}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't clicking on the delivery dropdown 
     END
 
 Select the checkbox
     [Documentation]    This keyword elect the checkbox
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
     TRY
-        Hover Over Elenment    ${LOCATOR}
-        Click on the web element    ${LOCATOR}
+        Hover Over Elenment    ${locator}
+        Click on the web element    ${locator}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't selecting on the checkbox
     END
@@ -235,18 +232,18 @@ Select the Delivery checkbox
 
 It should be display the result after select checkbox
     [Documentation]    This keyword verifies that it should be display the result after select checkbox
-    [Arguments]    ${LOCATOR_ATR}    ${LOCATOR_LIST}
+    [Arguments]    ${locator_atr}    ${locator_list}
     TRY
-        ${CHECKBOX_VALUE}=    Get Element Attribute    ${LOCATOR_ATR}    value
-        ${LST2}=    Create List
-        ${LST}=    Get WebElements    ${LOCATOR_LIST}
-        ${LENGTH}=    Get Length    ${LST}
-        FOR    ${ELEMENT}    IN    @{LST}
-            ${ITEM}=    Get Element Attribute    ${ELEMENT}    data-key
-            Append To List    ${LST2}    ${ITEM}
+        ${checkbox_value}=    Get Element Attribute    ${locator_atr}    value
+        ${lst2}=    Create List
+        ${lst}=    Get WebElements    ${locator_list}
+        ${length}=    Get Length    ${lst}
+        FOR    ${element}    IN    @{lst}
+            ${item}=    Get Element Attribute    ${element}    data-key
+            Append To List    ${lst2}    ${item}
         END
-        FOR    ${ELEMENT}    IN    @{LST2}       
-                Run Keyword If    ${CHECKBOX_VALUE} == ${ELEMENT}    Pass Execution    Sucessfully
+        FOR    ${element}    IN    @{lst2}       
+                Run Keyword If    ${checkbox_value} == ${element}    Pass Execution    Sucessfully
         END
     
     EXCEPT
@@ -255,12 +252,12 @@ It should be display the result after select checkbox
 
 The search results page should be display the result of the filtered option 
     [Documentation]    This keyword verifies that the search results page should be display the result of the filtered option
-    [Arguments]    ${LOCATOR_ATR}    ${LOCATOR_LIST}    ${CHECKBOXNAME}
+    [Arguments]    ${locator_atr}    ${locator_list}    ${checkboxname}
     TRY
-        ${LST}=       Get WebElements    ${LOCATOR_LIST}
+        ${lst}=       Get WebElements    ${locator_list}
 
-        FOR    ${ELEMENT}    IN    @{LST}
-            Element Should Contain    ${ELEMENT}    ${CHECKBOXNAME}
+        FOR    ${element}    IN    @{lst}
+            Element Should Contain    ${element}    ${checkboxname}
         END
     EXCEPT
         Run Keyword And Continue On Failure    Fail    The search results page isn't displayed the result of the filtered option 
@@ -268,10 +265,10 @@ The search results page should be display the result of the filtered option
 The search result should be display enough information with image, name, rating, and price
     [Documentation]    This keyword verifies that the search result should be display enough information with image, name, rating, and price
     TRY
-        ${RESULT}=    Get WebElement    ${SEARCH_RESULT_ELE}    
-        Page Should Contain Element                ${IMAGE_ELE}    ${RESULT}
-        Page Should Contain Element                ${NAME_ELE}             ${RESULT}
-        Page Should Contain Element                ${PRICESEARCHRESULT_ELE}      ${RESULT}
+        ${result}=    Get WebElement    ${SEARCH_RESULT_ELE}    
+        Page Should Contain Element                ${IMAGE_ELE}    ${result}
+        Page Should Contain Element                ${NAME_ELE}             ${result}
+        Page Should Contain Element                ${PRICESEARCHRESULT_ELE}      ${result}
         Click on the web element                                              ${IMAGE_ELE}
         Page Should Contain Element                ${RATING_ELE}      ${RATINGBOX_ELE}
     EXCEPT
@@ -280,9 +277,9 @@ The search result should be display enough information with image, name, rating,
 
 It should display the error message
     [Documentation]    This keyword verifies that it should display the error message
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        Check the text elememt    ${TEXT}
+        Check the text elememt    ${text}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    It isn't displayed the error message 
     END

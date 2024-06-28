@@ -71,13 +71,13 @@ Click on the Ship to this address button on the Shipping page
         Run Keyword And Continue On Failure    Fail    Couldn't click on the "Ship to this address" button
     END
 
-Click on the Back button on the ${NAME} page
-    [Documentation]    Clicking on the locator that contains the locator of the Back button on the ${NAME} page
+Click on the Back button on the ${name} page
+    [Documentation]    Clicking on the locator that contains the locator of the Back button on the ${name} page
     TRY
         Hover Over Elenment    ${BACK_BTN_ELE}
         Click on button    ${BACK_BTN_ELE}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    Couldn't click on the "Back" button on the ${NAME} page
+        Run Keyword And Continue On Failure    Fail    Couldn't click on the "Back" button on the ${name} page
     END
 
 It should be include Back button for return to the Cart page
@@ -97,7 +97,7 @@ It should allow using the same address for billing and shipping
         Run Keyword And Continue On Failure    Fail    It doesn't using the same address for billing and shipping
     END
 
-Input data for the ${NAME} fields
+Input data for the ${name} fields
     [Documentation]    Input text for the Firstname, lastname, address1, address2 field on the page
     TRY
         Input value for a field    ${FIRST_NAME}    ${FIRSTNAME_INPUT_ELE}
@@ -106,7 +106,7 @@ Input data for the ${NAME} fields
         Input value for a field    ${FIRST_NAME}    ${ADDRESS2_INPUT_ELE}
 
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    Couldn't input data for the ${NAME} fields
+        Run Keyword And Continue On Failure    Fail    Couldn't input data for the ${name} fields
     END
 It should validate the address
     [Documentation]    Checking if the system validates address?
@@ -115,15 +115,15 @@ It should validate the address
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    It doesn't validate the address
     END
-It should provides input fields for ${NAME} address details
-    [Documentation]    Checking if the system provides the input fields for ${NAME} address details?
+It should provides input fields for ${name} address details
+    [Documentation]    Checking if the system provides the input fields for ${name} address details?
     TRY
         Input value for a field    ${FIRST_NAME}    ${FIRSTNAME_INPUT_ELE}
         Input value for a field    ${LAST_NAME}     ${LASTNAME_INPUT_ELE}
         Input value for a field    ${LONDON}        ${ADDRESS1_INPUT_ELE}
         Input value for a field    ${NEWYORK}       ${ADDRESS2_INPUT_ELE}
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    It couldn't provide input fields for ${NAME} address details
+        Run Keyword And Continue On Failure    Fail    It couldn't provide input fields for ${name} address details
     END
 It should be include options to save addresses for future use
     [Documentation]    Checking if the system includes options to save addresses for future use?

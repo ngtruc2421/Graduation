@@ -6,7 +6,7 @@ ${LOGINPAGE_TITLE_ELE}          tag=h1
 ${MESS_SUCCESS_ELE}             css:.h2
 ${URL_REGISTER}                 register
 ${REMEMBERME_BTN_ELE}           id=RememberMe
-${CONTENT_ELE}           id=content
+${CONTENT_ELE}                   id=content
 ${PASSWORD_ELE}                 css:#Password
 ${LOGIN_BTN_ELE}                css:.btn-login
 ${REGISTERLOGINPAGE_BTN_ELE}    css:.register-button
@@ -16,17 +16,17 @@ ${SIGNIN}          Sign In
 *** Keywords ***
 Input username
     [Documentation]    Inputs the data provided for the Username field 
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        Input value for a field    ${TEXT}    ${USERNAME_ELE}
+        Input value for a field    ${text}    ${USERNAME_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail      Input username failed  
     END
 Input pass
     [Documentation]    Inputs the data provided for the Password field 
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        Input value for a field    ${TEXT}    ${PASSWORD_ELE}  
+        Input value for a field    ${text}    ${PASSWORD_ELE}  
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Input password failed
     END
@@ -64,9 +64,9 @@ Click the Register button
 
 It should log in success
     [Documentation]    Verify that users login success?
-    [Arguments]    ${EXPECTED}
+    [Arguments]    ${expected}
     TRY
-        Check the text elememt    ${EXPECTED}
+        Check the text elememt    ${expected}
         
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Login failed
@@ -74,9 +74,9 @@ It should log in success
     END
 It should display the Login page
     [Documentation]    This keyword verifies that the login page is displayed
-    [Arguments]    ${EXPECTED}
+    [Arguments]    ${expected}
     TRY
-        Check the text elememt    ${EXPECTED}
+        Check the text elememt    ${expected}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't display the Login page
     END
@@ -89,37 +89,37 @@ Unfocus the field
     END
 Password field should input the data
     [Documentation]    This keyword verifies that users can input data using the provided locator for password field
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        ${TEM}    Get Value        ${PASSWORD_ELE}
-        Should Be Equal As Strings    ${TEXT}    ${TEM}  
+        ${tem}    Get Value        ${PASSWORD_ELE}
+        Should Be Equal As Strings    ${text}    ${tem}  
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't input data 
     END
 Username field should input the data
     [Documentation]    This keyword verifies that users can input data using the provided locator for username field
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        ${TEM}    Get Value        ${USERNAME_ELE}
-        Should Be Equal As Strings    ${TEXT}    ${TEM}  
+        ${tem}    Get Value        ${USERNAME_ELE}
+        Should Be Equal As Strings    ${text}    ${tem}  
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't input data 
     END
 Compare text of input field
     [Documentation]    This keyword get value of the provided locator and compares with the provided text
-    [Arguments]    ${TEXT}    ${LOCATOR}
+    [Arguments]    ${text}    ${locator}
     TRY
-        ${TEM}    Get Value    ${LOCATOR}
-        Should Be Equal As Strings    ${TEXT}    ${TEM.upper()}  
+        ${tem}    Get Value    ${locator}
+        Should Be Equal As Strings    ${text}    ${tem.upper()}  
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    The text couldn't equal
     END
 The system should save the account information
     [Documentation]    This keyword verifies that the system save the account information
-    [Arguments]     ${USERNAME}    ${PASSWORD}
+    [Arguments]     ${username}    ${password}
         TRY
-        Compare text of input field    ${USERNAME}        ${USERNAME_ELE}  
-        Compare text of input field    ${PASSWORD}        ${PASSWORD_ELE}
+        Compare text of input field    ${username}        ${USERNAME_ELE}  
+        Compare text of input field    ${password}        ${PASSWORD_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    The system don't save the account information
     END
@@ -127,23 +127,23 @@ The system should save the account information
 It should appear the error message when users input incorrect value for the Username or email field and Password field
     [Documentation]    This keyword verifies that the error message when users input incorrect value 
     ...                for the Username or email field and Password field
-    [Arguments]    ${USERNAME_EMAIL}    ${PASS}    ${MESS}
+    [Arguments]    ${username_email}    ${pass}    ${mess}
     TRY
         Open the Login page
-        Input username    ${USERNAME_EMAIL}
-        Input pass    ${PASS}
+        Input username    ${username_email}
+        Input pass    ${pass}
         Click the Login button
-        Check the text elememt    ${MESS}
+        Check the text elememt    ${mess}
         Close the web page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    It doesn't appear the error message
     END
 Log in the system
     [Documentation]    This keyword log in to the system with provided username and password
-    [Arguments]    ${USERNAME}    ${PASSWORD}
+    [Arguments]    ${username}    ${password}
     TRY
-        Input username    ${USERNAME}
-        Input pass    ${PASSWORD}
+        Input username    ${username}
+        Input pass    ${password}
         Click the Login button        
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't login to the system

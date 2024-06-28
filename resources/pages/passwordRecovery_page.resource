@@ -5,8 +5,8 @@ Resource    customerinfor_page.resource
 
 *** Variables ***
 ${RESETPASS_INPUT_ELE}    id=Email
-${SUBMIT_BTN_ELE}    css:input[type="submit"]
-${SUCCES_MESSAGE}    Email with instructions has been sent to you
+${SUBMIT_BTN_ELE}         css:input[type="submit"]
+${SUCCES_MESSAGE}         Email with instructions has been sent to you
 *** Keywords ***
 Click the Submit button
     [Documentation]    This keyword clicking on the Submit button
@@ -18,9 +18,9 @@ Click the Submit button
 
 Input the email for the Email field
     [Documentation]    This keyword input email for the Email field
-    [Arguments]    ${EMAIL}
+    [Arguments]    ${email}
     TRY
-        Input value for a field    ${EMAIL}    ${RESETPASS_INPUT_ELE}
+        Input value for a field    ${email}    ${RESETPASS_INPUT_ELE}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
     END
@@ -34,12 +34,12 @@ Users should reset password success
     END
 It should appear error message when users input invalid email
     [Documentation]    This keyword verifies that the error message appears
-    [Arguments]    ${VALUES}    ${NOTIFICATION}
+    [Arguments]    ${values}    ${notification}
     TRY
         Open the Password Recovery page
-        Input the email for the Email field    ${VALUES}
+        Input the email for the Email field    ${values}
         Click the Submit button
-        Check the text elememt                 ${NOTIFICATION}
+        Check the text elememt                 ${notification}
         Close the web page        
     EXCEPT
         Run Keyword And Continue On Failure    Fail    The error message isn't displayed the error message
