@@ -5,9 +5,10 @@ Resource    ../pages/login_page.resource
 Resource    ../pages/home_page.resource
 *** Variables ***
 ${SEARCHBAR_INPUT_ELE}    class=instasearch-term
-${SEARCH_BTN_ELE}    class=instasearch-button
+${SEARCH_BTN_ELE}    css:.instasearch-icon
 @{SEARCHBAR}=    ${SEARCHBAR_INPUT_ELE}    ${SEARCH_BTN_ELE} 
 ${SUGGESLIST_TITLE}    class=instasearch-group-header   
+${CIRCLE_ICON_ELE}    css:circle
 *** Keywords ***
 # Start template [
 It should display the search bar on the page
@@ -90,7 +91,9 @@ Enters the text on the search bar
 
 # Start common keyword [
 Search product on the search bar
-    [Arguments]    ${TEXT} 
+    [Arguments]    ${TEXT}
+        Wait Until Element Is Visible    ${SEARCHBAR_INPUT_ELE}
         Input value for a field    ${TEXT}    ${SEARCHBAR_INPUT_ELE}
+        Wait until load object    ${CIRCLE_ICON_ELE}
         Click on button    ${SEARCH_BTN_ELE}
 # End common keyword ]
