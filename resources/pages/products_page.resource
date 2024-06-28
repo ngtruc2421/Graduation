@@ -59,7 +59,6 @@ Hover Over The product item "${name}" in product page
 Click on the Home page
     [Documentation]       This keyword is used to Click on the Home page
     TRY
-        Wait Until Element Is Visible    ${HOMEPAGE_ELE}  
         Click on the web element    ${HOMEPAGE_ELE}    
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click on the Home page

@@ -23,7 +23,7 @@ BSG-T111 --- Verify that Display a list of all items in the cart, each with: A t
     Hover Over The product item "Best Grilling Recipes" in result page
     Click on the Add product button on search result page
     Display sidebar "Shopping Cart" tab
-    The "Best Grilling Recipes" should show on shopping cart tab
+    The "Best Grilling Recipes" should show on shopping cart tab  
     Click on the "Go To Cart" button
     The page should be opened    Shopping cart    ${PAGE_TITLE_ELE}   
     The image "The Prisoner of Heaven: A Novel" should be displayed in the shopping cart page
