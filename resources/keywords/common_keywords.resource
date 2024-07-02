@@ -6,23 +6,23 @@ ${PAGE_TITLE_ELE}            css:.page-title
 *** Keywords ***
 Access to url
     [Documentation]    This keyword to access to a url address by chrome browser
-    [Arguments]    ${URL}    ${BROW}=${BROWSER}
+    [Arguments]    ${url}    ${brow}=${BROWSER}
     TRY
-        Open Browser    ${URL}    ${BROW}
+        Open Browser    ${url}    ${brow}
         Maximize Browser Window
     EXCEPT   
-        Run Keyword And Continue On Failure    Fail    Couldn't access to ${URL}
+        Run Keyword And Continue On Failure    Fail    Couldn't access to ${url}
     END
 
 Navigate to URL 
-    [Arguments]    ${URL}  
-    Go To    ${URL}
+    [Arguments]    ${url}  
+    Go To    ${url}
 
 Scroll to 
     [Documentation]    This keyword to scroll the visual to the inputed value
-    [Arguments]    ${VALUE}
+    [Arguments]    ${value}
     TRY
-        Execute Javascript    window.scrollBy(0,${VALUE})
+        Execute Javascript    window.scrollBy(0,${value})
     EXCEPT
         Run Keyword And Continue On Failure    Fail    Couldn't scroll to the provided value
     END
@@ -35,31 +35,31 @@ Close the web page
     END
 Click on the web element
     [Documentation]    This keyword to click on the any web elememt by provided locator
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
     TRY
-        Wait Until Element Is Visible    ${LOCATOR}
-        Wait Until Element Is Enabled    ${LOCATOR}
-        Click Element                    ${LOCATOR}
+        Wait Until Element Is Visible    ${locator}
+        Wait Until Element Is Enabled    ${locator}
+        Click Element                    ${locator}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't click on the element 
     END
     
 Click on button
     [Documentation]    This keyword to click on a button by provided locator
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
         TRY
-            Click on the web element    ${LOCATOR}
+            Click on the web element    ${locator}
         EXCEPT    
-            Run Keyword And Continue On Failure    Fail    Couldn't click on ${LOCATOR} button 
+            Run Keyword And Continue On Failure    Fail    Couldn't click on ${locator} button 
         END
     
 Input value for a field
     [Documentation]    This keyword input a value for a field by provided value and locator 
-    [Arguments]    ${TEXT}    ${LOCATOR} 
+    [Arguments]    ${TEXT}    ${locator} 
     TRY
-        Wait Until Element Is Visible    ${LOCATOR}      
-        Clear Element Text               ${LOCATOR}
-        Input Text    ${LOCATOR}    ${TEXT}
+        Wait Until Element Is Visible    ${locator}      
+        Clear Element Text               ${locator}
+        Input Text    ${locator}    ${TEXT}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't input value for the input field  
     END   
@@ -67,19 +67,19 @@ Input value for a field
 
 Check the text elememt
     [Documentation]    This keyword checks a web text element that is display on the webpage
-    [Arguments]    ${TEXT}
+    [Arguments]    ${text}
     TRY
-        Wait Until Page Contains    ${TEXT}
-        Page Should Contain              ${TEXT}
+        Wait Until Page Contains    ${text}
+        Page Should Contain              ${text}
     EXCEPT    
         Run Keyword And Continue On Failure  Fail    The text isn't display on the page
     END    
 
 Get Page title
     [Documentation]    This keyword gets text of a element by provided locator
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
     TRY
-        ${PAGE_TITLE}=    Get Text     ${LOCATOR}   
+        ${PAGE_TITLE}=    Get Text     ${locator}   
         RETURN    ${PAGE_TITLE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't get the text at this locator
@@ -87,24 +87,24 @@ Get Page title
 
 The page should be opened
     [Documentation]    This keyword verifies a webpage that displays
-    [Arguments]    ${PAGENAME}    ${LOCATOR}
+    [Arguments]    ${pagename}    ${locator}
     TRY
-        Wait Until Page Contains Element           ${LOCATOR}
-        ${CURRENT_PAGE_TITLE}=    Get Page title    ${LOCATOR}     
-        Should Contain    ${CURRENT_PAGE_TITLE}    ${PAGENAME}
+        Wait Until Page Contains Element           ${locator}
+        ${current_page_title}=    Get Page title    ${locator}     
+        Should Contain    ${current_page_title}    ${pagename}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail   Couldn't open the page
     END
 
 Open page
     [Documentation]    This keyword open a webpage
-    [Arguments]    ${PAGENAME}    ${LOCATOR}
+    [Arguments]    ${pagename}    ${locator}
     TRY
         Access to url    ${URL_HOME}
-        ${PAGENAME_LOWER}=    Evaluate    "${PAGENAME}".lower()
-        ${URL}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${PAGENAME_LOWER}
+        ${pagename_lower}=    Evaluate    "${pagename}".lower()
+        ${URL}=    Catenate    SEPARATOR=/    ${URL_HOME}    ${pagename_lower}
         Go To    ${URL}
-        The page should be opened    ${PAGENAME}    ${LOCATOR}
+        The page should be opened    ${pagename}    ${locator}
     EXCEPT    
         Run Keyword And Continue On Failure   Fail     Couldn't open ${pagename} page    CONTINUE
     END
@@ -112,76 +112,72 @@ Open page
 
 Select Option From Dropdown
     [Documentation]    This keyword select a option from the dropdown by provided locator and option
-    [Arguments]    ${DROPDOWN_LOCATOR}    ${OPTION_TEXT}
+    [Arguments]    ${dropdown_locator}    ${option_text}
     TRY
-        Select From List By Label    ${DROPDOWN_LOCATOR}    ${OPTION_TEXT}
-        ${SELECTED_VALUE}=    Wait and get element text    ${SELECT_OPTION_ELE}
-        WHILE    "${SELECTED_VALUE}" != "${OPTION_TEXT}"
-            Wait Until Element Contains    ${SELECT_OPTION_ELE}    ${OPTION_TEXT}
-        END
+        Select From List By Label    ${dropdown_locator}    ${option_text}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    Couldn't select the ${OPTION_TEXT} option
+        Run Keyword And Continue On Failure    Fail    Couldn't select the ${option_text} option
     END
 Scroll Down in Firefox
-    ${TOTAL_HEIGHT}=    Execute JavaScript    return document.documentElement.scrollHeight
-    ${VIEWPORT_HEIGHT}=    Execute JavaScript    return window.innerHeight
-    ${CURRENT_SCROLL}=    Execute JavaScript    return window.scrollY
+    ${total_height}=    Execute JavaScript    return document.documentElement.scrollHeight
+    ${viewport_height}=    Execute JavaScript    return window.innerHeight
+    ${current_scroll}=    Execute JavaScript    return window.scrollY
 
-    ${SCROLL_AMOUNT}=    Set Variable    700
-    ${TARGET_SCROLL}=    Evaluate    ${CURRENT_SCROLL} + ${SCROLL_AMOUNT}
+    ${scroll_amount}=    Set Variable    700
+    ${target_scroll}=    Evaluate    ${current_scroll} + ${scroll_amount}
     
-    Run Keyword If    ${TARGET_SCROLL} > ${TOTAL_HEIGHT} - ${VIEWPORT_HEIGHT}    ${TARGET_SCROLL}=    Set Variable    ${TOTAL_HEIGHT} - ${VIEWPORT_HEIGHT}
+    Run Keyword If    ${target_scroll} > ${total_height} - ${viewport_height}    ${target_scroll}=    Set Variable    ${total_height} - ${VIEWPORT_HEIGHT}
     
-    Execute JavaScript    window.scrollTo({ top: ${TARGET_SCROLL}, behavior: 'smooth' })
+    Execute JavaScript    window.scrollTo({ top: ${target_scroll}, behavior: 'smooth' })
 Hover Over Elenment
     [Documentation]    This keyword is used to move the mouse to a provided locator
-    [Arguments]       ${ELEMENT}    ${COORDINATES}=500
+    [Arguments]       ${element}    ${coordinates}=500
     TRY
         IF    ("${BROWSER}"=="Firefox")
             Scroll Down in Firefox
             
         ELSE
-            Scroll Element Into View    ${ELEMENT}
-            Execute JavaScript    window.scrollBy(0, ${COORDINATES})
+            Scroll Element Into View    ${element}
+            Execute JavaScript    window.scrollBy(0, ${coordinates})
         END
-        ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${ELEMENT}
+        ${status}=    Run Keyword And Return Status    Element Should Be Visible    ${element}
         IF    "${status}"=="False"
             Run Keyword And Continue On Failure    Fail    No look for element
         ELSE
             Sleep    2s           
-            Mouse Over    ${ELEMENT}
+            Mouse Over    ${element}
         END
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    Couldn't hover the ${ELEMENT} element
+        Run Keyword And Continue On Failure    Fail    Couldn't hover the ${element} element
     END
    
 Wait until page contain element
     [Documentation]    This keyword is used to wait and check page contain provided locator
-    [Arguments]    ${ELEMENT}
+    [Arguments]    ${element}
     TRY
-        Wait Until Element Is Visible    ${ELEMENT}
-        Page Should Contain Element    ${ELEMENT}
+        Wait Until Element Is Visible    ${element}
+        Page Should Contain Element    ${element}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't looking for the element
     END   
 
 Get list WebElements
     [Documentation]    This keyword is used to get list web elements from the provided locator
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
     TRY
-        Wait Until Element Is Visible    ${LOCATOR}
-        @{ELEMENTS}=    Get WebElements    ${LOCATOR}
-        RETURN     @{ELEMENTS}
+        Wait Until Element Is Visible    ${locator}
+        @{elements}=    Get WebElements    ${locator}
+        RETURN     @{elements}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't get list web elements
     END
 
 Wait and get element text
     [Documentation]    This keyword is used to wait and get element text from provided locator
-    [Arguments]     ${ELEMENT}
+    [Arguments]     ${element}
     TRY
-        Wait Until Element Is Visible    ${ELEMENT}    timeout=10s    
-        ${TEXT}=    Get Text    ${ELEMENT}
+        Wait Until Element Is Visible    ${element}    timeout=10s    
+        ${TEXT}=    Get Text    ${element}
         RETURN    ${TEXT}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't get element text
@@ -189,21 +185,21 @@ Wait and get element text
 
 Compare two Numbers
     [Documentation]    This keyword is used to compare two numbers from provided locator
-    [Arguments]     ${NUM1}    ${NUM2} 
+    [Arguments]     ${num1}    ${num2} 
     TRY
-        ${NUMBER1}=    Convert To Number    ${NUM1}
-        ${NUMBER2}=    Convert To Number    ${NUM2}
-        Should Be Equal As Numbers    ${NUMBER1}    ${NUMBER2}
+        ${number1}=    Convert To Number    ${num1}
+        ${number2}=    Convert To Number    ${num2}
+        Should Be Equal As Numbers    ${number1}    ${number2}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    The two numbers are not equal
     END
    
 Wait for page loaded
     [Documentation]       This keyword is used to Wait for page loaded from provided locator
-    [Arguments]    ${LOCATOR}
+    [Arguments]    ${locator}
     TRY
-        Wait Until Element Is Visible    ${LOCATOR}
-        Wait Until Element Is Not Visible    ${LOCATOR}
+        Wait Until Element Is Visible    ${locator}
+        Wait Until Element Is Not Visible    ${locator}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Wait for page loaded
     END
@@ -215,3 +211,9 @@ Clear cookies
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    Couldn't clear all cookies of browser
     END
+
+Wait until load object 
+    [Documentation]       This keyword is used to Wait until load object from provided locator
+    [Arguments]    ${LOCATOR}
+    Wait Until Element Is Visible    ${LOCATOR}
+    Wait Until Element Is Not Visible    ${LOCATOR}

@@ -27,8 +27,8 @@ The Home page should be open
     [Documentation]    This keyword verifies that the Home page should be open
     TRY
         Wait Until Page Contains Element           ${HOMEPAGE_TITLE_ELE}  
-        ${CURRENT_PAGE_TITLE}=    Get Text    ${HOMEPAGE_TITLE_ELE}   
-        Should Contain    ${CURRENT_PAGE_TITLE}    Welcome to our store.
+        ${current_page_title}=    Get Text    ${HOMEPAGE_TITLE_ELE}   
+        Should Contain    ${current_page_title}    Welcome to our store.
     EXCEPT    
         Run Keyword And Continue On Failure    FAIL   The page open failure 
     END
