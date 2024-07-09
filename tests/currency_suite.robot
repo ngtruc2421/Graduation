@@ -36,7 +36,7 @@ BSG-T98 --- Verify that the selected currency should display on all product pric
     Select the Watches tab
     All product on Listing page should change currency type
 BSG-T99 --- Verify that the selected currency should load on all product price on Detail page
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
@@ -44,7 +44,7 @@ BSG-T99 --- Verify that the selected currency should load on all product price o
     It should changes the currency on the Detail page
 
 BSG-T100 --- Verify that the selected currency should load on all product price on Shopping cart
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
@@ -53,7 +53,7 @@ BSG-T100 --- Verify that the selected currency should load on all product price 
     It should changes the currency on the Shopping cart
     
 BSG-T101 --- Verify that the selected currency should load on all product price on Wishlist page
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown
@@ -61,7 +61,7 @@ BSG-T101 --- Verify that the selected currency should load on all product price 
     Click on Add to List button from product detail page
     It should changes the currency on the Wishlist tab
 BSG-T102 --- Verify that the selected currency should load on all product price on Compare page
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Click on the Currency dropdown
     Select the Pound Sterling option on the Currency dropdown

@@ -40,14 +40,14 @@ BSG-T52 --- Verify that user can search the product when enter data into the sea
     Dining table
     Save with this set 5%!
 BSG-T53 --- Verify that the search function will support auto-suggestions when users enter data for the search bar
-    [Tags]    High    Smoke
+    [Tags]    High
     [Setup]    Open the Home Page
     [Template]    The suggestions list should display with 
     an
     Dining table
     Save with this set 5%!
 BSG-T54 --- Verify that the suggestion list should include the produce image, name, and description
-    [Tags]    High    Smok
+    [Tags]    High
     Open the Home Page
     Enters the text on the search bar    an
     It should display the image, description, and title on suggestion list
@@ -57,7 +57,7 @@ BSG-T55 --- Verify that each search result display enough information
     Search product on the search bar    an
     The search result should be display enough information with image, name, rating, and price
 BSG-T56 --- Verify that results should be sortable by the selected option
-    [Tags]    High    Smoke
+    [Tags]    High
     [Setup]    Open the Home Page
     [Template]    Users should view the search results after selected the view options
     Name: A to Z
