@@ -15,8 +15,7 @@ Documentation   This suite cover all test cases related to the user story [BSG-1
  ...           - So that I can Quickly find and purchase the items I need
 *** Test Cases ***
 BSG-T50 --- Verify that the search bar should be prominently on every page
-    [Tags]    High    Smoke
-    # [Setup]    Open the Home Page
+    [Tags]    High    
     [Template]    It should display the search bar on the page
     https://bearstore-testsite.smartbear.com/customer/passwordrecovery
     https://bearstore-testsite.smartbear.com/login
@@ -66,7 +65,7 @@ BSG-T56 --- Verify that results should be sortable by the selected option
     Price: High to Low
     Newest Arrivals
 BSG-T57 --- Verify that the search result will update to show only products within the selected category when user selects the categories from the category filter
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Home Page
     Search product on the search bar            an
     Select the Category checkbox
@@ -118,7 +117,7 @@ BSG-T64 --- Verify that users should receive clear error messages if no results 
     house         Your search did not match any products.
 
 BSG-T65 --- Verify that users should receive clear error messages if no filter results are found
-    [Tags]    Medium    Smoke
+    [Tags]    Medium
     Open the Home Page
     Search product on the search bar       an
     Enter a value for the To field         1
@@ -130,10 +129,9 @@ Test case Setup for search suite
     Set test case start time
 Test case Teardown for search suite
     Update test case result to Zephyr Scale
-    # Clear cookies
     Close the web page
 Test Suite Setup for search suite
-    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder    Automation Test
     Log    This is suite setup
 Test Suite Teardown for search suite
     Close All Browsers
