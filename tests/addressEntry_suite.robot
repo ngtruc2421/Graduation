@@ -87,5 +87,5 @@ Test case Teardown address entry suite
     Close the web page
 
 Test Suite Setup for address entry suite
-    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder    Automation Test
     Log    This is suite setup

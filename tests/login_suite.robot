@@ -99,7 +99,7 @@ Test case Teardown for login suite
     Close the web page
 
 Test Suite Setup for login suite
-    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder    Automation Test
     Log                            This is suite setup
 
 # Open the password recovery page
