@@ -26,7 +26,6 @@ BSG-T105 --- Verify that the system should provide input fields for shipping and
     It should provides input fields for billing address details
     Click on the Next button
     It should provides input fields for shipping address details
-    It should provides input fields for shipping address details
     
 BSG-T106 --- Verify that the system should be Include options to save addresses for future use
     [Tags]    High
