@@ -47,11 +47,11 @@ Select the Shopping Basket option on the header
 
 Show on the logged in user's name on the top right 
     [Documentation]       This keyword is used to Show on the logged in user's name on the top right 
-    [Arguments]    ${USERNAME}
+    [Arguments]    ${username}
     TRY
-        ${LOCATOR}    Set Variable    css:a.menubar-link > span[title="${USERNAME}"]
-        ${tem}    Get Text    ${LOCATOR}
-        Should Be Equal As Strings    ${USERNAME.upper()}    ${tem.upper()}
+        ${locator}    Set Variable    css:a.menubar-link > span[title="${username}"]
+        ${tem}    Get Text    ${locator}
+        Should Be Equal As Strings    ${username.upper()}    ${tem.upper()}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Show on the logged in user's name on the top right 
     END   
@@ -60,16 +60,16 @@ Show on the logged in user's name on the top right
 Check user login
     [Documentation]       This keyword is used to Check user login
     TRY
-        @{LIST}=    Get WebElements    ${MENUBAR_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST}
-            @{LIST_TITLE}=    Get WebElements    ${MENUBARSPAN_ELE} 
-            ${TITLE_ELE}=    Get From List    ${LIST_TITLE}    ${INDEX}
-            ${TITLE}=    Get Text    ${TITLE_ELE}
-            IF    "${TITLE}" == "LOG IN"
+        @{list}=    Get WebElements    ${MENUBAR_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list}
+            @{list_title}=    Get WebElements    ${MENUBARSPAN_ELE} 
+            ${title_ele}=    Get From List    ${list_title}    ${index}
+            ${title}=    Get Text    ${title_ele}
+            IF    "${title}" == "LOG IN"
             RETURN    ${True}
         END
-        ${INDEX}=    Evaluate    ${INDEX} + 1
+        ${index}=    Evaluate    ${index} + 1
         END
             RETURN    ${False}
     EXCEPT    
@@ -77,20 +77,20 @@ Check user login
         
     END
     
-Click on the "${OPTION}" in top right
-    [Documentation]       This keyword is used to Click on the "${OPTION}" in top right from provided option
+Click on the "${option}" in top right
+    [Documentation]       This keyword is used to Click on the "${option}" in top right from provided option
     TRY
-        ${LIST_OPTION}=    Get list WebElements    ${LISTOPTIONACCOUNT_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST_OPTION}
-            ${OPTION_ELE}=    Get From List    ${LIST_OPTION}    ${INDEX}    
-            ${OPTION_NAME}=    Wait and get element text    ${OPTION_ELE}
-            IF    ("${OPTION_NAME}"== "${OPTION}")
-                Click on the web element    ${OPTION_ELE}
+        ${list_option}=    Get list WebElements    ${LISTOPTIONACCOUNT_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list_option}
+            ${option_ele}=    Get From List    ${list_option}    ${index}    
+            ${option_name}=    Wait and get element text    ${option_ele}
+            IF    ("${option_name}"== "${option}")
+                Click on the web element    ${option_ele}
                 RETURN
             END
-            ${INDEX}=    Evaluate    ${INDEX}+1
+            ${index}=    Evaluate    ${index}+1
         END
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the "${OPTION}" in top right
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the "${option}" in top right
     END

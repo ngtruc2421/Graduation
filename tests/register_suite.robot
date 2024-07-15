@@ -227,8 +227,7 @@ BSG-T19 --- Verify that the system Display appropriate error messages for: Passw
     The error "The password and confirmation password do not match." should be display
 *** Keywords ***
 Test Suite Setup of register 
-    # Create test cycle at folder    Smoke Testing
-    Create test cycle at folder    Regression Testing
+    Create test cycle at folder    Automation Test
     Log    This is suite setup
 Test case Setup of register
     Set test case start time

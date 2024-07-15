@@ -2,7 +2,6 @@
 Library     json
 Library     RequestsLibrary
 Library     Collections
-Library    ../../.venv/Lib/site-packages/robot/libraries/OperatingSystem.py
 Resource    utils.resource
 Resource    ../../configurations/api_credentials.resource
 

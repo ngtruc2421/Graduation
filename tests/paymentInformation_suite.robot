@@ -91,5 +91,5 @@ Test case Teardown payment information suite
     Update test case result to Zephyr Scale
 
 Test Suite Setup for payment information suite
-    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder    Automation Test
     Log    This is suite setup

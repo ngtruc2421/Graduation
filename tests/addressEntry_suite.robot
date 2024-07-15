@@ -28,7 +28,7 @@ BSG-T105 --- Verify that the system should provide input fields for shipping and
     It should provides input fields for shipping address details
     
 BSG-T106 --- Verify that the system should be Include options to save addresses for future use
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Login page
     Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
@@ -42,7 +42,7 @@ BSG-T106 --- Verify that the system should be Include options to save addresses 
     It should be include options to save addresses for future use
 
 BSG-T107 --- Verify that the system should allow using the same address for billing and shipping
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Login page
     Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
@@ -68,7 +68,7 @@ BSG-T108 --- Verify that the system should be validate addresses for completenes
     It should validate the address
 
 BSG-T135 --- Verify that the system should be include a "Back" button to return to the Cart page
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Login page
     Log in the system    tt1999@gmail.com    12345678
     Select a product on the Featured product section
@@ -87,5 +87,5 @@ Test case Teardown address entry suite
     Close the web page
 
 Test Suite Setup for address entry suite
-    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder    Automation Test
     Log    This is suite setup

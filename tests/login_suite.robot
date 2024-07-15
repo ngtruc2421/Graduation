@@ -77,13 +77,13 @@ BSG-T32 --- Verify that user can input data for the Username or email field
     Unfocus the field
     Username field should input the data    @trantruc2001
 BSG-T34 --- Verify that user can input data for the Password field
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Login page
     Input pass                              TranPhuongNgocTruc20042001
     Unfocus the field
     Password field should input the data    TranPhuongNgocTruc20042001
 BSG-T49 --- Verify that users can login success into the system
-    [Tags]    High    Smoke
+    [Tags]    High
     Open the Login page
     Input username                      @trantruc2001
     Input pass                          TranPhuongNgocTruc20042001
@@ -99,7 +99,7 @@ Test case Teardown for login suite
     Close the web page
 
 Test Suite Setup for login suite
-    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder    Automation Test
     Log                            This is suite setup
 
 # Open the password recovery page

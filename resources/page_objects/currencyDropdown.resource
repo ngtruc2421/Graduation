@@ -7,14 +7,14 @@ ${CURRENCY_OPTIONS_ELE}     css:.currency-selector div[class="dropdown-menu show
 ${WATCHES_OPTION_ELE}       xpath=//ul[@id="menu-main"]//li//span[contains(text(),'Watches')] 
 @{DEFAULT_VALUE_LIST}=    US Dollar - USD ($)    Pound Sterling - GBP (£)    Australian Dollar - AUD ($)    Canadian Dollar - CAD ($)
 ${RESULTS_WATCHES_TAB_ELE}    css:article[class="art"] div[class="art-price-block"] span
-${CURRENCY_SYMBOL}    £
-${ARTPRICE_ELE}    css:.art-price
+${CURRENCY_SYMBOL}        £
+${ARTPRICE_ELE}            css:.art-price
 ${PRICEONCOMPARETAB_ELE}    css:#occ-compare span.price.unit-price
-${CURRENCY_ITEM_ELE}    css:.currency-selector .dropdown-menu>a.dropdown-item
-${PRICEBLOCK_ELE}    css:div.pd-price-block div.pd-price span
-${PRICEONCART_ELE}    css:#occ-cart span.price.unit-price
-${FOOTERCART_ELE}    css:div.offcanvas-cart-footer div.sub-total.price
-${WISHLIST_ELE}    css:#occ-wishlist span.price.unit-price
+${CURRENCY_ITEM_ELE}        css:.currency-selector .dropdown-menu>a.dropdown-item
+${PRICEBLOCK_ELE}        css:div.pd-price-block div.pd-price span
+${PRICEONCART_ELE}        css:#occ-cart span.price.unit-price
+${FOOTERCART_ELE}        css:div.offcanvas-cart-footer div.sub-total.price
+${WISHLIST_ELE}          css:#occ-wishlist span.price.unit-price
 *** Keywords ***
 It should display the currency dropdown
     TRY
@@ -31,16 +31,16 @@ Click on the Currency dropdown
 
 It should display four optionS including USD, GBP, AUD, CAD
     TRY
-    @{CURRENCY_OPTIONS_LIST}=    Get list WebElements    ${CURRENCY_OPTIONS_ELE}
-    ${LENGTH}=    Get Length    ${DEFAULT_VALUE_LIST}
-    ${VALUE_CURRENCY_LIST}=    Create List
-    FOR    ${E}    IN    @{CURRENCY_OPTIONS_LIST}
+    @{currency_options_list}=    Get list WebElements    ${CURRENCY_OPTIONS_ELE}
+    ${length}=    Get Length    ${DEFAULT_VALUE_LIST}
+    ${value_currency_list}=    Create List
+    FOR    ${E}    IN    @{currency_options_list}
         ${VALUE}=    Get Text    ${E}    
-        Append To List    ${VALUE_CURRENCY_LIST}    ${VALUE}                    
+        Append To List    ${value_currency_list}    ${VALUE}                    
     END
-    FOR    ${I}    IN RANGE    1    ${LENGTH}
+    FOR    ${I}    IN RANGE    1    ${length}
         ${ITEM1}=    Set Variable    ${DEFAULT_VALUE_LIST}[${I}]
-        ${ITEM2}=    Set Variable    ${VALUE_CURRENCY_LIST}[${I}]
+        ${ITEM2}=    Set Variable    ${value_currency_list}[${I}]
         Should Be Equal As Strings    ${ITEM1}    ${ITEM2}        
     END
     EXCEPT
@@ -48,11 +48,11 @@ It should display four optionS including USD, GBP, AUD, CAD
     END
 It should display default a any currency value
     TRY
-    @{CURRENCY_OPTIONS_LIST}=    Get list WebElements    ${CURRENCY_ITEM_ELE}
-    ${LENGTH}=    Get Length    ${CURRENCY_OPTIONS_LIST}
-    FOR    ${E}    IN    @{CURRENCY_OPTIONS_LIST}            
-        ${CHECK}=    Get Element Attribute    ${E}    data-selected
-        Pass Execution If    "${CHECK}"=="true"    It should display default a any currency value
+    @{currency_options_list}=    Get list WebElements    ${CURRENCY_ITEM_ELE}
+    ${length}=    Get Length    ${currency_options_list}
+    FOR    ${e}    IN    @{currency_options_list}            
+        ${check}=    Get Element Attribute    ${e}    data-selected
+        Pass Execution If    "${check}"=="true"    It should display default a any currency value
     END
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should display default a any currency value" keyword 
@@ -64,27 +64,27 @@ Select the Watches tab
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the Watches tab" keyword 
     END
 
-Select the ${VALUE} option on the Currency dropdown
+Select the ${value} option on the Currency dropdown
     TRY
-        ${LOCATOR}=    Set Variable    css:div.currency-selector div.dropdown-menu.show a[title="${VALUE}"]
-        Click on the web element    ${LOCATOR}
+        ${locator}=    Set Variable    css:div.currency-selector div.dropdown-menu.show a[title="${value}"]
+        Click on the web element    ${locator}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the ${VALUE} option on the Currency dropdown" keyword 
+        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the ${value} option on the Currency dropdown" keyword 
     END
 
 All product on Listing page should change currency type
     TRY
-        ${PRODUCT_LIST_ELE}=    Get list WebElements    ${RESULTS_WATCHES_TAB_ELE}
-        ${LENGTH}=    Get Length    ${PRODUCT_LIST_ELE}
-        ${TEXT_LIST}=    Create List
-        FOR    ${E}    IN    @{PRODUCT_LIST_ELE}
-            ${TEXT}=    Get Text    ${E}
-            Append To List    ${TEXT_LIST}    ${TEXT}
+        ${product_list_ele}=    Get list WebElements    ${RESULTS_WATCHES_TAB_ELE}
+        # ${length}=    Get Length    ${product_list_ele}
+        ${text_list}=    Create List
+        FOR    ${e}    IN    @{product_list_ele}
+            ${text}=    Get Text    ${e}
+            Append To List    ${text_list}    ${text}
         END
-        ${LENGTH}=    Get Length    ${TEXT_LIST}
-        ${CHECK}=    Set Variable    ${True}
-        FOR    ${E}    IN    @{TEXT_LIST}
-            Should Contain    ${E}    ${CURRENCY_SYMBOL}
+        # ${LENGTH}=    Get Length    ${text_list}
+        ${check}=    Set Variable    ${True}
+        FOR    ${e}    IN    @{text_list}
+            Should Contain    ${e}    ${CURRENCY_SYMBOL}
         END
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "All product on Listing page should change currency type" keyword 
@@ -93,44 +93,44 @@ All product on Listing page should change currency type
 
 It should changes the currency on the Detail page
     TRY
-        ${VALUE}=    Wait and get element text    ${PRICEBLOCK_ELE}
-        Should Contain    ${VALUE}    ${CURRENCY_SYMBOL}
+        ${value}=    Wait and get element text    ${PRICEBLOCK_ELE}
+        Should Contain    ${value}    ${CURRENCY_SYMBOL}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should changes the curency on the Detail page" keyword 
     END
 
 It should changes the currency on the Shopping cart
     TRY
-        ${VALUE1}=    Wait and get element text    ${PRICEONCART_ELE}
-        Should Contain    ${VALUE1}    ${CURRENCY_SYMBOL}
-        ${VALUE2}=    Wait and get element text    ${FOOTERCART_ELE}
-        Should Contain    ${VALUE2}    ${CURRENCY_SYMBOL}
+        ${value1}=    Wait and get element text    ${PRICEONCART_ELE}
+        Should Contain    ${value1}    ${CURRENCY_SYMBOL}
+        ${value2}=    Wait and get element text    ${FOOTERCART_ELE}
+        Should Contain    ${value2}    ${CURRENCY_SYMBOL}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should changes the currency on the Shopping cart" keyword 
     END
 
 It should changes the currency on the Wishlist tab
     TRY
-        ${VALUE}=    Wait and get element text    ${WISHLIST_ELE}
-        Should Contain    ${VALUE}    ${CURRENCY_SYMBOL}
+        ${value}=    Wait and get element text    ${WISHLIST_ELE}
+        Should Contain    ${value}    ${CURRENCY_SYMBOL}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should changes the currency on the Wishlist tab" keyword 
     END
 
 It should changes the currency on the Compare tab
     TRY
-        ${VALUE}=    Wait and get element text    ${PRICEONCOMPARETAB_ELE}
-        Should Contain    ${VALUE}    ${CURRENCY_SYMBOL}
+        ${value}=    Wait and get element text    ${PRICEONCOMPARETAB_ELE}
+        Should Contain    ${value}    ${CURRENCY_SYMBOL}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should changes the currency on the Compare tab" keyword 
     END
 
 It should change in real time when the user changes the currency type
     TRY
-        @{LIST}    Get list WebElements    ${ARTPRICE_ELE}
-        FOR    ${E}    IN    @{LIST}
-            ${V}=    Wait and get element text    ${E}
-            Should Contain    ${V}    ${CURRENCY_SYMBOL}
+        @{list}    Get list WebElements    ${ARTPRICE_ELE}
+        FOR    ${e}    IN    @{list}
+            ${v}=    Wait and get element text    ${e}
+            Should Contain    ${v}    ${CURRENCY_SYMBOL}
         END
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "It should change in real time when the user changes the currency type" keyword 

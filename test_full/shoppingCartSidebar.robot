@@ -214,8 +214,7 @@ BSG-T47 --- Verify that Changes in quantity should automatically update the subt
 
 *** Keywords ***
 Test Suite Setup of management shopping cart sidebar
-    Create test cycle at folder    Smoke Testing
-    Create test cycle at folder     Regression Testing
+    Create test cycle at folder    Automation Test
     Log    This is suite setup
 Test case Setup of management shopping cart sidebar
     Set test case start time

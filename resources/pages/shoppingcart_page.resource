@@ -27,12 +27,12 @@ ${POSTALCODEFIELD_ELE}             id:ZipPostalCode
 ${CONTINUESHOPPING_BTN_ELE}        css:.btn-continue-shopping
 ${THROBBER_ELE}                    css:.throbber-flex
 *** Keywords ***
-The image "${NAME}" should be displayed in the shopping cart page
+The image "${name}" should be displayed in the shopping cart page
     [Documentation]       This keyword is used to verify The image of product should be displayed in the shopping cart page from provided product name
     TRY
-        Wait until page contain element    css:.img-fluid[alt="Picture of ${NAME}"]
+        Wait until page contain element    css:.img-fluid[alt="Picture of ${name}"]
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The image "${NAME}" should be displayed in the shopping cart page
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The image "${name}" should be displayed in the shopping cart page
     END
 
 There is 2 product in shopping cart and user is on the Shopping cart page
@@ -45,104 +45,104 @@ There is 2 product in shopping cart and user is on the Shopping cart page
         Run Keyword And Continue On Failure    Fail    There is a error happen in progress verify There is 2 product in shopping cart 
     END
 
-The name "${NAME}" should be displayed in shopping cart page
+The name "${name}" should be displayed in shopping cart page
     [Documentation]       This keyword is used to verify The name of product should be displayed in shopping cart page from provided product name
     TRY
-        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        FOR    ${element}    IN    @{LIST_NAME}
+        ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        FOR    ${element}    IN    @{list_name}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
+            IF    ("${name_text}"=="${name}")
                 RETURN
             END
         END
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The name "${NAME}" should be displayed in shopping cart page
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The name "${name}" should be displayed in shopping cart page
     END
 
-The arrival date of product "${NAME}" should be display in shopping cart page
+The arrival date of product "${name}" should be display in shopping cart page
     [Documentation]       This keyword is used to verify The arrival date of product should be display in shopping cart page from provided product name
     TRY
-        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST_NAME}
+        ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list_name}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
-                ${LIST_DATE}=    Get list WebElements    ${LISTDATE_ELE}
-                ${DATE_ELE}=    Get From List    ${LIST_DATE}    ${INDEX}
-                Wait until page contain element    ${DATE_ELE}
+            IF    ("${name_text}"=="${name}")
+                ${list_date}=    Get list WebElements    ${LISTDATE_ELE}
+                ${date_ele}=    Get From List    ${list_date}    ${index}
+                Wait until page contain element    ${date_ele}
                 RETURN
             END
-            ${INDEX}=    Evaluate    ${INDEX} + 1
+            ${index}=    Evaluate    ${index} + 1
         END
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The arrival date of product "${NAME}" should be display in shopping cart page
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The arrival date of product "${name}" should be display in shopping cart page
     END
 
-The Price per item of product "${NAME}" should be display in shopping cart page
+The Price per item of product "${name}" should be display in shopping cart page
     [Documentation]       This keyword is used to verify The Price per item of product should be display in shopping cart page from provided product name
     TRY
-        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST_NAME}
+        ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list_name}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
-                ${LIST_PRICE}=    Get list WebElements    ${LISTPRICE_ELE}
-                ${PRICE_ELE}=    Get From List    ${LIST_PRICE}    ${INDEX}
-                Wait until page contain element    ${PRICE_ELE}
+            IF    ("${name_text}"=="${name}")
+                ${list_price}=    Get list WebElements    ${LISTPRICE_ELE}
+                ${price_ele}=    Get From List    ${list_price}    ${index}
+                Wait until page contain element    ${price_ele}
                 RETURN
             END
-            ${INDEX}=    Evaluate    ${INDEX} + 1
+            ${index}=    Evaluate    ${index} + 1
         END
     EXCEPT   
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Price per item of product "${NAME}" should be display in shopping cart page
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Price per item of product "${name}" should be display in shopping cart page
     END
 
-The quantity of product "${NAME}" should be display in shopping cart page
+The quantity of product "${name}" should be display in shopping cart page
     [Documentation]       This keyword is used to verify The quantity of product should be display in shopping cart page from provided product name
     TRY
-        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST_NAME}
+        ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list_name}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
-                ${LIST_QUANTITY}=    Get list WebElements    ${LIST_QUANTITY_ELE}
-                ${QUANTITY_ELE}=    Get From List    ${LIST_QUANTITY}    ${INDEX}
-                Wait until page contain element    ${QUANTITY_ELE}
+            IF    ("${name_text}"=="${name}")
+                ${list_quantity}=    Get list WebElements    ${LIST_QUANTITY_ELE}
+                ${quantity_ele}=    Get From List    ${list_quantity}    ${index}
+                Wait until page contain element    ${quantity_ele}
                 RETURN
             END
-            ${INDEX}=    Evaluate    ${INDEX} + 1
+            ${index}=    Evaluate    ${index} + 1
         END
     EXCEPT   
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Price per item of product "${NAME}" should be display in shopping cart page
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Price per item of product "${name}" should be display in shopping cart page
     END
 
-The Total price for the item of product "${NAME}" should be display in shopping cart page
+The Total price for the item of product "${name}" should be display in shopping cart page
     [Documentation]       This keyword is used to verify The Total price for the item of product should be display in shopping cart page from provided product name
     TRY
-        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST_NAME}
+        ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list_name}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
-                ${LIST_TOTAL}=    Get list WebElements    ${LISTTOTAL_ELE}
-                ${TOTAL_ELE}=    Get From List    ${LIST_TOTAL}    ${INDEX}
+            IF    ("${name_text}"=="${name}")
+                ${list_total}=    Get list WebElements    ${LISTTOTAL_ELE}
+                ${TOTAL_ELE}=    Get From List    ${list_total}    ${index}
                 Wait until page contain element    ${TOTAL_ELE}
                 RETURN
             END
-            ${INDEX}=    Evaluate    ${INDEX} + 1
+            ${index}=    Evaluate    ${index} + 1
         END
     EXCEPT   
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Price per item of product "${NAME}" should be display in shopping cart page
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The Price per item of product "${name}" should be display in shopping cart page
     END
 
-Click on ${BUTTON} button of product "${NAME}" in shopping cart page
+Click on ${BUTTON} button of product "${name}" in shopping cart page
     [Documentation]       This keyword is used to Click on button of product in shopping cart page from provided product name and provied name button
     TRY
         ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST_NAME}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
+            IF    ("${name_text}"=="${name}")
                 @{LIST_BUTTON}=    Get list WebElements    ${BUTTON}             
                 ${BUTTON_ELE}=    Get From List    ${LIST_BUTTON}    ${INDEX}
                 Hover Over Elenment    ${BUTTON_ELE}
@@ -152,17 +152,17 @@ Click on ${BUTTON} button of product "${NAME}" in shopping cart page
             ${INDEX}=     Evaluate    ${INDEX} + 1
         END
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on add quantity button of product ${NAME}
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on add quantity button of product ${name}
     END
 
-Get product quantity of product "${NAME}" in shopping cart page
+Get product quantity of product "${name}" in shopping cart page
     [Documentation]       This keyword is used to Get product quantity of product in shopping cart page from provided product name
     TRY
        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST_NAME}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
+            IF    ("${name_text}"=="${name}")
                 @{LIST_PRICE}=    Get list WebElements    ${LIST_QUANTITY_ELE}                
                 ${quantity_ele}=    Get From List    ${LIST_PRICE}    ${INDEX}
                 ${quantity}=    Get Value    ${quantity_ele}
@@ -171,17 +171,17 @@ Get product quantity of product "${NAME}" in shopping cart page
             ${INDEX}=     Evaluate    ${INDEX} + 1
         END
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get product quantity of product "${NAME}" in shopping cart page
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get product quantity of product "${name}" in shopping cart page
     END
 
-Get product price of product "${NAME}" in shopping cart page
+Get product price of product "${name}" in shopping cart page
     [Documentation]       This keyword is used to Get product price of product in shopping cart page from provided product name
     TRY
        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
         ${INDEX}=    Set Variable    0
         FOR    ${element}    IN    @{LIST_NAME}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
+            IF    ("${name_text}"=="${name}")
                 @{LIST_PRICE}=    Get list WebElements    ${LISTPRICE_ELE}                
                 ${price_ele}=    Get From List    ${LIST_PRICE}    ${INDEX}
                 ${PRICE}=    Wait and get element text    ${price_ele}
@@ -193,94 +193,94 @@ Get product price of product "${NAME}" in shopping cart page
             ${INDEX}=     Evaluate    ${INDEX} + 1
         END
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get product price of product "${NAME}" in shopping cart page
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get product price of product "${name}" in shopping cart page
     END
-Get total of product "${NAME}" in shopping cart page 
+Get total of product "${name}" in shopping cart page 
     [Documentation]       This keyword is used to Get total of product in shopping cart page from provided product name
     TRY
         Wait Until Element Is Visible    ${LISTNAME_ELE}
-       ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST_NAME}
+       ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list_name}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
-                ${LIST_TOTAL}=    Get list WebElements    ${LISTTOTAL_ELE}               
-                ${TOTAL_ELE}=    Get From List    ${LIST_TOTAL}    ${INDEX}
+            IF    ("${name_text}"=="${name}")
+                ${list_total}=    Get list WebElements    ${LISTTOTAL_ELE}               
+                ${total_ele}=    Get From List    ${list_total}    ${index}
                 # Sleep    3s
-                ${TOTAL}=    Wait and get element text    ${TOTAL_ELE}
-                ${TOTAL}=    Split String    ${TOTAL}    ${SPACE}
-                ${TOTAL}=    Get From List    ${TOTAL}    0
-                ${TOTAL}=    Get Substring    ${TOTAL}    1
-                RETURN    ${TOTAL}
+                ${total}=    Wait and get element text    ${total_ele}
+                ${total}=    Split String    ${total}    ${SPACE}
+                ${total}=    Get From List    ${total}    0
+                ${total}=    Get Substring    ${total}    1
+                RETURN    ${total}
             END
-            ${INDEX}=     Evaluate    ${INDEX} + 1
+            ${index}=     Evaluate    ${index} + 1
         END
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get total of product "${NAME}" in shopping cart page 
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get total of product "${name}" in shopping cart page 
     END
 
-Calculate Total price of product "${NAME}" in shopping cart page
+Calculate Total price of product "${name}" in shopping cart page
     [Documentation]       This keyword is used to Calculate Total price of product in shopping cart page from provided product name
     TRY
-      ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${INDEX}=    Set Variable    0
-        ${TOTAL}=    Set Variable    0    
-        FOR    ${element}    IN    @{LIST_NAME}
+      ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${index}=    Set Variable    0
+        ${total}=    Set Variable    0    
+        FOR    ${element}    IN    @{list_name}
         ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")   
-                ${PRICE}=    Get product price of product "${name_text}" in shopping cart page
-                ${QUANTITY}=    Get product quantity of product "${name_text}" in shopping cart page
-                ${TOTAL}=    Evaluate    ${TOTAL} + ${PRICE} * ${QUANTITY}
-                ${TOTAL}=    Evaluate    round(${TOTAL},2)
-                RETURN    ${TOTAL}
+            IF    ("${name_text}"=="${name}")   
+                ${price}=    Get product price of product "${name_text}" in shopping cart page
+                ${quantity}=    Get product quantity of product "${name_text}" in shopping cart page
+                ${total}=    Evaluate    ${total} + ${price} * ${quantity}
+                ${total}=    Evaluate    round(${total},2)
+                RETURN    ${total}
             END
-            ${INDEX}=     Evaluate    ${INDEX} + 1
+            ${index}=     Evaluate    ${index} + 1
         END        
             
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Total price of product 
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process total price of product 
     END
-Click the Reduce quantity button of product "${NAME}" in shopping cart page
+Click the Reduce quantity button of product "${name}" in shopping cart page
     [Documentation]       This keyword is used to Click the Reduce quantity button of product in shopping cart page from provided product name
     TRY
-        ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
-        Set Suite Variable    ${QUANTITYBEFORE}    ${QUANTITY}    
-        Click on ${REDUCEQUANTITY_BTN_ELE} button of product "${NAME}" in shopping cart page
+        ${quantity}=   Get product quantity of product "${name}" in shopping cart page
+        Set Suite Variable    ${QUANTITYBEFORE}    ${quantity}    
+        Click on ${REDUCEQUANTITY_BTN_ELE} button of product "${name}" in shopping cart page
         Wait for page loaded in shopping cart page   
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Reduce quantity button of product "${NAME}"
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Reduce quantity button of product "${name}"
     END
 
-The quantity of product "${NAME}" should be reduce when user click on reduce button in shopping cart page
+The quantity of product "${name}" should be reduce when user click on reduce button in shopping cart page
     [Documentation]       This keyword is used to verify The quantity of product should be reduce when user click on reduce button in shopping cart pagefrom provided product name
     TRY
-        ${QUANTITYCURRENT}=    Get product quantity of product "${NAME}" in shopping cart page
-        ${RESULT}=    Evaluate    ${QUANTITYBEFORE} - ${QUANTITYCURRENT}
-        Compare two Numbers    ${RESULT}    1
+        ${quantitycurrent}=    Get product quantity of product "${name}" in shopping cart page
+        ${result}=    Evaluate    ${QUANTITYBEFORE} - ${quantitycurrent}
+        Compare two Numbers    ${result}    1
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${NAME}" should be reduce when user click on reduce button
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${name}" should be reduce when user click on reduce button
     END
 
-Click the Add quantity button of product "${NAME}" in shopping cart page
+Click the Add quantity button of product "${name}" in shopping cart page
     [Documentation]       This keyword is used to Click the Add quantity button of product in shopping cart page from provided product name
     TRY
-        ${QUANTITY}=   Get product quantity of product "${NAME}" in shopping cart page
-        Set Suite Variable    ${QUANTITYAFTER}    ${QUANTITY}    
-        Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${NAME}" in shopping cart page
+        ${quantity}=   Get product quantity of product "${name}" in shopping cart page
+        Set Suite Variable    ${QUANTITYAFTER}    ${quantity}    
+        Click on ${ADDQUANTITY_BUTTON_ELE} button of product "${name}" in shopping cart page
         Wait for page loaded in shopping cart page
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Add quantity button of product "${NAME}"
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process Click the Add quantity button of product "${name}"
     END
 
 
-The quantity of product "${NAME}" should be increase when user click on add button in shopping cart page
+The quantity of product "${name}" should be increase when user click on add button in shopping cart page
     [Documentation]       This keyword is used to verify The quantity of product should be increase when user click on add button in shopping cart pagefrom provided product name
     TRY
-        ${QUANTITYCURRENT}=    Get product quantity of product "${NAME}" in shopping cart page
-        ${RESULT}=    Evaluate    ${QUANTITYCURRENT} - ${QUANTITYAFTER}
-        Should Be Equal As Numbers    ${RESULT}    1
+        ${quantitycurrent}=    Get product quantity of product "${name}" in shopping cart page
+        ${result}=    Evaluate    ${quantitycurrent} - ${QUANTITYAFTER}
+        Should Be Equal As Numbers    ${result}    1
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${NAME}" should be increase when user click on add button
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process The quantity of product "${name}" should be increase when user click on add button
     END
 
 Wait for page loaded in shopping cart page
@@ -291,25 +291,25 @@ Wait for page loaded in shopping cart page
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Wait for page loaded in shopping cart page
     END
 
-The total of product "${NAME}" should be equal quantity * price 
+The total of product "${name}" should be equal quantity * price 
     [Documentation]       This keyword is used to verify The total of product should be equal quantity * price from provided product name
     TRY
-        ${TOTAL}=    Get total of product "${NAME}" in shopping cart page
-        ${TOTAL_CALCULATE}=    Calculate Total price of product "${NAME}" in shopping cart page
-        ${TOTAL_CALCULATE}=    Convert To String    ${TOTAL_CALCULATE}
-        Should Be Equal    ${TOTAL_CALCULATE}    ${TOTAL}
+        ${total}=    Get total of product "${name}" in shopping cart page
+        ${total_calculate}=    Calculate Total price of product "${name}" in shopping cart page
+        ${total_calculate}=    Convert To String    ${total_calculate}
+        Should Be Equal    ${total_calculate}    ${total}
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The total of product "${NAME}" should be equal quantity * price 
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The total of product "${name}" should be equal quantity * price 
     END
 
 Get Subtotal in shopping cart page 
     [Documentation]       This keyword is used to Get Subtotal in shopping cart page 
     TRY
-        ${SUBTOTAL}    Wait and get element text    ${SUBTOTAL_ELE}
-        ${SUBTOTAL}=    Split String    ${SUBTOTAL}    ${SPACE}
-        ${SUBTOTAL}=    Get From List    ${SUBTOTAL}    0
-        ${SUBTOTAL}=    Get Substring    ${SUBTOTAL}    1
-        RETURN    ${SUBTOTAL}
+        ${subtotal}    Wait and get element text    ${SUBTOTAL_ELE}
+        ${subtotal}=    Split String    ${subtotal}    ${SPACE}
+        ${subtotal}=    Get From List    ${subtotal}    0
+        ${subtotal}=    Get Substring    ${subtotal}    1
+        RETURN    ${subtotal}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process Get Subtotal in shopping cart page 
     END
@@ -317,16 +317,16 @@ Get Subtotal in shopping cart page
 Calculate Total price in shopping cart page
     [Documentation]       This keyword is used to Calculate Total price in shopping cart page
     TRY
-      ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${INDEX}=    Set Variable    0
-        ${TOTAL}=    Set Variable    0    
-        FOR    ${element}    IN    @{LIST_NAME}
+      ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${index}=    Set Variable    0
+        ${total}=    Set Variable    0    
+        FOR    ${element}    IN    @{list_name}
             ${name_text}=     Wait and get element text    ${element}
-            ${PRICE}=    Get product price of product "${name_text}" in shopping cart page
-            ${QUANTITY}=    Get product quantity of product "${name_text}" in shopping cart page
-            ${TOTAL}=    Evaluate    ${TOTAL} + ${PRICE} * ${QUANTITY}
-            ${TOTAL}=    Evaluate    round(${TOTAL},2)
-            ${INDEX}=     Evaluate    ${INDEX} + 1
+            ${price}=    Get product price of product "${name_text}" in shopping cart page
+            ${quantity}=    Get product quantity of product "${name_text}" in shopping cart page
+            ${total}=    Evaluate    ${total} + ${price} * ${quantity}
+            ${total}=    Evaluate    round(${total},2)
+            ${index}=     Evaluate    ${index} + 1
         END        
         RETURN    ${TOTAL}
     EXCEPT    
@@ -336,59 +336,59 @@ Calculate Total price in shopping cart page
 The Subtotal of all items shopping cart page should be equal total price of product 
     [Documentation]       This keyword is used to verify The Subtotal of all items shopping cart page should be equal total price of product 
     TRY
-        ${TOATL}=    Get Subtotal in shopping cart page 
-        ${SUBTOTAL}=    Calculate Total price in shopping cart page
-        ${SUBTOTAL}=    Convert To String    ${SUBTOTAL}
-        Should Be Equal    ${SUBTOTAL}    ${TOATL}
+        ${toatl}=    Get Subtotal in shopping cart page 
+        ${subtotal}=    Calculate Total price in shopping cart page
+        ${subtotal}=    Convert To String    ${subtotal}
+        Should Be Equal    ${subtotal}    ${toatl}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The Subtotal shopping cart page should be equal total price of product 
     END
 
 
-Click on the "X" button of product "${NAME}" in the shopping cart page 
+Click on the "X" button of product "${name}" in the shopping cart page 
     [Documentation]       This keyword is used to Click on the "X" button of product in the shopping cart page from provided product name
     TRY
-      ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${INDEX}=    Set Variable    0
-        ${TOTAL}=    Set Variable    0    
-        FOR    ${element}    IN    @{LIST_NAME}
+      ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${index}=    Set Variable    0
+        ${total}=    Set Variable    0    
+        FOR    ${element}    IN    @{list_name}
         ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
-                ${LIST_REMOVE}=    Get list WebElements    ${REMOVE_BTN_ELE}
-                ${REMOVEBTN}=    Get From List    ${LIST_REMOVE}   ${INDEX}   
-                Click on button    ${REMOVEBTN}
+            IF    ("${name_text}"=="${name}")
+                ${list_remove}=    Get list WebElements    ${REMOVE_BTN_ELE}
+                ${removebtn}=    Get From List    ${list_remove}   ${index}   
+                Click on button    ${removebtn}
                 RETURN
             END
-            ${INDEX}=     Evaluate    ${INDEX} + 1
+            ${index}=     Evaluate    ${index} + 1
         END        
             
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the "X" button of product "${NAME}" in the shopping cart page 
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Click on the "X" button of product "${name}" in the shopping cart page 
     END
 
-The product "${NAME}" should be remove it from the cart
+The product "${name}" should be remove it from the cart
     [Documentation]       This keyword is used to verify The product should be remove it from the cart from provided product name
     TRY
         Wait Until Page Contains    The product has been removed.
-        ${LIST_NAME}=    Get list WebElements    ${LISTNAME_ELE}
-        ${STATUS}=    Set Variable    False
-        FOR    ${element}    IN    @{LIST_NAME}
+        ${list_name}=    Get list WebElements    ${LISTNAME_ELE}
+        ${status}=    Set Variable    False
+        FOR    ${element}    IN    @{list_name}
             ${name_text}=     Wait and get element text    ${element}
-            IF    ("${name_text}"=="${NAME}")
-                ${STATUS}=    Set Variable    True
+            IF    ("${name_text}"=="${name}")
+                ${status}=    Set Variable    True
             END
         END
-        Should Not Be True    ${STATUS}
+        Should Not Be True    ${status}
     EXCEPT    
-        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The name "${NAME}" should be displayed in shopping cart page
+        Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The name "${name}" should be displayed in shopping cart page
     END
 
 Get quantity of product in header
     [Documentation]       This keyword is used to verify Get quantity of product in header
     TRY
         Hover Over Elenment    ${TOTALPRODUCT_ELE}
-        ${TOTALPRODUCT}=    Wait and get element text   ${TOTALPRODUCT_ELE}
-        RETURN    ${TOTALPRODUCT}
+        ${totalproduct}=    Wait and get element text   ${TOTALPRODUCT_ELE}
+        RETURN    ${totalproduct}
     EXCEPT   
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify Get total of product in shopping cart page
     END
@@ -399,13 +399,13 @@ The total of product should be change when an item is removed
     TRY
         Click the Add quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page
         The quantity of product "The Prisoner of Heaven: A Novel" should be increase when user click on add button in shopping cart page
-        ${TOTAL_BEFORE}=    Get quantity of product in header
+        ${total_before}=    Get quantity of product in header
         Click the Reduce quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page
         The quantity of product "The Prisoner of Heaven: A Novel" should be reduce when user click on reduce button in shopping cart page
-        ${TOTAL_AFTER}=    Get quantity of product in header
-        ${QUANTITY}=    Evaluate    ${TOTAL_BEFORE} - ${TOTAL_AFTER}
-        ${QUANTITY}=    Convert To String    ${QUANTITY}
-        Should Be Equal    ${QUANTITY}    1
+        ${total_after}=    Get quantity of product in header
+        ${quantity}=    Evaluate    ${total_before} - ${total_after}
+        ${quantity}=    Convert To String    ${quantity}
+        Should Be Equal    ${quantity}    1
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The total of product should be change when an item is removed
     END
@@ -415,11 +415,11 @@ The Subtotal of product should be change when an item is removed
    TRY
         Click the Add quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page
         The quantity of product "The Prisoner of Heaven: A Novel" should be increase when user click on add button in shopping cart page
-        ${SUBTOTAL_BEFORE}=    Get Subtotal in shopping cart page
+        ${subtotal_before}=    Get Subtotal in shopping cart page
         Click the Reduce quantity button of product "The Prisoner of Heaven: A Novel" in shopping cart page
         The quantity of product "The Prisoner of Heaven: A Novel" should be reduce when user click on reduce button in shopping cart page
-        ${SUBTOTAL_AFTER}=    Get Subtotal in shopping cart page
-        Should Not Be Equal    ${SUBTOTAL_BEFORE}    ${SUBTOTAL_AFTER}
+        ${subtotal_after}=    Get Subtotal in shopping cart page
+        Should Not Be Equal    ${subtotal_before}    ${subtotal_after}
     EXCEPT    
         Run Keyword And Continue On Failure   FAIL    There is a error happen in process verify The total of product shuld be change when an item is removed
     END
@@ -545,8 +545,8 @@ Click on the "Continue shopping" button in the shopping cart page
 Go the Shopping cart page
     [Documentation]       This keyword is used to Go the Shopping cart page
     TRY
-        ${URL}=    Catenate    SEPARATOR=/    ${URL_HOME}    cart
-        Go To    ${URL} 
+        ${url}=    Catenate    SEPARATOR=/    ${URL_HOME}    cart
+        Go To    ${url} 
         The page should be opened    Shopping cart     ${PAGE_TITLE_ELE}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Go the Shopping cart page

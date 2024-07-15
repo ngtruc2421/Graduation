@@ -10,34 +10,34 @@ ${PASSWORD}=                                  Ttkn1234@
 ${SAVE_BTN_ELE}                               css:[name="save-info-button"] 
 ${LABLELIST_ELE}                              css:.col-form-label                               
 *** Keywords ***
-Get ID field by lable ${NAME} in customer info page
+Get ID field by lable ${name} in customer info page
     [Documentation]       This keyword is used to Get ID field by lable in customer info page from provided lable name
     TRY
-        ${XPATH}=    Set Variable    //label[text()='${NAME}']/following-sibling::div[contains(@class, 'col-lg-9')]//input
-        ${ELEMENT}=    Get WebElement    ${XPATH}
-        ${ID}=    Call Method    ${ELEMENT}    get_attribute    id
-        RETURN    ${ID}
+        ${xpath}=    Set Variable    //label[text()='${name}']/following-sibling::div[contains(@class, 'col-lg-9')]//input
+        ${element}=    Get WebElement    ${xpath}
+        ${id}=    Call Method    ${element}    get_attribute    id
+        RETURN    ${id}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get ID field by lable ${NAME} customer info page    
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Get ID field by lable ${name} customer info page    
     END
 
-Input the "${NAME}" field with value "${TEXT}" in customer info page
+Input the "${name}" field with value "${text}" in customer info page
     [Documentation]       This keyword is used to Input the field with value in customer info page from provided field name and provided value
     TRY
-        ${LOCATOR}=    Get ID field by lable ${NAME} in customer info page
-        Input value for a field    ${TEXT}    id:${LOCATOR}
-        ${CURRENT_TEXT}=    Get Value    ${LOCATOR}
-        Should Contain    ${CURRENT_TEXT}    ${TEXT}
+        ${locator}=    Get ID field by lable ${name} in customer info page
+        Input value for a field    ${text}    id:${locator}
+        ${current_text}=    Get Value    ${locator}
+        Should Contain    ${current_text}    ${text}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error when input    
     END
 Get class field by Username in customer info page
     [Documentation]       This keyword is used to Get class field by Username in customer info page
     TRY
-        ${XPATH}=    Set Variable    //label[text()='Username']/following-sibling::div[contains(@class, 'col-lg-9')]//div
-        ${ELEMENT}=    Get WebElement    ${XPATH}
-        ${CLASS}=    Call Method    ${ELEMENT}    get_attribute    class
-        RETURN    css:.${CLASS}
+        ${xpath}=    Set Variable    //label[text()='Username']/following-sibling::div[contains(@class, 'col-lg-9')]//div
+        ${element}=    Get WebElement    ${xpath}
+        ${class}=    Call Method    ${element}    get_attribute    class
+        RETURN    css:.${class}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process Get class field by Username in customer info page
     END
@@ -51,13 +51,13 @@ The "Username" should be display
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The "Username" should be display 
     END
 
-The "${NAME}" field should be display 
+The "${name}" field should be display 
     [Documentation]       This keyword is used to verify The name field should be display from provided field name
     TRY
-        ${ID}=    Get ID field by lable ${NAME} in customer info page
-        Wait until page contain element    id:${ID}
+        ${id}=    Get ID field by lable ${name} in customer info page
+        Wait until page contain element    id:${id}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The "${NAME}" field should be display 
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify The "${name}" field should be display 
     END
 
 
@@ -97,28 +97,28 @@ Click on the Save button in the Customer infor page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is  There is a error happen in process Click on the Save button in the Customer infor page
     END
-It should show warning message when user input the "${FIELD_NAME}" field with specific value in customer info page
+It should show warning message when user input the "${field_name}" field with specific value in customer info page
     [Documentation]       This keyword is used to verify It should show warning message when user input the field with specific value in customer info page from provided text and provided eror
-    [Arguments]      ${TEXT}      ${ERROR}
+    [Arguments]      ${text}      ${error}
     TRY
-        ${LOCATOR}=    Get ID field by lable ${FIELD_NAME} in customer info page
+        ${LOCATOR}=    Get ID field by lable ${field_name} in customer info page
         Clear Element Text    id:${LOCATOR}
-        Input the "${FIELD_NAME}" field with value "${TEXT}" in customer info page
+        Input the "${field_name}" field with value "${text}" in customer info page
         Click on the Save button in the Customer infor page
-        The error "${ERROR}" should be display
+        The error "${error}" should be display
     EXCEPT  
-        Run Keyword And Continue On Failure   FAIL     There is a error happen in process verify It should show warning message when user input the "${FIELD_NAME}" field with specific value ${text}        
+        Run Keyword And Continue On Failure   FAIL     There is a error happen in process verify It should show warning message when user input the "${field_name}" field with specific value ${text}        
     END
 
 Clear all data in required field
     [Documentation]       This keyword is used to Clear all data in required field
     TRY
-        ${LOCATOR_FN}=    Get ID field by lable First name in customer info page
-        Clear Element Text    id:${LOCATOR_FN}
-        ${LOCATOR_LN}=    Get ID field by lable Last name in customer info page
-        Clear Element Text    id:${LOCATOR_LN}
-        ${LOCATOR_Email}=    Get ID field by lable Email in customer info page
-        Clear Element Text    id:${LOCATOR_Email}
+        ${locator_fn}=    Get ID field by lable First name in customer info page
+        Clear Element Text    id:${locator_fn}
+        ${locator_ln}=    Get ID field by lable Last name in customer info page
+        Clear Element Text    id:${locator_ln}
+        ${locator_email}=    Get ID field by lable Email in customer info page
+        Clear Element Text    id:${locator_email}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a error happen in process verify Clear all data in required field
     END 
@@ -133,36 +133,36 @@ The "Save" button should be displayed
     END 
     
 
-Clear data in "${NAME}" field 
+Clear data in "${name}" field 
     [Documentation]       This keyword is used to Clear data in name field from provided field name
     TRY
-        ${LOCATOR}=    Get ID field by lable ${NAME} in customer info page
-        Clear Element Text    id:${LOCATOR}
+        ${locator}=    Get ID field by lable ${name} in customer info page
+        Clear Element Text    id:${locator}
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process Clear data in ${NAME} field 
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process Clear data in ${name} field 
     END
 
 
-Is field ${NAME} include asterisk character
+Is field ${name} include asterisk character
     [Documentation]       This keyword is used to verify Is name field include asterisk character from provided field name    
     TRY
-        ${ID}=    Get ID field by lable ${NAME} in customer info page
-        ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='${ID}']"), "::after").getPropertyValue("content");
+        ${id}=    Get ID field by lable ${name} in customer info page
+        ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='${id}']"), "::after").getPropertyValue("content");
          ${stripped_result}=    Evaluate    ${result}.strip('"')
         Should Contain    ${stripped_result}    *
     EXCEPT    
-        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify Is field ${NAME} include asterisk character  
+        Run Keyword And Continue On Failure    Fail    There is a error happen in process verify Is field ${name} include asterisk character  
     END
 
-The "${NAME}" field is required 
+The "${name}" field is required 
     [Documentation]       This keyword is used to verifyThe name field is required  from provided field name
     TRY
-        ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST_LABLE}
-            ${LABLE}=    Wait and get element text    ${element}
-            IF    "${LABLE}" == "${NAME}"
-                Is field ${NAME} include asterisk character
+        ${list_lable}=    Get list WebElements    ${LABLELIST_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list_lable}
+            ${lable}=    Wait and get element text    ${element}
+            IF    "${lable}" == "${name}"
+                Is field ${name} include asterisk character
                 RETURN    
             END
         END
@@ -174,12 +174,12 @@ The "${NAME}" field is required
 The field "Username" is required
     [Documentation]       This keyword is used to verify The field "Username" is required
     TRY
-        ${LIST_LABLE}=    Get list WebElements    ${LABLELIST_ELE}
-        ${INDEX}=    Set Variable    0
-        FOR    ${element}    IN    @{LIST_LABLE}
-            ${LABLE}=    Wait and get element text    ${element}
-            IF    "${LABLE}" == "Username"
-                ${ID}=    Set Variable    Username
+        ${list_lable}=    Get list WebElements    ${LABLELIST_ELE}
+        ${index}=    Set Variable    0
+        FOR    ${element}    IN    @{list_lable}
+            ${lable}=    Wait and get element text    ${element}
+            IF    "${lable}" == "Username"
+                ${id}=    Set Variable    Username
                 ${result}=    Execute JavaScript    return window.getComputedStyle(document.querySelector(".required[for='Username']"), "::after").getPropertyValue("content");
                  ${stripped_result}=    Evaluate    ${result}.strip('"')
                  Should Contain    ${stripped_result}    *

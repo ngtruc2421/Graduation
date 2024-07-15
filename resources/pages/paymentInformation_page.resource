@@ -52,68 +52,68 @@ It should displays the Credit card form and the input fields for Credit card opt
 Get the Card type list
     [Documentation]    This keyword get the Card type list
     TRY
-        ${LIST}=    Get list WebElements    ${CARDTYPE_INPUT_ELE}
-        RETURN    ${LIST}
+        ${list}=    Get list WebElements    ${CARDTYPE_INPUT_ELE}
+        RETURN    ${list}
     EXCEPT
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Click on the Next button on the Payement page" keyword
     END
 The Payment page should be safe
     [Documentation]    This keyword verifies that the Payment page should be safe
     TRY
-        ${LOCATION}=    Get Location
-        Should Contain    ${LOCATION}    ${PROTOCOL}
+        ${location}=    Get Location
+        Should Contain    ${location}    ${PROTOCOL}
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the Credit card option on the Payment page" keyword
     END
 
-Select the "${OPTION_NAME}" on the "Select your credit card" dropdown field
-    [Documentation]    This keyword selecting the "${OPTION_NAME}" on the "Select your credit card" dropdown field
+Select the "${option_name}" on the "Select your credit card" dropdown field
+    [Documentation]    This keyword selecting the "${option_name}" on the "Select your credit card" dropdown field
     TRY
         Click on the web element    ${CARDTYPE_INPUT_ELE}
-        Click on the web element    xpath=//select[@id="CreditCardType"]//option[contains(text(),"${OPTION_NAME}")]
+        Click on the web element    xpath=//select[@id="CreditCardType"]//option[contains(text(),"${option_name}")]
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the "${OPTION_NAME}" on the "Select your credit card" dropdown field" keyword
+        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the "${option_name}" on the "Select your credit card" dropdown field" keyword
     END
 
-Enters the "${CARD_NAME}" on the "Cardholder name" field
-    [Documentation]    This keyword enters the "${CARD_NAME}" on the "Cardholder name" field
+Enters the "${card_name}" on the "Cardholder name" field
+    [Documentation]    This keyword enters the "${card_name}" on the "Cardholder name" field
     TRY
-        Input value for a field    ${CARD_NAME}    ${CARDNAME_INPUT_ELE}
+        Input value for a field    ${card_name}    ${CARDNAME_INPUT_ELE}
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    There is a issue on the "Enters the "${CARD_NAME}" on the "Cardholder name" field" keyword
+        Run Keyword And Continue On Failure    Fail    There is a issue on the "Enters the "${card_name}" on the "Cardholder name" field" keyword
     END
 
-Enters the "${CARD_NUMBER}" on the "Card number" field
-    [Documentation]    This keyword enters the "${CARD_NUMBER}" on the "Card number" field
+Enters the "${card_number}" on the "Card number" field
+    [Documentation]    This keyword enters the "${card_number}" on the "Card number" field
     TRY
-        Input value for a field    ${CARD_NUMBER}    ${CARDNUM_INPUT_ELE}
+        Input value for a field    ${card_number}    ${CARDNUM_INPUT_ELE}
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    There is a issue on the "Enters the "${CARD_NUMBER}" on the "Card number" field" keyword
+        Run Keyword And Continue On Failure    Fail    There is a issue on the "Enters the "${card_number}" on the "Card number" field" keyword
     END
 
-Enters the "${CARD_CODE}" on the "Card code" field
-    [Documentation]    This keyword enters the "${CARD_CODE}" on the "Card code" field
+Enters the "${card_code}" on the "Card code" field
+    [Documentation]    This keyword enters the "${card_code}" on the "Card code" field
     TRY
-        Input value for a field    ${CARD_CODE}    ${CARDCODE_INPUT_ELE}
+        Input value for a field    ${card_code}    ${CARDCODE_INPUT_ELE}
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    There is a issue on the "Enters the "${CARD_CODE}" on the "Card code" field" keyword
+        Run Keyword And Continue On Failure    Fail    There is a issue on the "Enters the "${card_code}" on the "Card code" field" keyword
     END
 
-Select the "${MM}" on the "Valid until" month dropdown field
-    [Documentation]    This keyword select the "${MM}" on the "Valid until" month dropdown field
+Select the "${mm}" on the "Valid until" month dropdown field
+    [Documentation]    This keyword select the "${mm}" on the "Valid until" month dropdown field
     TRY
         Click on the web element    ${EXMONTH_INPUT_ELE}
-        Click on the web element    xpath=//select[@id="ExpireMonth"]//option[contains(text(),"${MM}")]
+        Click on the web element    xpath=//select[@id="ExpireMonth"]//option[contains(text(),"${mm}")]
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the ${MM} on the "Valid until" dropdown field" keyword
+        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the ${mm} on the "Valid until" dropdown field" keyword
     END
-Select the "${YYYY}" on the "Valid until" year dropdown field
-    [Documentation]    This keyword select the "${YYYY}" on the "Valid until" year dropdown field
+Select the "${yyyy}" on the "Valid until" year dropdown field
+    [Documentation]    This keyword select the "${yyyy}" on the "Valid until" year dropdown field
     TRY
         Click on the web element    ${EXYEAR_INPUT_ELE}
-        Click on the web element    xpath=//select[@id="ExpireYear"]//option[contains(text(),"${YYYY}")]
+        Click on the web element    xpath=//select[@id="ExpireYear"]//option[contains(text(),"${yyyy}")]
     EXCEPT
-        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the ${YYYY} on the "Valid until" dropdown field" keyword
+        Run Keyword And Continue On Failure    Fail    There is a issue on the "Select the ${yyyy} on the "Valid until" dropdown field" keyword
     END
 
 Click on the Next button on the Payment page
@@ -133,7 +133,7 @@ It should validate payment information before proceeding
     END
 It should display the warning message
     [Documentation]    This keyword verifies that it should display the warning message
-    [Arguments]    ${CARDHOLDERNAME}    ${CARDNUMBER}    ${CARDCODE}    ${MESS}
+    [Arguments]    ${cardholdername}    ${cardnumber}    ${cardcode}    ${mess}
     TRY
         Open the Login page
         Log in the system    ${NORMAL_USER}    ${NORMAL_USER_PASS}
@@ -145,13 +145,13 @@ It should display the warning message
         Navigate to the Payment page
         Select the Credit card option on the Payment page
         Select the "Master Card" on the "Select your credit card" dropdown field
-        Enters the "${CARDHOLDERNAME}" on the "Cardholder name" field
-        Enters the "${CARDNUMBER}" on the "Card number" field
+        Enters the "${cardholdername}" on the "Cardholder name" field
+        Enters the "${cardnumber}" on the "Card number" field
         Select the "05" on the "Valid until" month dropdown field
         Select the "2030" on the "Valid until" year dropdown field
-        Enters the "${CARDCODE}" on the "Card code" field
+        Enters the "${cardcode}" on the "Card code" field
         Click on the Next button on the Payment page
-        Check the text elememt    ${MESS}
+        Check the text elememt    ${mess}
         Close the web page
     EXCEPT    
         Run Keyword And Continue On Failure    Fail    There is a issue with the "It should display the warning message" keyword

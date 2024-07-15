@@ -55,5 +55,5 @@ Test case Teardown for shipping options
     Close the web page
 
 Test Suite Setup for shipping options
-    Create test cycle at folder    Smoke Testing
+    Create test cycle at folder    Automation Test
     Log    This is suite setup

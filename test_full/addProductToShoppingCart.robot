@@ -76,8 +76,7 @@ BSG-T104 --- Verify that user can reduce product quantity by clicking on the red
     The quantity of product "Club Lounge Chair" in the product detail page should be reduce when user click on reduce button
 *** Keywords ***
 Test Suite Setup of addProduct
-    Create test cycle at folder    Smoke Testing
-    Create test cycle at folder     Regression Testing
+    Create test cycle at folder    Automation Test
     Log    This is suite setup
 Test case Setup of addProduct
     Set test case start time
