@@ -47,7 +47,7 @@ BSG-T53 --- Verify that the search function will support auto-suggestions when u
     Dining table
     Save with this set 5%!
 BSG-T54 --- Verify that the suggestion list should include the produce image, name, and description
-    [Tags]    High    Smok
+    [Tags]    High    Smoke
     Open the Home Page
     Enters the text on the search bar    an
     It should display the image, description, and title on suggestion list
